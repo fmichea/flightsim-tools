@@ -1,0 +1,51 @@
+env:
+  browser: true
+  es6: true
+
+extends:
+  - "plugin:react/recommended"
+  - "airbnb"
+
+globals:
+  # Jest globals.
+  describe: "readonly"
+  test: "readonly"
+  expect: "readonly"
+
+parser: babel-eslint
+
+plugins:
+  - "react"
+  - "babel"
+
+rules:
+  max-len: ["warn", 120]
+  # Ensure there are no default exports.
+  import/prefer-default-export: "off"
+  import/no-default-export: "error"
+  # Configure indent.
+  indent: ["error", 4]
+  react/jsx-indent: ["error", 4]
+  react/jsx-indent-props: ["error", 4]
+  # Do not force deconstructing this.props and this.state.
+  react/destructuring-assignment: "off"
+  # Allow defining defaultProps and propTypes as static public fields.
+  react/static-property-placement: ["error", "static getter", {
+    "defaultProps": "static public field",
+    "displayName": "static public field",
+    "propTypes": "static public field",
+  }]
+  # Ensure semicolons are everywhere.
+  babel/semi: ["error", "always"]
+
+settings:
+  import/resolver:
+    node:
+      extensions:
+        - .js
+        - .jsx
+        - .test.jsx
+      moduleDirectory:
+        - node_modules
+      paths:
+        - src
