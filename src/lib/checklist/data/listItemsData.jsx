@@ -1817,7 +1817,8 @@ const simulatorSetupItemsData = createMappingFunction(addSimSetupTags)([
         moreInfoShort: (
             <>
                 Plan the full flight, expect to figure out the following information: departure and arrival airport,
-                type of flight, route, time in flight and fuel required.
+                type of flight, route including most likely departure and arrival procedure, time in flight and fuel
+                required. Tools such as Simbrief may be used to simplify this step.
             </>
         ),
     },
