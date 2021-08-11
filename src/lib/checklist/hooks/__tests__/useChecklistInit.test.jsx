@@ -70,7 +70,7 @@ describe('useChecklistInit', () => {
                     [ChecklistLists.ENGINE_START]: 8,
                     [ChecklistLists.BEFORE_TAXI]: 14,
                     [ChecklistLists.TAXI]: 6,
-                    [ChecklistLists.BEFORE_TAKEOFF]: 14,
+                    [ChecklistLists.BEFORE_TAKEOFF]: 13,
                     [ChecklistLists.TAKEOFF]: 4,
                     [ChecklistLists.AFTER_TAKEOFF]: 9,
                     [ChecklistLists.CRUISE]: 2,

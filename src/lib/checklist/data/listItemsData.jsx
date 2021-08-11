@@ -23,6 +23,39 @@ const addOfficialTags = (value) => ({
     tags: [...value.tags, ChecklistTags.OFFICIAL, ChecklistTags.CJ4],
 });
 
+const cj4AntiIceRules = (
+    <>
+        <strong>Rules:</strong>
+        {' '}
+        Wing, engine, and tail anti-ice must be turned on in icy condition (when SAT is below 10&deg;C, and
+        there is visible moisture in the air), except for tail when below -30&deg;C. Wing light must be
+        operational to flight in icy conditions (it lights only the left wing leading edge). Below -40&deg;C,
+        anti-ice may be turned to engine only mode as long as it can be verified that no ice is forming on
+        the wings.
+    </>
+);
+
+const cj4TaxiExteriorLightsHelp = (
+    <List>
+        <ListItem>
+            <Code>TAXI:</Code>
+            {' '}
+            Should be on whenever rolling. It is a good idea to turn off when holding or yielding to
+            indicate to other aircraft that you are not moving.
+        </ListItem>
+
+        <ListItem>
+            <Code>LANDING/STROBE:</Code>
+            {' '}
+            Whenever a runway is crossed, these two lights should be used instead of
+            {' '}
+            <Code>TAXI</Code>
+            {' '}
+            light.
+        </ListItem>
+    </List>
+);
+
 const cj4ItemsData = createMappingFunction(addOfficialTags)([
     {
         uid: ChecklistItems.CJ4_BEFORE_START_BATTERY_SWITCH,
@@ -34,7 +67,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
                 and can be turned on by moving it in up position.
                 <br />
                 <br />
-                MFD should turn on and show a few errors and warnings once battery is ON. Battery life is limitted at 10
+                MFD should turn on and show a few errors and warnings once battery is ON. Battery life is limited at 10
                 to 15 minutes so either engines must be started or ground power used pretty quickly.
             </>
         ),
@@ -60,7 +93,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'ON',
         moreInfoShort: (
             <>
-                Standby Flight Display switch is also in the electrical panel, on the second row in the middle.
+                Standby Flight Display Switch is also in the electrical panel, on the second row in the middle.
                 It can be turned on by moving it in the up position. Standby Flight Display right of MFD, above
                 landing gear state display, should turn ON.
             </>
@@ -132,10 +165,17 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Enable BEACON and NAV lights on the center console above the throttles.
-                <br />
-                <br />
-                FIXME: Is that correct?
+                With CJ4, in general the following lights will be turned on before engine start:
+                {' '}
+                <Code>BEACON</Code>
+                ,
+                {' '}
+                <Code>NAV</Code>
+                {' '}
+                and
+                {' '}
+                <Code>LOGO</Code>
+                .
             </>
         ),
     },
@@ -431,11 +471,6 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_BEFORE_TAXI_AVIONICS_CHECK,
         title: 'Avionics',
         state: 'CHECK/SET',
-        moreInfoShort: (
-            <>
-                FIXME: set QNH and altitude/initial heading for autopilot?
-            </>
-        ),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAXI_AUTOPILOT_CONNECT_DISCONNECT,
@@ -494,10 +529,9 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Enable Taxi lights and make sure to enable strobe for any runway crossing.
+                Lights might need to be changed as taxi is on-going, the general rules are that:
                 <br />
-                <br />
-                (FIXME: Is there more to this one?)
+                {cj4TaxiExteriorLightsHelp}
             </>
         ),
     },
@@ -548,7 +582,31 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         title: 'Flight Instruments',
         state: 'CHECK',
         moreInfoShort: (
-            <>FIXME: Not sure what to look for there, Ground speed?????</>
+            <>
+                Check the avionics displayed on PFD for the following information:
+                <List>
+                    <ListItem>
+                        <Code>GS (Ground Speed):</Code>
+                        {' '}
+                        0 when standing, then positive when moving.
+                    </ListItem>
+                    <ListItem>
+                        <Code>AS (Air Speed):</Code>
+                        {' '}
+                        valid value depending winds.
+                    </ListItem>
+                    <ListItem>
+                        <Code>Artificial Horizon:</Code>
+                        {' '}
+                        verify level with ground.
+                    </ListItem>
+                    <ListItem>
+                        <Code>Altimeter:</Code>
+                        {' '}
+                        showing field elevation.
+                    </ListItem>
+                </List>
+            </>
         ),
     },
     {
@@ -569,7 +627,13 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_RUDDER_BIAS_SYSTEM_CHECK,
         title: 'Rudder Bias System',
         state: 'CHECK',
-        // FIXME: information on what this is.
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
+        moreInfoShort: (
+            <>
+                Not Implemented. When running on a single engine, Rudder Bias System should compensate using trim. For
+                this item, spool engines up separately and verify trim adjusts to compensate.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_SEATS_UPRIGHT,
@@ -639,8 +703,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                At this point it is allowed to enable radar (traffic, weather, terrain) as
-                required for takeoff. (FIXME: add details on what is required)
+                At this point it is allowed to enable radar (traffic, weather, terrain) as required for takeoff.
             </>
         ),
     },
@@ -675,6 +738,15 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_ICE_PROTECTION_SYSTEM_AS_REQUIRED,
         title: 'Ice Protection Systems',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Check temperatures and prepare for anti-ice procedure during takeoff. Enable anti-ice as required as
+                soon as necessary.
+                <br />
+                <br />
+                {cj4AntiIceRules}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_PITOT_STATIC_HEAT_BUTTONS,
@@ -693,7 +765,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Before entering runway, enable STROBE lights. Enable Landing lights, this will replace the TAXI lights.
+                Before entering runway, enable STROBE lights. Enable LANDING lights, this will replace the TAXI lights.
             </>
         ),
     },
@@ -746,7 +818,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'UP',
         moreInfoShort: (
             <>
-                Once airborn with positive climb rate, pull landing gear up. It can be done using the
+                Once airborne with positive rate of climb, pull landing gear up. It can be done using the
                 lever right of FMD and below Standby Flight Display.
             </>
         ),
@@ -805,11 +877,25 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_ICE_PROTECTION_SYSTEM_CHECK,
         title: 'Ice Protection Systems',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Keep monitoring conditions via temperatures at the bottom of MFD and follow rules outlined under the
+                Before Takeoff checklist.
+                <br />
+                <br />
+                {cj4AntiIceRules}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_PASSENGER_LIGHTS_AS_REQUIRED,
         title: 'Pass Lights Buttons',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Belt sign may be turned off above 10.000ft in non-turbulant air.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_EXTERIOR_LIGHTS,
@@ -817,9 +903,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Landing light and Strobe can be turned off after passing 10000ft.
-
-                (FIXME: wild guess here whats the actual rule?)
+                Landing, Strobe and Logo lights can be turned off after passing 10.000ft.
             </>
         ),
     },
@@ -863,6 +947,14 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_CRUISE_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Continue to monitor icing condition during cruise.
+                <br />
+                <br />
+                {cj4AntiIceRules}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_DESCENT_PRESSURIZATION,
@@ -874,6 +966,15 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_DESCENT_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Prepare for anti-ice procedure during descent and enable anti-ice protection systems as soon as
+                required.
+                <br />
+                <br />
+                {cj4AntiIceRules}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_DESCENT_ALTIMETERS,
@@ -891,6 +992,11 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_DESCENT_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Enable LANDING, STROBE and LOGO lights when passing 10.000ft for landing.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_LANDING_DATA,
@@ -930,7 +1036,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         moreInfoShort: (
             <>
                 Review approach procedure and prepare all necessary charts for quick access. Review missed approach
-                procedure.
+                procedure as well.
             </>
         ),
     },
@@ -977,7 +1083,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Enable LANDING lights and STROBE lights when reaching (10000ft). (FIXME)
+                Enable LANDING, STROBE and LOGO lights by 10.000ft.
             </>
         ),
     },
@@ -985,6 +1091,14 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_APPROACH_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Once again, keep monitoring conditions for anti-ice protection requirements.
+                <br />
+                <br />
+                {cj4AntiIceRules}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_FLAPS,
@@ -1071,7 +1185,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         moreInfoShort: (
             <>
                 Deploy flaps to 35&deg; once below 160 KIAS. This can be done using the flaps lever pulled towards the
-                cabin completely.
+                passenger cabin completely.
             </>
         ),
     },
@@ -1159,7 +1273,7 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         state: 'TO',
         moreInfoShort: (
             <>
-                Push throttles all the way up and past the takeoff detent.
+                Push throttles all the way up and past the takeoff detent. MFD should display TO in the EICAS.
             </>
         ),
     },
@@ -1204,6 +1318,11 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_GOAROUND_AIRSPEED,
         title: 'Airspeed',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Follow any restrictions applied by ATC or through altitude speed restrictions. Fly as required.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_GOAROUND_THROTTLES_2,
@@ -1219,11 +1338,31 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_GOAROUND_YAW_DAMPER,
         title: 'Yaw Damper',
         state: 'ON',
+        moreInfoShort: (
+            <>
+                Yaw Damper can be enabled using the the button labelled
+                {' '}
+                <Code>YD</Code>
+                {' '}
+                just left of the autopilot button. This step is not necessary if you intend to enable autopilot
+                immediately as yaw damper is enabled with AP.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_GOAROUND_AUTOPILOT,
         title: 'Autopilot',
         state: 'AS DESIRED',
+        moreInfoShort: (
+            <>
+                Autopilot may be enabled using the
+                {' '}
+                <Code>AP</Code>
+                {' '}
+                within the autopilot controls of cabin. Verify modes engaged before engaging autopilot to avoid any
+                unexpected hard turns or altitude changes.
+            </>
+        ),
     },
 
     {
@@ -1250,71 +1389,155 @@ const cj4ItemsData = createMappingFunction(addOfficialTags)([
         uid: ChecklistItems.CJ4_AFTER_LANDING_PITOT_STATIC_HEAT,
         title: 'Pitot/Static Heat Buttons',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Once final taxi is started, Pitot/Static Heat may be turned off using the buttons on tilt panel under
+                the anti-ice area.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_LANDING_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems',
         state: 'OFF/AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Ground operation for ice protection is resumed. At this point only engine anti-ice may be used if
+                OAT/SAT is below +5&deg;C and there is visible moisture that may be ingested by engines. All other
+                ice protection systems must be turned off.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_LANDING_RADAR,
         title: 'Radar',
         state: 'STANDBY',
+        moreInfoShort: (
+            <>
+                After leaving runway, disables all terrain and weather radar from PFD/MFD.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_LANDING_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                Resume operation of exterior lights as described during initial taxi:
+                <br />
+                {cj4TaxiExteriorLightsHelp}
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_PARKING_BRAKE,
         title: 'Parking Brake',
         state: 'SET/WHEELS CHOCKED',
+        moreInfoShort: (
+            <>
+                Set parking brakes by pulling the round handle under yoke fully out.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_EMERGENCY_LIGHTS,
         title: 'Emergency Lights Switch',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Under the electrical panel left of PFD, turn off Emergency Lights Switch on second row all the way
+                to the left by toggling it down.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_STANDBY_FLIGHT_DISPLAY,
         title: 'Standby Flight Display Switch',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Next to Emergency Lights Switch, in electrical panel, also toggle down the Standby Flight Display
+                switch.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_AVIONICS_SWITCH,
         title: 'Avionics Switch',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Turn avionics off by setting the Avionics switch in its middle position in the electrical panel, left
+                of PFD, rightmost switch of the second row.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_CLIMATE_CONTROL_SELECTOR,
         title: 'Climate Control Selector',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                On the tilt panel towards the middle, set the Climate Control selector in its left position to turn
+                climate control off.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems (All)',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Turn off all ice protection systems, on the tilt panel under the anti ice section.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_THROTTLES,
         title: 'Throttles',
         state: 'IDLE',
+        moreInfoShort: (
+            <>
+                Pull throttles all the way down to idle in preparation for engine shutdown.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_ENGINE_RUNSTOP_BUTTONS,
         title: 'Engine Run/Stop Buttons (Both)',
         state: 'STOP',
+        moreInfoShort: (
+            <>
+                Hit each engine Run/Stop button once to toggle them in STOP mode and let the engines shut down. Those
+                are the buttons just above throttles displaying RUN as engine are running.
+                <br />
+                <br />
+                Note: MSFS screen for flight end should display after this step. You may click Continue to finish the
+                last two steps of this checklist.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Turn all exterior lights off.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_BATTERY_SWITCH,
         title: 'Battery Switch',
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Under the electrical panel left of PFD, turn the red Battery switch off by toggling it down.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_CONTROL_LOCK,
@@ -1379,6 +1602,13 @@ const cj4ExtItemsData = createMappingFunction(addCJ4EXTTags)([
         uid: ChecklistItems.CJ4EXT_DESCENT_INTERIOR_LIGHTS,
         title: 'Interior / Panel Lights',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                When starting descent above cloud layer, you should expect much lower light inside cockpit after
+                passing the cloud layer. Turn on Panel backlights using the middle rotary button just above the
+                exterior lights panel anti-clockwise.
+            </>
+        ),
     },
 ]);
 
@@ -1584,31 +1814,65 @@ const simulatorSetupItemsData = createMappingFunction(addSimSetupTags)([
         uid: ChecklistItems.SIMSETUP_PLAN_FLIGHT,
         title: 'Flight Planning',
         state: 'COMPLETE',
+        moreInfoShort: (
+            <>
+                Plan the full flight, expect to figure out the following information: departure and arrival airport,
+                type of flight, route, time in flight and fuel required.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.SIMSETUP_FLIGHT_TRACKING_START,
         title: 'Flight Logbook Tracking',
         state: 'AS DESIRED',
+        moreInfoShort: (
+            <>
+                If you use a third party logbook program such as Volanta or SimToolkit Pro, start it up, add the route
+                to it and connect it to your simulator.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.SIMSETUP_FLIGHT_TRACKING_END,
         title: 'Flight Tracking',
         state: 'ENDED',
+        moreInfoShort: (
+            <>
+                If not done automatically, stop flight tracking in preferred program and review log entry.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.SIMSETUP_FLIGHT_RECORDING_START,
         title: 'Flight Video Recording',
         state: 'AS DESIRED',
+        moreInfoShort: (
+            <>
+                Optional. Start software in order to screen record flight and sound. This is very useful in order
+                to review flight for mistakes or potentially report issues with aircrafts/simulator.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.SIMSETUP_FLIGHT_RECORDING_END,
         title: 'Flight Video Recording',
         state: 'ENDED',
+        moreInfoShort: (
+            <>
+                If flight recording was started on video, stop recording.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
         title: 'Flight Debrief Notes',
         state: 'COMPLETE',
+        moreInfoShort: (
+            <>
+                In your chosen logbook, write down notes for the things that went well but more importantly the things
+                that did not go well and need to be reviewed. Improve every day!
+            </>
+        ),
     },
 ]);
 

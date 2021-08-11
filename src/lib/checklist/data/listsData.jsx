@@ -1,5 +1,7 @@
+import React from 'react';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { ExternalLink } from 'components/lib/ExternalLink';
 
 const commonListsData = createMappingFunction()([
     {
@@ -13,6 +15,16 @@ const commonListsData = createMappingFunction()([
     {
         uid: ChecklistLists.ENGINE_START,
         title: 'Engine Start',
+        description: (
+            <>
+                Engine Start procedure is described in detail in the
+                {' '}
+                {/* eslint-disable-next-line max-len */}
+                <ExternalLink href="https://docs.google.com/document/d/1qzxPMTSQRkvau8QOi7xUqNvjx9rbww_qHlso5AT5OnI/edit#heading=h.180d15le0pjm">WorkingTitle CJ4 Guide</ExternalLink>
+                {' '}
+                under NORMAL PROCEDURES &gt; ENGINE START.
+            </>
+        ),
     },
     {
         uid: ChecklistLists.BEFORE_TAXI,
