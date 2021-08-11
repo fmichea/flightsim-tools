@@ -107,6 +107,16 @@ export const ChecklistDisplay = ({
                 >
                     {checklistMenuItems}
                 </Menu>
+
+                <div className={css({
+                    backgroundColor: 'rgb(128,128,128)',
+                    fontSize: '.75em',
+                    color: 'white',
+                    paddingLeft: '5px',
+                })}
+                >
+                    This list may contain more items. Scroll to reveal them (will be fixed in future).
+                </div>
             </Modal>
 
             {menuVisible.value ? null : (

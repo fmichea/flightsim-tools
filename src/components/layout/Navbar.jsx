@@ -6,7 +6,7 @@ import { styled } from 'styletron-react';
 import { objectMap } from 'lib/objectMap';
 
 const MenuContainer = styled('div', {
-    display: 'inline-block',
+    display: 'flex',
 });
 
 const useNavbarMenus = (mapping) => {
