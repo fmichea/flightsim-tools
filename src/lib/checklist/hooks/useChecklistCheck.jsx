@@ -10,7 +10,7 @@ export const useChecklistCheck = ({
     const knownLists = useMemo(() => ({
         checklistsNames: new Set(Object.values(Checklists)),
         checklistListNames: new Set(Object.values(ChecklistLists)),
-    }));
+    }), []);
 
     return useMemo(() => ({
         checklistFound: knownLists.checklistsNames.has(checklistName),

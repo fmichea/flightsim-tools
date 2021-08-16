@@ -2,12 +2,9 @@ import { ChecklistListsData } from 'lib/checklist/data/listsData';
 import { getChecklistData } from 'state/readers/checklist';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const useChecklistMenuItems = ({ checklistName, checklistURLManager, filteredChecklistLists }) => {
-    const history = useHistory();
-
     const { counters } = useSelector((state) => getChecklistData(state, checklistName));
 
     return useMemo(() => filteredChecklistLists.listNames.map((listName) => {
@@ -29,5 +26,5 @@ export const useChecklistMenuItems = ({ checklistName, checklistURLManager, filt
                 checklistURLManager.changeChecklistList(listName);
             },
         };
-    }), [filteredChecklistLists, counters, history]);
+    }), [filteredChecklistLists, counters, checklistURLManager]);
 };
