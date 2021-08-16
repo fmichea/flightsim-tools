@@ -12,7 +12,6 @@ describe('Checklist', () => {
             routePath: ChecklistsWithNameRoute,
         });
 
-        console.log(compWrapper().debug());
         expect(compWrapper().find('ChecklistDisplay')).toHaveLength(1);
         expect(compWrapper().find('ChecklistNotFound')).toHaveLength(0);
     });
@@ -23,7 +22,6 @@ describe('Checklist', () => {
             routePath: ChecklistsWithNameRoute,
         });
 
-        console.log(compWrapper().debug());
         expect(compWrapper().find('ChecklistDisplay')).toHaveLength(0);
         expect(compWrapper().find('ChecklistNotFound')).toHaveLength(1);
     });

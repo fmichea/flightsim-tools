@@ -8,13 +8,21 @@ import { compose } from 'recompose';
 import { Provider } from 'react-redux';
 import { createAppStore } from 'state/store';
 import { HashRouter } from 'react-router-dom';
-import { ChecklistsWithNameAndListNameRoute, ChecklistsWithNameRoute } from 'lib/routes';
+import {
+    AntiIceWithNameAndOperationModeNameRoute,
+    AntiIceWithNameRoute,
+    ChecklistsWithNameAndListNameRoute,
+    ChecklistsWithNameRoute,
+} from 'lib/routes';
+import { AntiIce } from 'components/anti-ice/AntiIce';
 
 const AppLayout = () => (
     <Layout>
         <Switch>
             <Route exact path={ChecklistsWithNameAndListNameRoute} component={Checklist} />
             <Route exact path={ChecklistsWithNameRoute} component={Checklist} />
+            <Route exact path={AntiIceWithNameAndOperationModeNameRoute} component={AntiIce} />
+            <Route exact path={AntiIceWithNameRoute} component={AntiIce} />
         </Switch>
     </Layout>
 );

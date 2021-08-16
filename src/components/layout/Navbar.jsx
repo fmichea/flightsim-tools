@@ -33,16 +33,18 @@ const useNavbarMenus = (mapping) => {
 
 export const Navbar = () => {
     const {
-        menuItems: { wtCJ4MenuItem },
+        menuItems: { wtCJ4MenuItem, wtCJ4AntiIceItem },
         selectedKeys,
     } = useNavbarMenus({
         wtCJ4MenuItem: '/checklists/workingtitle-cj4',
+        wtCJ4AntiIceItem: '/anti-ice/workingtitle-cj4',
     });
 
     return (
         <MenuContainer>
             <Menu theme="dark" mode="horizontal" selectedKeys={selectedKeys}>
                 <Menu.Item {...wtCJ4MenuItem.props}>WT CJ4 Checklist</Menu.Item>
+                <Menu.Item {...wtCJ4AntiIceItem.props}>WT CJ4 Anti-Ice</Menu.Item>
             </Menu>
         </MenuContainer>
     );
