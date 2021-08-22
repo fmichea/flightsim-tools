@@ -84,7 +84,16 @@ export function mountWithStore(Comp, opts = {}) {
         return rootCompWrapper.find('Provider').children().at(0);
     };
 
+    const getAntdMocks = (compName, parent) => pick(parent, compWrapper()).find(`.antd-mock-${compName}`);
+    const getAntdMockProps = (comp) => comp.props().mockprops;
+
     return {
-        rootCompWrapper, compWrapper, store, props, context,
+        rootCompWrapper,
+        compWrapper,
+        store,
+        props,
+        context,
+        getAntdMocks,
+        getAntdMockProps,
     };
 }

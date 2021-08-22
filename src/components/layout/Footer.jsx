@@ -18,6 +18,12 @@ export const Footer = () => {
             <GithubOutlined />
             {' '}
             <a href="https://github.com/fmichea/flightsim-tools" target="_blank" rel="noreferrer">Sources</a>
+            {' '}
+            or
+            {' '}
+            <a href="https://github.com/fmichea/flightsim-tools/issues" target="_blank" rel="noreferrer">
+                Report Issues
+            </a>
         </ANTDFooter>
     );
 };

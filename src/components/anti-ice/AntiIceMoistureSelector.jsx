@@ -14,9 +14,13 @@ export const AntiIceMoistureSelector = ({ moisture, setMoisture }) => {
 
     return (
         <CenteringContainer>
-            <Radio.Group value={value} onChange={onChange}>
+            <Radio.Group
+                value={value}
+                buttonStyle="solid"
+                onChange={onChange}
+            >
                 <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no" danger>No</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
             </Radio.Group>
         </CenteringContainer>
     );
