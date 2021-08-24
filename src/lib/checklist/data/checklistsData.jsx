@@ -88,6 +88,16 @@ export const ChecklistsData = createMappingFunction()([
             },
             {
                 listName: ChecklistLists.ENGINE_START,
+                description: (
+                    <>
+                        Engine Start procedure is described in detail in the
+                        {' '}
+                        {/* eslint-disable-next-line max-len */}
+                        <ExternalLink href="https://docs.google.com/document/d/1qzxPMTSQRkvau8QOi7xUqNvjx9rbww_qHlso5AT5OnI/edit#heading=h.180d15le0pjm">WorkingTitle CJ4 Guide</ExternalLink>
+                        {' '}
+                        under NORMAL PROCEDURES &gt; ENGINE START.
+                    </>
+                ),
                 items: [
                     ChecklistItems.CJ4_ENGINE_START_THROTTLES,
                     ChecklistItems.CJ4_ENGINE_START_STARTER_BUTTON_PUSH,
@@ -177,11 +187,11 @@ export const ChecklistsData = createMappingFunction()([
                     ChecklistItems.CJ4_TAKEOFF_CONTROL_WHEEL_ROTATE_AT_VR,
                 ],
                 nextListNames: [
-                    ChecklistLists.AFTER_TAKEOFF,
+                    ChecklistLists.AFTER_TAKEOFF_CLIMB,
                 ],
             },
             {
-                listName: ChecklistLists.AFTER_TAKEOFF,
+                listName: ChecklistLists.AFTER_TAKEOFF_CLIMB,
                 items: [
                     ChecklistItems.CJ4_AFTER_TAKEOFF_LANDING_GEAR_UP,
                     ChecklistItems.CJ4_AFTER_TAKEOFF_FLAPS_0,
@@ -332,6 +342,298 @@ export const ChecklistsData = createMappingFunction()([
                     ChecklistItems.SIMSETUP_FLIGHT_RECORDING_END,
                     ChecklistItems.SIMSETUP_FLIGHT_TRACKING_END,
                     ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+                ],
+            },
+        ],
+    },
+    {
+        uid: Checklists.C172_G1000,
+        title: 'Cessna 172 (G1000)',
+        selectableFilters: [],
+        defaultFilters: [
+            ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
+        ],
+        lists: [
+            {
+                listName: ChecklistLists.PRE_FLIGHT,
+                items: [
+                    ChecklistItems.C172G1000_PREFLIGHT_AIRCRAFT_DOCUMENTS,
+                    ChecklistItems.C172G1000_PREFLIGHT_PARKING_BRAKE,
+                    ChecklistItems.C172G1000_PREFLIGHT_IGNITION,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCHES,
+                    ChecklistItems.C172G1000_PREFLIGHT_MASTER_SWITCHES_1,
+                    ChecklistItems.C172G1000_PREFLIGHT_PFD,
+                    ChecklistItems.C172G1000_PREFLIGHT_FUEL_QUANTITY,
+                    ChecklistItems.C172G1000_PREFLIGHT_LOW_FUEL_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_PREFLIGHT_OIL_PRESSURE_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_PREFLIGHT_LOW_VACUUM_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_1_ON,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_1_FAN,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_1_OFF,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_2_ON,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_2_FAN,
+                    ChecklistItems.C172G1000_PREFLIGHT_AVIONICS_SWITCH_2_OFF,
+                    ChecklistItems.C172G1000_PREFLIGHT_PITOT_HEAT_ON,
+                    ChecklistItems.C172G1000_PREFLIGHT_PITOT_HEAT_OFF,
+                    ChecklistItems.C172G1000_PREFLIGHT_LOW_VOLTS_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_PREFLIGHT_MASTER_SWITCHES_2,
+                    ChecklistItems.C172G1000_PREFLIGHT_ELEVATOR_TRIM,
+                    ChecklistItems.C172G1000_PREFLIGHT_FUEL_SELECTOR,
+                    ChecklistItems.C172G1000_PREFLIGHT_STATIC_PRESSURE_ALT_SOURCE_VALVE,
+                ],
+                nextListNames: [
+                    ChecklistLists.BEFORE_ENGINE_START,
+                ],
+            },
+            {
+                listName: ChecklistLists.BEFORE_ENGINE_START,
+                items: [
+                    ChecklistItems.C172G1000_BEFORE_START_PREFLIGHT_INSPECTION,
+                    ChecklistItems.C172G1000_BEFORE_START_SEATS_BELTS,
+                    ChecklistItems.C172G1000_BEFORE_START_BRAKES,
+                    ChecklistItems.C172G1000_BEFORE_START_CIRCUIT_BREAKERS,
+                    ChecklistItems.C172G1000_BEFORE_START_ELECTRICAL_EQUIPMENT,
+                    ChecklistItems.C172G1000_BEFORE_START_AVIONICS_SWITCHES,
+                    ChecklistItems.C172G1000_BEFORE_START_FUEL_SELECTOR,
+                    ChecklistItems.C172G1000_BEFORE_START_FUEL_SHUTOFF_VALVE,
+                ],
+                nextListNames: [
+                    ChecklistLists.ENGINE_START,
+                ],
+            },
+            {
+                listName: ChecklistLists.ENGINE_START,
+                items: [
+                    ChecklistItems.C172G1000_ENGINE_START_THROTTLE,
+                    ChecklistItems.C172G1000_ENGINE_START_MIXTURE_1,
+                    ChecklistItems.C172G1000_ENGINE_START_STANDBY_BATT_TEST,
+                    ChecklistItems.C172G1000_ENGINE_START_STANDBY_BATT_ARM,
+                    ChecklistItems.C172G1000_ENGINE_START_ENGINE_INDICATING_SYSTEM,
+                    ChecklistItems.C172G1000_ENGINE_START_BUS_E_VOLTS,
+                    ChecklistItems.C172G1000_ENGINE_START_BUS_M_VOLTS,
+                    ChecklistItems.C172G1000_ENGINE_START_BATT_S_AMPS,
+                    ChecklistItems.C172G1000_ENGINE_START_STANDBY_BATT_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_ENGINE_START_PROPELLER_AREA,
+                    ChecklistItems.C172G1000_ENGINE_START_MASTER_SWITCH,
+                    ChecklistItems.C172G1000_ENGINE_START_BEACON_LIGHT,
+                    ChecklistItems.C172G1000_ENGINE_START_MIXTURE_2,
+                    ChecklistItems.C172G1000_ENGINE_START_AUX_FUEL_PUMP,
+                    ChecklistItems.C172G1000_ENGINE_START_MIXTURE_3,
+                    ChecklistItems.C172G1000_ENGINE_START_FEET_BRAKES,
+                    ChecklistItems.C172G1000_ENGINE_START_IGNITION,
+                    ChecklistItems.C172G1000_ENGINE_START_MIXTURE_4,
+                ],
+                nextListNames: [
+                    ChecklistLists.AFTER_ENGINE_START,
+                ],
+            },
+            {
+                listName: ChecklistLists.AFTER_ENGINE_START,
+                items: [
+                    ChecklistItems.C172G1000_AFTER_START_THROTTLE,
+                    ChecklistItems.C172G1000_AFTER_START_OIL_PRESSURE,
+                    ChecklistItems.C172G1000_AFTER_START_AMPS,
+                    ChecklistItems.C172G1000_AFTER_START_LOW_VOLTS_ANNUNCIATOR,
+                    ChecklistItems.C172G1000_AFTER_START_AVIONICS_SWITCHES,
+                    ChecklistItems.C172G1000_AFTER_START_FLAPS,
+                ],
+                nextListNames: [
+                    ChecklistLists.TAXI,
+                ],
+            },
+            {
+                listName: ChecklistLists.TAXI,
+                items: [
+                    ChecklistItems.C172G1000_TAXI_TAXI_LIGHT,
+                    ChecklistItems.C172G1000_TAXI_LANDING_LIGHT,
+                    ChecklistItems.C172G1000_TAXI_STROBE_LIGHT,
+                    ChecklistItems.C172G1000_TAXI_NAV_LIGHT,
+                    ChecklistItems.C172G1000_TAXI_PARKING_BRAKE,
+                    ChecklistItems.C172G1000_TAXI_BRAKES,
+                    ChecklistItems.C172G1000_TAXI_RUDDER,
+                ],
+                nextListNames: [
+                    ChecklistLists.RUN_UP,
+                ],
+            },
+            {
+                listName: ChecklistLists.RUN_UP,
+                items: [
+                    ChecklistItems.C172G1000_RUNUP_PARKING_BRAKE,
+                    ChecklistItems.C172G1000_RUNUP_SEATS_BACKS,
+                    ChecklistItems.C172G1000_RUNUP_SEATS_BELTS,
+                    ChecklistItems.C172G1000_RUNUP_DOORS,
+                    ChecklistItems.C172G1000_RUNUP_FLIGHT_CONTROLS_1,
+                    ChecklistItems.C172G1000_RUNUP_FLIGHT_INSTRUMENTS,
+                    ChecklistItems.C172G1000_RUNUP_ALTIMETER,
+                    ChecklistItems.C172G1000_RUNUP_STANDBY_ALTIMETER,
+                    ChecklistItems.C172G1000_RUNUP_ALTITUDE_SELECT,
+                    ChecklistItems.C172G1000_RUNUP_STANDBY_FLIGHT_INSTRUMENTS,
+                    ChecklistItems.C172G1000_RUNUP_FUEL_QUANTITY,
+                    ChecklistItems.C172G1000_RUNUP_MIXTURE,
+                    ChecklistItems.C172G1000_RUNUP_FUEL_SELECTOR,
+                    ChecklistItems.C172G1000_RUNUP_AUTOPILOT,
+                    ChecklistItems.C172G1000_RUNUP_FLIGHT_CONTROLS_2,
+                    ChecklistItems.C172G1000_RUNUP_AP_TRIM_DISC,
+                    ChecklistItems.C172G1000_RUNUP_FLIGHT_DIRECTOR,
+                    ChecklistItems.C172G1000_RUNUP_ELEVATOR_TRIM,
+                    ChecklistItems.C172G1000_RUNUP_THROTTLE_1,
+                    ChecklistItems.C172G1000_RUNUP_MAGNETOS_1,
+                    ChecklistItems.C172G1000_RUNUP_MAGNETOS_2,
+                    ChecklistItems.C172G1000_RUNUP_MAGNETOS_3,
+                    ChecklistItems.C172G1000_RUNUP_VACCUM_GAUGE,
+                    ChecklistItems.C172G1000_RUNUP_ENGINE_INDICATORS,
+                    ChecklistItems.C172G1000_RUNUP_ANMETERS_VOLTMETERS,
+                    ChecklistItems.C172G1000_RUNUP_ANNUNCIATORS,
+                    ChecklistItems.C172G1000_RUNUP_ENGINE_IDLE,
+                    ChecklistItems.C172G1000_RUNUP_THROTTLE_2,
+                ],
+                nextListNames: [
+                    ChecklistLists.BEFORE_TAKEOFF,
+                ],
+            },
+            {
+                listName: ChecklistLists.BEFORE_TAKEOFF,
+                items: [
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_COM_FREQS,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_NAV_FREQS,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_FMS_GPS,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_TRANSPONDER,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_CDI_NAV_SOURCE,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_CABIN_PWR,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_FLAPS,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_CABIN_WINDOWS,
+                    ChecklistItems.C172G1000_BEFORE_TAKEOFF_PARKING_BRAKE,
+                ],
+                nextListNames: [
+                    ChecklistLists.TAKEOFF,
+                ],
+            },
+            {
+                listName: ChecklistLists.TAKEOFF,
+                items: [
+                    ChecklistItems.C172G1000_TAKEOFF_FLAPS_1,
+                    ChecklistItems.C172G1000_TAKEOFF_THROTTLE,
+                    ChecklistItems.C172G1000_TAKEOFF_MIXTURE,
+                    ChecklistItems.C172G1000_TAKEOFF_ANNUNCIATORS,
+                    ChecklistItems.C172G1000_TAKEOFF_AIRSPEED_INDICATOR,
+                    ChecklistItems.C172G1000_TAKEOFF_LIFT_NOSEWHEEL,
+                    ChecklistItems.C172G1000_TAKEOFF_INITIAL_CLIMB,
+                    ChecklistItems.C172G1000_TAKEOFF_FLAPS_2,
+                ],
+                nextListNames: [
+                    ChecklistLists.CLIMB,
+                ],
+            },
+            {
+                listName: ChecklistLists.CLIMB,
+                items: [
+                    ChecklistItems.C172G1000_CLIMB_AIRSPEED,
+                    ChecklistItems.C172G1000_CLIMB_THROTTLE,
+                    ChecklistItems.C172G1000_CLIMB_MIXTURE_1,
+                    ChecklistItems.C172G1000_CLIMB_ENGINE_GAUGES,
+                    ChecklistItems.C172G1000_CLIMB_TAXI_LANDING_LIGHTS,
+                    ChecklistItems.C172G1000_CLIMB_MIXTURE_2,
+                ],
+                nextListNames: [
+                    ChecklistLists.CRUISE,
+                ],
+            },
+            {
+                listName: ChecklistLists.CRUISE,
+                items: [
+                    ChecklistItems.C172G1000_CRUISE_POWER,
+                    ChecklistItems.C172G1000_CRUISE_ELEVATOR_TRIM,
+                    ChecklistItems.C172G1000_CRUISE_MIXTURE,
+                    ChecklistItems.C172G1000_CRUISE_ENGINE_GAUGES,
+                    ChecklistItems.C172G1000_CRUISE_FMS_GPS,
+                ],
+                nextListNames: [
+                    ChecklistLists.DESCENT,
+                ],
+            },
+            {
+                listName: ChecklistLists.DESCENT,
+                items: [
+                    ChecklistItems.C172G1000_DESCENT_POWER,
+                    ChecklistItems.C172G1000_DESCENT_MIXTURE,
+                    ChecklistItems.C172G1000_DESCENT_ALTIMETER,
+                    ChecklistItems.C172G1000_DESCENT_STANDBY_ALTIMETER,
+                    ChecklistItems.C172G1000_DESCENT_ALTITUDE_SELECT,
+                    ChecklistItems.C172G1000_DESCENT_CDI_NAV,
+                    ChecklistItems.C172G1000_DESCENT_FMS_GPS,
+                    ChecklistItems.C172G1000_DESCENT_FUEL_SELECTOR,
+                    ChecklistItems.C172G1000_DESCENT_FLAPS,
+                ],
+                nextListNames: [
+                    ChecklistLists.BEFORE_LANDING,
+                ],
+            },
+            {
+                listName: ChecklistLists.BEFORE_LANDING,
+                items: [
+                    ChecklistItems.C172G1000_BEFORE_LANDING_SEATS_BACKS,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_SEATS_BELTS,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_FUEL_SELECTOR,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_MIXTURE,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_TAXI_LANDING_LIGHTS,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_AUTOPILOT,
+                    ChecklistItems.C172G1000_BEFORE_LANDING_CABIN_PWR,
+                ],
+                nextListNames: [
+                    ChecklistLists.LANDING,
+                ],
+            },
+            {
+                listName: ChecklistLists.LANDING,
+                items: [
+                    ChecklistItems.C172G1000_LANDING_FLAPS,
+                    ChecklistItems.C172G1000_LANDING_AIRSPEED,
+                    ChecklistItems.C172G1000_LANDING_TOUCHDOWN,
+                    ChecklistItems.C172G1000_LANDING_LANDING_ROLL,
+                    ChecklistItems.C172G1000_LANDING_BRAKING,
+                ],
+                nextListNames: [
+                    ChecklistLists.AFTER_LANDING,
+                ],
+            },
+            {
+                listName: ChecklistLists.AFTER_LANDING,
+                items: [
+                    ChecklistItems.C172G1000_AFTER_LANDING_FLAPS,
+                    ChecklistItems.C172G1000_AFTER_LANDING_LANDING_LIGHT,
+                    ChecklistItems.C172G1000_AFTER_LANDING_TAXI_LIGHT,
+                    ChecklistItems.C172G1000_AFTER_LANDING_STROBE_LIGHT,
+                    ChecklistItems.C172G1000_AFTER_LANDING_ELEVATOR_TRIM,
+                    ChecklistItems.C172G1000_AFTER_LANDING_TRANSPONDER,
+                ],
+                nextListNames: [
+                    ChecklistLists.PARKING,
+                ],
+            },
+            {
+                listName: ChecklistLists.PARKING,
+                items: [
+                    ChecklistItems.C172G1000_PARKING_PARKING_BRAKE,
+                    ChecklistItems.C172G1000_PARKING_AVIONICS_SWITCHES,
+                    ChecklistItems.C172G1000_PARKING_ENGINE_IDLE,
+                    ChecklistItems.C172G1000_PARKING_MAGNETOS,
+                    ChecklistItems.C172G1000_PARKING_MIXTURE,
+                ],
+                nextListNames: [
+                    ChecklistLists.SECURING,
+                ],
+            },
+            {
+                listName: ChecklistLists.SECURING,
+                items: [
+                    ChecklistItems.C172G1000_SECURING_IGNITION,
+                    ChecklistItems.C172G1000_SECURING_LANDING_LIGHT,
+                    ChecklistItems.C172G1000_SECURING_TAXI_LIGHT,
+                    ChecklistItems.C172G1000_SECURING_NAV_LIGHT,
+                    ChecklistItems.C172G1000_SECURING_MASTER_SWITCHES,
+                    ChecklistItems.C172G1000_SECURING_STANDBY_BATT,
+                    ChecklistItems.C172G1000_SECURING_FUEL_SELECTOR,
                 ],
             },
         ],

@@ -1,7 +1,5 @@
-import React from 'react';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { createMappingFunction } from 'lib/checklist/data/transforms';
-import { ExternalLink } from 'components/lib/ExternalLink';
 
 const commonListsData = createMappingFunction()([
     {
@@ -15,16 +13,10 @@ const commonListsData = createMappingFunction()([
     {
         uid: ChecklistLists.ENGINE_START,
         title: 'Engine Start',
-        description: (
-            <>
-                Engine Start procedure is described in detail in the
-                {' '}
-                {/* eslint-disable-next-line max-len */}
-                <ExternalLink href="https://docs.google.com/document/d/1qzxPMTSQRkvau8QOi7xUqNvjx9rbww_qHlso5AT5OnI/edit#heading=h.180d15le0pjm">WorkingTitle CJ4 Guide</ExternalLink>
-                {' '}
-                under NORMAL PROCEDURES &gt; ENGINE START.
-            </>
-        ),
+    },
+    {
+        uid: ChecklistLists.AFTER_ENGINE_START,
+        title: 'After Engine Start',
     },
     {
         uid: ChecklistLists.BEFORE_TAXI,
@@ -35,6 +27,10 @@ const commonListsData = createMappingFunction()([
         title: 'Taxi',
     },
     {
+        uid: ChecklistLists.RUN_UP,
+        title: 'Run-Up',
+    },
+    {
         uid: ChecklistLists.BEFORE_TAKEOFF,
         title: 'Before Takeoff',
     },
@@ -43,8 +39,12 @@ const commonListsData = createMappingFunction()([
         title: 'Takeoff',
     },
     {
-        uid: ChecklistLists.AFTER_TAKEOFF,
+        uid: ChecklistLists.AFTER_TAKEOFF_CLIMB,
         title: 'After Takeoff / Climb',
+    },
+    {
+        uid: ChecklistLists.CLIMB,
+        title: 'Climb',
     },
     {
         uid: ChecklistLists.CRUISE,
@@ -74,6 +74,14 @@ const commonListsData = createMappingFunction()([
     {
         uid: ChecklistLists.AFTER_LANDING,
         title: 'After Landing',
+    },
+    {
+        uid: ChecklistLists.PARKING,
+        title: 'Parking',
+    },
+    {
+        uid: ChecklistLists.SECURING,
+        title: 'Securing',
     },
     {
         uid: ChecklistLists.SHUTDOWN,

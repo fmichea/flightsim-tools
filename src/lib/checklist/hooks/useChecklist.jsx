@@ -1,8 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
-import {
-    resetChecklistCheckedItems, resetChecklistListCheckedItems,
-} from 'state/actions/checklist';
+import { resetChecklistCheckedItems, resetChecklistListCheckedItems } from 'state/actions/checklist';
 import { useChecklistInit } from 'lib/checklist/hooks/useChecklistInit';
 import { useChecklistMenuItems } from 'lib/checklist/hooks/useChecklistMenuItems';
 import { useChecklistItems } from 'lib/checklist/hooks/useChecklistItems';
@@ -28,6 +26,8 @@ export const useChecklist = ({
         selectedFilters,
     });
 
+    // FIXME: this used to have a description but it was CJ4 specific, so I removed it. Now it's in the checklist data,
+    //   but then it is not displayed.
     const checklistListData = useMemo(
         () => pick(ChecklistListsData[selectedChecklistListName]),
         [selectedChecklistListName],

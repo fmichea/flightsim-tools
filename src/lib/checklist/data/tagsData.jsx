@@ -23,6 +23,14 @@ const commonTagsData = createMappingFunction()([
         color: '#080f8d',
     },
     {
+        uid: ChecklistTags.C172,
+        color: '#20603c',
+    },
+    {
+        uid: ChecklistTags.G1000,
+        color: '#306a8d',
+    },
+    {
         uid: ChecklistTags.VATSIM,
         color: '#cbab00',
     },
