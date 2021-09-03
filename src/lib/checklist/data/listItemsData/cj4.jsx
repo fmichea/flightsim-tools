@@ -4,6 +4,7 @@ import React from 'react';
 import { createMappingFunction } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { ExternalLink } from 'components/lib/ExternalLink';
 
 const addCJ4Tags = (value) => ({
     ...value,
@@ -617,8 +618,19 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         tags: [ChecklistTags.NOT_IMPLEMENTED],
         moreInfoShort: (
             <>
-                Not Implemented. When running on a single engine, Rudder Bias System should compensate using trim. For
-                this item, spool engines up separately and verify trim adjusts to compensate.
+                <strong>Not Implemented.</strong>
+                {' '}
+                When running on a single engine, Rudder Bias System compensates for the forces that would be required
+                to put in rudder pedals to control the aircraft. These forces cannot exceed 150 lbs (68 kg) nor
+                require to reduce engine power in order to maintain control at
+                {' '}
+                <ExternalLink href="https://en.wikipedia.org/wiki/Minimum_control_speeds">
+                    V
+                    <sub>MC</sub>
+                </ExternalLink>
+                {' '}
+                by regulation. For this item, pilots would spool engines up separately and verify that they can feel
+                a push in the rudder pedals.
             </>
         ),
     },
