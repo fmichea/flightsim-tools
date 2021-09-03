@@ -12,8 +12,10 @@ export const useChecklistFilteredLists = ({ checklistData, selectedFilters }) =>
     const result = {
         listNames: [],
         listsItems: {},
+        listsData: {},
         listsNextListNames: {},
     };
+
     const filterFNs = [];
 
     // We add all selectable filters that are selected currently.
@@ -61,6 +63,9 @@ export const useChecklistFilteredLists = ({ checklistData, selectedFilters }) =>
         result.listNames.push(checklistList.listName);
         result.listsItems[checklistList.listName] = filteredItems;
         result.listsNextListNames[checklistList.listName] = checklistList.nextListNames;
+        result.listsData[checklistList.listName] = {
+            description: pick(checklistList.description),
+        };
     });
 
     return result;

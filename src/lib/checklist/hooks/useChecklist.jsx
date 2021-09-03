@@ -29,7 +29,12 @@ export const useChecklist = ({
     // FIXME: this used to have a description but it was CJ4 specific, so I removed it. Now it's in the checklist data,
     //   but then it is not displayed.
     const checklistListData = useMemo(
-        () => pick(ChecklistListsData[selectedChecklistListName]),
+        () => {
+            const baseData = pick(ChecklistListsData[selectedChecklistListName], {});
+            const additionalData = pick(filteredChecklistLists.listsData[selectedChecklistListName], {});
+
+            return { ...baseData, ...additionalData };
+        },
         [selectedChecklistListName],
     );
 
