@@ -5,7 +5,6 @@ import { ChecklistFilters } from 'lib/checklist/data/filters';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ExternalLink } from 'components/lib/ExternalLink';
-import { Alert } from 'antd';
 
 export const ChecklistsData = createMappingFunction()([
     {
