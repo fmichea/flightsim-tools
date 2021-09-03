@@ -37,20 +37,27 @@ export const Navbar = () => {
             wtCJ4MenuItem,
             wtCJ4AntiIceItem,
             c172ChecklistMenuItem,
+            c172G1000ChecklistMenuItem,
         },
         selectedKeys,
     } = useNavbarMenus({
         wtCJ4MenuItem: '/checklists/workingtitle-cj4',
         wtCJ4AntiIceItem: '/anti-ice/workingtitle-cj4',
-        c172ChecklistMenuItem: '/checklists/c172-g1000',
+        c172ChecklistMenuItem: '/checklists/c172-steam',
+        c172G1000ChecklistMenuItem: '/checklists/c172-g1000',
     });
 
     return (
         <MenuContainer>
             <Menu theme="dark" mode="horizontal" selectedKeys={selectedKeys}>
-                <Menu.Item {...wtCJ4MenuItem.props}>WT CJ4 Checklist</Menu.Item>
-                <Menu.Item {...wtCJ4AntiIceItem.props}>WT CJ4 Anti-Ice</Menu.Item>
-                <Menu.Item {...c172ChecklistMenuItem.props}>C172 (G1000) Checklist</Menu.Item>
+                <Menu.SubMenu key="wt-cj4-menu" title="WorkingTitle CJ4">
+                    <Menu.Item {...wtCJ4MenuItem.props}>WT CJ4 Checklist</Menu.Item>
+                    <Menu.Item {...wtCJ4AntiIceItem.props}>WT CJ4 Anti-Ice</Menu.Item>
+                </Menu.SubMenu>
+                <Menu.SubMenu key="c172-menu" title="Cessna 172">
+                    <Menu.Item {...c172ChecklistMenuItem.props}>C172 (Steam Gauges) Checklist</Menu.Item>
+                    <Menu.Item {...c172G1000ChecklistMenuItem.props}>C172 (G1000) Checklist</Menu.Item>
+                </Menu.SubMenu>
             </Menu>
         </MenuContainer>
     );
