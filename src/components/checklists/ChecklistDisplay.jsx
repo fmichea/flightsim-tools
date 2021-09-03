@@ -149,7 +149,7 @@ export const ChecklistDisplay = ({
 
             {fullscreenMode ? null : (
                 <>
-                    <div>
+                    <div className={css({ height: '45px' })}>
                         <div className={css({ float: 'right' })}>
                             <Button
                                 className={css({ fontWeight: 'bold' })}
@@ -172,10 +172,10 @@ export const ChecklistDisplay = ({
                         <Clearfix />
                     </div>
 
-                    <div>
+                    <>
                         <Text>{checklistData.description}</Text>
                         <Divider />
-                    </div>
+                    </>
                 </>
             )}
 
