@@ -15,6 +15,7 @@ import {
     ChecklistsWithNameRoute,
 } from 'lib/routes';
 import { AntiIce } from 'components/anti-ice/AntiIce';
+import { MainPage } from 'components/MainPage';
 
 const AppLayout = () => (
     <Layout>
@@ -23,6 +24,7 @@ const AppLayout = () => (
             <Route exact path={ChecklistsWithNameRoute} component={Checklist} />
             <Route exact path={AntiIceWithNameAndOperationModeNameRoute} component={AntiIce} />
             <Route exact path={AntiIceWithNameRoute} component={AntiIce} />
+            <Route exact path="/" component={MainPage} />
         </Switch>
     </Layout>
 );
