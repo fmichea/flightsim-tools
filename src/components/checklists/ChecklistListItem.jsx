@@ -12,6 +12,7 @@ import {
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { ChecklistListItemHelp } from 'components/checklists/ChecklistListItemHelp';
 import PropTypes from 'prop-types';
+import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const ChecklistListItemTitle = styled('div', {
     display: 'inline-block',
@@ -82,7 +83,11 @@ export const ChecklistListItem = ({
 
     const tagsValues = Array.from(tags)
         .filter((tag) => !tag.hidden)
-        .map((tag) => <Tag key={tag.uid} className={textClassName} color={tag.color}>{tag.uid}</Tag>);
+        .map((tag) => (
+            <Tag key={tag.uid} className={textClassName} color={tag.color}>
+                {isNotNullOrUndefined(tag.title) ? tag.title : tag.uid}
+            </Tag>
+        ));
 
     const switchColumn = (
         <Col span={switchCols} onClick={toggleChecked}>
