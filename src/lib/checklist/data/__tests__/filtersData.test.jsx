@@ -5,9 +5,8 @@ import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
 
 describe('filtersData', () => {
     test('all checklists filters have data', () => {
-        Object.values(ChecklistFilters).forEach((keyName) => {
-            expect(Object.keys(ChecklistFiltersData)).toContain(keyName);
-        });
+        expect(ChecklistFilters).toBeSetOfDataKeys();
+        expect(ChecklistFilters).toHaveDataForEachDataKeys(ChecklistFiltersData);
     });
 
     test('exclude all returns INCLUDE/EXCLUDE on official', () => {

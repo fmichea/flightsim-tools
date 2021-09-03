@@ -9,6 +9,8 @@ import '@testing-library/jest-dom/extend-expect';
 // Configure enzyme adapter for rendering, needs to follow react version.
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistItemsData } from 'lib/checklist/data/listItemsData';
 
 configure({ adapter: new Adapter() });
 
@@ -117,4 +119,44 @@ jest.mock('antd', () => {
         Select,
         Slider,
     };
+});
+
+expect.extend({
+    toBeSetOfDataKeys(keys) {
+        const errors = [];
+
+        Object.entries(keys).forEach((entry) => {
+            const [key, value] = entry;
+
+            const valueToKey = value.toUpperCase().replace(/-/g, '_');
+            if (key !== valueToKey) {
+                errors.push({ key, value, valueToKey });
+            }
+        });
+
+        return {
+            pass: errors.length === 0,
+            message: () => errors
+                .map((data) => `${data.key} has invalid value ${data.value} (interpreted as: ${data.valueToKey})`)
+                .join('\n'),
+        };
+    },
+
+    toHaveDataForEachDataKeys(keys, keysData) {
+        const errors = [];
+        const keysDataKeys = new Set(Object.keys(keysData));
+
+        Object.values(keys).forEach((keyName) => {
+            if (!keysDataKeys.has(keyName)) {
+                errors.push({ keyName });
+            }
+        });
+
+        return {
+            pass: errors.length === 0,
+            message: () => errors
+                .map((data) => `${data.keyName} was not found in data.`)
+                .join('\n'),
+        };
+    },
 });

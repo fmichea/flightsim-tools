@@ -11,7 +11,7 @@ const cj4ImagesData = createMappingFunction()([
         path: 'images/workingtitle-cj4-anti-ice/ENG_ONLY_ON.jpg',
     },
     {
-        uid: AntiIceImages.CJ4_PITOT_ENG_ONLY_ON,
+        uid: AntiIceImages.CJ4_PITOT_HEAT_ENG_ONLY_ON,
         path: 'images/workingtitle-cj4-anti-ice/PITOT_ENG_ONLY_ON.jpg',
     },
     {

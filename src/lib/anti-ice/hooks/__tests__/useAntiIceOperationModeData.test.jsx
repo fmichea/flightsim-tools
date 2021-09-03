@@ -12,7 +12,7 @@ const setup = () => {
 
     const result = mountHookWithStore(
         () => useAntiIceOperationModeData({
-            antiIceAircraftData: AntiIceAircraftsData[AntiIceAircrafts.WT_CJ4],
+            antiIceAircraftData: AntiIceAircraftsData[AntiIceAircrafts.WORKINGTITLE_CJ4],
             selectedOperationModeName: AntiIceOperationModes.GROUND_OPERATION,
             antiIceURLManager: mockAntiIceURLManager,
         }),

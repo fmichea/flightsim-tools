@@ -8,7 +8,7 @@ const setup = ({ initialRoute, routePath } = {}) => mountWithStore(AntiIce, { in
 describe('AntiIce', () => {
     test('render the whole thing and check a few components are found', () => {
         const { compWrapper } = setup({
-            initialRoute: `/anti-ice/${AntiIceAircrafts.WT_CJ4}`,
+            initialRoute: `/anti-ice/${AntiIceAircrafts.WORKINGTITLE_CJ4}`,
             routePath: AntiIceWithNameRoute,
         });
 

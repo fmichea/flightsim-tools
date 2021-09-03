@@ -30,8 +30,8 @@ describe('useChecklistMenuItems', () => {
         };
 
         const { getCurrentHookResult } = setup({
-            checklistName: Checklists.WT_CJ4,
-            checklistData: ChecklistsData[Checklists.WT_CJ4],
+            checklistName: Checklists.WORKINGTITLE_CJ4,
+            checklistData: ChecklistsData[Checklists.WORKINGTITLE_CJ4],
             selectedFilters: [],
             checklistURLManager,
         });

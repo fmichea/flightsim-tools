@@ -10,7 +10,7 @@ const setup = ({ checklistName, checklistListName }) => mountHookWithStore(
 describe('useChecklistCheck', () => {
     test('checklist name and checklist list name are known', () => {
         const { getCurrentHookResult } = setup({
-            checklistName: Checklists.WT_CJ4,
+            checklistName: Checklists.WORKINGTITLE_CJ4,
             checklistListName: ChecklistLists.AFTER_LANDING,
         });
 

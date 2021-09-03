@@ -17,7 +17,7 @@ const cj4SystemModesData = createMappingFunction()([
         tags: [AntiIceTags.NOT_IMPLEMENTED],
     },
     {
-        uid: AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE,
+        uid: AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE,
         title: 'Pitot / Static Heat',
     },
 ]);

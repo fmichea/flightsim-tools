@@ -12,7 +12,7 @@ const setup = () => {
 
     const result = mountHookWithStore(() => useAntiIceMenuItems({
         antiIceURLManager: mockAntiIceURLManager,
-        antiIceAircraftData: AntiIceAircraftsData[AntiIceAircrafts.WT_CJ4],
+        antiIceAircraftData: AntiIceAircraftsData[AntiIceAircrafts.WORKINGTITLE_CJ4],
     }));
 
     return { ...result, mockAntiIceURLManager };

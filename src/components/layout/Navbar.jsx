@@ -4,6 +4,8 @@ import { Menu } from 'antd';
 import { useHistory, useLocation } from 'react-router';
 import { styled } from 'styletron-react';
 import { objectMap } from 'lib/objectMap';
+import { Checklists } from 'lib/checklist/data/checklists';
+import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 
 const MenuContainer = styled('div', {
     display: 'flex',
@@ -41,10 +43,10 @@ export const Navbar = () => {
         },
         selectedKeys,
     } = useNavbarMenus({
-        wtCJ4MenuItem: '/checklists/workingtitle-cj4',
-        wtCJ4AntiIceItem: '/anti-ice/workingtitle-cj4',
-        c172ChecklistMenuItem: '/checklists/c172-steam',
-        c172G1000ChecklistMenuItem: '/checklists/c172-g1000',
+        wtCJ4MenuItem: `/checklists/${Checklists.WORKINGTITLE_CJ4}`,
+        wtCJ4AntiIceItem: `/anti-ice/${AntiIceAircrafts.WORKINGTITLE_CJ4}`,
+        c172ChecklistMenuItem: `/checklists/${Checklists.C172_STEAM}`,
+        c172G1000ChecklistMenuItem: `/checklists/${Checklists.C172_G1000}`,
     });
 
     return (

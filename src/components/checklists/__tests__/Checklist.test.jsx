@@ -8,7 +8,7 @@ const setup = ({ initialRoute, routePath } = {}) => mountWithStore(Checklist, { 
 describe('Checklist', () => {
     test('simple case with a list', () => {
         const { compWrapper } = setup({
-            initialRoute: `/checklists/${Checklists.WT_CJ4}`,
+            initialRoute: `/checklists/${Checklists.WORKINGTITLE_CJ4}`,
             routePath: ChecklistsWithNameRoute,
         });
 

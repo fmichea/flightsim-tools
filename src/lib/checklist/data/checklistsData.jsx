@@ -9,7 +9,7 @@ import { Alert } from 'antd';
 
 export const ChecklistsData = createMappingFunction()([
     {
-        uid: Checklists.WT_CJ4,
+        uid: Checklists.WORKINGTITLE_CJ4,
         title: 'WorkingTitle CJ4',
         description: (
             <>
@@ -80,7 +80,7 @@ export const ChecklistsData = createMappingFunction()([
                     ChecklistItems.CJ4_BEFORE_START_EXTERIOR_LIGHTS,
                     ChecklistItems.CJ4_BEFORE_START_EICAS,
                     ChecklistItems.CJ4_BEFORE_START_FMS,
-                    ChecklistItems.CJ4_BEFORE_START_CLIMATE_CONTROL,
+                    ChecklistItems.CJ4_BEFORE_START_CLIMATE_CONTROL_SELECTOR,
                 ],
                 nextListNames: [
                     ChecklistLists.ENGINE_START,
@@ -505,7 +505,7 @@ export const ChecklistsData = createMappingFunction()([
                     ChecklistItems.C172_TAKEOFF_FLAPS_1,
                     ChecklistItems.C172_TAKEOFF_THROTTLE,
                     ChecklistItems.C172_TAKEOFF_MIXTURE,
-                    ChecklistItems.C172STEAM_TAKEOFF_ANNUCIATORS,
+                    ChecklistItems.C172STEAM_TAKEOFF_ANNUNCIATORS,
                     ChecklistItems.C172_TAKEOFF_AIRSPEED_INDICATOR,
                     ChecklistItems.C172_TAKEOFF_LIFT_NOSEWHEEL,
                     ChecklistItems.C172_TAKEOFF_INITIAL_CLIMB,

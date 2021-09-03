@@ -11,10 +11,10 @@ const Strongish = styled('strong', { color: '#606060' });
 
 export const AntiIceAircraftsData = createMappingFunction()([
     {
-        uid: AntiIceAircrafts.WT_CJ4,
+        uid: AntiIceAircrafts.WORKINGTITLE_CJ4,
         title: 'WorkingTitle CJ4',
         modesOrder: [
-            AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE,
+            AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE,
             AntiIceSystemModes.CJ4_WING_ENG_ANTI_ICE_MODE,
             AntiIceSystemModes.CJ4_ENG_ONLY_ANTI_ICE_MODE,
             AntiIceSystemModes.CJ4_TAIL_DEICE_ANTI_ICE_MODE,
@@ -78,7 +78,7 @@ export const AntiIceAircraftsData = createMappingFunction()([
                 },
                 defaultMode: {
                     states: {
-                        [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE]: AntiIceModeStates.ON,
+                        [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                     },
                     image: AntiIceImages.CJ4_PITOT_ON,
                 },
@@ -96,7 +96,7 @@ export const AntiIceAircraftsData = createMappingFunction()([
                             states: {
                                 [AntiIceSystemModes.CJ4_WING_ENG_ANTI_ICE_MODE]: AntiIceModeStates.OPTIONALLY_OFF,
                                 [AntiIceSystemModes.CJ4_ENG_ONLY_ANTI_ICE_MODE]: AntiIceModeStates.OPTIONALLY_ON,
-                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE]: AntiIceModeStates.ON,
+                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                             },
                             image: AntiIceImages.CJ4_PITOT_WING_ENG_ON,
                         },
@@ -113,9 +113,9 @@ export const AntiIceAircraftsData = createMappingFunction()([
                                 ),
                                 states: {
                                     [AntiIceSystemModes.CJ4_ENG_ONLY_ANTI_ICE_MODE]: AntiIceModeStates.ON,
-                                    [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE]: AntiIceModeStates.ON,
+                                    [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                                 },
-                                image: AntiIceImages.CJ4_PITOT_ENG_ONLY_ON,
+                                image: AntiIceImages.CJ4_PITOT_HEAT_ENG_ONLY_ON,
                             },
                         ],
                     },
@@ -124,7 +124,7 @@ export const AntiIceAircraftsData = createMappingFunction()([
                         defaultMode: {
                             states: {
                                 [AntiIceSystemModes.CJ4_WING_ENG_ANTI_ICE_MODE]: AntiIceModeStates.ON,
-                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE]: AntiIceModeStates.ON,
+                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                             },
                             image: AntiIceImages.CJ4_PITOT_WING_ENG_ON,
                         },
@@ -135,7 +135,7 @@ export const AntiIceAircraftsData = createMappingFunction()([
                             states: {
                                 [AntiIceSystemModes.CJ4_WING_ENG_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                                 [AntiIceSystemModes.CJ4_TAIL_DEICE_ANTI_ICE_MODE]: AntiIceModeStates.ON,
-                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ICE_MODE]: AntiIceModeStates.ON,
+                                [AntiIceSystemModes.CJ4_PITOT_STATIC_HEAT_ANTI_ICE_MODE]: AntiIceModeStates.ON,
                             },
                             image: AntiIceImages.CJ4_PITOT_WING_ENG_ON,
                         },

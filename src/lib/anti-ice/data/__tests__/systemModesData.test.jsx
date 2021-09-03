@@ -3,8 +3,7 @@ import { AntiIceSystemModesData } from 'lib/anti-ice/data/systemModesData';
 
 describe('checklistsData', () => {
     test('all checklists have data', () => {
-        Object.values(AntiIceSystemModes).forEach((keyName) => {
-            expect(Object.keys(AntiIceSystemModesData)).toContain(keyName);
-        });
+        expect(AntiIceSystemModes).toBeSetOfDataKeys();
+        expect(AntiIceSystemModes).toHaveDataForEachDataKeys(AntiIceSystemModesData);
     });
 });

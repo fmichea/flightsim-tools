@@ -217,7 +217,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         ),
     },
     {
-        uid: ChecklistItems.CJ4_BEFORE_START_CLIMATE_CONTROL,
+        uid: ChecklistItems.CJ4_BEFORE_START_CLIMATE_CONTROL_SELECTOR,
         title: 'Climate Control Selector',
         state: 'OFF',
         moreInfoShort: (

@@ -8,7 +8,7 @@ const setup = ({ aircraftName, operationModeName }) => mountHookWithStore(() => 
 describe('useAntiIceCheck', () => {
     test('aicraft name and operation modes are known', () => {
         const { getCurrentHookResult } = setup({
-            aircraftName: AntiIceAircrafts.WT_CJ4,
+            aircraftName: AntiIceAircrafts.WORKINGTITLE_CJ4,
             operationModeName: AntiIceOperationModes.GROUND_OPERATION,
         });
 
@@ -21,7 +21,7 @@ describe('useAntiIceCheck', () => {
 
     test('operation mode not provided defaults to first', () => {
         const { getCurrentHookResult } = setup({
-            aircraftName: AntiIceAircrafts.WT_CJ4,
+            aircraftName: AntiIceAircrafts.WORKINGTITLE_CJ4,
         });
 
         expect(getCurrentHookResult()).toEqual({
@@ -33,7 +33,7 @@ describe('useAntiIceCheck', () => {
 
     test('operation mode not known', () => {
         const { getCurrentHookResult } = setup({
-            aircraftName: AntiIceAircrafts.WT_CJ4,
+            aircraftName: AntiIceAircrafts.WORKINGTITLE_CJ4,
             operationModeName: 'wlekjwejljwe',
         });
 

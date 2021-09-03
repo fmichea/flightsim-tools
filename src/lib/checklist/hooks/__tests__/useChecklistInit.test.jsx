@@ -17,9 +17,9 @@ const setup = ({ checklistName, checklistListName, checklistData }) => mountHook
 describe('useChecklistInit', () => {
     test('list gets initialized in store', () => {
         const { store, getCurrentHookResult } = setup({
-            checklistName: Checklists.WT_CJ4,
+            checklistName: Checklists.WORKINGTITLE_CJ4,
             checklistListName: ChecklistLists.LANDING,
-            checklistData: ChecklistsData[Checklists.WT_CJ4],
+            checklistData: ChecklistsData[Checklists.WORKINGTITLE_CJ4],
             selectedFilters: [],
         });
 
@@ -45,7 +45,7 @@ describe('useChecklistInit', () => {
             ChecklistLists.SHUTDOWN,
         ]);
 
-        expect(getChecklistData(store.getState(), Checklists.WT_CJ4)).toEqual({
+        expect(getChecklistData(store.getState(), Checklists.WORKINGTITLE_CJ4)).toEqual({
             checkedItems: [],
             counters: {
                 listItemsChecked: {
@@ -88,8 +88,8 @@ describe('useChecklistInit', () => {
 
     test('first list gets selected if default is needed', () => {
         const { getCurrentHookResult } = setup({
-            checklistName: Checklists.WT_CJ4,
-            checklistData: ChecklistsData[Checklists.WT_CJ4],
+            checklistName: Checklists.WORKINGTITLE_CJ4,
+            checklistData: ChecklistsData[Checklists.WORKINGTITLE_CJ4],
             selectedFilters: [],
         });
 

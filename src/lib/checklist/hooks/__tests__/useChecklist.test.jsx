@@ -22,7 +22,7 @@ const setup = () => mountHookWithStore(
         });
     },
     {
-        initialRoute: `/checklists/${Checklists.WT_CJ4}/${ChecklistLists.LANDING}`,
+        initialRoute: `/checklists/${Checklists.WORKINGTITLE_CJ4}/${ChecklistLists.LANDING}`,
         routePath: ChecklistsWithNameAndListNameRoute,
     },
 );

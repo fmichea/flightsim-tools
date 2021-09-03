@@ -4,7 +4,7 @@ import { useAntiIce } from 'lib/anti-ice/hooks/useAntiIce';
 
 const setup = () => mountHookWithStore(
     () => useAntiIce({
-        aircraftName: AntiIceAircrafts.WT_CJ4,
+        aircraftName: AntiIceAircrafts.WORKINGTITLE_CJ4,
         selectedOperationModeName: null,
         moisture: false,
         temperature: 10,

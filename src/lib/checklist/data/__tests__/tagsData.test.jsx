@@ -3,8 +3,7 @@ import { ChecklistTagsData } from 'lib/checklist/data/tagsData';
 
 describe('tagsData', () => {
     test('all checklists items have data', () => {
-        Object.values(ChecklistTags).forEach((keyName) => {
-            expect(Object.keys(ChecklistTagsData)).toContain(keyName);
-        });
+        expect(ChecklistTags).toBeSetOfDataKeys();
+        expect(ChecklistTags).toHaveDataForEachDataKeys(ChecklistTagsData);
     });
 });

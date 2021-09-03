@@ -179,7 +179,7 @@ export const C172SteamChecklistItemsData = createMappingFunction(addC172SteamTag
         state: 'SET FOR TAKEOFF',
     },
     {
-        uid: ChecklistItems.C172STEAM_TAKEOFF_ANNUCIATORS,
+        uid: ChecklistItems.C172STEAM_TAKEOFF_ANNUNCIATORS,
         title: 'Annunciator Panel',
         state: 'CLEAR',
     },

@@ -11,7 +11,7 @@ const setup = ({ props, windowWidth } = {}) => {
     };
 
     const defaultProps = {
-        checklistName: Checklists.WT_CJ4,
+        checklistName: Checklists.WORKINGTITLE_CJ4,
         checklistListName: ChecklistLists.LANDING,
         selectedFilters: [],
         checklistURLManager,
