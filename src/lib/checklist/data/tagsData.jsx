@@ -27,7 +27,13 @@ const commonTagsData = createMappingFunction()([
         color: '#20603c',
     },
     {
-        uid: ChecklistTags.G1000,
+        uid: ChecklistTags.C172_STEAM,
+        title: 'Steam',
+        color: '#43a0da',
+    },
+    {
+        uid: ChecklistTags.C172_G1000,
+        title: 'G1000',
         color: '#306a8d',
     },
     {

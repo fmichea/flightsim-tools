@@ -7,7 +7,8 @@ export const ChecklistTags = Object.freeze({
     CJ4EXT: 'CJ4EXT',
 
     C172: 'C172',
-    G1000: 'G1000',
+    C172_STEAM: 'C172_STEAM',
+    C172_G1000: 'C172_G1000',
 
     VATSIM: 'VATSIM',
     SIMSETUP: 'SIMSETUP',
