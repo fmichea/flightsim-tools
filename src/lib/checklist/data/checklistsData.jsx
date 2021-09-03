@@ -13,18 +13,6 @@ export const ChecklistsData = createMappingFunction()([
         title: 'WorkingTitle CJ4',
         description: (
             <>
-                <Alert
-                    closable
-                    message={(
-                        <>
-                            This is a BETA checklist. It contains all the official CJ4 items, but help is missing or
-                            incomplete for a lot of them. Work in progress. Also you know, I&apos;m still learning this
-                            is very much my best understanding of things.
-                        </>
-                    )}
-                    type="error"
-                />
-
                 <p>
                     <br />
                     This is an interactive checklist for the
