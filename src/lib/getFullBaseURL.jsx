@@ -1,4 +1,3 @@
-import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 import { isLocalServer } from 'lib/isLocalServer';
 
 export const getFullBaseURL = () => {
