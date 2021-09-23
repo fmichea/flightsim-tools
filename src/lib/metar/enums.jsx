@@ -7,6 +7,12 @@ export const TokenTypes = Object.freeze({
     REMARKS: 'remarks',
     TEMPERATURES: 'temperatures',
     TREND: 'trend',
+    WIND: 'wind',
+});
+
+export const WindSpeedUnit = Object.freeze({
+    KNOTS: 'knots',
+    METERS_PER_SECOND: 'm/s',
 });
 
 export const CloudLayerAmount = Object.freeze({
@@ -31,6 +37,10 @@ export const CloudLayerAltitude = Object.freeze({
 export const AltimeterUnit = Object.freeze({
     INHG: 'inHg',
     HPA: 'hPA',
+});
+
+export const WindDirections = Object.freeze({
+    VRB: 'variable',
 });
 
 export const Directions = Object.freeze({
