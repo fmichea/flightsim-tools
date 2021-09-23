@@ -6,6 +6,7 @@ import { styled } from 'styletron-react';
 import { objectMap } from 'lib/objectMap';
 import { Checklists } from 'lib/checklist/data/checklists';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
+import { MetarExplainerRoute } from 'lib/routes';
 
 const MenuContainer = styled('div', {
     display: 'flex',
@@ -40,6 +41,7 @@ export const Navbar = () => {
             wtCJ4AntiIceItem,
             c172ChecklistMenuItem,
             c172G1000ChecklistMenuItem,
+            otherMetarExplainerMenuItem,
         },
         selectedKeys,
     } = useNavbarMenus({
@@ -47,6 +49,7 @@ export const Navbar = () => {
         wtCJ4AntiIceItem: `/anti-ice/${AntiIceAircrafts.WORKINGTITLE_CJ4}`,
         c172ChecklistMenuItem: `/checklists/${Checklists.C172_STEAM}`,
         c172G1000ChecklistMenuItem: `/checklists/${Checklists.C172_G1000}`,
+        otherMetarExplainerMenuItem: MetarExplainerRoute,
     });
 
     return (
@@ -59,6 +62,9 @@ export const Navbar = () => {
                 <Menu.SubMenu key="c172-menu" title="Cessna 172">
                     <Menu.Item {...c172ChecklistMenuItem.props}>C172 (Steam Gauges) Checklist</Menu.Item>
                     <Menu.Item {...c172G1000ChecklistMenuItem.props}>C172 (G1000) Checklist</Menu.Item>
+                </Menu.SubMenu>
+                <Menu.SubMenu key="other" title="Other">
+                    <Menu.Item {...otherMetarExplainerMenuItem.props}>METAR Explainer</Menu.Item>
                 </Menu.SubMenu>
             </Menu>
         </MenuContainer>

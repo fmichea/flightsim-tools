@@ -2,3 +2,4 @@ export const ChecklistsWithNameAndListNameRoute = '/checklists/:checklistName/:c
 export const ChecklistsWithNameRoute = '/checklists/:checklistName';
 export const AntiIceWithNameRoute = '/anti-ice/:aircraftName';
 export const AntiIceWithNameAndOperationModeNameRoute = '/anti-ice/:aircraftName/:operationModeName';
+export const MetarExplainerRoute = '/metar-explain';

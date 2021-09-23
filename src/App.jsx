@@ -13,9 +13,11 @@ import {
     AntiIceWithNameRoute,
     ChecklistsWithNameAndListNameRoute,
     ChecklistsWithNameRoute,
+    MetarExplainerRoute,
 } from 'lib/routes';
 import { AntiIce } from 'components/anti-ice/AntiIce';
 import { MainPage } from 'components/MainPage';
+import { Metar } from 'components/metar/Metar';
 
 const AppLayout = () => (
     <Layout>
@@ -24,6 +26,7 @@ const AppLayout = () => (
             <Route exact path={ChecklistsWithNameRoute} component={Checklist} />
             <Route exact path={AntiIceWithNameAndOperationModeNameRoute} component={AntiIce} />
             <Route exact path={AntiIceWithNameRoute} component={AntiIce} />
+            <Route exact path={MetarExplainerRoute} component={Metar} />
             <Route exact path="/" component={MainPage} />
         </Switch>
     </Layout>
