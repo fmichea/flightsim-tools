@@ -3,6 +3,7 @@ export const TokenTypes = Object.freeze({
 
     ALTIMETER_SETTING: 'altimeter-setting',
     CLOUD_COVERAGE: 'cloud-coverage',
+    PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',
 });
 
@@ -28,5 +29,30 @@ export const CloudLayerAltitude = Object.freeze({
 export const AltimeterUnit = Object.freeze({
     INHG: 'inHg',
     HPA: 'hPA',
+});
+
+export const Directions = Object.freeze({
+    N: 'north',
+    NE: 'north-east',
+    E: 'east',
+    SE: 'south-east',
+    S: 'south',
+    SW: 'south-west',
+    W: 'west',
+    NW: 'north-west',
+
+    NDV: 'no-directional-variation',
+});
+
+export const PrevailingVisibility = Object.freeze({
+    CAVOK: 'cavok',
+    TEN_K: '10k-or-better',
+    MISSING: 'missing',
+});
+
+export const PrevailingVisibilityUnit = Object.freeze({
+    METERS: 'meters',
+    KILOMETERS: 'kilometers',
+    MILES: 'miles',
 });
 
