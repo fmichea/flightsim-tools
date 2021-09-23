@@ -6,6 +6,7 @@ export const TokenTypes = Object.freeze({
     PRESENT_WEATHER: 'present-weather',
     PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',
+    RUNWAY_VISUAL_RANGE: 'runway-visual-range',
     TEMPERATURES: 'temperatures',
     TREND: 'trend',
     WIND: 'wind',
@@ -112,4 +113,10 @@ export const WeatherPhenomena = Object.freeze({
     FUNNEL_CLOUD: 'funnel-cloud',
     SANDSTORM: 'sandstorm',
     DUSTSTORM: 'duststorm',
+});
+
+export const RunwayVisualRangeQualifier = Object.freeze({
+    NONE: 'none',
+    AT_LEAST: 'at-least',
+    AT_MOST: 'at-most',
 });
