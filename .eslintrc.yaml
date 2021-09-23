@@ -20,6 +20,7 @@ plugins:
 
 rules:
   max-len: ["warn", 120]
+  camelcase: ["warn"]
   # Ensure there are no default exports.
   import/prefer-default-export: "off"
   import/no-default-export: "error"
