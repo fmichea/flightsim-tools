@@ -1,6 +1,5 @@
-import { VerticalVisibilityPropTypes } from 'components/metar/renderers/verticalVisibility/propTypes';
 import React from 'react';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { VerticalVisibilityPropTypes } from 'components/metar/renderers/verticalVisibility/propTypes';
 import { ThinSpace } from 'components/lib/spaces';
 
 export const VerticalVisibilityValue = ({
