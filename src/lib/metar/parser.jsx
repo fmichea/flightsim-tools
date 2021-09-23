@@ -18,6 +18,7 @@ import { parseTrend } from 'lib/metar/parsers/trend';
 import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
 import { parseRemarks } from 'lib/metar/parsers/remarks';
 import { ParserState } from 'lib/metar/parserState';
+import { pick } from 'lib/pick';
 
 const prefixFunctions = [
     skipMETARPrefix,
@@ -64,7 +65,7 @@ const parseNextToken = (parser) => {
 };
 
 export const parseMETAR = (value) => {
-    const parser = new ParserState(value);
+    const parser = new ParserState(pick(value, ''));
 
     prefixFunctions.forEach((fn) => {
         if (!parser.hasMoreToMatch()) {

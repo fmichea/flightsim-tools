@@ -151,13 +151,31 @@ const useShareableLinkHandler = ({ metarData, metarURLManager }) => useMemo(() =
 }, [metarURLManager, metarData]);
 
 export const Metar = () => {
+    const [form] = Form.useForm();
+
+    // This is the data that was actually explained. Textarea content may be different if user changed it.
     const [metarData, setMetarData] = useState('');
+
+    // This tracks whether there is data in the textarea, which enables the explain button.
+    const [explainButtonEnabled, setExplainButtonEnabled] = useState(false);
+
+    const updateExplainedButtonEnabledState = useMemo(
+        () => (value) => { setExplainButtonEnabled(value.replace(/\s/g, '') !== ''); },
+        [setExplainButtonEnabled],
+    );
 
     const { initialValue, metarURLManager } = useMetarURLConfig();
 
     // Every time the state from the URL changes to a new value, we update current data. This is cleared
     // automatically so this only happens when a shareable link is pasted.
-    useEffect(() => { setMetarData(initialValue); }, [initialValue]);
+    useEffect(
+        () => {
+            form.setFieldsValue({ metarFieldData: initialValue });
+            setMetarData(initialValue);
+            updateExplainedButtonEnabledState(initialValue);
+        },
+        [initialValue],
+    );
 
     // This helps track if the data in the textarea has changed, which disables the shareable link button
     // until the metar is explained.
@@ -165,7 +183,12 @@ export const Metar = () => {
 
     // Whenever textarea data is changed, this event handler is called.
     const onChangeMETAR = useMemo(
-        () => (event) => setMetarDataChanged(metarData !== event.target.value),
+        () => (event) => {
+            const metarFieldData = event.target.value;
+
+            setMetarDataChanged(metarData !== metarFieldData);
+            updateExplainedButtonEnabledState(metarFieldData);
+        },
         [metarData, setMetarDataChanged],
     );
 
@@ -213,6 +236,7 @@ export const Metar = () => {
             <Form
                 onFinish={onFinish}
                 autoComplete="off"
+                form={form}
                 labelCol={{ span: 2 }}
                 wrapperCol={{ span: 22 }}
             >
@@ -221,7 +245,7 @@ export const Metar = () => {
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 2, span: 22 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" disabled={!explainButtonEnabled}>
                         Explain
                     </Button>
 
