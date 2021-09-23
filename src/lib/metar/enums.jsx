@@ -3,6 +3,7 @@ export const TokenTypes = Object.freeze({
 
     ALTIMETER_SETTING: 'altimeter-setting',
     CLOUD_COVERAGE: 'cloud-coverage',
+    REMARKS: 'remarks',
 });
 
 export const CloudLayerAmount = Object.freeze({
