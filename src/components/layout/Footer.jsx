@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { useStyletron } from 'styletron-react';
 import { GithubOutlined } from '@ant-design/icons';
+import { ExternalLink } from 'components/lib/ExternalLink';
 
 const ANTDFooter = Layout.Footer;
 
@@ -17,13 +18,15 @@ export const Footer = () => {
             {' '}
             <GithubOutlined />
             {' '}
-            <a href="https://github.com/fmichea/flightsim-tools" target="_blank" rel="noreferrer">Sources</a>
+            <ExternalLink href="https://github.com/fmichea/flightsim-tools" noIcon>
+                Sources
+            </ExternalLink>
             {' '}
             or
             {' '}
-            <a href="https://github.com/fmichea/flightsim-tools/issues" target="_blank" rel="noreferrer">
+            <ExternalLink href="https://github.com/fmichea/flightsim-tools/issues" noIcon>
                 Report Issues
-            </a>
+            </ExternalLink>
         </ANTDFooter>
     );
 };
