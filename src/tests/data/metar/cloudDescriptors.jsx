@@ -110,3 +110,8 @@ export const TestDataCloudDescriptor_FEWTCU_Data = {
     altitudeP: CloudLayerAltitude.BELOW,
     cloudTypeP: CloudTypes.TCU,
 };
+
+export const TestDataCloudDescriptor_CLR_Text = 'CLR';
+export const TestDataCloudDescriptor_CLR_Data = {
+
+};

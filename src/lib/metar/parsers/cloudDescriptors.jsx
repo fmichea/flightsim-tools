@@ -32,12 +32,17 @@ const createCloudDescriptorsToken = (amount, { altitude, cloudType } = {}) => ({
 export const parseCloudDescriptors = (parser) => {
     const { completeMatch: nscCompleteMatch } = parser.matchNextTokenAndForward('NSC');
     if (isNotNullOrUndefined(nscCompleteMatch)) {
-        return createCloudDescriptorsToken('NSC');
+        return createCloudDescriptorsToken(nscCompleteMatch);
     }
 
     const { completeMatch: ncdCompleteMatch } = parser.matchNextTokenAndForward('NCD');
     if (isNotNullOrUndefined(ncdCompleteMatch)) {
-        return createCloudDescriptorsToken('NCD');
+        return createCloudDescriptorsToken(ncdCompleteMatch);
+    }
+
+    const { completeMatch: clrCompleteMatch } = parser.matchNextTokenAndForward('CLR');
+    if (isNotNullOrUndefined(clrCompleteMatch)) {
+        return createCloudDescriptorsToken(clrCompleteMatch);
     }
 
     const { groups: simpleGroups } = parser.matchNextTokenAndForward(

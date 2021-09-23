@@ -40,6 +40,16 @@ const renderAmount = ({ amountP, amount }) => {
         );
     }
 
+    if (amountP === CloudLayerAmount.CLR) {
+        return (
+            <>
+                There are no visible clouds below 12000 ft (
+                {amount}
+                )
+            </>
+        );
+    }
+
     switch (amountP) {
     case CloudLayerAmount.FEW:
         return (
