@@ -1,9 +1,10 @@
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { isLocalServer } from 'lib/isLocalServer';
 
 export const getFullBaseURL = () => {
-    let value = 'http://localhost:8081';
-    if (isNotNullOrUndefined(process.env.IS_LOCAL_SERVER) && process.env.IS_LOCAL_SERVER !== '') {
-        value = 'https://fmichea.github.io';
+    let baseURL = 'https://fmichea.github.io';
+    if (isLocalServer()) {
+        baseURL = 'http://localhost:8081';
     }
-    return `${value}${process.env.PUBLIC_URL}/#`;
+    return `${baseURL}${process.env.PUBLIC_URL}/#`;
 };

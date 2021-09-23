@@ -2,12 +2,12 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
 import { reducers } from 'state/reducers';
-import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { isLocalServer } from 'lib/isLocalServer';
 
 export const createAppStore = () => {
     let middlewares = [thunkMiddleware];
 
-    if (isNotNullOrUndefined(process.env.IS_LOCAL_SERVER) && process.env.IS_LOCAL_SERVER !== '') {
+    if (isLocalServer()) {
         middlewares = [...middlewares, logger];
     }
 
