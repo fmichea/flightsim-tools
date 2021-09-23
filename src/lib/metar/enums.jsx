@@ -5,6 +5,7 @@ export const TokenTypes = Object.freeze({
     CLOUD_COVERAGE: 'cloud-coverage',
     PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',
+    TEMPERATURES: 'temperatures',
 });
 
 export const CloudLayerAmount = Object.freeze({
