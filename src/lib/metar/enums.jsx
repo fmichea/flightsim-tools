@@ -9,6 +9,7 @@ export const TokenTypes = Object.freeze({
     RUNWAY_VISUAL_RANGE: 'runway-visual-range',
     TEMPERATURES: 'temperatures',
     TREND: 'trend',
+    VERTICAL_VISIBILITY: 'vertical-visibility',
     WIND: 'wind',
 });
 
