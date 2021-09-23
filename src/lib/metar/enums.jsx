@@ -3,6 +3,7 @@ export const TokenTypes = Object.freeze({
 
     ALTIMETER_SETTING: 'altimeter-setting',
     CLOUD_COVERAGE: 'cloud-coverage',
+    PRESENT_WEATHER: 'present-weather',
     PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',
     TEMPERATURES: 'temperatures',
@@ -68,3 +69,47 @@ export const PrevailingVisibilityUnit = Object.freeze({
     MILES: 'miles',
 });
 
+export const WeatherIntensity = Object.freeze({
+    LIGHT: 'light',
+    HEAVY: 'heavy',
+    VINCINITY: 'vincinity',
+});
+
+export const WeatherDescriptor = Object.freeze({
+    SHALLOW: 'shallow',
+    PATCHES: 'patches',
+    PARTIAL: 'partial',
+    LOW_DRIFTING: 'low-drifting',
+    BLOWING: 'blowing',
+    SHOWER: 'shower',
+    THUNDERSTORM: 'thunderstorm',
+    FREEZING: 'freezing',
+});
+
+export const WeatherPhenomena = Object.freeze({
+    // Precipitation
+    DRIZZLE: 'drizzle',
+    RAIN: 'rain',
+    SNOW: 'snow',
+    SNOW_GRAINS: 'snow-grains',
+    ICE_PELLETS: 'ice-pellets',
+    HAIL: 'hail',
+    SMALL_HAIL_SNOW: 'small-hail-snow',
+    UNKNOWN_PRECIPITATION: 'unknown-precipitation',
+
+    // Obscuration
+    MIST: 'mist',
+    FOG: 'fog',
+    SMOKE: 'smoke',
+    VOLCANIC_HASH: 'volcanic-hash',
+    DUST: 'widespread-dust',
+    SAND: 'sand',
+    HAZE: 'haze',
+
+    // Other
+    DUST_DEVILS: 'dust-devils',
+    SQUALLS: 'squalls',
+    FUNNEL_CLOUD: 'funnel-cloud',
+    SANDSTORM: 'sandstorm',
+    DUSTSTORM: 'duststorm',
+});
