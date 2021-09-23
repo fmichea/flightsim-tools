@@ -14,7 +14,6 @@ import { TokenRenderers } from 'components/metar/renderers/mapping';
 import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
 import { useMetarURLConfig } from 'lib/metar/hooks/useMetarURLConfig';
 import { VerticalSpace, VWSpace } from 'components/lib/spaces';
-import { useLocation } from 'react-router';
 import { getFullBaseURL } from 'lib/getFullBaseURL';
 
 const { Title } = Typography;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { RunwayVisualRangeValue } from 'components/metar/renderers/runwayVisualRange/RunwayVisualRangeValue';
 import { RunwayVisualRangeShort } from 'components/metar/renderers/runwayVisualRange/RunwayVisualRangeShort';
 
