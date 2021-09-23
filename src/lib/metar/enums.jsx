@@ -7,6 +7,7 @@ export const TokenTypes = Object.freeze({
     METAR_PREFIX: 'metar-prefix',
     METAR_PREFIX_OTHER: 'metar-prefix-other',
     METAR_TIME: 'metar-time',
+    MISSING_DATA: 'missing-data',
     PRESENT_WEATHER: 'present-weather',
     PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',

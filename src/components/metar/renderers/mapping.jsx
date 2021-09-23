@@ -12,6 +12,7 @@ import { TrendRenderers } from 'components/metar/renderers/trend/renderers';
 import { PresentWeatherRenderers } from 'components/metar/renderers/presentWeather/renderers';
 import { RemarksRenderers } from 'components/metar/renderers/remarks/renderers';
 import { RunwayVisualRangeRenderers } from 'components/metar/renderers/runwayVisualRange/renderers';
+import { MissingDataRenderers } from 'components/metar/renderers/missingData/renderers';
 
 export const TokenRenderers = {
     [TokenTypes.NOT_RECOGNIZED]: NotRecognizedRenderers,
@@ -28,4 +29,5 @@ export const TokenRenderers = {
     [TokenTypes.PRESENT_WEATHER]: PresentWeatherRenderers,
     [TokenTypes.REMARKS]: RemarksRenderers,
     [TokenTypes.RUNWAY_VISUAL_RANGE]: RunwayVisualRangeRenderers,
+    [TokenTypes.MISSING_DATA]: MissingDataRenderers,
 };

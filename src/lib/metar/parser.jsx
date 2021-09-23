@@ -19,6 +19,7 @@ import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
 import { parseRemarks } from 'lib/metar/parsers/remarks';
 import { ParserState } from 'lib/metar/parserState';
 import { pick } from 'lib/pick';
+import { parseMissingData } from 'lib/metar/parsers/missingData';
 
 const prefixFunctions = [
     skipMETARPrefix,
@@ -42,6 +43,8 @@ const parsersFunctions = [
     parseTrend,
     parseVerticalVisibility,
     parseWind,
+
+    parseMissingData,
 ];
 
 const parseToken = (parser) => {
