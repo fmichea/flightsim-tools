@@ -9,8 +9,6 @@ import '@testing-library/jest-dom/extend-expect';
 // Configure enzyme adapter for rendering, needs to follow react version.
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
-import { ChecklistItemsData } from 'lib/checklist/data/listItemsData';
 
 configure({ adapter: new Adapter() });
 
