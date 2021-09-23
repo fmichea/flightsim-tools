@@ -72,18 +72,18 @@ describe('ParserState', () => {
             const parser = new ParserState('FOO12 BAR');
 
             // Not a match at all.
-            const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward(/BAR/);
+            const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward('BAR');
             expect(isNullOrUndefined(completeMatch1)).toBeTruthy();
 
             // Does not match exactly because of the digits finishing the value. Not a whole match.
-            const { completeMatch: completeMatch2 } = parser.matchNextTokenAndForward(/FOO/);
+            const { completeMatch: completeMatch2 } = parser.matchNextTokenAndForward('FOO');
             expect(isNullOrUndefined(completeMatch2)).toBeTruthy();
         });
 
         test('matching works and completeMatch/groups are returned', () => {
             const parser = new ParserState('FOO12 BAR');
 
-            const { completeMatch, groups } = parser.matchNextTokenAndForward(/FOO(?<value>[0-9]+)/);
+            const { completeMatch, groups } = parser.matchNextTokenAndForward('FOO(?<value>[0-9]+)');
             expect(isNotNullOrUndefined(completeMatch)).toBeTruthy();
             expect(completeMatch).toEqual('FOO12');
 
@@ -96,7 +96,7 @@ describe('ParserState', () => {
         test('matching works also when on the end', () => {
             const parser = new ParserState('FOO12');
 
-            const { completeMatch, groups } = parser.matchNextTokenAndForward(/FOO(?<value>[0-9]+)/);
+            const { completeMatch, groups } = parser.matchNextTokenAndForward('FOO(?<value>[0-9]+)');
             expect(isNotNullOrUndefined(completeMatch)).toBeTruthy();
             expect(completeMatch).toEqual('FOO12');
 

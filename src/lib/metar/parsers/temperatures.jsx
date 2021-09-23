@@ -3,7 +3,7 @@ import { TokenTypes } from 'lib/metar/enums';
 
 export const parseTemperatures = (parser) => {
     const { groups } = parser.matchNextTokenAndForward(
-        /(?<oat>M?[0-9]{2})\/(?<dewPoint>M?[0-9]{2})/,
+        '(?<oat>M?[0-9]{2})/(?<dewPoint>M?[0-9]{2})',
     );
 
     if (isNotNullOrUndefined(groups)) {

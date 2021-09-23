@@ -16,8 +16,8 @@ export class ParserState {
         return this.currentValue.length !== 0;
     }
 
-    matchAndForward(rgx) {
-        const result = this.currentValue.match(rgx);
+    matchAndForward(pattern) {
+        const result = this.currentValue.match(new RegExp(pattern));
 
         if (isNullOrUndefined(result)) {
             return { matched: false };
@@ -34,17 +34,13 @@ export class ParserState {
         };
     }
 
-    matchNextTokenAndForward(rgx) {
-        const { matched: matched1, ...result1 } = this.matchAndForward(
-            new RegExp(`^${rgx.source}$`),
-        );
+    matchNextTokenAndForward(pattern) {
+        const { matched: matched1, ...result1 } = this.matchAndForward(`^${pattern}$`);
         if (matched1) {
             return result1;
         }
 
-        const { matched: matched2, ...result2 } = this.matchAndForward(
-            new RegExp(`^${rgx.source}\\s`),
-        );
+        const { matched: matched2, ...result2 } = this.matchAndForward(`^${pattern}\\s`);
         if (matched2) {
             return result2;
         }
@@ -53,11 +49,11 @@ export class ParserState {
     }
 
     skipWhitespace() {
-        this.matchAndForward(/^\s+/);
+        this.matchAndForward('^\\s+');
     }
 
     skipToken() {
-        const { completeMatch } = this.matchNextTokenAndForward(/[^\s]+/);
+        const { completeMatch } = this.matchNextTokenAndForward('[^\\s]+');
 
         this.pushToken({
             tokenType: TokenTypes.NOT_RECOGNIZED,

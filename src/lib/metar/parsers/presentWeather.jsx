@@ -129,11 +129,11 @@ const splitPhenomenons = (value) => {
 };
 
 export const parsePresentWeather = (parser) => {
-    const { groups } = parser.matchNextTokenAndForward(new RegExp(
+    const { groups } = parser.matchNextTokenAndForward(
         '(?<intensities>(\\+|-|VC)*)'
         + '(?<descriptors>(MI|BC|PR|DR|BL|SH|TS|FZ)*)'
         + '(?<phenomenons>(DZ|RA|SN|SG|PL|GR|GS|UP|BR|FG|FU|VA|DU|SA|HZ|PO|SQ|FC|SS|DS)+)',
-    ));
+    );
 
     if (isNotNullOrUndefined(groups)) {
         const { intensities, descriptors, phenomenons } = groups;

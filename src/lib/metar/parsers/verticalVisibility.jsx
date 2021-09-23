@@ -11,15 +11,13 @@ const createVerticalVisibilityToken = (altitude) => ({
 
 export const parseVerticalVisibility = (parser) => {
     const { groups: vvAltGroups } = parser.matchNextTokenAndForward(
-        /VV(?<altitude>[0-9]{3})/,
+        'VV(?<altitude>[0-9]{3})',
     );
     if (isNotNullOrUndefined(vvAltGroups)) {
         return createVerticalVisibilityToken(vvAltGroups.altitude);
     }
 
-    const { completeMatch: noDataCompleteMatch } = parser.matchNextTokenAndForward(
-        /VV\/\/\//,
-    );
+    const { completeMatch: noDataCompleteMatch } = parser.matchNextTokenAndForward('VV///');
     if (isNotNullOrUndefined(noDataCompleteMatch)) {
         return createVerticalVisibilityToken('///');
     }

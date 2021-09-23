@@ -30,18 +30,18 @@ const createCloudDescriptorsToken = (amount, { altitude, cloudType } = {}) => ({
 });
 
 export const parseCloudDescriptors = (parser) => {
-    const { completeMatch: nscCompleteMatch } = parser.matchNextTokenAndForward(/NSC/);
+    const { completeMatch: nscCompleteMatch } = parser.matchNextTokenAndForward('NSC');
     if (isNotNullOrUndefined(nscCompleteMatch)) {
         return createCloudDescriptorsToken('NSC');
     }
 
-    const { completeMatch: ncdCompleteMatch } = parser.matchNextTokenAndForward(/NCD/);
+    const { completeMatch: ncdCompleteMatch } = parser.matchNextTokenAndForward('NCD');
     if (isNotNullOrUndefined(ncdCompleteMatch)) {
         return createCloudDescriptorsToken('NCD');
     }
 
     const { groups: simpleGroups } = parser.matchNextTokenAndForward(
-        /(?<amount>FEW|SCT|BKN|OVC)(?<altitude>[0-9]{3})(?<cloudType>CB|TCU|\/\/\/|)/,
+        '(?<amount>FEW|SCT|BKN|OVC)(?<altitude>[0-9]{3})(?<cloudType>CB|TCU|///|)',
     );
     if (isNotNullOrUndefined(simpleGroups)) {
         const { amount, altitude, cloudType } = simpleGroups;
@@ -56,7 +56,7 @@ export const parseCloudDescriptors = (parser) => {
     }
 
     const { groups: belowGroups } = parser.matchNextTokenAndForward(
-        /(?<amount>FEW|SCT|BKN|OVC)\/\/\/(?<cloudType>CB|TCU|)/,
+        '(?<amount>FEW|SCT|BKN|OVC)///(?<cloudType>CB|TCU|)',
     );
     if (isNotNullOrUndefined(belowGroups)) {
         const { amount, cloudType } = belowGroups;

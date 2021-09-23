@@ -31,7 +31,7 @@ const parseWindVariableDirection = (parser) => {
     parser.skipWhitespace();
 
     const { groups } = parser.matchNextTokenAndForward(
-        /(?<fromDirection>[0-9]{3})V(?<toDirection>[0-9]{3})/,
+        '(?<fromDirection>[0-9]{3})V(?<toDirection>[0-9]{3})',
     );
 
     if (isNotNullOrUndefined(groups)) {
@@ -43,7 +43,7 @@ const parseWindVariableDirection = (parser) => {
 
 export const parseWind = (parser) => {
     const { groups: simpleGroups } = parser.matchNextTokenAndForward(
-        /(?<direction>[0-9]{3})(?<force>P?[0-9]{2})(?<unit>KT|MPS)/,
+        '(?<direction>[0-9]{3})(?<force>P?[0-9]{2})(?<unit>KT|MPS)',
     );
     if (isNotNullOrUndefined(simpleGroups)) {
         const { direction, force, unit } = simpleGroups;
@@ -56,7 +56,7 @@ export const parseWind = (parser) => {
     }
 
     const { groups: withGustsGroups } = parser.matchNextTokenAndForward(
-        /(?<direction>[0-9]{3})(?<force>P?[0-9]{2})G(?<gustsForce>P?[0-9]{2})(?<unit>KT|MPS)/,
+        '(?<direction>[0-9]{3})(?<force>P?[0-9]{2})G(?<gustsForce>P?[0-9]{2})(?<unit>KT|MPS)',
     );
     if (isNotNullOrUndefined(withGustsGroups)) {
         const {
@@ -75,7 +75,7 @@ export const parseWind = (parser) => {
     }
 
     const { groups: variableGroups } = parser.matchNextTokenAndForward(
-        /(?<direction>VRB)(?<force>P?[0-9]{2})(?<unit>KT|MPS)/,
+        '(?<direction>VRB)(?<force>P?[0-9]{2})(?<unit>KT|MPS)',
     );
     if (isNotNullOrUndefined(variableGroups)) {
         const { direction, force, unit } = variableGroups;

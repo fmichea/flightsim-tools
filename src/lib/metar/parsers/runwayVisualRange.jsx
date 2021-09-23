@@ -3,7 +3,7 @@ import { RunwayVisualRangeQualifier, TokenTypes } from 'lib/metar/enums';
 
 export const parseRunwayVisualRange = (parser) => {
     const { groups } = parser.matchNextTokenAndForward(
-        /R(?<runway>[0-9]{2})\/(?<qualifier>M|P|)(?<distance>[0-9]{4})/,
+        'R(?<runway>[0-9]{2})/(?<qualifier>M|P|)(?<distance>[0-9]{4})',
     );
     if (isNotNullOrUndefined(groups)) {
         const { runway, qualifier, distance } = groups;

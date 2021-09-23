@@ -3,7 +3,7 @@ import { AltimeterUnit, TokenTypes } from 'lib/metar/enums';
 
 export const parseAltimeter = (parser) => {
     const { groups } = parser.matchNextTokenAndForward(
-        /(?<altimeterUnit>[QA])(?<value>[0-9]{4})/,
+        '(?<altimeterUnit>[QA])(?<value>[0-9]{4})',
     );
 
     if (isNotNullOrUndefined(groups)) {

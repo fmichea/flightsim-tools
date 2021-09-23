@@ -9,12 +9,12 @@ const createPrefixToken = (value, { tokenType } = {}) => ({
 });
 
 export const skipMETARPrefix = (parser) => {
-    const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward(/METAR/);
+    const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward('METAR');
     if (isNotNullOrUndefined(completeMatch1)) {
         return createPrefixToken(completeMatch1);
     }
 
-    const { completeMatch: completeMatch2 } = parser.matchNextTokenAndForward(/SPECI/);
+    const { completeMatch: completeMatch2 } = parser.matchNextTokenAndForward('SPECI');
     if (isNotNullOrUndefined(completeMatch2)) {
         return createPrefixToken(completeMatch2);
     }
@@ -22,7 +22,7 @@ export const skipMETARPrefix = (parser) => {
 };
 
 export const parseAirportICAOCode = (parser) => {
-    const { groups } = parser.matchNextTokenAndForward(/(?<airportCode>[A-Z][A-Z0-9]{3})/);
+    const { groups } = parser.matchNextTokenAndForward('(?<airportCode>[A-Z][A-Z0-9]{3})');
 
     if (isNotNullOrUndefined(groups)) {
         const { airportCode } = groups;
@@ -42,7 +42,7 @@ export const parseAirportICAOCode = (parser) => {
 
 export const parseMETARTime = (parser) => {
     const { groups } = parser.matchNextTokenAndForward(
-        /(?<dayOfMonth>[0-9]{2})(?<hour>[0-9]{2})(?<minutes>[0-9]{2})Z/,
+        '(?<dayOfMonth>[0-9]{2})(?<hour>[0-9]{2})(?<minutes>[0-9]{2})Z',
     );
 
     if (isNotNullOrUndefined(groups)) {
@@ -66,7 +66,7 @@ export const parseMETARTime = (parser) => {
 };
 
 export const parseAuto = (parser) => {
-    const { completeMatch } = parser.matchNextTokenAndForward(/AUTO/);
+    const { completeMatch } = parser.matchNextTokenAndForward('AUTO');
 
     if (isNotNullOrUndefined(completeMatch)) {
         return createPrefixToken(completeMatch, {
@@ -77,7 +77,7 @@ export const parseAuto = (parser) => {
 };
 
 export const parseNIL = (parser) => {
-    const { completeMatch } = parser.matchNextTokenAndForward(/NIL/);
+    const { completeMatch } = parser.matchNextTokenAndForward('NIL');
 
     if (isNotNullOrUndefined(completeMatch)) {
         return createPrefixToken(completeMatch, {
@@ -88,7 +88,7 @@ export const parseNIL = (parser) => {
 };
 
 export const parseCOR = (parser) => {
-    const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward(/COR/);
+    const { completeMatch: completeMatch1 } = parser.matchNextTokenAndForward('COR');
 
     if (isNotNullOrUndefined(completeMatch1)) {
         return createPrefixToken(completeMatch1, {
