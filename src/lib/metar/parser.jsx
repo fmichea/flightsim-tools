@@ -1,9 +1,46 @@
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { parseWind } from 'lib/metar/parsers/wind';
+import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
+import {
+    parseAirportICAOCode,
+    parseAuto,
+    parseMETARTime,
+    parseNIL,
+    parseCOR,
+    skipMETARPrefix,
+} from 'lib/metar/parsers/metarPrefixes';
+import { parseRunwayVisualRange } from 'lib/metar/parsers/runwayVisualRange';
+import { parseAltimeter } from 'lib/metar/parsers/altimeter';
+import { parseCloudDescriptors } from 'lib/metar/parsers/cloudDescriptors';
+import { parseVerticalVisibility } from 'lib/metar/parsers/verticalVisibility';
+import { parseTemperatures } from 'lib/metar/parsers/temperatures';
+import { parseTrend } from 'lib/metar/parsers/trend';
+import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
+import { parseRemarks } from 'lib/metar/parsers/remarks';
+import { ParserState } from 'lib/metar/parserState';
 
 const prefixFunctions = [
+    skipMETARPrefix,
+    parseCOR,
+    parseAirportICAOCode,
+    parseMETARTime,
 ];
 
 const parsersFunctions = [
+    parseCOR,
+    parseNIL,
+    parseAuto,
+
+    parseAltimeter,
+    parseCloudDescriptors,
+    parsePresentWeather,
+    parsePrevailingVisibility,
+    parseRemarks,
+    parseRunwayVisualRange,
+    parseTemperatures,
+    parseTrend,
+    parseVerticalVisibility,
+    parseWind,
 ];
 
 const parseToken = (parser) => {
