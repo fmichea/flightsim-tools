@@ -1,8 +1,12 @@
 export const TokenTypes = Object.freeze({
     NOT_RECOGNIZED: 'not-recognized',
 
+    AIRPORT_IDENTIFIER: 'airport-identifier',
     ALTIMETER_SETTING: 'altimeter-setting',
     CLOUD_COVERAGE: 'cloud-coverage',
+    METAR_PREFIX: 'metar-prefix',
+    METAR_PREFIX_OTHER: 'metar-prefix-other',
+    METAR_TIME: 'metar-time',
     PRESENT_WEATHER: 'present-weather',
     PREVAILING_VISIBILITY: 'prevailing-visibility',
     REMARKS: 'remarks',
