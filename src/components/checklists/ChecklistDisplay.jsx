@@ -20,6 +20,7 @@ import { ChecklistNextListButton } from 'components/checklists/ChecklistNextList
 import { useDocumentTitle } from 'lib/hooks/useDocumentTitle';
 import PropTypes from 'prop-types';
 import { ChecklistListInfo } from 'components/checklists/ChecklistListInfo';
+import { BlockLockscreen } from 'components/lib/BlockLockscreen';
 
 const { Title, Text } = Typography;
 
@@ -91,6 +92,8 @@ export const ChecklistDisplay = ({
 
     return (
         <>
+            <BlockLockscreen />
+
             <Modal
                 title="List Selector"
                 visible={menuVisible.value}
