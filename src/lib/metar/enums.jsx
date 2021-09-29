@@ -81,6 +81,9 @@ export const PrevailingVisibilityUnit = Object.freeze({
 export const WeatherIntensity = Object.freeze({
     LIGHT: 'light',
     HEAVY: 'heavy',
+});
+
+export const WeatherProximity = Object.freeze({
     VINCINITY: 'vincinity',
 });
 

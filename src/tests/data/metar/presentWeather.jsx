@@ -1,5 +1,5 @@
 import {
-    TokenTypes, WeatherDescriptor, WeatherIntensity, WeatherPhenomena,
+    TokenTypes, WeatherDescriptor, WeatherIntensity, WeatherPhenomena, WeatherProximity,
 } from 'lib/metar/enums';
 
 export const TestDataPresentWeather_PSHRA_Text = '+SHRA';
@@ -18,6 +18,10 @@ export const TestDataPresentWeather_PSHRA_Data = {
             intensityP: WeatherIntensity.HEAVY,
         },
     ],
+
+    proximityArgs: [],
+    proximityCount: 0,
+    proximityParts: [],
 
     descriptor0: 'SH',
     descriptor0P: WeatherDescriptor.SHOWER,
@@ -53,6 +57,10 @@ export const TestDataPresentWeather_SN_Data = {
     intensityCount: 0,
     intensityParts: [],
 
+    proximityArgs: [],
+    proximityCount: 0,
+    proximityParts: [],
+
     descriptorArgs: [],
     descriptorCount: 0,
     descriptorParts: [],
@@ -73,24 +81,29 @@ export const TestDataPresentWeather_SN_Data = {
 export const TestDataPresentWeather_MVCBLGRFG_Text = '-VCBLGRFG';
 export const TestDataPresentWeather_MVCBLGRFG_Data = {
     tokenType: TokenTypes.PRESENT_WEATHER,
-    args: ['intensity0', 'intensity1', 'descriptor0', 'phenomena0', 'phenomena1'],
+    args: ['intensity0', 'proximity0', 'descriptor0', 'phenomena0', 'phenomena1'],
 
     intensity0: '-',
     intensity0P: WeatherIntensity.LIGHT,
-    intensity1: 'VC',
-    intensity1P: WeatherIntensity.VINCINITY,
-    intensityArgs: ['intensity0', 'intensity1'],
-    intensityCount: 2,
+    intensityArgs: ['intensity0'],
+    intensityCount: 1,
     intensityParts: [
         {
             argID: 'intensity0',
             intensity: '-',
             intensityP: WeatherIntensity.LIGHT,
         },
+    ],
+
+    proximity0: 'VC',
+    proximity0P: WeatherProximity.VINCINITY,
+    proximityArgs: ['proximity0'],
+    proximityCount: 1,
+    proximityParts: [
         {
-            argID: 'intensity1',
-            intensity: 'VC',
-            intensityP: WeatherIntensity.VINCINITY,
+            argID: 'proximity0',
+            proximity: 'VC',
+            proximityP: WeatherProximity.VINCINITY,
         },
     ],
 

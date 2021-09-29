@@ -29,7 +29,7 @@ describe('PresentWeatherShort', () => {
 
         // Extra space after fog is coming from the external link.
         expect(compWrapper().text()).toEqual(
-            'Weather report suggests light (-) hail (GR) mainly, with bouts of fog  (FG),'
+            'Weather report suggests light (-) hail (GR) mainly, with bouts of fog  (FG)'
             + ' in the vincinity of the airport (VC). Weather is described as blowing (BL).',
         );
     });

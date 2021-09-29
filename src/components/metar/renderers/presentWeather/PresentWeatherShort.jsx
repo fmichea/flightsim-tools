@@ -1,9 +1,31 @@
-import { WeatherDescriptor, WeatherIntensity, WeatherPhenomena } from 'lib/metar/enums';
+import {
+    WeatherDescriptor, WeatherIntensity, WeatherPhenomena, WeatherProximity,
+} from 'lib/metar/enums';
 import React from 'react';
 import { pick } from 'lib/pick';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { PresentWeatherPropTypes } from 'components/metar/renderers/presentWeather/propTypes';
+
+const renderValues = ({ parts, renderFN, prettyArgs }) => {
+    if (parts.length === 0) {
+        return null;
+    }
+
+    const contents = parts.map((partData, idx) => (
+        <React.Fragment key={partData.argID}>
+            {idx === 0 ? null : ', '}
+            {renderFN({ prettyArgs, ...partData })}
+        </React.Fragment>
+    ));
+
+    return (
+        <>
+            {' '}
+            {contents}
+        </>
+    );
+};
 
 const renderIntensity = ({ intensityP, argID, prettyArgs }) => {
     if (intensityP !== WeatherIntensity.VINCINITY) {
@@ -20,11 +42,17 @@ const renderIntensity = ({ intensityP, argID, prettyArgs }) => {
     return null;
 };
 
-const renderProximity = ({ intensityP, argID, prettyArgs }) => {
-    if (intensityP === WeatherIntensity.VINCINITY) {
+const renderIntensities = ({ intensityParts, prettyArgs }) => renderValues({
+    parts: intensityParts,
+    renderFN: renderIntensity,
+    prettyArgs,
+});
+
+const renderProximity = ({ proximityP, argID, prettyArgs }) => {
+    if (proximityP === WeatherProximity.VINCINITY) {
         return (
             <>
-                , in the vincinity of the airport (
+                in the vincinity of the airport (
                 {prettyArgs[argID]}
                 )
             </>
@@ -32,6 +60,12 @@ const renderProximity = ({ intensityP, argID, prettyArgs }) => {
     }
     return null;
 };
+
+const renderProximities = ({ proximityParts, prettyArgs }) => renderValues({
+    parts: proximityParts,
+    renderFN: renderProximity,
+    prettyArgs,
+});
 
 const weatherPhenomenaInfo = Object.freeze({
     [WeatherPhenomena.SNOW_GRAINS]: {
@@ -84,16 +118,14 @@ const weatherPhenomenaInfo = Object.freeze({
     },
 });
 
-const renderWeatherPhenomena = ({
-    phenomenaP, argID, prettyArgs,
-}) => {
+const renderWeatherPhenomena = ({ phenomenaP, argID, prettyArgs }) => {
     const info = pick(weatherPhenomenaInfo[phenomenaP], {
         title: phenomenaP,
         link: null,
     });
 
     return (
-        <React.Fragment key={argID}>
+        <>
             {isNullOrUndefined(info.link) ? info.title : (
                 <ExternalLink href={info.link}>{info.title}</ExternalLink>
             )}
@@ -101,7 +133,7 @@ const renderWeatherPhenomena = ({
             (
             {prettyArgs[argID]}
             )
-        </React.Fragment>
+        </>
     );
 };
 
@@ -115,31 +147,31 @@ const renderWeatherPhenomenons = ({ phenomenaParts, prettyArgs }) => {
     const mainPhenomena = phenomenaParts[0];
 
     result.push(
-        renderWeatherPhenomena({
-            ...mainPhenomena,
-            prettyArgs,
-        }),
+        <React.Fragment key="first-value">
+            {renderWeatherPhenomena({
+                ...mainPhenomena,
+                prettyArgs,
+            })}
+        </React.Fragment>,
     );
 
     if (phenomenaParts.length > 1) {
         result.push(
-            <>
+            <React.Fragment key="bouts">
                 {' '}
                 mainly, with bouts of
-                {' '}
-            </>,
+            </React.Fragment>,
         );
 
-        result.push(phenomenaParts.slice(1).map((part, idx) => {
-            const d = renderWeatherPhenomena({ ...part, prettyArgs });
-
-            return (
-                <>
-                    {idx === 0 ? null : ', '}
-                    {d}
-                </>
-            );
-        }));
+        result.push(
+            <React.Fragment key="values">
+                {renderValues({
+                    parts: phenomenaParts.slice(1),
+                    renderFN: renderWeatherPhenomena,
+                    prettyArgs,
+                })}
+            </React.Fragment>,
+        );
     }
 
     return result;
@@ -160,32 +192,26 @@ const weatherDescriptorInfo = Object.freeze({
     },
 });
 
-const renderDescriptor = ({
-    descriptor, descriptorP, argID, prettyArgs,
-}) => {
+const renderDescriptor = ({ descriptorP, argID, prettyArgs }) => {
     const info = pick(weatherDescriptorInfo[descriptorP], {
         title: descriptorP,
     });
 
     return (
-        <span key={`descriptor-${descriptor}`}>
+        <>
             {info.title}
             {' '}
             (
             {prettyArgs[argID]}
             )
-        </span>
+        </>
     );
 };
 
-const renderDescriptors = ({ descriptorParts, prettyArgs }) => descriptorParts.map((part, idx) => {
-    const d = renderDescriptor({ ...part, prettyArgs });
-    return (
-        <React.Fragment key={part.argID}>
-            {idx === 0 ? null : ', '}
-            {d}
-        </React.Fragment>
-    );
+const renderDescriptors = ({ descriptorParts, prettyArgs }) => renderValues({
+    parts: descriptorParts,
+    renderFN: renderDescriptor,
+    prettyArgs,
 });
 
 export const PresentWeatherShort = ({
@@ -193,27 +219,24 @@ export const PresentWeatherShort = ({
     prettyArgs,
 }) => {
     const {
-        intensityParts, descriptorParts, phenomenaParts,
+        intensityParts,
+        proximityParts,
+        descriptorParts,
+        phenomenaParts,
     } = data;
 
     return (
         <>
             Weather report suggests
-            {intensityParts.length === 0 ? null : (
-                <>
-                    {' '}
-                    {intensityParts.map((value) => renderIntensity({ ...value, prettyArgs }))}
-                </>
-            )}
+            {renderIntensities({ intensityParts, prettyArgs })}
             {' '}
             {renderWeatherPhenomenons({ phenomenaParts, prettyArgs })}
-            {intensityParts.map((value) => renderProximity({ ...value, prettyArgs }))}
+            {renderProximities({ proximityParts, prettyArgs })}
             .
             {descriptorParts.length === 0 ? null : (
                 <>
                     {' '}
                     Weather is described as
-                    {' '}
                     {renderDescriptors({ descriptorParts, prettyArgs })}
                     .
                 </>
