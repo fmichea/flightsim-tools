@@ -22,6 +22,7 @@ import { pick } from 'lib/pick';
 import { parseMissingData } from 'lib/metar/parsers/missingData';
 import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
 import { parseWindShear } from 'lib/metar/parsers/windShear';
+import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 import { parseRunwayState } from 'lib/metar/parsers/runwayState';
 
 const prefixFunctions = [
@@ -48,6 +49,7 @@ const parsersFunctions = [
     parseWind,
     parseRecentWeather,
     parseWindShear,
+    parseSeaSurface,
     parseRunwayState,
 
     parseMissingData,
@@ -90,5 +92,6 @@ export const parseMETAR = (value) => {
     while (parser.hasMoreToMatch()) {
         parseNextToken(parser);
     }
+
     return parser.tokens;
 };

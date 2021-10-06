@@ -18,6 +18,7 @@ export const TokenTypes = Object.freeze({
     WIND: 'wind',
     WIND_SHEAR: 'wind-shear',
     RECENT_WEATHER: 'recent-weather',
+    SEA_SURFACE: 'sea-surface',
     RUNWAY_STATE: 'runway-state',
 });
 
@@ -139,6 +140,24 @@ export const RunwayVisualRangeQualifier = Object.freeze({
 
 export const WindShearRunway = Object.freeze({
     ALL_RUNWAYS: 'all-runways',
+});
+
+export const SeaSurfaceInfoType = Object.freeze({
+    SURFACE_STATE: 'surface-state',
+    WAVE_HEIGHT: 'wave-height',
+});
+
+export const SeaSurfaceStateCode = Object.freeze({
+    CALM_GLASSY: 'calm-glassy', // 0
+    CALM_RIPPLED: 'calm-rippled', // 1
+    SMOOTH: 'smooth', // 2
+    SLIGHT: 'slight', // 3
+    MODERATE: 'moderate', // 4
+    ROUGH: 'rough', // 5
+    VERY_ROUGH: 'very-rough', // 6
+    HIGH: 'high', // 7
+    VERY_HIGH: 'very-high', // 8
+    PHENOMENAL: 'phenomenal', // 9
 });
 
 export const RunwayDeposit = Object.freeze({
