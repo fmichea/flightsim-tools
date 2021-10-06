@@ -3,6 +3,8 @@ import { parseCloudDescriptors } from 'lib/metar/parsers/cloudDescriptors';
 import {
     TestDataCloudDescriptor_BKN070CB_Data,
     TestDataCloudDescriptor_BKN070CB_Text,
+    TestDataCloudDescriptor_CLR_Data,
+    TestDataCloudDescriptor_CLR_Text,
     TestDataCloudDescriptor_FEW040_Data,
     TestDataCloudDescriptor_FEW040_Text,
     TestDataCloudDescriptor_FEWTCU_Data,
@@ -11,10 +13,10 @@ import {
     TestDataCloudDescriptor_NCD_Text,
     TestDataCloudDescriptor_NSC_Data,
     TestDataCloudDescriptor_NSC_Text,
-    TestDataCloudDescriptor_OVCBelow_Data,
-    TestDataCloudDescriptor_OVCBelow_Text,
     TestDataCloudDescriptor_OVC230TCU_Data,
     TestDataCloudDescriptor_OVC230TCU_Text,
+    TestDataCloudDescriptor_OVCBelow_Data,
+    TestDataCloudDescriptor_OVCBelow_Text,
     TestDataCloudDescriptor_SCT120_Data,
     TestDataCloudDescriptor_SCT120_Text,
 } from 'tests/data/metar/cloudDescriptors';
@@ -74,6 +76,13 @@ describe('cloudDescriptors', () => {
 
         const result = parseCloudDescriptors(parser);
         expect(result).toEqual(TestDataCloudDescriptor_FEWTCU_Data);
+    });
+
+    test('clear indication is parsed correctly', () => {
+        const parser = new ParserState(TestDataCloudDescriptor_CLR_Text);
+
+        const result = parseCloudDescriptors(parser);
+        expect(result).toEqual(TestDataCloudDescriptor_CLR_Data);
     });
 
     test('invalid format is ignored', () => {

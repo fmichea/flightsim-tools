@@ -1,7 +1,7 @@
 import { mountWithStore } from 'tests/lib/mountWithStore';
 import { CloudCoverageShort } from 'components/metar/renderers/cloudCoverage/CloudCoverageShort';
 import {
-    TestDataCloudDescriptor_BKN070CB_Data,
+    TestDataCloudDescriptor_BKN070CB_Data, TestDataCloudDescriptor_CLR_Data,
     TestDataCloudDescriptor_FEW040_Data,
     TestDataCloudDescriptor_NCD_Data,
     TestDataCloudDescriptor_NSC_Data,
@@ -68,5 +68,10 @@ describe('CloudCoverageShort', () => {
         expect(compWrapper().text()).toEqual(
             'Complete coverage of the sky by clouds (OVC) was reported below the reporting station (///).',
         );
+    });
+
+    test('Clear skies', () => {
+        const { compWrapper } = setup(TestDataCloudDescriptor_CLR_Data);
+        expect(compWrapper().text()).toEqual('There are no visible clouds below 12000 ft (CLR).');
     });
 });

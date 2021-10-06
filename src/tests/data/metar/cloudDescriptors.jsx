@@ -113,5 +113,13 @@ export const TestDataCloudDescriptor_FEWTCU_Data = {
 
 export const TestDataCloudDescriptor_CLR_Text = 'CLR';
 export const TestDataCloudDescriptor_CLR_Data = {
+    ...baseData,
 
+    amount: 'CLR',
+    altitude: null,
+    cloudType: null,
+
+    amountP: CloudLayerAmount.CLR,
+    altitudeP: null,
+    cloudTypeP: null,
 };
