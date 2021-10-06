@@ -10,6 +10,7 @@ export const parseRemarks = (parser) => {
         return {
             tokenType: TokenTypes.REMARKS,
             args: ['rmk', 'remarks'],
+            context: null,
 
             rmk: 'RMK',
             remarks,

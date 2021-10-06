@@ -12,6 +12,10 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
+jest.mock('uuid', () => ({
+    v4: () => '58281584-1a95-4cee-a4f1-b9bf4461e440',
+}));
+
 jest.mock('antd', () => {
     const antd = jest.requireActual('antd');
 

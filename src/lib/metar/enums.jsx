@@ -133,3 +133,15 @@ export const RunwayVisualRangeQualifier = Object.freeze({
     AT_LEAST: 'at-least',
     AT_MOST: 'at-most',
 });
+
+export const TrendType = Object.freeze({
+    NOSIG: 'no-significant-change',
+    BECOMING: 'becoming',
+    TEMPORARY: 'temporary',
+});
+
+export const TrendTimeType = Object.freeze({
+    FROM: 'from',
+    UNTIL: 'until',
+    AT: 'at',
+});
