@@ -7,17 +7,17 @@ import { NotRecognizedRenderers } from 'components/metar/renderers/notRecognized
 import { PrefixRenderers } from 'components/metar/renderers/prefix/renderers';
 import { PresentWeatherRenderers } from 'components/metar/renderers/presentWeather/renderers';
 import { PrevailingVisibilityRenderers } from 'components/metar/renderers/prevailingVisibility/renderers';
+import { RecentWeatherRenderers } from 'components/metar/renderers/recentWeather/renderers';
 import { RemarksRenderers } from 'components/metar/renderers/remarks/renderers';
 import { Renderers } from 'components/metar/renderers/airportIdentifier/renderers';
+import { RunwayStateRenderers } from 'components/metar/renderers/runwayState/renderers';
 import { RunwayVisualRangeRenderers } from 'components/metar/renderers/runwayVisualRange/renderers';
+import { SeaSurfaceRenderers } from 'components/metar/renderers/seaSurface/renderers';
 import { TemperaturesRenderers } from 'components/metar/renderers/temperatures/renderers';
 import { TrendRenderers } from 'components/metar/renderers/trend/renderers';
 import { VerticalVisibilityRenderers } from 'components/metar/renderers/verticalVisibility/renderers';
 import { WindRenderers } from 'components/metar/renderers/wind/renderers';
-import { RecentWeatherRenderers } from 'components/metar/renderers/recentWeather/renderers';
 import { WindShearRenderers } from 'components/metar/renderers/windShear/renderers';
-import { SeaSurfaceRenderers } from 'components/metar/renderers/seaSurface/renderers';
-import { RunwayStateRenderers } from 'components/metar/renderers/runwayState/renderers';
 
 export const TokenRenderers = {
     [TokenTypes.AIRPORT_IDENTIFIER]: Renderers,

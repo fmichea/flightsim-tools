@@ -273,11 +273,15 @@ export const Metar = () => {
             <Alert
                 message={(
                     <>
-                        This is a new feature currently in testing stage (alpha). It is based on the
+                        This is a new feature currently in testing stage (beta). It is based on the
                         {' '}
                         <ExternalLink href="https://library.wmo.int/doc_num.php?explnum_id=10474">
                             World Meteorogical Organization&apos;s METAR reference
                         </ExternalLink>
+                        {' '}
+                        (
+                        <ExternalLink href="https://library.wmo.int/doc_num.php?explnum_id=10235">Code Tables</ExternalLink>
+                        )
                         . Please feel free to leave feedback on the
                         {' '}
                         <ExternalLink href="https://github.com/fmichea/flightsim-tools/issues">
