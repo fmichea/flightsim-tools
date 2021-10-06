@@ -16,6 +16,7 @@ export const TokenTypes = Object.freeze({
     TREND: 'trend',
     VERTICAL_VISIBILITY: 'vertical-visibility',
     WIND: 'wind',
+    WIND_SHEAR: 'wind-shear',
     RECENT_WEATHER: 'recent-weather',
 });
 
@@ -133,6 +134,10 @@ export const RunwayVisualRangeQualifier = Object.freeze({
     NONE: 'none',
     AT_LEAST: 'at-least',
     AT_MOST: 'at-most',
+});
+
+export const WindShearRunway = Object.freeze({
+    ALL_RUNWAYS: 'all-runways',
 });
 
 export const TrendType = Object.freeze({
