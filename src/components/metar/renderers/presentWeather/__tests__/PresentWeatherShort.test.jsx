@@ -2,6 +2,7 @@ import { mountWithStore } from 'tests/lib/mountWithStore';
 import { PresentWeatherShort } from 'components/metar/renderers/presentWeather/PresentWeatherShort';
 import {
     TestDataPresentWeather_MVCBLGRFG_Data,
+    TestDataPresentWeather_NSW_Data,
     TestDataPresentWeather_PSHRA_Data,
     TestDataPresentWeather_SN_Data,
 } from 'tests/data/metar/presentWeather';
@@ -32,5 +33,10 @@ describe('PresentWeatherShort', () => {
             'Weather report suggests light (-) hail (GR) mainly, with bouts of fog  (FG)'
             + ' in the vincinity of the airport (VC). Weather is described as blowing (BL).',
         );
+    });
+
+    test('no significant weather', () => {
+        const { compWrapper } = setup(TestDataPresentWeather_NSW_Data);
+        expect(compWrapper().text()).toEqual('Weather report suggests no significant weather (NSW).');
     });
 });

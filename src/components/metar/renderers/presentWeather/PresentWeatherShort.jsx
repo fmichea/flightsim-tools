@@ -116,6 +116,9 @@ const weatherPhenomenaInfo = Object.freeze({
         title: 'drizzle',
         link: 'https://en.wikipedia.org/wiki/Drizzle',
     },
+    [WeatherPhenomena.NSW]: {
+        title: 'no significant weather',
+    },
 });
 
 const renderWeatherPhenomena = ({ phenomenaP, argID, prettyArgs }) => {

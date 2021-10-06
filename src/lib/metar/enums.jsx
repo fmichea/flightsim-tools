@@ -124,6 +124,8 @@ export const WeatherPhenomena = Object.freeze({
     FUNNEL_CLOUD: 'funnel-cloud',
     SANDSTORM: 'sandstorm',
     DUSTSTORM: 'duststorm',
+
+    NSW: 'no-significant-weather',
 });
 
 export const RunwayVisualRangeQualifier = Object.freeze({

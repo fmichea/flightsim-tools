@@ -138,3 +138,33 @@ export const TestDataPresentWeather_MVCBLGRFG_Data = {
         },
     ],
 };
+
+export const TestDataPresentWeather_NSW_Text = 'NSW';
+export const TestDataPresentWeather_NSW_Data = {
+    tokenType: TokenTypes.PRESENT_WEATHER,
+    args: ['phenomena0'],
+
+    intensityArgs: [],
+    intensityCount: 0,
+    intensityParts: [],
+
+    proximityArgs: [],
+    proximityCount: 0,
+    proximityParts: [],
+
+    descriptorArgs: [],
+    descriptorCount: 0,
+    descriptorParts: [],
+
+    phenomena0: 'NSW',
+    phenomena0P: WeatherPhenomena.NSW,
+    phenomenaArgs: ['phenomena0'],
+    phenomenaCount: 1,
+    phenomenaParts: [
+        {
+            argID: 'phenomena0',
+            phenomena: 'NSW',
+            phenomenaP: WeatherPhenomena.NSW,
+        },
+    ],
+};
