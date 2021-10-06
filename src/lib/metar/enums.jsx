@@ -18,6 +18,7 @@ export const TokenTypes = Object.freeze({
     WIND: 'wind',
     WIND_SHEAR: 'wind-shear',
     RECENT_WEATHER: 'recent-weather',
+    RUNWAY_STATE: 'runway-state',
 });
 
 export const WindSpeedUnit = Object.freeze({
@@ -138,6 +139,56 @@ export const RunwayVisualRangeQualifier = Object.freeze({
 
 export const WindShearRunway = Object.freeze({
     ALL_RUNWAYS: 'all-runways',
+});
+
+export const RunwayDeposit = Object.freeze({
+    CLEAR_AND_DRY: 'clear-and-dry', // 0
+    DAMP: 'damp', // 1
+    WET: 'wet', // 2
+    RIME_AND_FROST: 'rime-and-frost', // 3
+    DRY_SNOW: 'dry-snow', // 4
+    WET_SNOW: 'wet-snow', // 5
+    SLUSH: 'slush', // 6
+    ICE: 'ice', // 7
+    COMPACTED_SNOW: 'compacted-snow', // 8
+    FROZEN_RUTS: 'frozen-ruts', // 9
+
+    NOT_REPORTED: 'not-reported', // /
+});
+
+export const RunwayContaminationExtent = Object.freeze({
+    BELOW_TEN: 'below-ten', // 1
+    TEN_TO_TWENTY_FIVE: 'ten-to-twenty-five', // 2
+    TWENTY_FIVE_TO_FIFTY: 'twenty-five-to-fifty', // 5
+    ABOVE_FIFTY: 'above-fifty', // 9
+
+    NOT_REPORTED: 'not-reported', // /
+    UNKNOWN_RESERVED: 'unknown-reserved',
+});
+
+export const RunwayContaminationDepth = Object.freeze({
+    TEN_CM: 'ten-cm', // 92
+    FIFTEEN_CM: 'fifteen-cm', // 93
+    TWENTY_CM: 'twenty-cm', // 94
+    TWENTY_FIVE_CM: 'twenty-five-cm', // 95
+    THIRTY_CM: 'thirty-cm', // 96
+    THIRTY_FIVE_CM: 'thirty-five-cm', // 97
+    FORTY_CM: 'forty-cm', // 98
+
+    NOT_OPERATIONAL: 'not-operational', // 99
+    NOT_REPORTED: 'not-reported', // //
+});
+
+export const RunwaySurfaceFriction = Object.freeze({
+    BRAKING_ACTION_POOR: 'braking-action-poor', // 91
+    BRAKING_ACTION_MEDIUM_POOR: 'braking-action-medium-poor', // 92
+    BRAKING_ACTION_MEDIUM: 'braking-action-medium', // 93
+    BRAKING_ACTION_MEDIUM_GOOD: 'braking-action-medium-good', // 94
+    BRAKING_ACTION_GOOD: 'braking-action-good', // 95
+
+    UNRELIABLE: 'unreliable', // 99
+    UNKNOWN_RESERVED: 'unknown-reserved', // 96-98
+    NOT_REPORTED: 'not-reported', // //
 });
 
 export const TrendType = Object.freeze({
