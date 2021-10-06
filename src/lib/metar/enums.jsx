@@ -16,6 +16,7 @@ export const TokenTypes = Object.freeze({
     TREND: 'trend',
     VERTICAL_VISIBILITY: 'vertical-visibility',
     WIND: 'wind',
+    RECENT_WEATHER: 'recent-weather',
 });
 
 export const WindSpeedUnit = Object.freeze({

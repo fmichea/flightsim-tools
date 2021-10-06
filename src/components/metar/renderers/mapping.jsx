@@ -14,6 +14,7 @@ import { TemperaturesRenderers } from 'components/metar/renderers/temperatures/r
 import { TrendRenderers } from 'components/metar/renderers/trend/renderers';
 import { VerticalVisibilityRenderers } from 'components/metar/renderers/verticalVisibility/renderers';
 import { WindRenderers } from 'components/metar/renderers/wind/renderers';
+import { RecentWeatherRenderers } from 'components/metar/renderers/recentWeather/renderers';
 
 export const TokenRenderers = {
     [TokenTypes.AIRPORT_IDENTIFIER]: Renderers,
@@ -26,6 +27,7 @@ export const TokenRenderers = {
     [TokenTypes.NOT_RECOGNIZED]: NotRecognizedRenderers,
     [TokenTypes.PRESENT_WEATHER]: PresentWeatherRenderers,
     [TokenTypes.PREVAILING_VISIBILITY]: PrevailingVisibilityRenderers,
+    [TokenTypes.RECENT_WEATHER]: RecentWeatherRenderers,
     [TokenTypes.REMARKS]: RemarksRenderers,
     [TokenTypes.RUNWAY_VISUAL_RANGE]: RunwayVisualRangeRenderers,
     [TokenTypes.TEMPERATURES]: TemperaturesRenderers,
