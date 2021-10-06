@@ -28,8 +28,6 @@ const createWindToken = (direction, force, unit, { gustsForce, fromDirection, to
 });
 
 const parseWindVariableDirection = (parser) => {
-    parser.skipWhitespace();
-
     const { groups } = parser.matchNextTokenAndForward(
         '(?<fromDirection>[0-9]{3})V(?<toDirection>[0-9]{3})',
     );

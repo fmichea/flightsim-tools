@@ -35,6 +35,8 @@ export class ParserState {
     }
 
     matchNextTokenAndForward(pattern) {
+        this.skipWhitespace();
+
         const { matched: matched1, ...result1 } = this.matchAndForward(`^${pattern}$`);
         if (matched1) {
             return result1;
