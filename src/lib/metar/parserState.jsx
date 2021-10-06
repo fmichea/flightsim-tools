@@ -6,7 +6,7 @@ export class ParserState {
     constructor(metar) {
         this.originalMetar = metar;
         this.currentValue = metar;
-        this.contexts = [];
+        this.context = null;
 
         this.tokens = [];
     }
@@ -65,8 +65,12 @@ export class ParserState {
     }
 
     pushToken(value) {
+        if (value.context !== undefined) {
+            this.context = value.context;
+        }
+
         this.tokens.push({
-            context: pick(this.contexts[this.contexts.length - 1]),
+            context: pick(this.context),
             ...value,
         });
     }

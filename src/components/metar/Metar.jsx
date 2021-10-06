@@ -5,7 +5,7 @@ import {
 import { styled, useStyletron, withStyle } from 'styletron-react';
 import { parseMETAR } from 'lib/metar/parser';
 import { Monospaced } from 'components/lib/Monospaced';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { pick } from 'lib/pick';
 import { objectMap } from 'lib/objectMap';
 import { ExternalLink } from 'components/lib/ExternalLink';
@@ -24,6 +24,10 @@ const METARDataValueContainer = styled('div', {
     justifyContent: 'center', /* Horizontal center alignment */
     height: '100%',
     padding: '4px',
+});
+
+const METARColumnContainer = styled('div', {
+    padding: '12px 0px',
 });
 
 const METARDataValue = withStyle(Monospaced, {
@@ -48,6 +52,12 @@ const ArgComponents = [
     '#a9912f',
     '#2fa98d',
 ].map(argWithColor);
+
+const ContextColors = [
+    'rgba(0,116,255,0.1)',
+    'rgba(255,135,0,0.15)',
+    'rgba(4,255,0,0.15)',
+];
 
 const getArgumentComp = (idx) => ArgComponents[idx % ArgComponents.length];
 
@@ -100,27 +110,49 @@ const DisplayInfo = ({ data }) => {
         (fn) => (isNullOrUndefined(fn) ? null : fn({ data, prettyArgs })),
     );
 
+    let containerStyle = { width: '100%' };
+    let contentStyle = { padding: '0px 18px' };
+
+    if (isNotNullOrUndefined(data.context)) {
+        containerStyle = {
+            ...containerStyle,
+            backgroundColor: ContextColors[data.contextCounter % ContextColors.length],
+        };
+
+        if (!data.isFirstInContext) {
+            contentStyle = {
+                ...contentStyle,
+                backgroundColor: 'white',
+            };
+        }
+    }
+
     return (
-        <div className={css({ width: '100%' })}>
+        <div className={css(containerStyle)}>
             <Row>
                 <Col span={6}>
-                    <METARDataValueContainer>
-                        <METARDataValue className="metar-data">
-                            {renderedValue}
-                        </METARDataValue>
-                    </METARDataValueContainer>
+                    <METARColumnContainer>
+                        <METARDataValueContainer>
+                            <METARDataValue className="metar-data">
+                                {renderedValue}
+                            </METARDataValue>
+                        </METARDataValueContainer>
+                    </METARColumnContainer>
                 </Col>
-                <Col span={18}>
-                    {isNullOrUndefined(renderedTitle) ? null : (
-                        <Title level={5}>{renderedTitle}</Title>
-                    )}
-                    {isNullOrUndefined(renderedShort) ? null : (
-                        <>
-                            <strong>Short:</strong>
-                            {' '}
-                            {renderedShort}
-                        </>
-                    )}
+
+                <Col span={18} className={css(contentStyle)}>
+                    <METARColumnContainer>
+                        {isNullOrUndefined(renderedTitle) ? null : (
+                            <Title level={5}>{renderedTitle}</Title>
+                        )}
+                        {isNullOrUndefined(renderedShort) ? null : (
+                            <>
+                                <strong>Short:</strong>
+                                {' '}
+                                {renderedShort}
+                            </>
+                        )}
+                    </METARColumnContainer>
                 </Col>
             </Row>
             {isNullOrUndefined(renderedDescription) ? null : (
@@ -199,7 +231,34 @@ export const Metar = () => {
     }, [setMetarData]);
 
     // Data gets parsed every time it changes.
-    const parsedData = useMemo(() => parseMETAR(metarData), [metarData]);
+    const parsedData = useMemo(() => {
+        const result = [];
+        const tokens = parseMETAR(metarData);
+
+        let currentContext = null;
+        let contextCounter = -1;
+
+        for (let idx = 0; idx < tokens.length; idx += 1) {
+            let isFirstInContext = false;
+            const token = tokens[idx];
+
+            if (currentContext !== token.context) {
+                currentContext = token.context;
+
+                contextCounter += 1;
+                isFirstInContext = true;
+            }
+
+            result.push({
+                ...token,
+
+                contextCounter,
+                isFirstInContext,
+            });
+        }
+
+        return result;
+    }, [metarData]);
 
     // Handler for shareable button.
     const onClickShareableLink = useShareableLinkHandler({ metarData, metarURLManager });
@@ -241,7 +300,7 @@ export const Metar = () => {
                 wrapperCol={{ span: 22 }}
             >
                 <Form.Item label="METAR" name="metarFieldData">
-                    <Input.TextArea defaultValue={initialValue} onChange={onChangeMETAR} />
+                    <Input.TextArea onChange={onChangeMETAR} />
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 2, span: 22 }}>
@@ -265,7 +324,7 @@ export const Metar = () => {
             <List
                 dataSource={parsedData}
                 renderItem={(item) => (
-                    <List.Item>
+                    <List.Item style={{ padding: '0' }}>
                         <DisplayInfo data={item} />
                     </List.Item>
                 )}
