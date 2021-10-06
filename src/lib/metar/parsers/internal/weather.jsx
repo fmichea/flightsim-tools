@@ -1,6 +1,7 @@
 import {
     WeatherDescriptor, WeatherIntensity, WeatherPhenomena, WeatherProximity,
 } from 'lib/metar/enums';
+import { buildVariableArgs } from 'lib/metar/parsers/internal/varargs';
 
 export const WeatherIntensityPatterns = '\\+|-';
 export const WeatherProximityPatterns = 'VC';
@@ -41,38 +42,7 @@ const weatherPhenomenaMapping = Object.freeze({
     DS: WeatherPhenomena.DUSTSTORM,
 });
 
-const buildWeatherArgs = (prefix, parts) => {
-    const argsKey = `${prefix}Args`;
-    const countKey = `${prefix}Count`;
-    const partsKey = `${prefix}Parts`;
-
-    const result = {
-        [argsKey]: [],
-        [countKey]: parts.length,
-        [partsKey]: [],
-    };
-
-    parts.forEach((part, idx) => {
-        const valueIdxKey = `${prefix}${idx}`;
-        const valueIdxKeyP = `${valueIdxKey}P`;
-
-        result[argsKey].push(valueIdxKey);
-        result[valueIdxKey] = part.value;
-        result[valueIdxKeyP] = part.parsed;
-
-        const valueKey = prefix;
-        const valueKeyP = `${valueKey}P`;
-
-        result[partsKey].push({
-            [valueKey]: part.value,
-            [valueKeyP]: part.parsed,
-            argID: valueIdxKey,
-        });
-    });
-    return result;
-};
-
-const splitValuesIntoArgs = (name, valuesStr, parseValue, lengthOfValue) => {
+const splitValuesIntoParts = (valuesStr, parseValue, lengthOfValue) => {
     const parts = [];
 
     let currentValue = valuesStr;
@@ -87,11 +57,12 @@ const splitValuesIntoArgs = (name, valuesStr, parseValue, lengthOfValue) => {
         currentValue = currentValue.substring(lengthOfValue);
     }
 
-    return buildWeatherArgs(name, parts);
+    return parts;
 };
 
-export const SplitWeatherItensitiesIntoArgs = (valuesStr) => splitValuesIntoArgs(
-    'intensity',
+export const buildIntensitiesArgs = (parts) => buildVariableArgs('intensity', parts);
+
+export const splitWeatherItensitiesIntoParts = (valuesStr) => splitValuesIntoParts(
     valuesStr,
     (x) => {
         if (x === '-') return WeatherIntensity.LIGHT;
@@ -101,8 +72,9 @@ export const SplitWeatherItensitiesIntoArgs = (valuesStr) => splitValuesIntoArgs
     1,
 );
 
-export const SplitWeatherProximitiesIntoArgs = (valuesStr) => splitValuesIntoArgs(
-    'proximity',
+export const buildProximitiessArgs = (parts) => buildVariableArgs('proximity', parts);
+
+export const splitWeatherProximitiesIntoParts = (valuesStr) => splitValuesIntoParts(
     valuesStr,
     (x) => {
         if (x === 'VC') return WeatherProximity.VINCINITY;
@@ -111,15 +83,17 @@ export const SplitWeatherProximitiesIntoArgs = (valuesStr) => splitValuesIntoArg
     2,
 );
 
-export const SplitWeatherDescriptorsIntoArgs = (valuesStr) => splitValuesIntoArgs(
-    'descriptor',
+export const buildDescriptorsArgs = (parts) => buildVariableArgs('descriptor', parts);
+
+export const splitWeatherDescriptorsIntoParts = (valuesStr) => splitValuesIntoParts(
     valuesStr,
     (x) => weatherDescriptorMapping[x],
     2,
 );
 
-export const SplitWeatherPhenomenonsIntoArgs = (valuesStr) => splitValuesIntoArgs(
-    'phenomena',
+export const buildPhenomenonsArgs = (parts) => buildVariableArgs('phenomena', parts);
+
+export const splitWeatherPhenomenonsIntoParts = (valuesStr) => splitValuesIntoParts(
     valuesStr,
     (x) => weatherPhenomenaMapping[x],
     2,

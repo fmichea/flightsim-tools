@@ -1,15 +1,14 @@
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 import { TokenTypes } from 'lib/metar/enums';
+import { fixTemp, TemperaturePattern } from 'lib/metar/parsers/internal/temperatures';
 
 export const parseTemperatures = (parser) => {
     const { groups } = parser.matchNextTokenAndForward(
-        '(?<oat>M?[0-9]{2})/(?<dewPoint>M?[0-9]{2})',
+        `(?<oat>${TemperaturePattern})/(?<dewPoint>${TemperaturePattern})`,
     );
 
     if (isNotNullOrUndefined(groups)) {
         const { oat, dewPoint } = groups;
-
-        const fixTemp = (temp) => (temp[0] === 'M' ? -1 * temp.substring(1) : 1 * temp);
 
         return {
             tokenType: TokenTypes.TEMPERATURES,

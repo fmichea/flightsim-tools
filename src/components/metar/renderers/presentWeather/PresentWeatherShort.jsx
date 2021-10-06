@@ -140,7 +140,7 @@ const renderWeatherPhenomena = ({ phenomenaP, argID, prettyArgs }) => {
     );
 };
 
-const renderWeatherPhenomenons = ({ phenomenaParts, prettyArgs }) => {
+export const renderWeatherPhenomenons = ({ phenomenaParts, prettyArgs }) => {
     if (phenomenaParts.length === 0) {
         return null;
     }
