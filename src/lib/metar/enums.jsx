@@ -60,6 +60,11 @@ export const AltimeterSetting = Object.freeze({
 
 export const WindDirections = Object.freeze({
     VRB: 'variable',
+    NOT_REPORTED: 'not-reported',
+});
+
+export const WindForce = Object.freeze({
+    NOT_REPORTED: 'not-reported',
 });
 
 export const Directions = Object.freeze({

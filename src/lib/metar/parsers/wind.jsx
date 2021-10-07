@@ -1,8 +1,20 @@
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { TokenTypes, WindDirections, WindSpeedUnit } from 'lib/metar/enums';
+import {
+    TokenTypes, WindDirections, WindForce, WindSpeedUnit,
+} from 'lib/metar/enums';
 import { pick } from 'lib/pick';
 
-const fixForce = (force) => (force[0] === 'P' ? 100 + 1 * force.substring(1) : 1 * force);
+const fixForce = (force) => {
+    if (force === '//') {
+        return WindForce.NOT_REPORTED;
+    }
+    return force[0] === 'P' ? 100 + 1 * force.substring(1) : 1 * force;
+};
+
+const windDirectionsMapping = {
+    VRB: WindDirections.VRB,
+    '///': WindDirections.NOT_REPORTED,
+};
 
 const createWindToken = (direction, force, unit, { gustsForce, fromDirection, toDirection } = {}) => ({
     tokenType: TokenTypes.WIND,
@@ -18,7 +30,7 @@ const createWindToken = (direction, force, unit, { gustsForce, fromDirection, to
 
     isCalm: direction === '000' && force === '00',
 
-    directionP: direction === 'VRB' ? WindDirections[direction] : 1 * direction,
+    directionP: pick(windDirectionsMapping[direction], 1 * direction),
     fromDirectionP: isNullOrUndefined(fromDirection) ? null : 1 * fromDirection,
     toDirectionP: isNullOrUndefined(toDirection) ? null : 1 * toDirection,
 
@@ -41,7 +53,7 @@ const parseWindVariableDirection = (parser) => {
 
 export const parseWind = (parser) => {
     const { groups: simpleGroups } = parser.matchNextTokenAndForward(
-        '(?<direction>[0-9]{3})(?<force>P?[0-9]{2})(?<unit>KT|MPS)',
+        '(?<direction>(VRB|[0-9]{3}|///))(?<force>(P?[0-9]{2}|//))(?<unit>KT|MPS)',
     );
     if (isNotNullOrUndefined(simpleGroups)) {
         const { direction, force, unit } = simpleGroups;
@@ -54,7 +66,7 @@ export const parseWind = (parser) => {
     }
 
     const { groups: withGustsGroups } = parser.matchNextTokenAndForward(
-        '(?<direction>[0-9]{3})(?<force>P?[0-9]{2})G(?<gustsForce>P?[0-9]{2})(?<unit>KT|MPS)',
+        '(?<direction>(VRB|[0-9]{3}|///))(?<force>(P?[0-9]{2}|//))G(?<gustsForce>(P?[0-9]{2}|//))(?<unit>KT|MPS)',
     );
     if (isNotNullOrUndefined(withGustsGroups)) {
         const {
@@ -69,19 +81,6 @@ export const parseWind = (parser) => {
                 gustsForce,
                 ...parseWindVariableDirection(parser),
             },
-        );
-    }
-
-    const { groups: variableGroups } = parser.matchNextTokenAndForward(
-        '(?<direction>VRB)(?<force>P?[0-9]{2})(?<unit>KT|MPS)',
-    );
-    if (isNotNullOrUndefined(variableGroups)) {
-        const { direction, force, unit } = variableGroups;
-        return createWindToken(
-            direction,
-            force,
-            unit,
-            parseWindVariableDirection(parser),
         );
     }
 
