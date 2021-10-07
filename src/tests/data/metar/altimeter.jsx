@@ -1,4 +1,4 @@
-import { AltimeterUnit, TokenTypes } from 'lib/metar/enums';
+import { AltimeterSetting, AltimeterUnit, TokenTypes } from 'lib/metar/enums';
 
 const baseData = {
     tokenType: TokenTypes.ALTIMETER_SETTING,
@@ -25,4 +25,15 @@ export const TestDataAltimeter_A3011_Data = {
 
     altimeterUnitP: AltimeterUnit.INHG,
     valueP: 30.11,
+};
+
+export const TestDataAltimeter_Axxxx_Text = 'A////';
+export const TestDataAltimeter_Axxxx_Data = {
+    ...baseData,
+
+    altimeterUnit: 'A',
+    value: '////',
+
+    altimeterUnitP: AltimeterUnit.INHG,
+    valueP: AltimeterSetting.NOT_REPORTED,
 };

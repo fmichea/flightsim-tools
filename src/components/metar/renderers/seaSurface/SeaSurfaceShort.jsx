@@ -1,6 +1,7 @@
 import React from 'react';
 import { SeaSurfacePropTypes } from 'components/metar/renderers/seaSurface/propTypes';
 import { SeaSurfaceInfoType, SeaSurfaceStateCode } from 'lib/metar/enums';
+import { renderTemperature } from 'components/metar/renderers/temperatures/TemperaturesShort';
 
 const seaStateCodeDescriptions = Object.freeze({
     [SeaSurfaceStateCode.CALM_GLASSY]: {
@@ -101,12 +102,10 @@ export const SeaSurfaceShort = ({
 
     return (
         <>
-            Sea surface water temperature is
+            Sea surface water temperature
             {' '}
-            {temperatureP}
-            &deg;C (
-            {temperature}
-            ).
+            {renderTemperature({ tempP: temperatureP, temp: temperature })}
+            .
             {' '}
             {info}
         </>
