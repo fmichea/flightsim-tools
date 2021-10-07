@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { pick } from 'lib/pick';
 import { TokenTypes } from 'lib/metar/enums';
 
@@ -73,5 +73,14 @@ export class ParserState {
             context: pick(this.context),
             ...value,
         });
+    }
+
+    cleanIrrelevantCharacters() {
+        const result = this.currentValue.match(new RegExp('=+$'));
+        if (isNotNullOrUndefined(result)) {
+            this.currentValue = this.currentValue.substring(
+                0, this.currentValue.length - result[0].length,
+            );
+        }
     }
 }

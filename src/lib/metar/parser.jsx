@@ -77,6 +77,7 @@ const parseNextToken = (parser) => {
 
 export const parseMETAR = (value) => {
     const parser = new ParserState(pick(value, ''));
+    parser.cleanIrrelevantCharacters();
 
     prefixFunctions.forEach((fn) => {
         if (!parser.hasMoreToMatch()) {
