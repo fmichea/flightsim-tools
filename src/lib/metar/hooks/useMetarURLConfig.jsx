@@ -21,7 +21,7 @@ const defaultMETARData = () => {
             + 'FEW010CB SCT018 BKN025 10/03 Q0995 '
             + 'RERA WS R24 W19/S4 R24/451293 BECMG '
             + 'FM1100 25035G50KT TEMPO AT1100 NSW '
-            + 'RMK A02 STUFF $';
+            + 'BLU YLO+ RMK A02 STUFF $';
     }
     return '';
 };
