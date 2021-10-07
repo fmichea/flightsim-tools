@@ -142,7 +142,7 @@ const renderWeatherPhenomena = ({ phenomenaP, argID, prettyArgs }) => {
 
 export const renderWeatherPhenomenons = ({ phenomenaParts, prettyArgs }) => {
     if (phenomenaParts.length === 0) {
-        return null;
+        return <>undescribed weather phenomenons</>;
     }
 
     const result = [];

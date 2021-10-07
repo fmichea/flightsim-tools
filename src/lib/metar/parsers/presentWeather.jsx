@@ -40,24 +40,12 @@ const createPresentWeatherToken = ({
     };
 };
 
-export const parsePresentWeather = (parser) => {
-    const { completeMatch } = parser.matchNextTokenAndForward('NSW');
-    if (isNotNullOrUndefined(completeMatch)) {
-        return createPresentWeatherToken({
-            phenomenaParts: [
-                {
-                    value: completeMatch,
-                    parsed: WeatherPhenomena.NSW,
-                },
-            ],
-        });
-    }
-
+const parsePresentWeatherCombination = (parser, descriptorCount, phenomenaCount) => {
     const { groups } = parser.matchNextTokenAndForward(
         `(?<intensities>(${WeatherIntensityPatterns})*)`
         + `(?<proximities>(${WeatherProximityPatterns})*)`
-        + `(?<descriptors>(${WeatherDescriptorPatterns})*)`
-        + `(?<phenomenons>(${WeatherPhenomenaPatterns})+)`,
+        + `(?<descriptors>(${WeatherDescriptorPatterns})${descriptorCount})`
+        + `(?<phenomenons>(${WeatherPhenomenaPatterns})${phenomenaCount})`,
     );
 
     if (isNotNullOrUndefined(groups)) {
@@ -72,5 +60,33 @@ export const parsePresentWeather = (parser) => {
             phenomenaParts: splitWeatherPhenomenonsIntoParts(phenomenons),
         });
     }
+
+    return null;
+};
+
+export const parsePresentWeather = (parser) => {
+    const { completeMatch } = parser.matchNextTokenAndForward('NSW');
+    if (isNotNullOrUndefined(completeMatch)) {
+        return createPresentWeatherToken({
+            phenomenaParts: [
+                {
+                    value: completeMatch,
+                    parsed: WeatherPhenomena.NSW,
+                },
+            ],
+        });
+    }
+
+    const combinations = [['+', '+'], ['*', '+'], ['+', '*']];
+
+    for (let idx = 0; idx < combinations.length; idx += 1) {
+        const combination = combinations[idx];
+        const result = parsePresentWeatherCombination(parser, combination[0], combination[1]);
+
+        if (isNotNullOrUndefined(result)) {
+            return result;
+        }
+    }
+
     return null;
 };

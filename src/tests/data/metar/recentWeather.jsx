@@ -5,6 +5,10 @@ export const TestDataRecentWeather_RERASN_Data = {
     tokenType: TokenTypes.RECENT_WEATHER,
     args: ['phenomena0', 'phenomena1'],
 
+    descriptorCount: 0,
+    descriptorArgs: [],
+    descriptorParts: [],
+
     phenomenaCount: 2,
     phenomena0: 'RA',
     phenomena0P: WeatherPhenomena.RAIN,
