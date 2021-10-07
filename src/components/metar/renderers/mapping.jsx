@@ -2,6 +2,7 @@ import { TokenTypes } from 'lib/metar/enums';
 import { AirportIdentifierRenderers } from 'components/metar/renderers/airportIdentifier/renderers';
 import { AltimeterRenderers } from 'components/metar/renderers/altimeter/renderers';
 import { CloudCoverageRenderers } from 'components/metar/renderers/cloudCoverage/renderers';
+import { ColorSystemsRenderers } from 'components/metar/renderers/colorSystems/renderers';
 import { METARTimeRenderers } from 'components/metar/renderers/metarTime/renderers';
 import { MissingDataRenderers } from 'components/metar/renderers/missingData/renderers';
 import { NotRecognizedRenderers } from 'components/metar/renderers/notRecognized/renderers';
@@ -23,6 +24,7 @@ export const TokenRenderers = {
     [TokenTypes.AIRPORT_IDENTIFIER]: AirportIdentifierRenderers,
     [TokenTypes.ALTIMETER_SETTING]: AltimeterRenderers,
     [TokenTypes.CLOUD_COVERAGE]: CloudCoverageRenderers,
+    [TokenTypes.COLOR_SYSTEMS]: ColorSystemsRenderers,
     [TokenTypes.METAR_PREFIX]: PrefixRenderers,
     [TokenTypes.METAR_PREFIX_OTHER]: PrefixRenderers,
     [TokenTypes.METAR_TIME]: METARTimeRenderers,

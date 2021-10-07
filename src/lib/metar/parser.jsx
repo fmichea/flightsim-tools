@@ -24,6 +24,7 @@ import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
 import { parseWindShear } from 'lib/metar/parsers/windShear';
 import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 import { parseRunwayState } from 'lib/metar/parsers/runwayState';
+import { parseColorSystems } from 'lib/metar/parsers/colorSystems';
 
 const prefixFunctions = [
     skipMETARPrefix,
@@ -51,6 +52,7 @@ const parsersFunctions = [
     parseWindShear,
     parseSeaSurface,
     parseRunwayState,
+    parseColorSystems,
 
     parseMissingData,
 ];

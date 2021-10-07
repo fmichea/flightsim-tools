@@ -20,6 +20,7 @@ export const TokenTypes = Object.freeze({
     RECENT_WEATHER: 'recent-weather',
     SEA_SURFACE: 'sea-surface',
     RUNWAY_STATE: 'runway-state',
+    COLOR_SYSTEMS: 'color-systems',
 });
 
 export const WindSpeedUnit = Object.freeze({
