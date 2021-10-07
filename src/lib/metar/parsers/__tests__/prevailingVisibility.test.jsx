@@ -1,17 +1,14 @@
 import { ParserState } from 'lib/metar/parserState';
-import {
-    Directions, PrevailingVisibility, PrevailingVisibilityUnit, TokenTypes,
-} from 'lib/metar/enums';
 import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
 import {
-    TestDataPrevailingVisibility_10KM_Data,
-    TestDataPrevailingVisibility_10KM_Text,
-    TestDataPrevailingVisibility_10SM_Data,
-    TestDataPrevailingVisibility_10SM_Text,
     TestDataPrevailingVisibility_1SixteenthSM_Data,
     TestDataPrevailingVisibility_1SixteenthSM_Text,
     TestDataPrevailingVisibility_2HalfSM_Data,
     TestDataPrevailingVisibility_2HalfSM_Text,
+    TestDataPrevailingVisibility_10KM_Data,
+    TestDataPrevailingVisibility_10KM_Text,
+    TestDataPrevailingVisibility_10SM_Data,
+    TestDataPrevailingVisibility_10SM_Text,
     TestDataPrevailingVisibility_4500_Data,
     TestDataPrevailingVisibility_4500_Text,
     TestDataPrevailingVisibility_4500NW_Data,
@@ -20,8 +17,12 @@ import {
     TestDataPrevailingVisibility_9999_Text,
     TestDataPrevailingVisibility_CAVOK_Data,
     TestDataPrevailingVisibility_CAVOK_Text,
+    TestDataPrevailingVisibility_M14THSM_Data,
+    TestDataPrevailingVisibility_M14THSM_Text,
     TestDataPrevailingVisibility_MISSING_Data,
     TestDataPrevailingVisibility_MISSING_Text,
+    TestDataPrevailingVisibility_xxxxSM_Data,
+    TestDataPrevailingVisibility_xxxxSM_Text,
 } from 'tests/data/metar/prevailingVisibility';
 
 describe('prevailingVisibility', () => {
@@ -68,6 +69,16 @@ describe('prevailingVisibility', () => {
     test('nz version', () => {
         const parser = new ParserState(TestDataPrevailingVisibility_10KM_Text);
         expect(parsePrevailingVisibility(parser)).toEqual(TestDataPrevailingVisibility_10KM_Data);
+    });
+
+    test('less than quarter mile', () => {
+        const parser = new ParserState(TestDataPrevailingVisibility_M14THSM_Text);
+        expect(parsePrevailingVisibility(parser)).toEqual(TestDataPrevailingVisibility_M14THSM_Data);
+    });
+
+    test('less than quarter mile', () => {
+        const parser = new ParserState(TestDataPrevailingVisibility_xxxxSM_Text);
+        expect(parsePrevailingVisibility(parser)).toEqual(TestDataPrevailingVisibility_xxxxSM_Data);
     });
 
     test('invalid value is ignored', () => {

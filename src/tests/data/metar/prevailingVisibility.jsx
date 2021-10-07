@@ -103,6 +103,18 @@ export const TestDataPrevailingVisibility_1SixteenthSM_Data = {
     unitP: PrevailingVisibilityUnit.MILES,
 };
 
+export const TestDataPrevailingVisibility_M14THSM_Text = 'M1/4SM';
+export const TestDataPrevailingVisibility_M14THSM_Data = {
+    ...baseData,
+
+    value: 'M1/4',
+    direction: null,
+
+    valueP: PrevailingVisibility.LESS_THAN_QUARTER_MILE,
+    directionP: null,
+    unitP: PrevailingVisibilityUnit.MILES,
+};
+
 export const TestDataPrevailingVisibility_10KM_Text = '10KM';
 export const TestDataPrevailingVisibility_10KM_Data = {
     ...baseData,
@@ -113,4 +125,16 @@ export const TestDataPrevailingVisibility_10KM_Data = {
     valueP: 10,
     directionP: null,
     unitP: PrevailingVisibilityUnit.KILOMETERS,
+};
+
+export const TestDataPrevailingVisibility_xxxxSM_Text = '////SM';
+export const TestDataPrevailingVisibility_xxxxSM_Data = {
+    ...baseData,
+
+    value: '////',
+    direction: null,
+
+    valueP: PrevailingVisibility.MISSING,
+    directionP: null,
+    unitP: PrevailingVisibilityUnit.MILES,
 };

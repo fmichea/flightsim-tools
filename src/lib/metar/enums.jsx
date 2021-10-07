@@ -74,6 +74,7 @@ export const PrevailingVisibility = Object.freeze({
     CAVOK: 'cavok',
     TEN_K: '10k-or-better',
     MISSING: 'missing',
+    LESS_THAN_QUARTER_MILE: 'less-than-quarter-mile',
 });
 
 export const PrevailingVisibilityUnit = Object.freeze({

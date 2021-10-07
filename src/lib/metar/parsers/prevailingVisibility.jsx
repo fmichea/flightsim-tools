@@ -8,11 +8,17 @@ const fixPVValue = (value) => {
     if (value === '////') {
         return PrevailingVisibility.MISSING;
     }
+
     if (value === 'CAVOK') {
         return PrevailingVisibility.CAVOK;
     }
+
     if (value === '9999') {
         return PrevailingVisibility.TEN_K;
+    }
+
+    if (value === 'M1/4') {
+        return PrevailingVisibility.LESS_THAN_QUARTER_MILE;
     }
 
     const matchResult1 = value.match(new RegExp('(?<whole>[0-9]+)\\s(?<numerator>[0-9]+)/(?<denominator>[0-9]+)'));
@@ -44,7 +50,7 @@ const createPrevailingVisibility = (value, { direction, unit } = {}) => {
 
         valueP,
         directionP: pick(Directions[direction]),
-        unitP: isWithoutUnit(valueP) ? null : pick(unit, PrevailingVisibilityUnit.METERS),
+        unitP: pick(unit, isWithoutUnit(valueP) ? null : PrevailingVisibilityUnit.METERS),
     };
 };
 
@@ -63,6 +69,24 @@ export const parsePrevailingVisibility = (parser) => {
     const { groups: groups2 } = parser.matchNextTokenAndForward('(?<distance>[0-9]+(\\s[0-9]+)?(/[0-9]+)?)SM');
     if (isNotNullOrUndefined(groups2)) {
         const { distance } = groups2;
+        return createPrevailingVisibility(
+            distance,
+            { unit: PrevailingVisibilityUnit.MILES },
+        );
+    }
+
+    const { groups: groups4 } = parser.matchNextTokenAndForward('(?<distance>M1/4)SM');
+    if (isNotNullOrUndefined(groups4)) {
+        const { distance } = groups4;
+        return createPrevailingVisibility(
+            distance,
+            { unit: PrevailingVisibilityUnit.MILES },
+        );
+    }
+
+    const { groups: groups5 } = parser.matchNextTokenAndForward('(?<distance>////)SM');
+    if (isNotNullOrUndefined(groups5)) {
+        const { distance } = groups5;
         return createPrevailingVisibility(
             distance,
             { unit: PrevailingVisibilityUnit.MILES },

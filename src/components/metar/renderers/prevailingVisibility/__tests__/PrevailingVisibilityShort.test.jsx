@@ -3,12 +3,12 @@ import { PrevailingVisibilityShort } from 'components/metar/renderers/prevailing
 import {
     TestDataPrevailingVisibility_10KM_Data,
     TestDataPrevailingVisibility_10SM_Data,
-    TestDataPrevailingVisibility_1SixteenthSM_Data,
+    TestDataPrevailingVisibility_1SixteenthSM_Data, TestDataPrevailingVisibility_xxxxSM_Data,
     TestDataPrevailingVisibility_2HalfSM_Data,
     TestDataPrevailingVisibility_4500_Data,
     TestDataPrevailingVisibility_4500NW_Data,
     TestDataPrevailingVisibility_9999_Data,
-    TestDataPrevailingVisibility_CAVOK_Data,
+    TestDataPrevailingVisibility_CAVOK_Data, TestDataPrevailingVisibility_M14THSM_Data,
     TestDataPrevailingVisibility_MISSING_Data,
 } from 'tests/data/metar/prevailingVisibility';
 
@@ -67,5 +67,15 @@ describe('PrevailingVisibilityShort', () => {
     test('km notation is displayed', () => {
         const { compWrapper } = setup(TestDataPrevailingVisibility_10KM_Data);
         expect(compWrapper().text()).toEqual('Horizontal visibility is 10 kilometers (10).');
+    });
+
+    test('less than a quarter', () => {
+        const { compWrapper } = setup(TestDataPrevailingVisibility_M14THSM_Data);
+        expect(compWrapper().text()).toEqual('Horizontal visibility is less than a quarter of a mile (M1/4).');
+    });
+
+    test('no value sm', () => {
+        const { compWrapper } = setup(TestDataPrevailingVisibility_xxxxSM_Data);
+        expect(compWrapper().text()).toEqual('Horizontal visibility is missing or cannot be assessed (////).');
     });
 });

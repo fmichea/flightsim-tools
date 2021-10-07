@@ -25,6 +25,12 @@ const renderVisibilityValue = (value, unitP) => {
         );
     }
 
+    if (value === PrevailingVisibility.LESS_THAN_QUARTER_MILE) {
+        return (
+            <>less than a quarter of a mile</>
+        );
+    }
+
     return (
         <>
             {value}
