@@ -50,6 +50,16 @@ const renderAmount = ({ amountP, amount }) => {
         );
     }
 
+    if (amountP === CloudLayerAmount.SKC) {
+        return (
+            <>
+                Skies are clear (
+                {amount}
+                )
+            </>
+        );
+    }
+
     switch (amountP) {
     case CloudLayerAmount.FEW:
         return (
@@ -130,8 +140,7 @@ const renderCloudType = ({ cloudTypeP, cloudType }) => {
     case CloudTypes.CB:
         return (
             <>
-                {' '}
-                Clouds are Cumulonimbuses (
+                Cumulonimbuses are reported (
                 {cloudType}
                 ).
             </>
@@ -140,8 +149,7 @@ const renderCloudType = ({ cloudTypeP, cloudType }) => {
     case CloudTypes.TCU:
         return (
             <>
-                {' '}
-                Clouds are Towering Cumulonimbuses (
+                Towering Cumulonimbuses are reported (
                 {cloudType}
                 ).
             </>
@@ -150,7 +158,6 @@ const renderCloudType = ({ cloudTypeP, cloudType }) => {
     case CloudTypes.NOT_DESCRIBED:
         return (
             <>
-                {' '}
                 Cloud type could not be described by automated system (
                 {cloudType}
                 ).
@@ -167,9 +174,14 @@ export const CloudCoverageShort = ({
     prettyArgs: { amount, altitude, cloudType },
 }) => (
     <>
-        {renderAmount({ amountP, amount })}
-        {renderAltitude({ altitudeP, altitude })}
-        .
+        {isNullOrUndefined(amountP) && isNullOrUndefined(altitudeP) ? null : (
+            <>
+                {renderAmount({ amountP, amount })}
+                {renderAltitude({ altitudeP, altitude })}
+                .
+                {isNullOrUndefined(cloudTypeP) ? null : ' '}
+            </>
+        )}
         {renderCloudType({ cloudTypeP, cloudType })}
     </>
 );

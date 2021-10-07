@@ -123,3 +123,29 @@ export const TestDataCloudDescriptor_CLR_Data = {
     altitudeP: null,
     cloudTypeP: null,
 };
+
+export const TestDataCloudDescriptor_SKC_Text = 'SKC';
+export const TestDataCloudDescriptor_SKC_Data = {
+    ...baseData,
+
+    amount: 'SKC',
+    altitude: null,
+    cloudType: null,
+
+    amountP: CloudLayerAmount.SKC,
+    altitudeP: null,
+    cloudTypeP: null,
+};
+
+export const TestDataCloudDescriptor_TCUONLY_Text = '///TCU';
+export const TestDataCloudDescriptor_TCUONLY_Data = {
+    ...baseData,
+
+    amount: null,
+    altitude: null,
+    cloudType: 'TCU',
+
+    amountP: null,
+    altitudeP: null,
+    cloudTypeP: CloudTypes.TCU,
+};

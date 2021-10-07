@@ -7,7 +7,7 @@ import {
     TestDataCloudDescriptor_NSC_Data,
     TestDataCloudDescriptor_OVC230TCU_Data,
     TestDataCloudDescriptor_OVCBelow_Data,
-    TestDataCloudDescriptor_SCT120_Data,
+    TestDataCloudDescriptor_SCT120_Data, TestDataCloudDescriptor_SKC_Data, TestDataCloudDescriptor_TCUONLY_Data,
 } from 'tests/data/metar/cloudDescriptors';
 
 const setup = (data) => mountWithStore(CloudCoverageShort, {
@@ -51,7 +51,7 @@ describe('CloudCoverageShort', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_BKN070CB_Data);
         expect(compWrapper().text()).toEqual(
             'Broken clouds covering more than 50% of the sky (BKN) was reported at altitude of '
-            + '7000 ft (070). Clouds are Cumulonimbuses (CB).',
+            + '7000 ft (070). Cumulonimbuses are reported (CB).',
         );
     });
 
@@ -59,7 +59,7 @@ describe('CloudCoverageShort', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_OVC230TCU_Data);
         expect(compWrapper().text()).toEqual(
             'Complete coverage of the sky by clouds (OVC) was reported at altitude of '
-            + '23000 ft (230). Clouds are Towering Cumulonimbuses (TCU).',
+            + '23000 ft (230). Towering Cumulonimbuses are reported (TCU).',
         );
     });
 
@@ -73,5 +73,15 @@ describe('CloudCoverageShort', () => {
     test('Clear skies', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_CLR_Data);
         expect(compWrapper().text()).toEqual('There are no visible clouds below 12000 ft (CLR).');
+    });
+
+    test('Clear skies 2', () => {
+        const { compWrapper } = setup(TestDataCloudDescriptor_SKC_Data);
+        expect(compWrapper().text()).toEqual('Skies are clear (SKC).');
+    });
+
+    test('towering cb', () => {
+        const { compWrapper } = setup(TestDataCloudDescriptor_TCUONLY_Data);
+        expect(compWrapper().text()).toEqual('Towering Cumulonimbuses are reported (TCU).');
     });
 });

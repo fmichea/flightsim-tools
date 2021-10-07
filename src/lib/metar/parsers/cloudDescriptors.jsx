@@ -24,7 +24,7 @@ const createCloudDescriptorsToken = (amount, { altitude, cloudType } = {}) => ({
     altitude: pick(altitude),
     cloudType: pick(cloudType === '' ? null : cloudType),
 
-    amountP: CloudLayerAmount[amount],
+    amountP: pick(CloudLayerAmount[amount]),
     altitudeP: fixCloudAltitude(altitude),
     cloudTypeP: pick(cloudType === '///' ? CloudTypes.NOT_DESCRIBED : null, CloudTypes[cloudType]),
 });
@@ -43,6 +43,11 @@ export const parseCloudDescriptors = (parser) => {
     const { completeMatch: clrCompleteMatch } = parser.matchNextTokenAndForward('CLR');
     if (isNotNullOrUndefined(clrCompleteMatch)) {
         return createCloudDescriptorsToken(clrCompleteMatch);
+    }
+
+    const { completeMatch: skcCompleteMatch } = parser.matchNextTokenAndForward('SKC');
+    if (isNotNullOrUndefined(skcCompleteMatch)) {
+        return createCloudDescriptorsToken(skcCompleteMatch);
     }
 
     const { groups: simpleGroups } = parser.matchNextTokenAndForward(
@@ -75,5 +80,16 @@ export const parseCloudDescriptors = (parser) => {
         );
     }
 
+    const { groups: cloudTypeOnlyGroups } = parser.matchNextTokenAndForward(
+        '///(?<cloudType>CB|TCU)',
+    );
+    if (isNotNullOrUndefined(cloudTypeOnlyGroups)) {
+        const { cloudType } = cloudTypeOnlyGroups;
+
+        return createCloudDescriptorsToken(
+            null,
+            { cloudType },
+        );
+    }
     return null;
 };

@@ -31,6 +31,7 @@ export const CloudLayerAmount = Object.freeze({
     NSC: 'nil-significant-cloud',
     NCD: 'no-cloud-description',
     CLR: 'clear-12000',
+    SKC: 'sky-clear',
 
     FEW: 'few',
     SCT: 'scattered',

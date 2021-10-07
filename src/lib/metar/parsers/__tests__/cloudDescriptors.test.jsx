@@ -19,6 +19,8 @@ import {
     TestDataCloudDescriptor_OVCBelow_Text,
     TestDataCloudDescriptor_SCT120_Data,
     TestDataCloudDescriptor_SCT120_Text,
+    TestDataCloudDescriptor_SKC_Data,
+    TestDataCloudDescriptor_SKC_Text, TestDataCloudDescriptor_TCUONLY_Data, TestDataCloudDescriptor_TCUONLY_Text,
 } from 'tests/data/metar/cloudDescriptors';
 
 describe('cloudDescriptors', () => {
@@ -83,6 +85,20 @@ describe('cloudDescriptors', () => {
 
         const result = parseCloudDescriptors(parser);
         expect(result).toEqual(TestDataCloudDescriptor_CLR_Data);
+    });
+
+    test('other variant sky clear indication is parsed correctly', () => {
+        const parser = new ParserState(TestDataCloudDescriptor_SKC_Text);
+
+        const result = parseCloudDescriptors(parser);
+        expect(result).toEqual(TestDataCloudDescriptor_SKC_Data);
+    });
+
+    test('only towering cumulonimbus info', () => {
+        const parser = new ParserState(TestDataCloudDescriptor_TCUONLY_Text);
+
+        const result = parseCloudDescriptors(parser);
+        expect(result).toEqual(TestDataCloudDescriptor_TCUONLY_Data);
     });
 
     test('invalid format is ignored', () => {

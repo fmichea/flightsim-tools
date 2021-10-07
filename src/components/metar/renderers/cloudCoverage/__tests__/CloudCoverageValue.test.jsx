@@ -7,6 +7,8 @@ import {
     TestDataCloudDescriptor_NSC_Text,
     TestDataCloudDescriptor_OVC230TCU_Data,
     TestDataCloudDescriptor_OVC230TCU_Text,
+    TestDataCloudDescriptor_TCUONLY_Data,
+    TestDataCloudDescriptor_TCUONLY_Text,
 } from 'tests/data/metar/cloudDescriptors';
 
 const setup = (data) => mountWithStore(CloudCoverageValue, {
@@ -27,5 +29,10 @@ describe('CloudCoverageValue', () => {
     test('all data info is shown', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_OVC230TCU_Data);
         expect(compWrapper().text()).toEqual(TestDataCloudDescriptor_OVC230TCU_Text);
+    });
+
+    test('towering cumulonimbus is shown', () => {
+        const { compWrapper } = setup(TestDataCloudDescriptor_TCUONLY_Data);
+        expect(compWrapper().text()).toEqual(TestDataCloudDescriptor_TCUONLY_Text);
     });
 });
