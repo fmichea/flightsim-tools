@@ -227,3 +227,7 @@ export const TrendTimeType = Object.freeze({
     UNTIL: 'until',
     AT: 'at',
 });
+
+export const Temperatures = Object.freeze({
+    NOT_REPORTED: 'not-reported',
+});
