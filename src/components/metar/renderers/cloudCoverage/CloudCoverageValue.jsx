@@ -7,7 +7,7 @@ const renderAmountAltitude = ({ amount, altitude }) => {
     if (isNullOrUndefined(amount) && isNullOrUndefined(altitude)) {
         return (
             <>
-                ///
+                &#47;&#47;&#47;
                 <ThinSpace />
             </>
         );

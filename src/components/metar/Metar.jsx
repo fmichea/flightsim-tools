@@ -280,7 +280,9 @@ export const Metar = () => {
                         </ExternalLink>
                         {' '}
                         (
-                        <ExternalLink href="https://library.wmo.int/doc_num.php?explnum_id=10235">Code Tables</ExternalLink>
+                        <ExternalLink href="https://library.wmo.int/doc_num.php?explnum_id=10235">
+                            Code Tables
+                        </ExternalLink>
                         )
                         . Please feel free to leave feedback on the
                         {' '}
