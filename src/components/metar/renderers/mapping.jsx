@@ -1,4 +1,5 @@
 import { TokenTypes } from 'lib/metar/enums';
+import { AirportIdentifierRenderers } from 'components/metar/renderers/airportIdentifier/renderers';
 import { AltimeterRenderers } from 'components/metar/renderers/altimeter/renderers';
 import { CloudCoverageRenderers } from 'components/metar/renderers/cloudCoverage/renderers';
 import { METARTimeRenderers } from 'components/metar/renderers/metarTime/renderers';
@@ -9,7 +10,6 @@ import { PresentWeatherRenderers } from 'components/metar/renderers/presentWeath
 import { PrevailingVisibilityRenderers } from 'components/metar/renderers/prevailingVisibility/renderers';
 import { RecentWeatherRenderers } from 'components/metar/renderers/recentWeather/renderers';
 import { RemarksRenderers } from 'components/metar/renderers/remarks/renderers';
-import { Renderers } from 'components/metar/renderers/airportIdentifier/renderers';
 import { RunwayStateRenderers } from 'components/metar/renderers/runwayState/renderers';
 import { RunwayVisualRangeRenderers } from 'components/metar/renderers/runwayVisualRange/renderers';
 import { SeaSurfaceRenderers } from 'components/metar/renderers/seaSurface/renderers';
@@ -20,7 +20,7 @@ import { WindRenderers } from 'components/metar/renderers/wind/renderers';
 import { WindShearRenderers } from 'components/metar/renderers/windShear/renderers';
 
 export const TokenRenderers = {
-    [TokenTypes.AIRPORT_IDENTIFIER]: Renderers,
+    [TokenTypes.AIRPORT_IDENTIFIER]: AirportIdentifierRenderers,
     [TokenTypes.ALTIMETER_SETTING]: AltimeterRenderers,
     [TokenTypes.CLOUD_COVERAGE]: CloudCoverageRenderers,
     [TokenTypes.METAR_PREFIX]: PrefixRenderers,
