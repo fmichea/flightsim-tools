@@ -1,8 +1,34 @@
 import React from 'react';
-import { AltimeterUnit } from 'lib/metar/enums';
+import { AltimeterSetting, AltimeterUnit } from 'lib/metar/enums';
 import { AltimeterPropTypes } from 'components/metar/renderers/altimeter/propTypes';
 
 const renderAltimeterUnit = (unit) => (unit === AltimeterUnit.HPA ? 'hectopascals' : 'inches of mercury');
+
+const renderAltimeterValue = ({ valueP, value, altimeterUnitP }) => {
+    if (valueP === AltimeterSetting.NOT_REPORTED) {
+        return (
+            <>
+                but value could not be reported (
+                {value}
+                )
+            </>
+        );
+    }
+
+    return (
+        <>
+            and should be set to
+            {' '}
+            {valueP}
+            {' '}
+            {altimeterUnitP}
+            {' '}
+            (
+            {value}
+            )
+        </>
+    );
+};
 
 export const AltimeterShort = ({
     data: { altimeterUnitP, valueP },
@@ -16,15 +42,8 @@ export const AltimeterShort = ({
         (
         {altimeterUnit}
         )
-        and should be set to
         {' '}
-        {valueP}
-        {' '}
-        {altimeterUnitP}
-        {' '}
-        (
-        {value}
-        )
+        {renderAltimeterValue({ valueP, value, altimeterUnitP })}
     </>
 );
 

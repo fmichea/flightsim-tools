@@ -54,6 +54,10 @@ export const AltimeterUnit = Object.freeze({
     HPA: 'hPA',
 });
 
+export const AltimeterSetting = Object.freeze({
+    NOT_REPORTED: 'not-reported',
+});
+
 export const WindDirections = Object.freeze({
     VRB: 'variable',
 });
