@@ -14,6 +14,7 @@ import { ChecklistListItemTags } from 'components/checklists/ChecklistListItemTa
 import { ChecklistListItemSwitch } from 'components/checklists/ChecklistListItemSwitch';
 import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
 import PropTypes from 'prop-types';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const ChecklistListItemWrapper = styled('tr', (props) => ({
     padding: '0.3em',
@@ -24,10 +25,15 @@ const ChecklistListItemWrapper = styled('tr', (props) => ({
 }));
 
 const ChecklistListItemTitle = styled('div', {
-    display: 'inline-block',
     fontSize: '1em',
-    fontWeight: 'bold',
+    fontWeight: 'bolder',
     color: DarkGrey,
+});
+
+const ChecklistListItemSubTitle = styled('div', {
+    fontWeight: 'bold',
+    fontSize: '.75em',
+    color: '#727272',
 });
 
 const ChecklistListItemState = styled('div', {
@@ -56,6 +62,7 @@ export const ChecklistListItemDisplay = ({
 }) => {
     const {
         title,
+        subTitle,
         state,
         isChecked,
         tagsData,
@@ -91,6 +98,11 @@ export const ChecklistListItemDisplay = ({
                 <ChecklistListItemTitle>
                     {title}
                 </ChecklistListItemTitle>
+                {isNullOrUndefined(subTitle) ? null : (
+                    <ChecklistListItemSubTitle>
+                        {subTitle}
+                    </ChecklistListItemSubTitle>
+                )}
             </ChecklistItemColumn>
             <ChecklistItemColumn $fitToContent>
                 <ChecklistListItemState>
