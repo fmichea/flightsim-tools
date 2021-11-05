@@ -44,6 +44,10 @@ const commonTagsData = createMappingFunction()([
         uid: ChecklistTags.SIMSETUP,
         color: '#d05111',
     },
+    {
+        uid: ChecklistTags.CRJ7,
+        color: '#000',
+    },
 ]);
 
 export const ChecklistTagsData = Object.freeze({

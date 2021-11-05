@@ -41,6 +41,7 @@ export const Navbar = () => {
             wtCJ4AntiIceItem,
             c172ChecklistMenuItem,
             c172G1000ChecklistMenuItem,
+            crj7ChecklistMenuItem,
             otherMetarExplainerMenuItem,
         },
         selectedKeys,
@@ -49,6 +50,7 @@ export const Navbar = () => {
         wtCJ4AntiIceItem: `/anti-ice/${AntiIceAircrafts.WORKINGTITLE_CJ4}`,
         c172ChecklistMenuItem: `/checklists/${Checklists.C172_STEAM}`,
         c172G1000ChecklistMenuItem: `/checklists/${Checklists.C172_G1000}`,
+        crj7ChecklistMenuItem: `/checklists/${Checklists.AEROSOFT_CRJ7}`,
         otherMetarExplainerMenuItem: MetarExplainerRoute,
     });
 
@@ -56,12 +58,15 @@ export const Navbar = () => {
         <MenuContainer>
             <Menu theme="dark" mode="horizontal" selectedKeys={selectedKeys}>
                 <Menu.SubMenu key="wt-cj4-menu" title="WorkingTitle CJ4">
-                    <Menu.Item {...wtCJ4MenuItem.props}>WT CJ4 Checklist</Menu.Item>
-                    <Menu.Item {...wtCJ4AntiIceItem.props}>WT CJ4 Anti-Ice</Menu.Item>
+                    <Menu.Item {...wtCJ4MenuItem.props}>Checklist</Menu.Item>
+                    <Menu.Item {...wtCJ4AntiIceItem.props}>Anti-Ice</Menu.Item>
                 </Menu.SubMenu>
                 <Menu.SubMenu key="c172-menu" title="Cessna 172">
                     <Menu.Item {...c172ChecklistMenuItem.props}>C172 (Steam Gauges) Checklist</Menu.Item>
                     <Menu.Item {...c172G1000ChecklistMenuItem.props}>C172 (G1000) Checklist</Menu.Item>
+                </Menu.SubMenu>
+                <Menu.SubMenu key="crj7-menu" title="Aerosoft CRJ 550 / 700">
+                    <Menu.Item {...crj7ChecklistMenuItem.props}>Checklist</Menu.Item>
                 </Menu.SubMenu>
                 <Menu.SubMenu key="other" title="Other">
                     <Menu.Item {...otherMetarExplainerMenuItem.props}>METAR Explainer</Menu.Item>

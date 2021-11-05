@@ -1,5 +1,8 @@
 const commonLists = Object.freeze({
     PRE_FLIGHT: 'pre-flight',
+    SAFETY: 'safety',
+    CABIN_INSPECTION: 'cabin-inspection',
+    ORIGINATING: 'originating',
     BEFORE_ENGINE_START: 'before-engine-start',
     ENGINE_START: 'engine-start',
     AFTER_ENGINE_START: 'after-engine-start',
@@ -20,6 +23,7 @@ const commonLists = Object.freeze({
     PARKING: 'parking',
     SECURING: 'securing',
     SHUTDOWN: 'shutdown',
+    TERMINATING: 'terminating',
     POST_FLIGHT: 'post-flight',
 });
 

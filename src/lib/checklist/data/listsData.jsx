@@ -7,6 +7,18 @@ const commonListsData = createMappingFunction()([
         title: 'Pre-Flight',
     },
     {
+        uid: ChecklistLists.CABIN_INSPECTION,
+        title: 'Cabin Inspection',
+    },
+    {
+        uid: ChecklistLists.SAFETY,
+        title: 'Safety',
+    },
+    {
+        uid: ChecklistLists.ORIGINATING,
+        title: 'Originating',
+    },
+    {
         uid: ChecklistLists.BEFORE_ENGINE_START,
         title: 'Before Engine Start',
     },
@@ -90,6 +102,10 @@ const commonListsData = createMappingFunction()([
     {
         uid: ChecklistLists.POST_FLIGHT,
         title: 'Post-Flight',
+    },
+    {
+        uid: ChecklistLists.TERMINATING,
+        title: 'Terminating',
     },
 ]);
 
