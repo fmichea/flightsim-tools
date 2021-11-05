@@ -121,8 +121,9 @@ export const AntiIceRecommendationDisplay = ({
             const defaultState = pick(defaultStates[value.uid], AntiIceModeStates.OFF);
 
             return {
+                key: value.title,
                 title: value.title,
-                isNotImplemented: value.tags.has(AntiIceTags.NOT_IMPLEMENTED),
+                isNotImplemented: value.tagsSet.has(AntiIceTags.NOT_IMPLEMENTED),
                 isNonDefault: state !== defaultState,
                 state: AntiIceModeStatesData[state],
             };
