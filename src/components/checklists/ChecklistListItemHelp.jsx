@@ -1,20 +1,24 @@
+import React from 'react';
 import { styled } from 'styletron-react';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 import { Modal, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChecklistItemHelpWrapper = styled('sup', {
+const ChecklistItemHelpWrapper = styled('span', {
     display: 'inline-block',
-    marginLeft: '1em',
-    fontSize: '1em',
     verticalAlign: 'middle',
 });
 
+const tooltipOverlayStyle = { maxWidth: '50vw' };
+const cancelButtonProps = { style: { display: 'none' } };
+
 export const ChecklistListItemHelp = ({
-    title, state, moreInfoShort, moreInfoLong,
+    title,
+    state,
+    moreInfoShort,
+    moreInfoLong,
 }) => {
     const modalVisible = useBooleanToggle(false);
 
@@ -39,7 +43,7 @@ export const ChecklistListItemHelp = ({
                 <Tooltip
                     title={moreInfoShort}
                     placement="bottomRight"
-                    overlayStyle={{ maxWidth: '50vw' }}
+                    overlayStyle={tooltipOverlayStyle}
                     color="#3f3f3f"
                     visible={modalVisible.value ? false : undefined}
                 >
@@ -52,9 +56,9 @@ export const ChecklistListItemHelp = ({
                 visible={modalVisible.value}
                 onOk={modalVisible.toggleOff}
                 onCancel={modalVisible.toggleOff}
-                cancelButtonProps={{ style: { display: 'none' } }}
-                maskClosable
+                cancelButtonProps={cancelButtonProps}
                 width="60vw"
+                maskClosable
             >
                 {isNotNullOrUndefined(moreInfoLong) ? moreInfoLong : moreInfoShort}
             </Modal>

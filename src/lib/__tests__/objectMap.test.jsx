@@ -1,4 +1,4 @@
-import { objectMap } from 'lib/objectMap';
+import { objectMap } from 'lib/objects';
 
 describe('objectMap', () => {
     test('simple case with just values', () => {

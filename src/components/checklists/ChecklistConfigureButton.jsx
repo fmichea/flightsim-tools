@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { Button, List, Modal } from 'antd';
+import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 import { useChecklistLeftHandedMode } from 'lib/checklist/hooks/useChecklistLeftHandedMode';
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
-import { ChecklistFiltersData } from 'lib/checklist/data/filtersData';
-import { Button, List, Modal } from 'antd';
-import PropTypes from 'prop-types';
-import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 
-export const ChecklistConfigureButton = ({ checklistURLManager, filters, selectedFilters }) => {
+export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, selectedFilters }) => {
+    const { selectableFilters: filters, selectableFiltersData: filtersData } = checklistData;
+
     const selectedFiltersSet = useMemo(() => new Set(selectedFilters), [selectedFilters]);
 
     const modalVisible = useBooleanToggle(false);
@@ -37,7 +39,7 @@ export const ChecklistConfigureButton = ({ checklistURLManager, filters, selecte
         };
 
         return filters
-            .map(((filterName) => ChecklistFiltersData[filterName]))
+            .map(((filterName) => filtersData[filterName]))
             .map(fn);
     }, [checklistURLManager, filters]);
 
@@ -52,7 +54,7 @@ export const ChecklistConfigureButton = ({ checklistURLManager, filters, selecte
                 onCancel={modalVisible.toggleOff}
                 cancelButtonProps={{ style: { display: 'none' } }}
                 maskClosable
-                width="50vw"
+                width="90vw"
             >
                 <List header={<strong>Interface</strong>}>
                     <ChecklistConfigurationSwitch
@@ -72,8 +74,7 @@ export const ChecklistConfigureButton = ({ checklistURLManager, filters, selecte
 };
 
 ChecklistConfigureButton.propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    checklistURLManager: PropTypes.object.isRequired,
-    filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+    checklistData: ChecklistDataPropTypes.isRequired,
+    checklistURLManager: ChecklistURLManagerPropTypes.isRequired,
     selectedFilters: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

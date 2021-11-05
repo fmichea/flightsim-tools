@@ -1,72 +1,70 @@
-import { useMemo } from 'react';
-import { ChecklistFiltersData } from 'lib/checklist/data/filtersData';
-import { ChecklistItemsData } from 'lib/checklist/data/listItemsData';
 import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
 import { pick } from 'lib/pick';
+import { useDeepMemo } from 'lib/hooks/deep';
 
-export const useChecklistFilteredLists = ({ checklistData, selectedFilters }) => useMemo(() => {
-    const selectedFiltersSet = new Set(selectedFilters);
-    const selectableFilters = pick(checklistData.selectableFilters, []);
-    const defaultFilters = pick(checklistData.defaultFilters, []);
+const useChecklistFilterFunction = ({ checklistData, selectedFilters }) => useDeepMemo(() => {
+    const selectedFiltersSet = new Set(pick(selectedFilters, []));
 
-    const result = {
-        listNames: [],
-        listsItems: {},
-        listsData: {},
-        listsNextListNames: {},
-    };
+    const {
+        selectableFilters,
+        selectableFiltersData,
+
+        defaultFilters,
+        defaultFiltersData,
+    } = checklistData;
 
     const filterFNs = [];
 
     // We add all selectable filters that are selected currently.
     selectableFilters.forEach((filterName) => {
         if (selectedFiltersSet.has(filterName)) {
-            filterFNs.push(ChecklistFiltersData[filterName].fn);
+            filterFNs.push(selectableFiltersData[filterName].fn);
         }
     });
 
     // We then add all default selected filters.
     defaultFilters.forEach((filterName) => {
-        filterFNs.push(ChecklistFiltersData[filterName].fn);
+        filterFNs.push(defaultFiltersData[filterName].fn);
     });
 
-    checklistData.lists.forEach((checklistList) => {
-        const filteredItems = [];
+    const finalFilterResults = new Set([
+        ChecklistFiltersResults.INCLUDE,
+        ChecklistFiltersResults.EXCLUDE,
+    ]);
 
-        checklistList.items.forEach((itemName) => {
-            const item = ChecklistItemsData[itemName];
+    return (item) => {
+        let idx = 0;
 
-            let idx = 0;
+        for (; idx < filterFNs.length; idx += 1) {
+            const filteringResult = filterFNs[idx](item);
 
-            for (; idx < filterFNs.length; idx += 1) {
-                const filteringResult = filterFNs[idx](item);
-
-                if (filteringResult === ChecklistFiltersResults.INCLUDE) {
-                    filteredItems.push(itemName);
-                    break;
-                } else if (filteringResult === ChecklistFiltersResults.EXCLUDE) {
-                    break;
-                }
+            if (finalFilterResults.has(filteringResult)) {
+                return filteringResult;
             }
-
-            // Most likely with have a terminal filter in the defaults, but if not
-            // what remains gets included.
-            if (idx === filterFNs.length) {
-                filteredItems.push(itemName);
-            }
-        });
-
-        if (filteredItems.length === 0) {
-            return;
         }
 
-        result.listNames.push(checklistList.listName);
-        result.listsItems[checklistList.listName] = filteredItems;
-        result.listsNextListNames[checklistList.listName] = checklistList.nextListNames;
-        result.listsData[checklistList.listName] = {
-            description: pick(checklistList.description),
-        };
-    });
-
-    return result;
+        // Most likely with have a terminal filter in the defaults, but if not
+        // what remains gets included.
+        return ChecklistFiltersResults.INCLUDE;
+    };
 }, [checklistData, selectedFilters]);
+
+export const useChecklistFilteredLists = ({ checklistData, selectedFilters }) => {
+    const filterFN = useChecklistFilterFunction({ checklistData, selectedFilters });
+
+    return useDeepMemo(
+        () => {
+            const { listNames, listsData, listItemsData } = checklistData;
+
+            const itemIncluded = (itemName) => filterFN(listItemsData[itemName]) === ChecklistFiltersResults.INCLUDE;
+
+            return listNames
+                .map((listName) => ({
+                    listName,
+                    items: listsData[listName].items.filter(itemIncluded),
+                }))
+                .filter((value) => value.items.length > 0);
+        },
+        [checklistData, filterFN],
+    );
+};

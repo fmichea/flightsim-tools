@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export const AltimeterPropTypes = {
     data: PropTypes.shape({
         altimeterUnitP: PropTypes.string,
-        valueP: PropTypes.number,
+        valueP: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }).isRequired,
 
     prettyArgs: PropTypes.shape({

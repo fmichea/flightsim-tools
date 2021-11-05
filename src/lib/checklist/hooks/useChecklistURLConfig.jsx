@@ -1,9 +1,10 @@
+import { useMemo } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router';
 import { pick } from 'lib/pick';
 import { useQueryParams } from 'lib/hooks/useQueryParams';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { useMemo } from 'react';
 import { ChecklistsWithNameAndListNameRoute, ChecklistsWithNameRoute } from 'lib/routes';
+import { useDeepMemo } from 'lib/hooks/deep';
 
 export class ChecklistURLManager {
     constructor({
@@ -91,7 +92,7 @@ export const useChecklistURLConfig = () => {
         selectedFilters,
     };
 
-    const checklistURLManager = useMemo(
+    const checklistURLManager = useDeepMemo(
         () => new ChecklistURLManager({ history, ...result }),
         [history, result],
     );

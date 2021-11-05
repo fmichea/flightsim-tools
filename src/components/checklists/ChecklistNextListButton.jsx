@@ -9,6 +9,10 @@ export const ChecklistNextListButton = ({ title, isEmergency, onClick }) => {
     const classNames = css({
         fontWeight: 'bold',
         marginTop: '15px',
+        marginLeft: '10px',
+
+        paddingLeft: '15px',
+        paddingRight: '15px',
     });
 
     const buttonType = isEmergency ? 'danger' : 'primary';
@@ -16,10 +20,9 @@ export const ChecklistNextListButton = ({ title, isEmergency, onClick }) => {
     return (
         <Button
             className={classNames}
-            size="large"
+            size="small"
             type={buttonType}
             onClick={onClick}
-            block
         >
             Next:
             {' '}

@@ -1,47 +1,76 @@
-import { styled, useStyletron } from 'styletron-react';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { Button, Empty, Typography } from 'antd';
-import { Clearfix } from 'components/lib/Clearfix';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { styled, useStyletron } from 'styletron-react';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { Button, Progress, Typography } from 'antd';
+import { Clearfix } from 'components/lib/Clearfix';
+import { DarkerGrey } from 'components/lib/colors';
+import { VWSpace } from 'components/lib/spaces';
+import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
+
+const ChecklistListTitleContainer = styled('div', {
+    height: '30px',
+    borderBottom: `2px solid ${DarkerGrey}`,
+});
 
 const ChecklistListInfoDescription = styled('div', {
     padding: '0px 20px 10px 20px',
 });
 
-export const ChecklistListInfo = ({ checklistListData, onClick }) => {
+const ChecklistListProgressContainer = styled('div', {
+    width: '200px',
+    float: 'right',
+    marginRight: '20px',
+});
+
+export const ChecklistListInfo = ({
+    checklistData,
+    checklistName,
+    checklistListName,
+    checklistURLManager,
+}) => {
     const [css] = useStyletron();
 
-    if (isNullOrUndefined(checklistListData)) {
-        const description = (
-            <>
-                Unknown checklist list with selected filters. Clear filters or select another list from menu.
-            </>
-        );
-        return <Empty description={description} />;
-    }
+    const {
+        title,
+        description,
+        progressPercent,
+        setActiveCallback,
+        resetCallback,
+    } = useChecklistListInfoData({
+        checklistData, checklistName, checklistListName, checklistURLManager,
+    });
 
     return (
         <>
-            <div>
+            <ChecklistListTitleContainer>
                 <Button
                     type="danger"
-                    onClick={onClick}
+                    onClick={resetCallback}
                     className={css({ float: 'right' })}
+                    size="small"
                 >
                     Reset
                 </Button>
-                <Title level={3} className={css({ marginBottom: '0px !important' })}>
-                    {checklistListData.title}
+                <ChecklistListProgressContainer>
+                    <Progress percent={progressPercent} size="small" />
+                </ChecklistListProgressContainer>
+                <Title level={4}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <Link onClick={setActiveCallback}>&para;</Link>
+                    <VWSpace $width="1em" />
+                    {title}
                 </Title>
                 <Clearfix />
-            </div>
+            </ChecklistListTitleContainer>
 
-            {isNullOrUndefined(checklistListData.description) ? null : (
+            {isNullOrUndefined(description) ? null : (
                 <ChecklistListInfoDescription>
-                    {checklistListData.description}
+                    {description}
                 </ChecklistListInfoDescription>
             )}
         </>
@@ -50,13 +79,8 @@ export const ChecklistListInfo = ({ checklistListData, onClick }) => {
 };
 
 ChecklistListInfo.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    checklistListData: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        description: PropTypes.node,
-    }),
-};
-
-ChecklistListInfo.defaultProps = {
-    checklistListData: null,
+    checklistData: ChecklistDataPropTypes.isRequired,
+    checklistURLManager: ChecklistURLManagerPropTypes.isRequired,
+    checklistName: PropTypes.string.isRequired,
+    checklistListName: PropTypes.string.isRequired,
 };

@@ -31,12 +31,13 @@ describe('useChecklist', () => {
     test('overall test all pieces are set together', () => {
         const { getCurrentHookResult } = setup();
 
-        const values = getCurrentHookResult();
+        const { checklistData, checklistListsData, resetFullCallback } = getCurrentHookResult();
 
-        expect(values.menuItems).toHaveLength(15);
-        expect(values.items).toHaveLength(3);
-        expect(values.nextLists).toHaveLength(2);
-        expect(values.resetCallback).toBeDefined();
-        expect(values.resetFullCallback).toBeDefined();
+        expect(checklistData).toBeDefined();
+
+        expect(checklistListsData[0].listName).toEqual('before-engine-start');
+        expect(checklistListsData[0].items).toHaveLength(13);
+
+        expect(resetFullCallback).toBeDefined();
     });
 });

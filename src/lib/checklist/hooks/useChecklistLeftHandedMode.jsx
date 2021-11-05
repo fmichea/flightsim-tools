@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 import { getChecklistGlobalConfig } from 'state/readers/checklist';
 import { toggleLeftHandedMode } from 'state/actions/checklist';
+import { useDeepSelector } from 'lib/hooks/deep';
 
 export const useChecklistLeftHandedMode = () => {
     const dispatch = useDispatch();
 
-    const { leftHandedMode } = useSelector(getChecklistGlobalConfig);
+    const { leftHandedMode } = useDeepSelector(getChecklistGlobalConfig);
 
     const toggleLeftHandedModeHandler = useMemo(
         () => () => dispatch(toggleLeftHandedMode()),

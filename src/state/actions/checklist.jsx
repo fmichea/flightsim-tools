@@ -3,6 +3,7 @@ import {
     INITIALIZE_CHECKLIST,
     RESET_CHECKED_ITEMS,
     RESET_LIST_CHECKED_ITEMS,
+    TOGGLE_ITEM,
     TOGGLE_LEFT_HANDED_MODE,
     UNCHECK_ITEM,
 } from 'state/constants/checklist';
@@ -22,6 +23,13 @@ export const checkItem = (checklistName, checklistListName, itemKey) => ({
 
 export const uncheckItem = (checklistName, checklistListName, itemKey) => ({
     type: UNCHECK_ITEM,
+    checklistName,
+    checklistListName,
+    itemKey,
+});
+
+export const toggleItem = (checklistName, checklistListName, itemKey) => ({
+    type: TOGGLE_ITEM,
     checklistName,
     checklistListName,
     itemKey,

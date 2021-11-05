@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { Menu } from 'antd';
 import { useHistory, useLocation } from 'react-router';
 import { styled } from 'styletron-react';
-import { objectMap } from 'lib/objectMap';
+import { objectMap } from 'lib/objects';
 import { Checklists } from 'lib/checklist/data/checklists';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { MetarExplainerRoute } from 'lib/routes';

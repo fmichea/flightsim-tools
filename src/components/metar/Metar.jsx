@@ -7,7 +7,7 @@ import { parseMETAR } from 'lib/metar/parser';
 import { Monospaced } from 'components/lib/Monospaced';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { pick } from 'lib/pick';
-import { objectMap } from 'lib/objectMap';
+import { objectMap } from 'lib/objects';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import PropTypes from 'prop-types';
 import { TokenRenderers } from 'components/metar/renderers/mapping';

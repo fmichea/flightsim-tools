@@ -28,8 +28,10 @@ describe('ChecklistListItemHelp', () => {
             },
         });
 
-        act(() => compWrapper().find('sup').at(0).props()
-            .onClick());
+        act(() => {
+            const span = compWrapper().find('span').at(0);
+            return span.props().onClick();
+        });
 
         const question = compWrapper().find('[aria-label="question-circle"]');
         expect(question).toHaveLength(1);
@@ -53,8 +55,10 @@ describe('ChecklistListItemHelp', () => {
             },
         });
 
-        act(() => compWrapper().find('sup').at(0).props()
-            .onClick());
+        act(() => {
+            const span = compWrapper().find('span').at(0);
+            return span.props().onClick();
+        });
 
         const question = compWrapper().find('[aria-label="question-circle"]');
         expect(question).toHaveLength(1);

@@ -1,8 +1,8 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
 import { List, Switch } from 'antd';
 import { Clearfix } from 'components/lib/Clearfix';
-import React from 'react';
-import PropTypes from 'prop-types';
 
 const ChecklistConfigurationSwitchContainer = styled('div', {
     width: '100%',
@@ -10,10 +10,7 @@ const ChecklistConfigurationSwitchContainer = styled('div', {
 
 const ChecklistConfigurationSwitchSwitchContainer = styled('div', {
     float: 'right',
-});
-
-const ChecklistConfigurationSwitchDescription = styled('div', {
-    display: 'inline-block',
+    marginLeft: '20px',
 });
 
 export const ChecklistConfigurationSwitch = ({
@@ -24,14 +21,15 @@ export const ChecklistConfigurationSwitch = ({
             <ChecklistConfigurationSwitchSwitchContainer>
                 <Switch checked={checked} onChange={onChange} onClick={onClick} />
             </ChecklistConfigurationSwitchSwitchContainer>
-            <ChecklistConfigurationSwitchDescription>
+
+            <div>
                 <strong>
                     {title}
                     :
                 </strong>
                 {' '}
                 {description}
-            </ChecklistConfigurationSwitchDescription>
+            </div>
             <Clearfix />
         </ChecklistConfigurationSwitchContainer>
     </List.Item>

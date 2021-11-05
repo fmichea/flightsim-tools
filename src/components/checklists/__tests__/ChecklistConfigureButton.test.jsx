@@ -4,19 +4,15 @@ import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigu
 import { pick } from 'lib/pick';
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { act } from '@testing-library/react';
+import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
+import { mockChecklistURLManager } from 'tests/data/checklists/mocks/checklistURLManager';
 
 const setup = ({ props } = {}) => {
-    const checklistURLManager = {
-        addFilter: jest.fn(),
-        removeFilter: jest.fn(),
-    };
+    const checklistURLManager = mockChecklistURLManager();
 
     const defaultProps = {
         checklistURLManager,
-        filters: [
-            ChecklistFilters.INCLUDE_VATSIM_ITEMS,
-            ChecklistFilters.INCLUDE_SIMSETUP_ITEMS,
-        ],
+        checklistData: TestDataHookChecklistData,
         selectedFilters: [
             ChecklistFilters.INCLUDE_VATSIM_ITEMS,
         ],
