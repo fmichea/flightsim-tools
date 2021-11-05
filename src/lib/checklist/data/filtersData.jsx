@@ -15,7 +15,7 @@ const commonFiltersData = createMappingFunction()([
         ),
         terminal: true,
         fn: (item) => {
-            if (item.tags.has(ChecklistTags.OFFICIAL)) {
+            if (item.tagsSet.has(ChecklistTags.OFFICIAL)) {
                 return ChecklistFiltersResults.INCLUDE;
             }
             return ChecklistFiltersResults.EXCLUDE;
@@ -32,7 +32,7 @@ const commonFiltersData = createMappingFunction()([
             </>
         ),
         fn: (item) => {
-            if (item.tags.has(ChecklistTags.VATSIM)) {
+            if (item.tagsSet.has(ChecklistTags.VATSIM)) {
                 return ChecklistFiltersResults.INCLUDE;
             }
             return ChecklistFiltersResults.PASS;
@@ -48,7 +48,7 @@ const commonFiltersData = createMappingFunction()([
             </>
         ),
         fn: (item) => {
-            if (item.tags.has(ChecklistTags.EXTENSION)) {
+            if (item.tagsSet.has(ChecklistTags.EXTENSION)) {
                 return ChecklistFiltersResults.INCLUDE;
             }
             return ChecklistFiltersResults.PASS;
@@ -64,7 +64,7 @@ const commonFiltersData = createMappingFunction()([
             </>
         ),
         fn: (item) => {
-            if (item.tags.has(ChecklistTags.SIMSETUP)) {
+            if (item.tagsSet.has(ChecklistTags.SIMSETUP)) {
                 return ChecklistFiltersResults.INCLUDE;
             }
             return ChecklistFiltersResults.PASS;

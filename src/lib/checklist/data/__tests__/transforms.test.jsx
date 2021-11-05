@@ -17,12 +17,14 @@ describe('transforms', () => {
         expect(result).toEqual({
             value1: {
                 uid: 'value1',
-                tags: new Set(),
+                tags: [],
+                tagsSet: new Set(),
                 description: 'description for value 1',
             },
             value2: {
                 uid: 'value2',
-                tags: new Set(['tag1']),
+                tags: ['tag1'],
+                tagsSet: new Set(['tag1']),
                 description: 'value 2 is desc',
             },
         });
@@ -46,13 +48,15 @@ describe('transforms', () => {
         expect(result).toEqual({
             value1: {
                 uid: 'value1',
-                tags: new Set(),
+                tags: [],
+                tagsSet: new Set(),
                 description: 'description for value 1',
                 addedThing: 'here',
             },
             value2: {
                 uid: 'value2',
-                tags: new Set(['tag1']),
+                tags: ['tag1'],
+                tagsSet: new Set(['tag1']),
                 description: 'value 2 is desc',
                 addedThing: 'here',
             },

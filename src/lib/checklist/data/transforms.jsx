@@ -11,7 +11,7 @@ const transformTagsInit = (value) => {
 
 const transformTagsMakeSet = (value) => ({
     ...value,
-    tags: new Set(value.tags),
+    tagsSet: new Set(value.tags),
 });
 
 export const createMappingFunction = (...transforms) => (values) => {

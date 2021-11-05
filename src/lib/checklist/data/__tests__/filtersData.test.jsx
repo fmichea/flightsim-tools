@@ -14,10 +14,10 @@ describe('filtersData', () => {
 
         expect(tagData.terminal).toBeTruthy();
 
-        expect(tagData.fn({ tags: new Set([ChecklistTags.OFFICIAL]) }))
+        expect(tagData.fn({ tagsSet: new Set([ChecklistTags.OFFICIAL]) }))
             .toEqual(ChecklistFiltersResults.INCLUDE);
 
-        expect(tagData.fn({ tags: new Set([ChecklistTags.VATSIM]) }))
+        expect(tagData.fn({ tagsSet: new Set([ChecklistTags.VATSIM]) }))
             .toEqual(ChecklistFiltersResults.EXCLUDE);
     });
 
@@ -26,11 +26,11 @@ describe('filtersData', () => {
 
         expect(tagData.terminal).toBeFalsy();
 
-        expect(tagData.fn({ tags: new Set([ChecklistTags.VATSIM]) }))
+        expect(tagData.fn({ tagsSet: new Set([ChecklistTags.VATSIM]) }))
             .toEqual(ChecklistFiltersResults.INCLUDE);
 
         expect(tagData.fn({
-            tags: new Set([
+            tagsSet: new Set([
                 ChecklistTags.OFFICIAL,
                 ChecklistTags.EXTENSION,
                 ChecklistTags.SIMSETUP,
@@ -43,11 +43,11 @@ describe('filtersData', () => {
 
         expect(tagData.terminal).toBeFalsy();
 
-        expect(tagData.fn({ tags: new Set([ChecklistTags.EXTENSION]) }))
+        expect(tagData.fn({ tagsSet: new Set([ChecklistTags.EXTENSION]) }))
             .toEqual(ChecklistFiltersResults.INCLUDE);
 
         expect(tagData.fn({
-            tags: new Set([
+            tagsSet: new Set([
                 ChecklistTags.OFFICIAL,
                 ChecklistTags.VATSIM,
                 ChecklistTags.SIMSETUP,
@@ -60,11 +60,11 @@ describe('filtersData', () => {
 
         expect(tagData.terminal).toBeFalsy();
 
-        expect(tagData.fn({ tags: new Set([ChecklistTags.SIMSETUP]) }))
+        expect(tagData.fn({ tagsSet: new Set([ChecklistTags.SIMSETUP]) }))
             .toEqual(ChecklistFiltersResults.INCLUDE);
 
         expect(tagData.fn({
-            tags: new Set([
+            tagsSet: new Set([
                 ChecklistTags.OFFICIAL,
                 ChecklistTags.EXTENSION,
                 ChecklistTags.VATSIM,

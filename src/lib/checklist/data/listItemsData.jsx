@@ -20,7 +20,7 @@ export const ChecklistItemsData = Object.freeze({
 
 export const ChecklistItemsNotImplemented = new Set(
     Object
-        .entries(objectMap(ChecklistItemsData, (item) => item.tags.has(ChecklistTags.NOT_IMPLEMENTED)))
+        .entries(objectMap(ChecklistItemsData, (item) => item.tagsSet.has(ChecklistTags.NOT_IMPLEMENTED)))
         .filter((keyValue) => keyValue[1])
         .map((keyValue) => keyValue[0]),
 );
