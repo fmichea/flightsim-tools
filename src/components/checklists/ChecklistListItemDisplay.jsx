@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled } from 'styletron-react';
-import { useChecklistLeftHandedMode } from 'lib/checklist/hooks/useChecklistLeftHandedMode';
 import {
     DarkerGrey,
     DarkGrey,
@@ -15,6 +14,7 @@ import { ChecklistListItemSwitch } from 'components/checklists/ChecklistListItem
 import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
 import PropTypes from 'prop-types';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 
 const ChecklistListItemWrapper = styled('tr', (props) => ({
     padding: '0.3em',
@@ -77,9 +77,11 @@ export const ChecklistListItemDisplay = ({
         itemName,
     });
 
-    const { leftHandedMode } = useChecklistLeftHandedMode();
+    const {
+        leftHandedMode, hideTagsMode, hideHelpMode, hideSwitchesMode,
+    } = useChecklistGlobalConfig();
 
-    const switchColumn = (
+    const switchColumn = hideSwitchesMode ? null : (
         <ChecklistItemColumn $fitToContent $isFirst={leftHandedMode} $isLast={!leftHandedMode} onClick={toggleChecked}>
             <ChecklistListItemSwitch isChecked={isChecked} isNotImplemented={isNotImplemented} />
         </ChecklistItemColumn>
@@ -88,13 +90,23 @@ export const ChecklistListItemDisplay = ({
     const rightColumn = leftHandedMode ? null : switchColumn;
     const leftColumn = leftHandedMode ? switchColumn : null;
 
+    const isSwitchColumnFirst = leftHandedMode && !hideSwitchesMode;
+    const isTagsColumnFirst = !isSwitchColumnFirst;
+    const isTitleColumnFirst = !isSwitchColumnFirst && hideTagsMode;
+
+    const isSwitchColumnLast = !leftHandedMode && !hideSwitchesMode;
+    const isHelpColumnLast = !isSwitchColumnLast;
+    const isStateColumnLast = !isSwitchColumnLast && hideHelpMode;
+
     return (
         <ChecklistListItemWrapper $isChecked={isChecked} $isNotImplemented={isNotImplemented}>
             {leftColumn}
-            <ChecklistItemColumn $isFirst={!leftHandedMode} $fitToContent>
-                <ChecklistListItemTags tagsData={tagsData} />
-            </ChecklistItemColumn>
-            <ChecklistItemColumn>
+            {hideTagsMode ? null : (
+                <ChecklistItemColumn $isFirst={isTagsColumnFirst} $fitToContent>
+                    <ChecklistListItemTags tagsData={tagsData} />
+                </ChecklistItemColumn>
+            )}
+            <ChecklistItemColumn $isFirst={isTitleColumnFirst}>
                 <ChecklistListItemTitle>
                     {title}
                 </ChecklistListItemTitle>
@@ -104,19 +116,21 @@ export const ChecklistListItemDisplay = ({
                     </ChecklistListItemSubTitle>
                 )}
             </ChecklistItemColumn>
-            <ChecklistItemColumn $fitToContent>
+            <ChecklistItemColumn $fitToContent $isLast={isStateColumnLast}>
                 <ChecklistListItemState>
                     {state}
                 </ChecklistListItemState>
             </ChecklistItemColumn>
-            <ChecklistItemColumn $fitToContent $isLast={leftHandedMode}>
-                <ChecklistListItemHelp
-                    title={title}
-                    state={state}
-                    moreInfoShort={moreInfoShort}
-                    moreInfoLong={moreInfoLong}
-                />
-            </ChecklistItemColumn>
+            {hideHelpMode ? null : (
+                <ChecklistItemColumn $fitToContent $isLast={isHelpColumnLast}>
+                    <ChecklistListItemHelp
+                        title={title}
+                        state={state}
+                        moreInfoShort={moreInfoShort}
+                        moreInfoLong={moreInfoLong}
+                    />
+                </ChecklistItemColumn>
+            )}
             {rightColumn}
         </ChecklistListItemWrapper>
     );

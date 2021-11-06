@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Button, List, Modal } from 'antd';
 import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
-import { useChecklistLeftHandedMode } from 'lib/checklist/hooks/useChecklistLeftHandedMode';
+import { useChecklistGlobalConfigWithTogglers } from 'lib/checklist/hooks/useChecklistGlobalConfigWithTogglers';
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 
@@ -15,7 +15,7 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
 
     const modalVisible = useBooleanToggle(false);
 
-    const { leftHandedMode, toggleLeftHandedModeHandler } = useChecklistLeftHandedMode();
+    const { checklistConfig, togglers } = useChecklistGlobalConfigWithTogglers();
 
     const filterItems = useMemo(() => {
         const fn = (filterData) => {
@@ -63,14 +63,37 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
                     <ChecklistConfigurationSwitch
                         title="Left Handed Mode"
                         description="Move all checkmarks to the left side of the screen."
-                        checked={leftHandedMode}
-                        onClick={toggleLeftHandedModeHandler}
+                        checked={checklistConfig.leftHandedMode}
+                        onClick={togglers.leftHandedMode}
+                    />
+
+                    <ChecklistConfigurationSwitch
+                        title="Hide Tags Mode"
+                        description="Hide all of the tags from the list."
+                        checked={checklistConfig.hideTagsMode}
+                        onClick={togglers.hideTagsMode}
+                    />
+
+                    <ChecklistConfigurationSwitch
+                        title="Hide Help Mode"
+                        description="Hide all of the help info from the list."
+                        checked={checklistConfig.hideHelpMode}
+                        onClick={togglers.hideHelpMode}
+                    />
+
+                    <ChecklistConfigurationSwitch
+                        title="Hide Switches Mode"
+                        description="Hide the toggleable switch from the list."
+                        checked={checklistConfig.hideSwitchesMode}
+                        onClick={togglers.hideSwitchesMode}
                     />
                 </List>
 
-                <List header={<><strong>Filters</strong></>}>
-                    {filterItems}
-                </List>
+                {filterItems.length === 0 ? null : (
+                    <List header={<><strong>Filters</strong></>}>
+                        {filterItems}
+                    </List>
+                )}
             </Modal>
         </>
     );

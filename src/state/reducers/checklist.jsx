@@ -1,12 +1,13 @@
 import {
-    CHECK_ITEM,
     defaultChecklistListState,
     defaultChecklistState,
     INITIALIZE_CHECKLIST,
     RESET_CHECKED_ITEMS,
-    RESET_LIST_CHECKED_ITEMS, TOGGLE_ITEM,
+    RESET_LIST_CHECKED_ITEMS,
+    TOGGLE_HIDE_HELP_MODE, TOGGLE_HIDE_SWITCHES_MODE,
+    TOGGLE_HIDE_TAGS_MODE,
+    TOGGLE_ITEM,
     TOGGLE_LEFT_HANDED_MODE,
-    UNCHECK_ITEM,
 } from 'state/constants/checklist';
 import { intersection } from 'lib/sets';
 import { objectMap } from 'lib/objects';
@@ -83,12 +84,6 @@ const checklistListReducer = (state = defaultChecklistListState, action) => {
             ))),
         };
 
-    case CHECK_ITEM:
-        return checkItem(state, action.checklistListName, action.itemKey);
-
-    case UNCHECK_ITEM:
-        return uncheckItem(state, action.checklistListName, action.itemKey);
-
     case TOGGLE_ITEM:
         if (state.checkedItems.includes(action.itemKey)) {
             return uncheckItem(state, action.checklistListName, action.itemKey);
@@ -100,20 +95,29 @@ const checklistListReducer = (state = defaultChecklistListState, action) => {
     }
 };
 
+const toggleGlobalConfig = (state, fn) => ({
+    ...state,
+    config: {
+        ...state.config,
+        ...fn(state.config),
+    },
+});
+
 export const checklistReducer = (state = defaultChecklistState, action) => {
     switch (action.type) {
     case TOGGLE_LEFT_HANDED_MODE:
-        return {
-            ...state,
-            config: {
-                ...state.config,
-                leftHandedMode: !state.config.leftHandedMode,
-            },
-        };
+        return toggleGlobalConfig(state, (config) => ({ leftHandedMode: !config.leftHandedMode }));
+
+    case TOGGLE_HIDE_TAGS_MODE:
+        return toggleGlobalConfig(state, (config) => ({ hideTagsMode: !config.hideTagsMode }));
+
+    case TOGGLE_HIDE_HELP_MODE:
+        return toggleGlobalConfig(state, (config) => ({ hideHelpMode: !config.hideHelpMode }));
+
+    case TOGGLE_HIDE_SWITCHES_MODE:
+        return toggleGlobalConfig(state, (config) => ({ hideSwitchesMode: !config.hideSwitchesMode }));
 
     case INITIALIZE_CHECKLIST:
-    case CHECK_ITEM:
-    case UNCHECK_ITEM:
     case TOGGLE_ITEM:
     case RESET_CHECKED_ITEMS:
     case RESET_LIST_CHECKED_ITEMS:
