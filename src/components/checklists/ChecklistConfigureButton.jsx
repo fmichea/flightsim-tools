@@ -6,6 +6,8 @@ import { useChecklistLeftHandedMode } from 'lib/checklist/hooks/useChecklistLeft
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 
+const modalStyle = { maxWidth: '1000px' };
+
 export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, selectedFilters }) => {
     const { selectableFilters: filters, selectableFiltersData: filtersData } = checklistData;
 
@@ -55,6 +57,7 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
                 cancelButtonProps={{ style: { display: 'none' } }}
                 maskClosable
                 width="90vw"
+                style={modalStyle}
             >
                 <List header={<strong>Interface</strong>}>
                     <ChecklistConfigurationSwitch
