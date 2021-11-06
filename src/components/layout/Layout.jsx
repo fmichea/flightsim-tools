@@ -5,6 +5,7 @@ import { Navbar } from 'components/layout/Navbar';
 import { Footer } from 'components/layout/Footer';
 import { HeaderLogo } from 'components/layout/HeaderLogo';
 import PropTypes from 'prop-types';
+import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
 
 const { Header, Content } = ANTDLayout;
 
@@ -13,6 +14,8 @@ const LayoutBackground = styled('div', {
     padding: '24px',
     minHeight: '360px',
     width: '100%',
+    maxWidth: '1200px',
+    margin: 'auto',
 });
 
 export const Layout = ({ children }) => {
@@ -21,9 +24,10 @@ export const Layout = ({ children }) => {
     return (
         <ANTDLayout className={css({ minHeight: '100vh' })}>
             <Header>
-                <HeaderLogo />
-
-                <Navbar />
+                <CenteredContentContainer>
+                    <HeaderLogo />
+                    <Navbar />
+                </CenteredContentContainer>
             </Header>
 
             <Content className={css({ margin: '0 16px' })}>

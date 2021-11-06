@@ -11,7 +11,8 @@ const ChecklistItemHelpWrapper = styled('span', {
     verticalAlign: 'middle',
 });
 
-const tooltipOverlayStyle = { maxWidth: '50vw' };
+const modalStyle = { maxWidth: '1000px' };
+const tooltipOverlayStyle = { maxWidth: '800px' };
 const cancelButtonProps = { style: { display: 'none' } };
 
 export const ChecklistListItemHelp = ({
@@ -58,6 +59,7 @@ export const ChecklistListItemHelp = ({
                 onCancel={modalVisible.toggleOff}
                 cancelButtonProps={cancelButtonProps}
                 width="60vw"
+                style={modalStyle}
                 maskClosable
             >
                 {isNotNullOrUndefined(moreInfoLong) ? moreInfoLong : moreInfoShort}
