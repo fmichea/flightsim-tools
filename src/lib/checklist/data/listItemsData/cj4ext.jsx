@@ -3,6 +3,8 @@ import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { Monospaced } from 'components/lib/Monospaced';
 import React from 'react';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { KeyboardInputs } from 'components/lib/KeyboardInputs';
+import { CASMessage } from 'components/lib/CASMessage';
 
 const addCJ4EXTTags = (value) => ({
     ...value,
@@ -27,10 +29,10 @@ export const CJ4ExtChecklistItemsData = createMappingFunction(addCJ4EXTTags)([
                 <br />
                 External Power can be enabled on FMS with the following set of keypresses:
                 {' '}
-                <Monospaced>IDX &gt; NEXT &gt; LSK 3 (MOD SET) &gt; LSK 4 (Ground Power Unit to ON)</Monospaced>
+                <KeyboardInputs inputs={['IDX', 'NEXT', 'LSK 3 (MOD SET)', 'LSK 4 (Ground Power Unit to ON)']} />
                 .
                 {' '}
-                <Monospaced>BAT AMP</Monospaced>
+                <CASMessage level="warning">BAT AMP</CASMessage>
                 {' '}
                 warning should disappear from MFD.
             </>

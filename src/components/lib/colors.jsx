@@ -1,5 +1,6 @@
 export const DarkerGrey = 'rgb(45, 45, 45, .25)';
 export const DarkGrey = 'rgb(54, 54, 54)';
+export const LightGrey = 'rgb(227,227,227)';
 export const DarkRed = 'rgb(180, 51, 51)';
 
 export const LightBlueBGHover = 'rgba(108, 233, 255, 0.1)';

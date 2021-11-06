@@ -5,6 +5,8 @@ import { createMappingFunction } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { ExternalLink } from 'components/lib/ExternalLink';
+import { KeyboardInputs } from 'components/lib/KeyboardInputs';
+import { CASMessage } from 'components/lib/CASMessage';
 
 const addCJ4Tags = (value) => ({
     ...value,
@@ -69,7 +71,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 Emergency Lights switch is in the electrical panel along with battery switch, on the second row
                 on the left. It can be armed by moving it in the up position. Warning
                 {' '}
-                <Monospaced>EMER LIGHTS NOT ARMED</Monospaced>
+                <CASMessage level="warning">EMER LIGHTS NOT ARMED</CASMessage>
                 {' '}
                 should disappear from MFD after completing this step.
             </>
@@ -130,7 +132,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Passenger briefing can be started using the CCP below the MFD with the
                 {' '}
-                <Monospaced>PASS BRIEF</Monospaced>
+                <KeyboardInputs inputs={['PASS BRIEF']} />
                 {' '}
                 button (bottom right). Use one of the two available TAKEOFF briefings depending on how familiar
                 your passengers are with flying.
@@ -188,7 +190,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                     <ListItem>
                         <strong>Position Init:</strong>
                         {' '}
-                        <Monospaced>IDX &gt; LSK 4 (POS INIT) &gt; RSK 4 (SET POS TO GNSS)</Monospaced>
+                        <KeyboardInputs inputs={['IDX', 'LSK 4 (POS INIT)', 'RSK 4 (SET POS TO GNSS)']} />
                     </ListItem>
                     <ListItem>
                         <strong>Flight Plan programming:</strong>
@@ -200,7 +202,8 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                         <strong>Departure programming:</strong>
                         {' '}
                         Using
-                        <Monospaced>DEP/ARR</Monospaced>
+                        {' '}
+                        <KeyboardInputs inputs={['DEP/ARR']} />
                         {' '}
                         menu, runway must be selected.
                     </ListItem>
@@ -209,7 +212,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                         {' '}
                         After setting fuel based on pre-flight planning in the weights menu, passenger and cargo
                         weight (or GWT) should be initialized in FMS in the performance initialization page. (
-                        <Monospaced>PERF &gt; LSK 1 (PERF INIT)</Monospaced>
+                        <KeyboardInputs inputs={['PERF', 'LSK 1 (PERF INIT)']} />
                         ). Planned cruise altitude should also be initialized.
                     </ListItem>
                 </List>
@@ -440,13 +443,13 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Take-off data can be set on FMS with the following key presses:
                 {' '}
-                <Monospaced>PERF &gt; LSK 3 (TAKEOFF)</Monospaced>
+                <KeyboardInputs inputs={['PERF', 'LSK 3 (TAKEOFF)']} />
                 .
                 Mandatory fields are Runway (RNW) taken from departure, runway condition (dry/wet), outside air
                 temperature (OAT) and QNH. Once filled, go to second page using NEXT button, review the takeoff speeds
                 on the right side and click send using
                 {' '}
-                <Monospaced>RSK 6 (SEND)</Monospaced>
+                <KeyboardInputs inputs={['RSK 6 (SEND)']} />
                 .
                 <br />
                 <br />
@@ -691,7 +694,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 In FMS, set TCAS to mode TA/RA by clicking
                 {' '}
-                <Monospaced>TUN &gt; RSK 5 (TA/RA)</Monospaced>
+                <KeyboardInputs inputs={['TUN', 'RSK 5 (TA/RA)']} />
                 . This turns mode C on for transponder, emitting altitude information.
             </>
         ),
@@ -715,7 +718,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 Above FMS/MFD right of DCP there is a black button below the FIRE button which
                 enables Takeoff/Go Around mode. It should be pushed once and
                 {' '}
-                <Monospaced>TO TO</Monospaced>
+                <CASMessage level="info">TO TO</CASMessage>
                 {' '}
                 should display
                 on the autopilot line. Flight director should also display with intended pitch at
@@ -851,7 +854,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Yaw Damper can be enabled using the the button labelled
                 {' '}
-                <Monospaced>YD</Monospaced>
+                <KeyboardInputs inputs={['YD']} />
                 {' '}
                 just left of the autopilot button. This step is not necessary if you intend to enable autopilot
                 immediately as yaw damper is enabled with AP.
@@ -866,7 +869,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Autopilot may be enabled using the button labelled
                 {' '}
-                <Monospaced>AP</Monospaced>
+                <KeyboardInputs inputs={['AP']} />
                 {' '}
                 on the autopilot row. If enabled, you should also select modes like heading.
             </>
@@ -1006,25 +1009,25 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 Once approach and runway is confirmed, configure landing performance using wind, temperature and
                 pressure altitude found in latest METAR/ATIS. This can be configured under
                 {' '}
-                <Monospaced>PERF &gt; RSK 3 (APPROACH)</Monospaced>
-                .
-                The mandatory configuration are on first page,
+                <KeyboardInputs inputs={['PERF', 'RSK 3 (APPROACH)']} />
+                . The mandatory configuration are on first page,
                 {' '}
-                <Monospaced>RSK 2 (TEMP)</Monospaced>
+                <KeyboardInputs inputs={['RSK 2 (TEMP)']} />
                 {' '}
                 which should be set to the runway outside air temperature, and
                 {' '}
-                <Monospaced>RSK 3 (QNH)</Monospaced>
+                <KeyboardInputs inputs={['RSK 3 (QNH)']} />
                 {' '}
                 which should be set correctly if already out of standard mode, or otherwise changed to the correct
                 landing QNH. Runway WET condition can be set with
                 {' '}
-                <Monospaced>LSK 6</Monospaced>
+                <KeyboardInputs inputs={['LSK 6']} />
+                {' '}
                 and winds optionally via
                 {' '}
-                <Monospaced>RSK 1 (WIND)</Monospaced>
+                <KeyboardInputs inputs={['RSK 1 (WIND)']} />
                 . Then go to page two using NEXT key and send VAPP/VREF calculated using
-                <Monospaced>RSK 6</Monospaced>
+                <KeyboardInputs inputs={['RSK 6']} />
             </>
         ),
     },
@@ -1118,11 +1121,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Use the CCP below MFD to select the passenger briefing announcement by pressing the
                 {' '}
-                <Monospaced>PASS BRIEF</Monospaced>
+                <KeyboardInputs inputs={['PASS BRIEF']} />
                 {' '}
                 button, selecting
                 {' '}
-                <Monospaced>LANDING</Monospaced>
+                <CASMessage>LANDING</CASMessage>
                 {' '}
                 briefing using the menu selector.
             </>
@@ -1146,15 +1149,15 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Ensure both
                 {' '}
-                <Monospaced>SAFETY</Monospaced>
+                <KeyboardInputs inputs={['SAFETY']} />
                 {' '}
                 and
                 {' '}
-                <Monospaced>BELT</Monospaced>
+                <KeyboardInputs inputs={['BELT']} />
                 {' '}
                 lights are enabled under the
                 {' '}
-                <Monospaced>PASS LIGHTS</Monospaced>
+                <KeyboardInputs inputs={['PASS LIGHTS']} />
                 {' '}
                 section on the top part of center console.
             </>
@@ -1261,7 +1264,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Push GA button, which is located on the right side of PCP, above PFD. It is the button below
                 {' '}
-                <Monospaced>L ENG FIRE</Monospaced>
+                <KeyboardInputs inputs={['L ENG FIRE']} />
                 .
             </>
         ),
@@ -1341,7 +1344,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Yaw Damper can be enabled using the the button labelled
                 {' '}
-                <Monospaced>YD</Monospaced>
+                <KeyboardInputs inputs={['YD']} />
                 {' '}
                 just left of the autopilot button. This step is not necessary if you intend to enable autopilot
                 immediately as yaw damper is enabled with AP.
@@ -1356,7 +1359,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
             <>
                 Autopilot may be enabled using the
                 {' '}
-                <Monospaced>AP</Monospaced>
+                <KeyboardInputs inputs={['AP']} />
                 {' '}
                 within the autopilot controls of cabin. Verify modes engaged before engaging autopilot to avoid any
                 unexpected hard turns or altitude changes.
