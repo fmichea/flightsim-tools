@@ -41,6 +41,7 @@ const ChecklistListItemState = styled('div', {
     fontSize: '1em',
     fontWeight: 'bolder',
     color: '#545454',
+    textTransform: 'uppercase',
 });
 
 const ChecklistItemColumn = styled('td', (props) => ({
