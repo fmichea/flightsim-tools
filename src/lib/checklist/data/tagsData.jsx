@@ -12,15 +12,12 @@ const commonTagsData = createMappingFunction()([
     },
     {
         uid: ChecklistTags.EXTENSION,
-        hidden: true,
+        title: 'EXT',
+        color: '#080f8d',
     },
     {
         uid: ChecklistTags.CJ4,
         color: '#9d0606',
-    },
-    {
-        uid: ChecklistTags.CJ4EXT,
-        color: '#080f8d',
     },
     {
         uid: ChecklistTags.C172,

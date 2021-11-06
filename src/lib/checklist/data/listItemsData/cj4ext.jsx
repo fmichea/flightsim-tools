@@ -8,7 +8,7 @@ import { CASMessage } from 'components/lib/CASMessage';
 
 const addCJ4EXTTags = (value) => ({
     ...value,
-    tags: [...value.tags, ChecklistTags.CJ4EXT, ChecklistTags.EXTENSION],
+    tags: [...value.tags, ChecklistTags.CJ4, ChecklistTags.EXTENSION],
 });
 
 export const CJ4ExtChecklistItemsData = createMappingFunction(addCJ4EXTTags)([
