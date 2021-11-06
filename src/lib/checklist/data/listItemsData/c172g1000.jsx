@@ -142,6 +142,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
         uid: ChecklistItems.C172G1000_RUNUP_DOORS,
         title: 'Doors',
         state: 'CLOSED AND LOCKED',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172G1000_RUNUP_FLIGHT_INSTRUMENTS,
@@ -181,7 +182,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
     {
         uid: ChecklistItems.C172G1000_RUNUP_ELEVATOR_TRIM,
         title: 'Elevator Trim',
-        state: 'SET OF TAKEOFF',
+        state: 'SET FOR TAKEOFF',
     },
     {
         uid: ChecklistItems.C172G1000_RUNUP_ENGINE_INDICATORS,
@@ -227,6 +228,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
         uid: ChecklistItems.C172G1000_BEFORE_TAKEOFF_CABIN_PWR,
         title: 'Cabin Power 12V Switch',
         state: 'OFF',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172G1000_TAKEOFF_ANNUNCIATORS,
@@ -267,6 +269,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
         uid: ChecklistItems.C172G1000_BEFORE_LANDING_CABIN_PWR,
         title: 'Cabin Power 12V Switch',
         state: 'OFF',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172G1000_SECURING_MASTER_SWITCHES,

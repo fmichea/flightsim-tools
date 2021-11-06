@@ -1,6 +1,9 @@
+import React from 'react';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { createMappingFunction } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { CASMessage } from 'components/lib/CASMessage';
+import { Monospaced } from 'components/lib/Monospaced';
 
 const addC172Tags = (value) => ({
     ...value,
@@ -35,8 +38,21 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
     },
     {
         uid: ChecklistItems.C172_PREFLIGHT_LOW_FUEL_ANNUNCIATORS,
-        title: 'LOW FUEL L and LOW FUEL R Annunciators',
+        title: <>Low Fuel Annunciators</>,
         state: 'OFF',
+        moreInfoShort: (
+            <>
+                Check that neither
+                {' '}
+                <CASMessage level="warning">LOW FUEL L</CASMessage>
+                {' '}
+                or
+                {' '}
+                <CASMessage level="warning">LOW FUEL R</CASMessage>
+                {' '}
+                annunciators are displayed in the CAS messages.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.C172_PREFLIGHT_STATIC_PRESSURE_ALT_SOURCE_VALVE,
@@ -62,11 +78,13 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
         uid: ChecklistItems.C172_BEFORE_START_PREFLIGHT_INSPECTION,
         title: 'Preflight Inspection',
         state: 'COMPLETE',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_BEFORE_START_SEATS_BELTS,
         title: 'Seats, Belts',
         state: 'ADJUST AND LOCK',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_BEFORE_START_ELECTRICAL_EQUIPMENT,
@@ -202,11 +220,13 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
         uid: ChecklistItems.C172_RUNUP_SEATS_BACKS,
         title: 'Pilot and Passenger Seat Backs',
         state: 'MOST UPRIGHT POSITION',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_RUNUP_SEATS_BELTS,
         title: 'Seats, Belts',
         state: 'CHECK SECURE',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_RUNUP_FLIGHT_CONTROLS_1,
@@ -282,6 +302,7 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
         uid: ChecklistItems.C172_BEFORE_TAKEOFF_CABIN_WINDOWS,
         title: 'Cabin Windows',
         state: 'CLOSED AND LOCKED',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_BEFORE_TAKEOFF_PARKING_BRAKE,
@@ -397,11 +418,13 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
         uid: ChecklistItems.C172_BEFORE_LANDING_SEATS_BACKS,
         title: 'Pilot and Passenger Seat Backs',
         state: 'MOST UPRIGHT POSITION',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_BEFORE_LANDING_SEATS_BELTS,
         title: 'Seats, Belts',
         state: 'SECURED AND LOCKED',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_BEFORE_LANDING_FUEL_SELECTOR,
@@ -497,6 +520,7 @@ export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
         uid: ChecklistItems.C172_PARKING_MAGNETOS,
         title: 'Magnetos',
         state: 'CUTOFF TEST',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.C172_PARKING_MIXTURE,

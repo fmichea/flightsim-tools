@@ -143,6 +143,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_START_PILOTS_SEATS_ADJUSTED,
         title: 'Seats/Belts/Pedals',
         state: 'ADJUST/SECURE',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
         moreInfoShort: (
             <>
                 Adjust the Pilot&apos;s seating position and seat belt for safety.
@@ -641,6 +642,7 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_SEATS_UPRIGHT,
         title: 'Seats',
         state: 'UPRIGHT/OUTBOARD',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
         moreInfoShort: (<>Sit up pilot!</>),
     },
     {
@@ -1135,11 +1137,13 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_APPROACH_SEATS_UPRIGHT,
         title: 'Seats',
         state: 'UPRIGHT AND OUTBOARD',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_SEAT_BELTS,
         title: 'Seat Belts',
         state: 'ADJUSTED/SECURE',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_PASSENGER_LIGHTS,
