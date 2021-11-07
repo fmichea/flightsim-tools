@@ -1,8 +1,8 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
 import { AntiIceTags } from 'lib/anti-ice/data/tags';
 
-const cj4SystemModesData = createMappingFunction()([
+const cj4SystemModesData = createTransformedMapping()([
     {
         uid: AntiIceSystemModes.CJ4_WING_ENG_ANTI_ICE_MODE,
         title: 'Wing/Engine Anti-Ice',

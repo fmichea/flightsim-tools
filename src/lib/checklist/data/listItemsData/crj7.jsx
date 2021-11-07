@@ -1,13 +1,15 @@
+import React from 'react';
 import { ChecklistTags } from 'lib/checklist/data/tags';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { CASMessage } from 'components/lib/CASMessage';
 
 const addCRJ7Tags = (value) => ({
     ...value,
     tags: [...value.tags, ChecklistTags.CRJ7, ChecklistTags.OFFICIAL],
 });
 
-export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
+export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_CIRCUIT_BREAKERS,
         title: 'Circuit Breakers',
@@ -104,7 +106,20 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_CABIN_INSPECTION_CABIN_INSPECTION,
         title: 'Cabin Inspection',
         state: 'ACCOMPLISH',
-        tags: [ChecklistTags.NOT_IMPLEMENTED],
+        subItems: createTransformedList()([
+            {
+                title: 'Emergency Lights Switch',
+                state: 'ON',
+            },
+            {
+                title: 'NO SMOKING and SEAT BELT Signs',
+                state: 'AUTO',
+            },
+            {
+                title: 'Emergency Lights Switch',
+                state: 'OFF',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_CABIN_INSPECTION_WALKAROUND_INSPECTION,
@@ -127,17 +142,82 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_ELECTRICAL_POWER_PANEL,
         title: 'Electrical Power Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'All Generators Switches',
+                state: 'AUTO',
+            },
+            {
+                title: 'IDG Disc Switches',
+                state: 'GUARDED',
+            },
+            {
+                title: 'DC Service Switch',
+                state: 'OFF',
+            },
+            {
+                title: 'Battery Master',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_FIRE_DETECTION,
         title: 'Fire Detection / FIREX Monitor Test',
         subTitle: 'Only First Flight of the Day',
         state: 'COMPLETE',
+        subItems: createTransformedList()([
+            {
+                title: 'Fire Detection Monitor Button',
+                state: 'PRESS 2 SECONDS',
+            },
+            {
+                title: (
+                    <>
+                        {' '}
+                        <CASMessage level="info">FIRE SYS OK</CASMessage>
+                        {' '}
+                        on EICAS
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_EXTERNAL_LIGHTS_PANEL,
         title: 'External Lights Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'NAV Light',
+                state: 'ON',
+            },
+            {
+                title: 'Beacon Light',
+                state: 'OFF',
+            },
+            {
+                title: 'Strobe Light',
+                state: 'OFF',
+            },
+            {
+                title: 'Logo Lights',
+                state: 'ON',
+            },
+            {
+                title: 'Wing Inspection Light',
+                state: 'OFF',
+            },
+            {
+                title: 'Landing Lights',
+                state: 'OFF',
+            },
+            {
+                title: 'Taxi Lights',
+                state: 'OFF',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_FUEL_PANEL,
@@ -148,41 +228,206 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_BLEED_AIR_PANEL,
         title: 'Bleed Air Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'Wing A/I Cross Bleed Switch',
+                state: 'NORMAL',
+            },
+            {
+                title: 'Bleed Valves Switch',
+                state: 'AUTO',
+            },
+            {
+                title: 'ISOL Switch',
+                state: 'OPEN',
+            },
+            {
+                title: 'Bleed Source Switch',
+                state: 'BOTH ENG',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_APU_PANEL,
         title: 'APU Panel',
         state: 'ON/OFF',
+        subItems: createTransformedList()([
+            {
+                title: 'PWR Fuel Switch',
+                state: 'ON',
+            },
+            {
+                title: 'START / STOP Switch',
+                state: 'START',
+            },
+            {
+                title: 'DC and AC Electrical Power',
+                state: 'CHECKED',
+            },
+            // FIXME: help items for sub items to explain "as required".
+            // {
+            //     title: 'Bleed Source Switch',
+            //     state: 'AS REQUIRED',
+            // },
+            // {
+            //     title: 'Bleed Valves Switch',
+            //     state: 'AS REQUIRED',
+            // },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_START_PANEL,
         title: 'Start Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'L and R ENG START Switches',
+                state: 'OFF',
+            },
+            {
+                title: 'IGNITION, CONT Switch',
+                state: 'OFF',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_HYDRAULIC_PANEL,
         title: 'Hydraulic Panel',
         state: 'CHECKED, AUTO, ON (3A)',
+        subItems: createTransformedList()([
+            {
+                title: 'All Hydraulic Switches',
+                state: 'OFF',
+            },
+            {
+                title: 'EICAS, HYD Synoptic Page',
+                state: 'SELECT',
+            },
+            // FIXME: not implemented for sub items.
+            {
+                title: 'STAB TRIM Switches (not implemented?)',
+                state: 'DISENGAGE',
+            },
+            {
+                title: 'Fluid Quantities',
+                state: 'CHECKED',
+            },
+            {
+                title: 'Pump 1, 3B and 2 Switches',
+                state: 'ON',
+            },
+            {
+                title: 'Hydraulic Pressures',
+                state: 'CHECKED',
+            },
+            {
+                title: 'EICAS, STAT Synoptic Page',
+                state: 'SELECT',
+            },
+            // FIXME: not implemented for sub items.
+            {
+                title: 'STAB TRIM Switches (not implemented?)',
+                state: 'ENGAGE',
+            },
+            {
+                title: 'Pump 1, 3B and 2 Switches',
+                state: 'AUTO',
+            },
+            {
+                title: 'Pump 3A',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_ELT_SWITCH,
         title: 'ELT Switch',
-        state: 'ARM/RESET',
+        state: 'ARM / RESET',
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_CABIN_PRESSURE_PANEL,
         title: 'Cabin Pressure Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'EICAS, ECS Synoptic Page',
+                state: 'SELECT',
+            },
+            {
+                title: 'MAN ALT Switch',
+                state: 'CENTER POSITION',
+            },
+            {
+                title: 'EMER DEPRESS Switch',
+                state: 'OFF / GUARDED',
+            },
+            {
+                title: 'PRESS CONTROL Switch',
+                state: 'OFF / FLUSH',
+            },
+            {
+                title: 'MAN RATE Switch',
+                state: 'FULL DECR',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_AIR_CONDITIONING_PANEL,
         title: 'Air Conditioning Panel',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'PACK Switches',
+                state: 'AUTO',
+            },
+            {
+                title: 'RECIRC FAN Switch',
+                state: 'ON',
+            },
+            {
+                title: 'Temperature Control Mode',
+                state: 'AUTO',
+            },
+            {
+                title: 'RAM AIR Switch',
+                state: 'OFF / GUARDED',
+            },
+            {
+                title: 'WING and COWL Anti-Ice Switches',
+                state: 'OFF',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_ANTIICE_PANEL,
         title: 'Anti-Ice Panel',
-        state: 'CHECKED/COMPLETE',
+        state: 'CHECKED / COMPLETE',
+        subItems: createTransformedList()([
+            {
+                title: 'EICAS, PRI and STAT Pages',
+                state: 'SELECT',
+            },
+            {
+                title: 'DET TEST Switch',
+                state: 'SELECT AND HOLD',
+            },
+            {
+                title: (
+                    <>
+                        ICE Switch Light and
+                        {' '}
+                        <CASMessage level="info">ADS HEAT TEST OK</CASMessage>
+                        {' '}
+                        on EICAS
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: 'DET TEST Switch',
+                state: 'RELEASE',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_WINDSHIELD_HEAT,
@@ -200,6 +445,62 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         state: 'CHECKED',
     },
     {
+        uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_STALL_TEST,
+        title: 'Stall Test',
+        subTitle: 'Only First Flight of the Day',
+        state: 'COMPLETE',
+        subItems: createTransformedList()([
+            {
+                title: 'STALL PTCT, Pusher Switches',
+                state: 'ON',
+            },
+            {
+                title: 'STALL Switch',
+                state: 'PUSH, HOLD',
+            },
+            {
+                title: 'INGITION, CONT Switch',
+                state: 'ON',
+            },
+            {
+                title: (
+                    <>
+                        <CASMessage level="info">CONT IGNITION</CASMessage>
+                        {' '}
+                        on EICAS
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: 'STALL Switch',
+                state: 'FLASHING',
+            },
+            {
+                title: 'Stick Checker',
+                state: 'ON',
+            },
+            {
+                title: 'STALL Switch',
+                state: 'RELEASE',
+            },
+            {
+                title: 'INGITION, CONT Switch',
+                state: 'OFF',
+            },
+            {
+                title: (
+                    <>
+                        <CASMessage level="info">CONT IGNITION</CASMessage>
+                        {' '}
+                        on EICAS
+                    </>
+                ),
+                state: 'OFF',
+            },
+        ]),
+    },
+    {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_NOSEWHEEL,
         title: 'Nose-Wheel Steering Switch',
         state: 'OFF',
@@ -210,29 +511,171 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         state: 'SET',
     },
     {
+        uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_EFIS_CONTROL_PANELS,
+        title: 'EFIS Control Panels',
+        state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'Display Control Switches',
+                state: 'MAP',
+            },
+            {
+                title: 'Air Data Reference Switches',
+                state: 'FMS1',
+            },
+            {
+                title: 'BARO Switch',
+                state: 'SET',
+            },
+            {
+                title: 'Display Reversionary Selector',
+                state: 'NORM',
+            },
+        ]),
+    },
+    {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_INSTRUMENT_PANELS,
         title: 'Instrument Panels',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'Primary Flight Display',
+                state: 'CHECKED',
+            },
+            {
+                title: 'Altimeter Readout',
+                state: 'CROSS-CHECKED',
+            },
+            {
+                title: 'Multifunction Display',
+                state: 'CHECKED',
+            },
+            {
+                title: 'Cockpit Voice Recorder',
+                state: 'TEST',
+            },
+            {
+                title: 'EICAS Primary Display',
+                state: 'CHECKED',
+            },
+            {
+                title: 'Standby Altimeters / Airspeed Indicator',
+                state: 'CROSS-CHECKED',
+            },
+            {
+                title: 'EICAS Secondary Display',
+                state: 'CHECKED',
+            },
+            // FIXME: sub-sublist???
+            {
+                title: 'ANTI SKID Test',
+                state: 'COMPLETE',
+            },
+            {
+                title: 'MLG BAY Over-Heat Test',
+                state: 'COMPLETE',
+            },
+            {
+                title: 'Brake Temperature',
+                state: 'CHECKED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_UPPER_PEDESTAL,
         title: 'Upper Pedestal',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'MUTE HORN Switch',
+                state: 'GUARDED',
+            },
+            {
+                title: 'Landing Gear Lever',
+                state: 'DOWN',
+            },
+            {
+                title: 'Engines Sync Switches',
+                state: 'N1 or N2',
+            },
+            {
+                title: 'IND LTS Switch',
+                state: 'AS REQUIRED',
+            },
+            {
+                title: 'GRND PROX (Ground Proximity) Switches',
+                state: 'CHECKED, GUARDED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_THRUST_LEVER_QUADRANT,
         title: 'Thrust Lever Quadrant',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'PITCH and ROLL DISC Handles',
+                state: 'IN / STOWED',
+            },
+            {
+                title: 'GND LIFT DUMPING Switch',
+                state: 'CHECK / AUTO',
+            },
+            {
+                title: 'Thrust Reverser Switches',
+                state: 'ARMED',
+            },
+            {
+                title: 'Thrust Levers',
+                state: 'CHECKED / SHUT OFF',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_AVIONICS,
         title: 'Avionics / Radio Tuning Panels',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'TCAS Switch',
+                state: 'SELECT',
+            },
+            {
+                title: 'ALT Line Select Key',
+                state: 'SELECT',
+            },
+            {
+                title: 'RTU & FMS TUNE INHIBIT Switches',
+                state: 'OFF / FLUSH',
+            },
+            {
+                title: 'Back-Up Mode Selector Switch',
+                state: 'STBY',
+            },
+            {
+                title: 'DSPLAY FAN Switch',
+                state: 'NORM',
+            },
+            {
+                title: 'IRS Switch',
+                state: 'NAV',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_TRIMS,
         title: 'Trims',
         state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'STAB TRIM and MACH TRIM Switches',
+                state: 'ENGAGE',
+            },
+            {
+                title: 'AIL and RUD Trim',
+                state: 'CHECKED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_YAW_DAMPER,
@@ -243,6 +686,29 @@ export const CRJ7ChecklistItemsData = createMappingFunction(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_SOURCE_SELECT_PANEL,
         title: 'Source Select Panel',
         state: 'NORM',
+    },
+    {
+        uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_LOWER_PEDESTAL,
+        title: 'Lower Pedestal',
+        state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'Parking Brake',
+                state: 'SET',
+            },
+            {
+                title: 'Landing Gear Manual Release Handle',
+                state: 'STOWED',
+            },
+            {
+                title: 'ADG Manual Deploy Handle',
+                state: 'STOWED',
+            },
+            {
+                title: 'EMER FLAP Switch',
+                state: 'NORMAL',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_PASS_SIGNS,

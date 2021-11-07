@@ -1,4 +1,4 @@
-import { getOrdinalNumber } from 'lib/getOrdinalNumber';
+import { getOrdinalNumber } from 'lib/numbers';
 
 describe('getOrdinalNumber', () => {
     const tests = [

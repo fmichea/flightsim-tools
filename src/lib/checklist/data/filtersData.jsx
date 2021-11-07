@@ -1,10 +1,10 @@
 import React from 'react';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
 import { ChecklistFilters } from 'lib/checklist/data/filters';
 
-const commonFiltersData = createMappingFunction()([
+const commonFiltersData = createTransformedMapping()([
     {
         uid: ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
         title: 'Official Only',

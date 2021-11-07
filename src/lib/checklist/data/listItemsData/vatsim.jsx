@@ -1,5 +1,5 @@
 import { ChecklistTags } from 'lib/checklist/data/tags';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import React from 'react';
 import { Monospaced } from 'components/lib/Monospaced';
@@ -9,7 +9,7 @@ const addVATSIMTags = (value) => ({
     tags: [...value.tags, ChecklistTags.VATSIM],
 });
 
-export const VATSIMChecklistItemsData = createMappingFunction(addVATSIMTags)([
+export const VATSIMChecklistItemsData = createTransformedMapping(addVATSIMTags)([
     {
         uid: ChecklistItems.VATSIM_METAR_ATIS_PRE_FLIGHT,
         title: 'Initial METAR/ATIS check',

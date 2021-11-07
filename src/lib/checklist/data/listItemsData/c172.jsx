@@ -1,16 +1,15 @@
 import React from 'react';
 import { ChecklistTags } from 'lib/checklist/data/tags';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { CASMessage } from 'components/lib/CASMessage';
-import { Monospaced } from 'components/lib/Monospaced';
 
 const addC172Tags = (value) => ({
     ...value,
     tags: [...value.tags, ChecklistTags.OFFICIAL, ChecklistTags.C172],
 });
 
-export const C172ChecklistItemsData = createMappingFunction(addC172Tags)([
+export const C172ChecklistItemsData = createTransformedMapping(addC172Tags)([
     {
         uid: ChecklistItems.C172_PREFLIGHT_AIRCRAFT_DOCUMENTS,
         title: 'Aircraft Documents',

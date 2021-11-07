@@ -1,4 +1,4 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 
@@ -12,7 +12,7 @@ const addC172SteamTags = (value) => ({
     ],
 });
 
-export const C172SteamChecklistItemsData = createMappingFunction(addC172SteamTags)([
+export const C172SteamChecklistItemsData = createTransformedMapping(addC172SteamTags)([
     {
         uid: ChecklistItems.C172STEAM_PREFLIGHT_BATTERY_SWITCH_1,
         title: 'Battery Switch',

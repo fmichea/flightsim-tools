@@ -1,4 +1,4 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
 import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
@@ -9,7 +9,7 @@ import { AntiIceImages } from 'lib/anti-ice/data/images';
 
 const Strongish = styled('strong', { color: '#606060' });
 
-export const AntiIceAircraftsData = createMappingFunction()([
+export const AntiIceAircraftsData = createTransformedMapping()([
     {
         uid: AntiIceAircrafts.WORKINGTITLE_CJ4,
         title: 'WorkingTitle CJ4',

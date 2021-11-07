@@ -82,8 +82,10 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_WINDSHIELD_HEAT,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_EMERGENCY_LIGHTS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_STANDBY_COMPASS,
+                ChecklistItems.CRJ7_ORIGINATING_CHECK_STALL_TEST,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_NOSEWHEEL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_CLOCKS,
+                ChecklistItems.CRJ7_ORIGINATING_CHECK_EFIS_CONTROL_PANELS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_INSTRUMENT_PANELS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_UPPER_PEDESTAL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_THRUST_LEVER_QUADRANT,
@@ -91,6 +93,7 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_TRIMS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_YAW_DAMPER,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_SOURCE_SELECT_PANEL,
+                ChecklistItems.CRJ7_ORIGINATING_CHECK_LOWER_PEDESTAL,
             ],
             nextListNames: [
                 ChecklistLists.BEFORE_ENGINE_START,

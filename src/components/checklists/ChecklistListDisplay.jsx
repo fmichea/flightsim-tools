@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Scroll from 'react-scroll';
 import { ChecklistListInfo } from 'components/checklists/ChecklistListInfo';
 import { ChecklistListItemDisplay } from 'components/checklists/ChecklistListItemDisplay';
 import { styled } from 'styletron-react';
 import { ChecklistNextListButtonsDisplay } from 'components/checklists/ChecklistNextListButtonsDisplay';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
-import PropTypes from 'prop-types';
+import { isOdd } from 'lib/numbers';
 
-const ChecklistItemsTable = styled('table', { width: '100%', padding: '0 20px' });
+const ChecklistItemsTable = styled('table', { width: '100%' });
 const ChecklistListContainer = styled('div', { marginBottom: '2em' });
 
 export const ChecklistListDisplay = ({
@@ -27,17 +28,16 @@ export const ChecklistListDisplay = ({
             />
 
             <ChecklistItemsTable>
-                <tbody>
-                    {items.map((itemName) => (
-                        <ChecklistListItemDisplay
-                            key={`${checklistName}:${checklistListName}:${itemName}`}
-                            itemName={itemName}
-                            checklistName={checklistName}
-                            checklistListName={checklistListName}
-                            checklistData={checklistData}
-                        />
-                    ))}
-                </tbody>
+                {items.map((itemName, idx) => (
+                    <ChecklistListItemDisplay
+                        key={`${checklistName}:${checklistListName}:${itemName}`}
+                        itemName={itemName}
+                        checklistName={checklistName}
+                        checklistListName={checklistListName}
+                        checklistData={checklistData}
+                        isOddItem={isOdd(idx)}
+                    />
+                ))}
             </ChecklistItemsTable>
 
             <ChecklistNextListButtonsDisplay

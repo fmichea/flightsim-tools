@@ -1,7 +1,7 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
 
-const commonModeStatesData = createMappingFunction()([
+const commonModeStatesData = createTransformedMapping()([
     {
         uid: AntiIceModeStates.ON,
         label: 'ON',

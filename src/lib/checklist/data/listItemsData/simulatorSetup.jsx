@@ -1,4 +1,4 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import React from 'react';
 import { ChecklistTags } from 'lib/checklist/data/tags';
@@ -8,7 +8,7 @@ const addSimSetupTags = (value) => ({
     tags: [...value.tags, ChecklistTags.SIMSETUP],
 });
 
-export const SimulatorSetupChecklistItemsData = createMappingFunction(addSimSetupTags)([
+export const SimulatorSetupChecklistItemsData = createTransformedMapping(addSimSetupTags)([
     {
         uid: ChecklistItems.SIMSETUP_PLAN_FLIGHT,
         title: 'Flight Planning',

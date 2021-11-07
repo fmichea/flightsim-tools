@@ -1,12 +1,18 @@
 import { List, ListItem } from 'components/lib/List';
 import { Monospaced } from 'components/lib/Monospaced';
 import React from 'react';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
 import { CASMessage } from 'components/lib/CASMessage';
+import {
+    FMS, ITT, N1, N2, OAT, SAT, VR,
+} from 'components/lib/vernacular/common';
+import {
+    CCP_CJ4, DCP_CJ4, EICAS_CJ4, MFD_CJ4, PFD_CJ4, SFD_CJ4,
+} from 'components/lib/vernacular/cj4';
 
 const addCJ4Tags = (value) => ({
     ...value,
@@ -17,47 +23,34 @@ const cj4AntiIceRules = (
     <>
         <strong>Rules:</strong>
         {' '}
-        Wing, engine, and tail anti-ice must be turned on in icy condition (when SAT is below 10&deg;C, and
-        there is visible moisture in the air), except for tail when below -30&deg;C. Wing light must be
-        operational to flight in icy conditions (it lights only the left wing leading edge). Below -40&deg;C,
-        anti-ice may be turned to engine only mode as long as it can be verified that no ice is forming on
+        Wing, engine, and tail anti-ice must be turned on in icy condition (when
+        {' '}
+        {SAT}
+        {' '}
+        is below 10&deg;C, and there is visible moisture in the air), except for tail when below -30&deg;C. Wing
+        light must be operational to flight in icy conditions (it lights only the left wing leading edge). Below
+        -40&deg;C, anti-ice may be turned to engine only mode as long as it can be verified that no ice is forming on
         the wings.
     </>
 );
 
-const cj4TaxiExteriorLightsHelp = (
-    <List>
-        <ListItem>
-            <Monospaced>TAXI:</Monospaced>
-            {' '}
-            Should be on whenever rolling. It is a good idea to turn off when holding or yielding to
-            indicate to other aircraft that you are not moving.
-        </ListItem>
-
-        <ListItem>
-            <Monospaced>LANDING/STROBE:</Monospaced>
-            {' '}
-            Whenever a runway is crossed, these two lights should be used instead of
-            {' '}
-            <Monospaced>TAXI</Monospaced>
-            {' '}
-            light.
-        </ListItem>
-    </List>
-);
-
-export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
+export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
     {
         uid: ChecklistItems.CJ4_BEFORE_START_BATTERY_SWITCH,
         title: 'Battery Switch',
         state: 'ON',
         moreInfoShort: (
             <>
-                Battery switch is the red switch located in the electrical panel on the left side of the PFD,
+                Battery switch is the red switch located in the electrical panel on the left side of the
+                {' '}
+                {PFD_CJ4}
+                ,
                 and can be turned on by moving it in up position.
                 <br />
                 <br />
-                MFD should turn on and show a few errors and warnings once battery is ON. Battery life is limited at 10
+                {MFD_CJ4}
+                {' '}
+                should turn on and show a few errors and warnings once battery is ON. Battery life is limited at 10
                 to 15 minutes so either engines must be started or ground power used pretty quickly.
             </>
         ),
@@ -73,7 +66,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 {' '}
                 <CASMessage level="warning">EMER LIGHTS NOT ARMED</CASMessage>
                 {' '}
-                should disappear from MFD after completing this step.
+                should disappear from
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                after completing this step.
             </>
         ),
     },
@@ -84,8 +81,14 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Standby Flight Display Switch is also in the electrical panel, on the second row in the middle.
-                It can be turned on by moving it in the up position. Standby Flight Display right of MFD, above
-                landing gear state display, should turn ON.
+                It can be turned on by moving it in the up position.
+                {' '}
+                {SFD_CJ4}
+                {' '}
+                right of
+                {' '}
+                {MFD_CJ4}
+                , above landing gear state display, should turn ON.
             </>
         ),
     },
@@ -96,8 +99,19 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Avionics Switch is located in the electrical panel, on the second row on the right. It can be turned
-                into dispatch mode by moving it in the down position. FMS will start and BAT AMP warning should flash
-                on MFD after this step.
+                into dispatch mode by moving it in the down position.
+                {' '}
+                {FMS}
+                {' '}
+                will start and
+                {' '}
+                <CASMessage level="warning">BAT AMP</CASMessage>
+                {' '}
+                warning should flash on
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                after this step.
             </>
         ),
     },
@@ -130,45 +144,55 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'COMPLETE',
         moreInfoShort: (
             <>
-                Passenger briefing can be started using the CCP below the MFD with the
+                Passenger briefing can be started using the
+                {' '}
+                {CCP_CJ4}
+                {' '}
+                below the
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                with the
                 {' '}
                 <KeyboardInputs inputs={['PASS BRIEF']} />
                 {' '}
-                button (bottom right). Use one of the two available TAKEOFF briefings depending on how familiar
+                button (bottom right). Use one of the two available
+                {' '}
+                <CASMessage>TAKEOFF (LONG)</CASMessage>
+                {' '}
+                or
+                {' '}
+                <CASMessage>TAKEOFF (SHORT)</CASMessage>
+                {' '}
+                briefings depending on how familiar
                 your passengers are with flying.
             </>
         ),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_START_PILOTS_SEATS_ADJUSTED,
-        title: 'Seats/Belts/Pedals',
-        state: 'ADJUST/SECURE',
+        title: 'Seats / Belts / Pedals',
+        state: 'ADJUST / SECURE',
         tags: [ChecklistTags.NOT_IMPLEMENTED],
-        moreInfoShort: (
-            <>
-                Adjust the Pilot&apos;s seating position and seat belt for safety.
-            </>
-        ),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_START_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                With CJ4, in general the following lights will be turned on before engine start:
-                {' '}
-                <Monospaced>BEACON</Monospaced>
-                ,
-                {' '}
-                <Monospaced>NAV</Monospaced>
-                {' '}
-                and
-                {' '}
-                <Monospaced>LOGO</Monospaced>
-                .
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'BEACON',
+                state: 'ON',
+            },
+            {
+                title: 'NAV',
+                state: 'ON',
+            },
+            {
+                title: 'LOGO',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_START_EICAS,
@@ -176,7 +200,13 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                EICAS on top of MFD should be checked for all data to be GREEN.
+                {EICAS_CJ4}
+                {' '}
+                on top of
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                should be checked for all data to be GREEN.
             </>
         ),
     },
@@ -186,7 +216,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK/SET',
         moreInfoShort: (
             <>
-                <p>FMS should be checked and programmed at this point. The following items must be completed:</p>
+                <p>
+                    {FMS}
+                    {' '}
+                    should be checked and programmed at this point. The following items must be completed:
+                </p>
                 <List>
                     <ListItem>
                         <strong>Position Init:</strong>
@@ -212,7 +246,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                         <strong>Performance Initialization:</strong>
                         {' '}
                         After setting fuel based on pre-flight planning in the weights menu, passenger and cargo
-                        weight (or GWT) should be initialized in FMS in the performance initialization page. (
+                        weight (or GWT) should be initialized in
+                        {' '}
+                        {FMS}
+                        {' '}
+                        in the performance initialization page. (
                         <KeyboardInputs inputs={['PERF', 'LSK 1 (PERF INIT)']} />
                         ). Planned cruise altitude should also be initialized.
                     </ListItem>
@@ -271,9 +309,49 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK FOR RISE',
         moreInfoShort: (
             <>
-                Monitor N1/N2/ITT within the EICAS. Things should happen in the following order: N2 should increase
-                slowly first, then ITT will automatically ignite (IGN display) and N1 will start raising. ITT will
-                rise as N1 and N2 continue to rise, until ignition disables and every value settles.
+                Monitor
+                {' '}
+                {N1}
+                {' '}
+                /
+                {' '}
+                {N2}
+                {' '}
+                /
+                {' '}
+                {ITT}
+                {' '}
+                within the
+                {' '}
+                {EICAS_CJ4}
+                . Things should happen in the following order:
+                {' '}
+                {N1}
+                {' '}
+                should increase slowly first, then
+                {' '}
+                {ITT}
+                {' '}
+                will automatically ignite (
+                <CASMessage>IGN</CASMessage>
+                {' '}
+                display) and
+                {' '}
+                {N1}
+                {' '}
+                will start rising.
+                {' '}
+                {ITT}
+                {' '}
+                will rise as
+                {' '}
+                {N1}
+                {' '}
+                and
+                {' '}
+                {N2}
+                {' '}
+                continue to rise, until ignition disables and every value settles.
             </>
         ),
     },
@@ -283,9 +361,25 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Indicators should settle around N1=24.5%, ITT=600&deg;C and N2=53.4%. Oil pressure will settle around
+                Indicators should settle around
+                {' '}
+                {N1}
+                {' '}
+                = 24.5%,
+                {' '}
+                {ITT}
+                {' '}
+                = 600&deg;C and
+                {' '}
+                {N2}
+                {' '}
+                = 53.4%. Oil pressure will settle around
                 70 PSI and oil temperature eventually at 103&deg;C but 90&deg;C and rising is good for this stage.
-                Every indicator should be green before moving forward to second engine. MFD warnings will only
+                Every indicator should be green before moving forward to second engine.
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                warnings will only
                 disappear after second engine is started.
             </>
         ),
@@ -296,7 +390,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'START',
         moreInfoShort: (
             <>
-                Repeat the process from the starter button push. After engine starts all warnings on MFD should
+                Repeat the process from the starter button push. After engine starts all warnings on
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                should
                 disappear and more information should display regarding electrical systems, pressurization,
                 hydraulic pressure and fuel.
             </>
@@ -320,7 +418,23 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Check the electrical information on MFD below EICAS (or via SYS key on CCP if hidden). DC electric
+                Check the electrical information on
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                below
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                (or via
+                {' '}
+                <KeyboardInputs inputs={['SYS']} />
+                {' '}
+                key on
+                {' '}
+                {CCP_CJ4}
+                {' '}
+                if hidden). DC electric
                 should have +22 A amperage and +29 V voltage. Battery should have -22 A amperage and +25 volts.
                 Temperature should remain low, around 26&deg;C.
             </>
@@ -332,8 +446,15 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'ON',
         moreInfoShort: (
             <>
-                Avionics switch is in the eletrical panel left of PFD, on the second row on the right. Flick it
-                in the up position to switch from dispatch mode to on mode. PFD should turn on after this step
+                Avionics switch is in the eletrical panel left of
+                {' '}
+                {PFD_CJ4}
+                , on the second row on the right. Flick it
+                in the up position to switch from dispatch mode to on mode.
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                should turn on after this step
                 is completed.
             </>
         ),
@@ -367,7 +488,14 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK/SET',
         moreInfoShort: (
             <>
-                Trims are indicated on the right side of the EICAS on MFD. AIL is aileron trim, RUD is rudder trim and
+                Trims are indicated on the right side of the
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                on
+                {' '}
+                {MFD_CJ4}
+                . AIL is aileron trim, RUD is rudder trim and
                 ELEV is elevator trim (ND/NU is nose down/up respectively). For takeoff, trims should be in the green
                 area for each setting. They can be adjusted using controls below the throttles in the center console.
             </>
@@ -415,7 +543,23 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Check hydraulic pressure information on MFD below EICAS (or via SYS key on CCP if hidden). Hydraulic
+                Check hydraulic pressure information on
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                below
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                (or via
+                {' '}
+                <KeyboardInputs inputs={['SYS']} />
+                {' '}
+                key on
+                {' '}
+                {CCP_CJ4}
+                {' '}
+                if hidden). Hydraulic
                 pressure should be green and have a value of 3000 PSI.
             </>
         ),
@@ -427,12 +571,25 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 While on the ground, engine only anti-ice should be enabled when in icing condition but not until
-                engines have been on for at least 1 minute. Icing condition on ground exist when OAT or SAT is at
+                engines have been on for at least 1 minute. Icing condition on ground exist when
+                {' '}
+                {OAT}
+                {' '}
+                or
+                {' '}
+                {SAT}
+                {' '}
+                is at
                 or below +5&deg;C and engine may ingest moisture such as snow, slush, or standing water.
                 <br />
                 <br />
                 Engine only anti-ice can be turned on with the buttons on tilt panel in anti-ice section, just below
-                CCP. Current outside temperatures are visible at the very bottom of MFD.
+                {' '}
+                {CCP_CJ4}
+                . Current outside temperatures are visible at the very bottom of
+                {' '}
+                {MFD_CJ4}
+                .
             </>
         ),
     },
@@ -442,19 +599,29 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CONFIRM/SET',
         moreInfoShort: (
             <>
-                Take-off data can be set on FMS with the following key presses:
+                Take-off data can be set on
+                {' '}
+                {FMS}
+                {' '}
+                with the following key presses:
                 {' '}
                 <KeyboardInputs inputs={['PERF', 'LSK 3 (TAKEOFF)']} />
                 .
                 Mandatory fields are Runway (RNW) taken from departure, runway condition (dry/wet), outside air
-                temperature (OAT) and QNH. Once filled, go to second page using NEXT button, review the takeoff speeds
+                temperature (
+                {OAT}
+                ) and QNH. Once filled, go to second page using NEXT button, review the takeoff speeds
                 on the right side and click send using
                 {' '}
                 <KeyboardInputs inputs={['RSK 6 (SEND)']} />
                 .
                 <br />
                 <br />
-                Verify that speeds turn blue and are displayed on PFD below speed tape indicator. Expect speeds between
+                Verify that speeds turn blue and are displayed on
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                below speed tape indicator. Expect speeds between
                 90 and 115 knots.
             </>
         ),
@@ -470,14 +637,63 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'ENGAGE/DISCONNECT',
         moreInfoShort: (
             <>
-                In the Autopilot panel, enable autopilot by clicking AP button, verify PFD displays autopilot enabled.
-                Click YD/AP disc bar below. Ensure audible autopilot announcement and autopilot disabled on PFD.
-                Click YD/AP disc bar again to allow autopilot connection again (autopilot should remain off).
+                In the Autopilot panel, enable autopilot by pressing the
+                {' '}
+                <KeyboardInputs inputs={['AP']} />
+                {' '}
+                button, verify
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                displays autopilot enabled (
+                <CASMessage level="info">AP</CASMessage>
+                ). Press
+                {' '}
+                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
+                {' '}
+                below. Ensure audible autopilot announcement and autopilot disabled on
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                (
+                <CASMessage level="warning">AP</CASMessage>
+                )
+                .
+                Press
+                {' '}
+                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
+                {' '}
+                again to allow autopilot connection again (autopilot should remain off).
                 <br />
                 <br />
-                Repeat process with standard disconnect procedure. Click AP button to enable autopilot, and verify on
-                PFD. Click AP button again, verify audible Autopilot announcement and check PFD for YD mode enabled
-                (yaw damper). Click YD button and verify on PFD that YD mode is disabled.
+                Repeat process with standard disconnect procedure. Click
+                {' '}
+                <KeyboardInputs inputs={['AP']} />
+                {' '}
+                button to enable autopilot, and verify on
+                {' '}
+                {PFD_CJ4}
+                . Press
+                {' '}
+                <KeyboardInputs inputs={['AP']} />
+                {' '}
+                button again, verify audible autopilot announcement and check
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                for
+                {' '}
+                <CASMessage level="info">YD</CASMessage>
+                {' '}
+                mode enabled (yaw damper). Press
+                {' '}
+                <KeyboardInputs inputs={['YD']} />
+                {' '}
+                button and verify on
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                that YD mode is disabled.
             </>
         ),
     },
@@ -487,9 +703,18 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'SET/CHECK',
         moreInfoShort: (
             <>
-                On DCP, turn the BARO button to set barometric pressure on PFD. Then move to standby flight display
-                and use the rotary button on its bottom right to set barometric pressure for standby display. Check
-                PFD and standby display barometric pressure and indicated altitude match.
+                On
+                {' '}
+                {DCP_CJ4}
+                , turn the BARO button to set barometric pressure on
+                {' '}
+                {PFD_CJ4}
+                . Then move to standby flight display and use the rotary button on its bottom right to set
+                barometric pressure for standby display. Check
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                and standby display barometric pressure and indicated altitude match.
             </>
         ),
     },
@@ -505,7 +730,15 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Verify EICAS on MFD for all green values and no warning or error message.
+                Verify
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                on
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                for all green values and no warning or error message.
             </>
         ),
     },
@@ -519,13 +752,20 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_TAXI_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Lights might need to be changed as taxi is on-going, the general rules are that:
-                <br />
-                {cj4TaxiExteriorLightsHelp}
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'TAXI Light',
+                state: 'ON',
+            },
+            {
+                title: 'LANDING Light',
+                state: 'AS REQUIRED',
+            },
+            {
+                title: 'STROBE Light',
+                state: 'AS REQUIRED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_TAXI_BRAKES_APPLIED,
@@ -573,33 +813,28 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_TAXI_FLIGHT_INSTRUMENTS_CHECK,
         title: 'Flight Instruments',
         state: 'CHECK',
-        moreInfoShort: (
-            <>
-                Check the avionics displayed on PFD for the following information:
-                <List>
-                    <ListItem>
-                        <Monospaced>GS (Ground Speed):</Monospaced>
-                        {' '}
-                        0 when standing, then positive when moving.
-                    </ListItem>
-                    <ListItem>
-                        <Monospaced>AS (Air Speed):</Monospaced>
-                        {' '}
-                        valid value depending winds.
-                    </ListItem>
-                    <ListItem>
-                        <Monospaced>Artificial Horizon:</Monospaced>
-                        {' '}
-                        verify level with ground.
-                    </ListItem>
-                    <ListItem>
-                        <Monospaced>Altimeter:</Monospaced>
-                        {' '}
-                        showing field elevation.
-                    </ListItem>
-                </List>
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'Ground Speed (GS)',
+                state: 'POSITIVE',
+            },
+            {
+                title: 'Air Speed (AS)',
+                state: 'POSITIVE',
+            },
+            {
+                title: 'Roses',
+                state: 'MOVING',
+            },
+            {
+                title: 'Artificial Horizon',
+                state: 'CHECKED / LEVEL',
+            },
+            {
+                title: 'Altimeter',
+                state: 'CHECKED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_ICE_PROTECTION_SYSTEM_CHECK,
@@ -609,7 +844,15 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Not currently modelled. Wing and engine anti-ice systems require hot air from the engines. Procedure
-                here would be to spool engines N2 to around 70% and turn on ice protection. The EICAS would display
+                here would be to spool engines
+                {' '}
+                {N2}
+                {' '}
+                to around 70% and turn on ice protection. The
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                would display
                 WING-ANTI-ICE-COLD warning message which should disappear within 2 minutes. This indicates
                 that wings/engine anti-ice is getting hot bleed air. Required for flying in icy conditions.
             </>
@@ -643,7 +886,6 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         title: 'Seats',
         state: 'UPRIGHT/OUTBOARD',
         tags: [ChecklistTags.NOT_IMPLEMENTED],
-        moreInfoShort: (<>Sit up pilot!</>),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_FLAPS_SET,
@@ -651,9 +893,20 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK/SET',
         moreInfoShort: (
             <>
-                Verify on EICAS that flaps are extended as configured in the TAKEOFF
+                Verify on
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                that flaps are extended as configured in the TAKEOFF
                 performance page. This should generally be 15&deg;. Flaps are indicated
-                on on the right side of the EICAS on top of MFD, just below trims.
+                on on the right side of the
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                on top of
+                {' '}
+                {MFD_CJ4}
+                , just below trims.
             </>
         ),
     },
@@ -673,8 +926,17 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'SET FOR TAKEOFF',
         moreInfoShort: (
             <>
-                On the top right section of the MFD, trims are indicated for Rudder, Aileron and
-                Elevator. Verify that they all indicate within the green section for takeoff.
+                On the top right section of the
+                {' '}
+                {MFD_CJ4}
+                , trims are indicated for Rudder (
+                <CASMessage>RUD</CASMessage>
+                ), Aileron (
+                <CASMessage>AIL</CASMessage>
+                ) and
+                Elevator (
+                <CASMessage>ELEV</CASMessage>
+                ). Verify that they all indicate within the green section for takeoff.
             </>
         ),
     },
@@ -684,7 +946,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'COMPLETE',
         moreInfoShort: (
             <>
-                Review departure instructions and verify they are programmed in FMS as desired.
+                Review departure instructions and verify they are programmed in
+                {' '}
+                {FMS}
+                {' '}
+                as desired.
             </>
         ),
     },
@@ -694,7 +960,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'TA/RA',
         moreInfoShort: (
             <>
-                In FMS, set TCAS to mode TA/RA by clicking
+                In
+                {' '}
+                {FMS}
+                , set TCAS to mode TA/RA by clicking
                 {' '}
                 <KeyboardInputs inputs={['TUN', 'RSK 5 (TA/RA)']} />
                 . This turns mode C on for transponder, emitting altitude information.
@@ -717,7 +986,17 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'PUSH',
         moreInfoShort: (
             <>
-                Above FMS/MFD right of DCP there is a black button below the FIRE button which
+                Above
+                {' '}
+                {FMS}
+                /
+                {MFD_CJ4}
+                {' '}
+                right of
+                {' '}
+                {DCP_CJ4}
+                {' '}
+                there is a black button below the FIRE button which
                 enables Takeoff/Go Around mode. It should be pushed once and
                 {' '}
                 <CASMessage level="info">TO TO</CASMessage>
@@ -734,7 +1013,17 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'VERIFY 20 OR LESS',
         moreInfoShort: (
             <>
-                On the EICAS, or via the SYS key on CCP, ensure that battery still has -20 or less amps.
+                On the
+                {' '}
+                {EICAS_CJ4}
+                , or via the
+                {' '}
+                <KeyboardInputs inputs={['SYS']} />
+                {' '}
+                key on
+                {' '}
+                {CCP_CJ4}
+                , ensure that battery still has -20 or less amps.
             </>
         ),
     },
@@ -759,7 +1048,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Pitot/Static Heat buttons are located in the Ice Protection section on the tilt panel
-                under the MFD. They should be turned on before take-off and on for the whole flight.
+                under the
+                {' '}
+                {MFD_CJ4}
+                . They should be turned on before take-off and on for the whole flight.
             </>
         ),
     },
@@ -767,11 +1059,16 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Before entering runway, enable STROBE lights. Enable LANDING lights, this will replace the TAXI lights.
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'STROBE Lights',
+                state: 'ON',
+            },
+            {
+                title: 'LANDING Lights',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_EICAS_CHECK,
@@ -779,7 +1076,14 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Check EICAS on top of MFD, verify all values are green.
+                Check
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                on top of
+                {' '}
+                {MFD_CJ4}
+                , verify all values are green.
             </>
         ),
     },
@@ -790,7 +1094,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 To proceed with a rolling take-off, simply push throttles all the way to 100%. If doing a standing
-                start takeoff, maintain brake pressure until N1 settles around the top of its range, in the green, and
+                start takeoff, maintain brake pressure until
+                {' '}
+                {N1}
+                {' '}
+                settles around the top of its range, in the green, and
                 release the brakes.
             </>
         ),
@@ -811,7 +1119,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'ROTATE AT VR',
         moreInfoShort: (
             <>
-                Monitor speed tape, once VR is reached, pull lightly on yoke and let
+                Monitor speed tape, once
+                {' '}
+                {VR}
+                {' '}
+                is reached, pull lightly on yoke and let
                 nose come up as speed picks up.
             </>
         ),
@@ -823,7 +1135,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Once airborne with positive rate of climb, pull landing gear up. It can be done using the
-                lever right of FMD and below Standby Flight Display.
+                lever below
+                {' '}
+                {SFD_CJ4}
+                .
             </>
         ),
     },
@@ -843,8 +1158,16 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'CLIMB',
         moreInfoShort: (
             <>
-                Pull back throttles below the takeoff (TO) detent. This can be checked on the EICAS near the
-                on the N2 bars where indication should go from TO to CLB.
+                Pull back throttles below the takeoff (TO) detent. This can be checked on the
+                {' '}
+                {EICAS_CJ4}
+                {' '}
+                near the
+                on the
+                {' '}
+                {N2}
+                {' '}
+                bars where indication should go from TO to CLB.
             </>
         ),
     },
@@ -859,7 +1182,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 <KeyboardInputs inputs={['YD']} />
                 {' '}
                 just left of the autopilot button. This step is not necessary if you intend to enable autopilot
-                immediately as yaw damper is enabled with AP.
+                immediately as yaw damper is enabled with
+                {' '}
+                <KeyboardInputs inputs={['AP']} />
+                .
             </>
         ),
     },
@@ -883,8 +1209,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Keep monitoring conditions via temperatures at the bottom of MFD and follow rules outlined under the
-                Before Takeoff checklist.
+                Keep monitoring conditions via temperatures at the bottom of
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                and follow rules outlined under the Before Takeoff checklist.
                 <br />
                 <br />
                 {cj4AntiIceRules}
@@ -905,11 +1234,20 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_EXTERIOR_LIGHTS,
         title: 'Landing Lights Button',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Landing, Strobe and Logo lights can be turned off after passing 10.000ft.
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'LANDING Light',
+                state: 'OFF ABOVE 10.000 FT',
+            },
+            {
+                title: 'STROBE Light',
+                state: 'OFF ABOVE 10.000 FT',
+            },
+            {
+                title: 'LOGO Light',
+                state: 'OFF ABOVE 10.000 FT',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_PRESSURIZATION_CHECK,
@@ -923,10 +1261,19 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'SET/CROSSCHECK',
         moreInfoShort: (
             <>
-                Take note of transition altitude at departure and click the BARO button
-                in the PCP above FMS to switch to STD pressure. Easiest way to check is
-                to verify that STD is displayed below the altitude tape or on the standby
-                flight display.
+                Take note of transition altitude at departure and click the
+                {' '}
+                <KeyboardInputs inputs={['BARO']} />
+                {' '}
+                rotary in the
+                {' '}
+                {DCP_CJ4}
+                {' '}
+                to switch to standard pressure. Easiest way to check is to verify that
+                {' '}
+                <CASMessage level="data">STD</CASMessage>
+                {' '}
+                is displayed below the altitude tape or on the standby flight display.
             </>
         ),
     },
@@ -986,9 +1333,19 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'SET/CROSSCHECK',
         moreInfoShort: (
             <>
-                Preset BARO for landing pressure and verify transition level, switch BARO from standard to local
-                altitude pressure at transition level. Once switched from STD to local, configure Standby Flight
-                Display and crosscheck altitude shown.
+                Preset
+                {' '}
+                <KeyboardInputs inputs={['BARO']} />
+                {' '}
+                for landing pressure and verify transition level, press
+                {' '}
+                <KeyboardInputs inputs={['BARO']} />
+                {' '}
+                to switch from standard to local pressure altitude at transition level. Once switched, configure
+                {' '}
+                {SFD_CJ4}
+                {' '}
+                and crosscheck altitude shown.
             </>
         ),
     },
@@ -996,11 +1353,20 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_DESCENT_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Enable LANDING, STROBE and LOGO lights when passing 10.000ft for landing.
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'LANDING Light',
+                state: 'ON BELOW 10.000 FT',
+            },
+            {
+                title: 'STROBE Light',
+                state: 'ON BELOW 10.000 FT',
+            },
+            {
+                title: 'LOGO Light',
+                state: 'ON BELOW 10.000 FT',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_LANDING_DATA,
@@ -1060,13 +1426,30 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
                 ground altitude.
                 <br />
                 <br />
-                Once determined, go to the PCP above the PFD, click refs menu, scroll down to MINIMUMS BARO using the
-                large MENU ADV scroll wheel, then use the small scroll wheel on same knob to select the altitude and
+                Once determined, go to the
+                {' '}
+                {DCP_CJ4}
+                , press
+                {' '}
+                <KeyboardInputs inputs={['REFS MENU']} />
+                , scroll down to
+                {' '}
+                <CASMessage>MINIMUMS</CASMessage>
+                {' '}
+                &gt;
+                {' '}
+                <CASMessage>BARO</CASMessage>
+                {' '}
+                using the large
+                {' '}
+                <KeyboardInputs inputs={['MENU ADV']} />
+                {' '}
+                scroll wheel, then use the small scroll wheel on same knob to select the altitude and
                 then click it. Minimum altitude will display under the altitude tape, as well as make an audible
                 announcement upon landing.
                 <br />
                 <br />
-                Autopilot and YD should be disabled by the time minimums are reached.
+                Autopilot and yaw damper should be disabled by the time minimums are reached.
             </>
         ),
     },
@@ -1121,7 +1504,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'COMPLETE',
         moreInfoShort: (
             <>
-                Use the CCP below MFD to select the passenger briefing announcement by pressing the
+                Use the
+                {' '}
+                {CCP_CJ4}
+                {' '}
+                to select the passenger briefing announcement by pressing the
                 {' '}
                 <KeyboardInputs inputs={['PASS BRIEF']} />
                 {' '}
@@ -1149,23 +1536,16 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_APPROACH_PASSENGER_LIGHTS,
         title: 'Pass Lights Safety Button',
         state: 'ON',
-        moreInfoShort: (
-            <>
-                Ensure both
-                {' '}
-                <KeyboardInputs inputs={['SAFETY']} />
-                {' '}
-                and
-                {' '}
-                <KeyboardInputs inputs={['BELT']} />
-                {' '}
-                lights are enabled under the
-                {' '}
-                <KeyboardInputs inputs={['PASS LIGHTS']} />
-                {' '}
-                section on the top part of center console.
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'BELT Light',
+                state: 'ON',
+            },
+            {
+                title: 'SAFETY Light',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_PRESSURIZATION,
@@ -1179,7 +1559,11 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'DOWN (3 GREEN)',
         moreInfoShort: (
             <>
-                Pull landing gear down using the lever right of MFD and below Standby Avionics Display,
+                Pull landing gear down using the lever right of
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                and below Standby Avionics Display,
                 and verify that 3 green lights come on to confirm landing gear is deployed.
             </>
         ),
@@ -1266,7 +1650,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'PUSH',
         moreInfoShort: (
             <>
-                Push GA button, which is located on the right side of PCP, above PFD. It is the button below
+                Push GA button, which is located on the right side of
+                {' '}
+                {DCP_CJ4}
+                . It is the button below
                 {' '}
                 <KeyboardInputs inputs={['L ENG FIRE']} />
                 .
@@ -1279,7 +1666,14 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'TO',
         moreInfoShort: (
             <>
-                Push throttles all the way up and past the takeoff detent. MFD should display TO in the EICAS.
+                Push throttles all the way up and past the takeoff detent.
+                {' '}
+                {MFD_CJ4}
+                {' '}
+                should display TO in the
+                {' '}
+                {EICAS_CJ4}
+                .
             </>
         ),
     },
@@ -1405,11 +1799,16 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
     {
         uid: ChecklistItems.CJ4_AFTER_LANDING_ICE_PROTECTION_SYSTEMS,
         title: 'Ice Protection Systems',
-        state: 'OFF/AS REQUIRED',
+        state: 'OFF / AS REQUIRED',
         moreInfoShort: (
             <>
                 Ground operation for ice protection is resumed. At this point only engine anti-ice may be used if
-                OAT/SAT is below +5&deg;C and there is visible moisture that may be ingested by engines. All other
+                {' '}
+                {OAT}
+                /
+                {SAT}
+                {' '}
+                is below +5&deg;C and there is visible moisture that may be ingested by engines. All other
                 ice protection systems must be turned off.
             </>
         ),
@@ -1420,7 +1819,14 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'STANDBY',
         moreInfoShort: (
             <>
-                After leaving runway, disables all terrain and weather radar from PFD/MFD.
+                After leaving runway, disables all terrain and weather radar from
+                {' '}
+                {PFD_CJ4}
+                {' '}
+                /
+                {' '}
+                {MFD_CJ4}
+                .
             </>
         ),
     },
@@ -1428,13 +1834,20 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_LANDING_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Resume operation of exterior lights as described during initial taxi:
-                <br />
-                {cj4TaxiExteriorLightsHelp}
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'STROBE Lights',
+                state: 'AS REQUIRED',
+            },
+            {
+                title: 'LANDING Lights',
+                state: 'AS REQUIRED',
+            },
+            {
+                title: 'TAXI Lights',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_SHUTDOWN_PARKING_BRAKE,
@@ -1452,7 +1865,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Under the electrical panel left of PFD, turn off Emergency Lights Switch on second row all the way
+                Under the electrical panel left of
+                {' '}
+                {PFD_CJ4}
+                , turn off Emergency Lights Switch on second row all the way
                 to the left by toggling it down.
             </>
         ),
@@ -1475,7 +1891,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Turn avionics off by setting the Avionics switch in its middle position in the electrical panel, left
-                of PFD, rightmost switch of the second row.
+                of
+                {' '}
+                {PFD_CJ4}
+                , rightmost switch of the second row.
             </>
         ),
     },
@@ -1541,7 +1960,10 @@ export const CJ4ChecklistItemsData = createMappingFunction(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Under the electrical panel left of PFD, turn the red Battery switch off by toggling it down.
+                Under the electrical panel left of
+                {' '}
+                {PFD_CJ4}
+                , turn the red Battery switch off by toggling it down.
             </>
         ),
     },

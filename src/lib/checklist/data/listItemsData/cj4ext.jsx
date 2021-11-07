@@ -1,17 +1,18 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
-import { Monospaced } from 'components/lib/Monospaced';
 import React from 'react';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
 import { CASMessage } from 'components/lib/CASMessage';
+import { FMS } from 'components/lib/vernacular/common';
+import { MFD_CJ4 } from 'components/lib/vernacular/cj4';
 
 const addCJ4EXTTags = (value) => ({
     ...value,
     tags: [...value.tags, ChecklistTags.CJ4, ChecklistTags.EXTENSION],
 });
 
-export const CJ4ExtChecklistItemsData = createMappingFunction(addCJ4EXTTags)([
+export const CJ4ExtChecklistItemsData = createTransformedMapping(addCJ4EXTTags)([
     {
         uid: ChecklistItems.CJ4EXT_BEFORE_START_EXTERNAL_POWER,
         title: 'External Power',
@@ -27,14 +28,21 @@ export const CJ4ExtChecklistItemsData = createMappingFunction(addCJ4EXTTags)([
                 burning a bit more fuel on the ground before taxi and using engine as a source of power.
                 <br />
                 <br />
-                External Power can be enabled on FMS with the following set of keypresses:
+                External Power can be enabled on
+                {' '}
+                {FMS}
+                {' '}
+                with the following set of keypresses:
                 {' '}
                 <KeyboardInputs inputs={['IDX', 'NEXT', 'LSK 3 (MOD SET)', 'LSK 4 (Ground Power Unit to ON)']} />
                 .
                 {' '}
                 <CASMessage level="warning">BAT AMP</CASMessage>
                 {' '}
-                warning should disappear from MFD.
+                warning should disappear from
+                {' '}
+                {MFD_CJ4}
+                .
             </>
         ),
     },

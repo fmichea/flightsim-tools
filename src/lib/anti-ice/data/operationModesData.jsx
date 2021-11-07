@@ -1,8 +1,8 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
 import React from 'react';
 
-const baseOperationModes = createMappingFunction()([
+const baseOperationModes = createTransformedMapping()([
     {
         uid: AntiIceOperationModes.GROUND_OPERATION,
         title: 'Ground Operation',

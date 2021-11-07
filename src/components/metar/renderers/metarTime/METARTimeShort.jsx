@@ -1,4 +1,4 @@
-import { getOrdinalNumber } from 'lib/getOrdinalNumber';
+import { getOrdinalNumber } from 'lib/numbers';
 import React from 'react';
 import { METARTimePropTypes } from 'components/metar/renderers/metarTime/propTypes';
 

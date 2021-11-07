@@ -1,3 +1,6 @@
+export const isEven = (value) => (value % 2) === 0;
+export const isOdd = (value) => !isEven(value);
+
 export const getOrdinalNumber = (value) => {
     const valueI = 1 * value;
 

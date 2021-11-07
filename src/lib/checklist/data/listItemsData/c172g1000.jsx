@@ -1,4 +1,4 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 
@@ -12,7 +12,7 @@ const addC172G1000Tags = (value) => ({
     ],
 });
 
-export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tags)([
+export const C172G1000ChecklistItemsData = createTransformedMapping(addC172G1000Tags)([
     {
         uid: ChecklistItems.C172G1000_PREFLIGHT_MASTER_SWITCHES_1,
         title: 'Master Switches (ALT and BAT)',
@@ -20,7 +20,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
     },
     {
         uid: ChecklistItems.C172G1000_PREFLIGHT_PFD,
-        title: 'Primary Flight Display (PFD)',
+        title: 'Primary Flight Display (PFD_CJ4)',
         state: 'CHECK ON',
     },
     {
@@ -96,7 +96,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
     {
         uid: ChecklistItems.C172G1000_ENGINE_START_STANDBY_BATT_ARM,
         title: 'Standby Battery Switch (STBY BATT)',
-        state: 'ARM, VERIFY PFD ON',
+        state: 'ARM, VERIFY PFD_CJ4 ON',
     },
     {
         uid: ChecklistItems.C172G1000_ENGINE_START_ENGINE_INDICATING_SYSTEM,
@@ -146,12 +146,12 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
     },
     {
         uid: ChecklistItems.C172G1000_RUNUP_FLIGHT_INSTRUMENTS,
-        title: 'Flight Instruments (PFD)',
+        title: 'Flight Instruments (PFD_CJ4)',
         state: 'CHECK NO RED X\'s',
     },
     {
         uid: ChecklistItems.C172G1000_RUNUP_ALTIMETER,
-        title: 'Altimeter (PFD)',
+        title: 'Altimeter (PFD_CJ4)',
         state: 'SET BARO',
     },
     {
@@ -242,7 +242,7 @@ export const C172G1000ChecklistItemsData = createMappingFunction(addC172G1000Tag
     },
     {
         uid: ChecklistItems.C172G1000_DESCENT_ALTIMETER,
-        title: 'Altimeter (PFD)',
+        title: 'Altimeter (PFD_CJ4)',
         state: 'SET BARO',
     },
     {

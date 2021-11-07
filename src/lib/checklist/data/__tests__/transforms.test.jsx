@@ -1,8 +1,8 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 describe('transforms', () => {
     test('test transformation uses uid as key (no func)', () => {
-        const result = createMappingFunction()([
+        const result = createTransformedMapping()([
             {
                 uid: 'value1',
                 description: 'description for value 1',
@@ -33,7 +33,7 @@ describe('transforms', () => {
     test('test transformation function', () => {
         const fn = (value) => ({ ...value, addedThing: 'here' });
 
-        const result = createMappingFunction(fn)([
+        const result = createTransformedMapping(fn)([
             {
                 uid: 'value1',
                 description: 'description for value 1',
@@ -65,7 +65,7 @@ describe('transforms', () => {
 
     test('test transformation warns about multiple same key', () => {
         const fn = () => {
-            createMappingFunction()([
+            createTransformedMapping()([
                 {
                     uid: 'value1',
                     description: 'description for value 1',

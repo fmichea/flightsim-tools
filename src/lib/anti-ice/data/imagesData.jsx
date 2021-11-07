@@ -1,7 +1,7 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceImages } from 'lib/anti-ice/data/images';
 
-const cj4ImagesData = createMappingFunction()([
+const cj4ImagesData = createTransformedMapping()([
     {
         uid: AntiIceImages.CJ4_ALL_OFF,
         path: 'images/workingtitle-cj4-anti-ice/ALL_OFF.jpg',

@@ -445,8 +445,10 @@ const crj7Items = Object.freeze({
     CRJ7_ORIGINATING_CHECK_WINDSHIELD_HEAT: 'crj7_originating_check_windshield_heat',
     CRJ7_ORIGINATING_CHECK_EMERGENCY_LIGHTS: 'crj7_originating_check_emergency_lights',
     CRJ7_ORIGINATING_CHECK_STANDBY_COMPASS: 'crj7_originating_check_standby_compass',
+    CRJ7_ORIGINATING_CHECK_STALL_TEST: 'crj7_originating_check_stall_test',
     CRJ7_ORIGINATING_CHECK_NOSEWHEEL: 'crj7_originating_check_nosewheel',
     CRJ7_ORIGINATING_CHECK_CLOCKS: 'crj7_originating_check_clocks',
+    CRJ7_ORIGINATING_CHECK_EFIS_CONTROL_PANELS: 'crj7_originating_check_efis_control_panels',
     CRJ7_ORIGINATING_CHECK_INSTRUMENT_PANELS: 'crj7_originating_check_instrument_panels',
     CRJ7_ORIGINATING_CHECK_UPPER_PEDESTAL: 'crj7_originating_check_upper_pedestal',
     CRJ7_ORIGINATING_CHECK_THRUST_LEVER_QUADRANT: 'crj7_originating_check_thrust_lever_quadrant',
@@ -454,6 +456,7 @@ const crj7Items = Object.freeze({
     CRJ7_ORIGINATING_CHECK_TRIMS: 'crj7_originating_check_trims',
     CRJ7_ORIGINATING_CHECK_YAW_DAMPER: 'crj7_originating_check_yaw_damper',
     CRJ7_ORIGINATING_CHECK_SOURCE_SELECT_PANEL: 'crj7_originating_check_source_select_panel',
+    CRJ7_ORIGINATING_CHECK_LOWER_PEDESTAL: 'crj7_originating_check_lower_pedestal',
 
     CRJ7_BEFORE_START_CHECK_PASS_SIGNS: 'crj7_before_start_check_pass_signs',
     CRJ7_BEFORE_START_CHECK_LANDING_ELEVATION: 'crj7_before_start_check_landing_elevation',

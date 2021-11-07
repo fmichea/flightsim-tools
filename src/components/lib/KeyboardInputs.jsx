@@ -1,5 +1,5 @@
 import React from 'react';
-import { DarkGrey, LightGrey } from 'components/lib/colors';
+import { LightGrey } from 'components/lib/colors';
 import { styled } from 'styletron-react';
 
 const KeyboardInputSep = styled('span', {

@@ -1,7 +1,7 @@
 import { ChecklistLists } from 'lib/checklist/data/lists';
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
-const commonListsData = createMappingFunction()([
+const commonListsData = createTransformedMapping()([
     {
         uid: ChecklistLists.PRE_FLIGHT,
         title: 'Pre-Flight',

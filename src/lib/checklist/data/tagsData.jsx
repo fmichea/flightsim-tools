@@ -1,7 +1,7 @@
-import { createMappingFunction } from 'lib/checklist/data/transforms';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 
-const commonTagsData = createMappingFunction()([
+const commonTagsData = createTransformedMapping()([
     {
         uid: ChecklistTags.OFFICIAL,
         hidden: true,
