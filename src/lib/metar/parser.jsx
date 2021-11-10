@@ -15,16 +15,16 @@ import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
 import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
 import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
 import { parseRemarks } from 'lib/metar/parsers/remarks';
+import { parseRunwayState } from 'lib/metar/parsers/runwayState';
 import { parseRunwayVisualRange } from 'lib/metar/parsers/runwayVisualRange';
-import { parseWind } from 'lib/metar/parsers/wind';
-import { parseVerticalVisibility } from 'lib/metar/parsers/verticalVisibility';
+import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 import { parseTemperatures } from 'lib/metar/parsers/temperatures';
 import { parseTrend } from 'lib/metar/parsers/trend';
+import { parseVerticalVisibility } from 'lib/metar/parsers/verticalVisibility';
+import { parseWind } from 'lib/metar/parsers/wind';
 import { parseWindShear } from 'lib/metar/parsers/windShear';
 import { ParserState } from 'lib/metar/parserState';
 import { pick } from 'lib/pick';
-import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
-import { parseRunwayState } from 'lib/metar/parsers/runwayState';
 
 const prefixFunctions = [
     skipMETARPrefix,

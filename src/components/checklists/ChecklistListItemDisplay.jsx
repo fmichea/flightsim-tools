@@ -17,7 +17,6 @@ import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const ChecklistListItemDisplay = ({
     checklistData,
