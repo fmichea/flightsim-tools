@@ -450,6 +450,7 @@ const crj7Items = Object.freeze({
     CRJ7_ORIGINATING_CHECK_CLOCKS: 'crj7_originating_check_clocks',
     CRJ7_ORIGINATING_CHECK_EFIS_CONTROL_PANELS: 'crj7_originating_check_efis_control_panels',
     CRJ7_ORIGINATING_CHECK_INSTRUMENT_PANELS: 'crj7_originating_check_instrument_panels',
+    CRJ7_ORIGINATING_CHECK_EICAS_AND_STDBY: 'crj7_originating_check_eicas_and_stdby',
     CRJ7_ORIGINATING_CHECK_UPPER_PEDESTAL: 'crj7_originating_check_upper_pedestal',
     CRJ7_ORIGINATING_CHECK_THRUST_LEVER_QUADRANT: 'crj7_originating_check_thrust_lever_quadrant',
     CRJ7_ORIGINATING_CHECK_AVIONICS: 'crj7_originating_check_avionics',
@@ -460,27 +461,30 @@ const crj7Items = Object.freeze({
 
     CRJ7_BEFORE_START_CHECK_PASS_SIGNS: 'crj7_before_start_check_pass_signs',
     CRJ7_BEFORE_START_CHECK_LANDING_ELEVATION: 'crj7_before_start_check_landing_elevation',
+    CRJ7_BEFORE_START_CHECK_BOOST_PUMPS: 'crj7_before_start_check_boost_pumps',
     CRJ7_BEFORE_START_CHECK_ALTIMETERS: 'crj7_before_start_check_altimeters',
     CRJ7_BEFORE_START_CHECK_FMS: 'crj7_before_start_check_fms',
     CRJ7_BEFORE_START_CHECK_IRS: 'crj7_before_start_check_irs',
     CRJ7_BEFORE_START_CHECK_RADIOS: 'crj7_before_start_check_radios',
+    CRJ7_BEFORE_START_CHECK_TAKEOFF_DATA: 'crj7_cleared_to_start_check_takeoff_data',
     CRJ7_BEFORE_START_CHECK_TAKEOFF_BRIEFING: 'crj7_before_start_check_takeoff_briefing',
 
     CRJ7_CLEARED_TO_START_CHECK_PERSONAL_ELECTRONIC_DEVICES: 'crj7_cleared_to_start_check_personal_electronic_devices',
     CRJ7_CLEARED_TO_START_CHECK_APU: 'crj7_cleared_to_start_check_apu',
     CRJ7_CLEARED_TO_START_CHECK_ELECTRICS: 'crj7_cleared_to_start_check_electrics',
-    CRJ7_CLEARED_TO_START_CHECK_TAKEOFF_DATA: 'crj7_cleared_to_start_check_takeoff_data',
     CRJ7_CLEARED_TO_START_CHECK_DOORS: 'crj7_cleared_to_start_check_doors',
     CRJ7_CLEARED_TO_START_CHECK_BEACON: 'crj7_cleared_to_start_check_beacon',
     CRJ7_CLEARED_TO_START_CHECK_FUEL_PUMPS: 'crj7_cleared_to_start_check_fuel_pumps',
     CRJ7_CLEARED_TO_START_CHECK_HYDRAULIC_PUMPS: 'crj7_cleared_to_start_check_hydraulic_pumps',
     CRJ7_CLEARED_TO_START_CHECK_PARKING_BRAKE: 'crj7_cleared_to_start_check_parking_brake',
+    CRJ7_CLEARED_TO_START_ENGINE_START: 'crj7_cleared_to_start_engine_start',
 
     CRJ7_AFTER_START_CHECK_GENERATORS: 'crj7_after_start_check_generators',
-    CRJ7_AFTER_START_CHECK_ELECTRICS: 'crj7_after_start_check_electrics',
     CRJ7_AFTER_START_CHECK_BLEED_VALVES: 'crj7_after_start_check_bleed_valves',
     CRJ7_AFTER_START_CHECK_PACKS: 'crj7_after_start_check_packs',
+    CRJ7_AFTER_START_CHECK_SYNOPTIC_PAGES: 'crj7_after_start_check_synoptic_pages',
     CRJ7_AFTER_START_CHECK_APU: 'crj7_after_start_check_apu',
+    CRJ7_AFTER_START_CHECK_ANTIICE_PROBES: 'crj7_after_start_check_antiice_probes',
     CRJ7_AFTER_START_CHECK_ANTIICE: 'crj7_after_start_check_antiice',
     CRJ7_AFTER_START_CHECK_NOSEWHEEL: 'crj7_after_start_check_nosewheel',
 
@@ -490,6 +494,7 @@ const crj7Items = Object.freeze({
     CRJ7_TAXI_CHECK_THRUST_REVERSERS: 'crj7_taxi_check_thrust_reversers',
     CRJ7_TAXI_CHECK_FLIGHT_INSTRUMENTS: 'crj7_taxi_check_flight_instruments',
     CRJ7_TAXI_CHECK_BRAKE_TEMPS: 'crj7_taxi_check_brake_temps',
+    CRJ7_TAXI_CHECK_EXTERNAL_LIGHTS: 'crj7_taxi_check_external_lights',
 
     CRJ7_BEFORE_TAKEOFF_CHECK_EXTERNAL_LIGHTS: 'crj7_before_takeoff_check_external_lights',
     CRJ7_BEFORE_TAKEOFF_CHECK_FUEL_XFLOW: 'crj7_before_takeoff_check_fuel_xflow',
@@ -542,6 +547,12 @@ const crj7Items = Object.freeze({
     CRJ7_TERMINATING_CHECK_COCKPIT_LIGHTS: 'crj7_terminating_check_cockpit_lights',
 });
 
+const crj7ExtItems = Object.freeze({
+    CRJ7EXT_PRE_FLIGHT_AIRCRAFT_EFB_SETUP: 'crj7ext_pre_flight_aircraft_efb_setup',
+    CRJ7EXT_ORIGINATING_CHECK_FMS_INIT_REMINDER: 'crj7ext_originating_check_fms_init_reminder',
+    CRJ7EXT_BEFORE_START_CHECK_DOORS_CHOCKS: 'crj7ext_before_start_check_doors_chocks',
+});
+
 const vatsimItems = Object.freeze({
     VATSIM_METAR_ATIS_PRE_FLIGHT: 'vatsim-metar-atis-pre-flight',
     VATSIM_FILE_FLIGHT_PLAN: 'vatsim-file-flight-plan',
@@ -574,6 +585,7 @@ export const ChecklistItems = Object.freeze({
     ...c172SteamItems,
     ...c172G1000Items,
     ...crj7Items,
+    ...crj7ExtItems,
     ...vatsimItems,
     ...simulatorSetupItems,
 });

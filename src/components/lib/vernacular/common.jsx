@@ -6,6 +6,8 @@ export const FMS = <Vernacular title="FMS - Flight Management System">FMS</Verna
 export const SAT = <Vernacular title="SAT - Static Air Temperature">SAT</Vernacular>;
 export const OAT = <Vernacular title="OAT - Outside Air Temperature">OAT</Vernacular>;
 
+export const APU = <Vernacular title="Auxiliary Power Unit">APU</Vernacular>;
+
 export const N1 = (
     <Vernacular title="N1 - Low Pressure Turbine/Compressor Spool Speed">
         N1

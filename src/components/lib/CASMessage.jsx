@@ -4,7 +4,7 @@ import { pick } from 'lib/pick';
 import PropTypes from 'prop-types';
 
 const levelToColorsMapping = {
-    critical: '#ff0000',
+    critical: '#ff3e3e',
     warning: '#f5cd37',
     info: '#2bc52d',
     data: '#98f0ff',

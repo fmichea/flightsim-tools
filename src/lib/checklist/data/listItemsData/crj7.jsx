@@ -3,6 +3,11 @@ import { ChecklistTags } from 'lib/checklist/data/tags';
 import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { CASMessage } from 'components/lib/CASMessage';
+import { KeyboardInputs } from 'components/lib/KeyboardInputs';
+import { EICAS_CRJ7 } from 'components/lib/vernacular/crj7';
+import {
+    APU, ITT, N1, N2,
+} from 'components/lib/vernacular/common';
 
 const addCRJ7Tags = (value) => ({
     ...value,
@@ -39,6 +44,12 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_SLATS_FLAPS_LEVER,
         title: 'Slats / Flaps Lever',
         state: 'SET',
+        moreInfoShort: (
+            <>
+                Lever should be set to the setting corresponding to the physical position of flaps and slats while in
+                cold and dark mode, to avoid any abrupt movement once hydraulics are turned on.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_RADAR,
@@ -63,12 +74,34 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_APU,
         title: 'APU',
-        state: 'ON/OFF',
+        state: 'ON / OFF',
+        moreInfoShort: (
+            <>
+                {APU}
+                {' '}
+                must remain OFF until fire test is done in Originating check list for first flight of the day.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_AC_ELECTRICS,
         title: 'AC Electrics',
         state: 'AS REQUIRED',
+        moreInfoShort: (
+            <>
+                If
+                {' '}
+                {APU}
+                {' '}
+                was started, AC electrics can be established and verified in the
+                <KeyboardInputs inputs={['ELEC']} />
+                {' '}
+                page of the secondary
+                {' '}
+                {EICAS_CRJ7}
+                .
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_IRS,
@@ -94,13 +127,82 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     },
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_HYDRAULIC_PUMPS_2,
-        title: 'Hydraulic Pumps (ALL / 3A)',
-        state: 'ON / OFF', // FIXME
+        title: 'Hydraulic 3A Pump',
+        state: 'ON / OFF',
+        moreInfoShort: (
+            <>
+                System 3 pumps are electric driven pumps when hydraulic pressure is necessary before engine start.
+                Can remain OFF in most cases at this point.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_SAFETY_CHECK_FMS_INITIALIZATION,
-        title: 'FMS Initialization',
+        title: 'FMS Position Initialization',
         state: 'COMPLETE',
+        moreInfoShort: (
+            <>
+                In order to align the IRS, position initialization should be done as soon as possible. This is only
+                possible at this stage if
+                {' '}
+                {APU}
+                {' '}
+                was started.
+            </>
+        ),
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        POS INIT Page (
+                        <KeyboardInputs
+                            inputs={[
+                                'INDEX',
+                                'LSK 2 (POS INIT)',
+                            ]}
+                        />
+                        )
+                    </>
+                ),
+                state: 'OPEN',
+            },
+            {
+                title: (
+                    <>
+                        Airport Reference (
+                        <KeyboardInputs
+                            inputs={[
+                                'KEYBOARD INPUT',
+                                'LSK 2 (AIRPORT)',
+                            ]}
+                        />
+                        )
+                    </>
+                ),
+                state: 'SET',
+            },
+            {
+                title: (
+                    <>
+                        Position (
+                        <KeyboardInputs
+                            inputs={[
+                                'NEXT PAGE',
+                                'LSK 2 (GNSS1 POS)',
+                                'PREV PAGE',
+                                'RSK 5 (SET POS)',
+                            ]}
+                        />
+                        )
+                    </>
+                ),
+                state: 'SET',
+            },
+            {
+                title: 'Position',
+                state: 'VERIFIED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_CABIN_INSPECTION_CABIN_INSPECTION,
@@ -110,6 +212,22 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             {
                 title: 'Emergency Lights Switch',
                 state: 'ON',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                <CASMessage>EMER LTS ON</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                                {' '}
+                                (STAT page)
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                ]),
             },
             {
                 title: 'NO SMOKING and SEAT BELT Signs',
@@ -118,6 +236,34 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             {
                 title: 'Emergency Lights Switch',
                 state: 'OFF',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                <CASMessage>EMER LTS ON</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                                {' '}
+                                (STAT page)
+                            </>
+                        ),
+                        state: 'NOT DISPLAYED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">EMER LTS OFF</CASMessage>
+                                {' '}
+                                on primary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                ]),
             },
         ]),
     },
@@ -131,7 +277,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_CREW_OXYGEN,
         title: 'Crew Oxygen and Masks',
         subTitle: 'Only First Flight of the Day',
-        state: 'CHECKED', // FIXME
+        state: 'CHECKED',
     },
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_AUDIO_WARNING_PANEL,
@@ -144,7 +290,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         state: 'CHECKED',
         subItems: createTransformedList()([
             {
-                title: 'All Generators Switches',
+                title: 'All Generators Switches (ALL GEN)',
                 state: 'AUTO',
             },
             {
@@ -170,17 +316,21 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             {
                 title: 'Fire Detection Monitor Button',
                 state: 'PRESS 2 SECONDS',
-            },
-            {
-                title: (
-                    <>
-                        {' '}
-                        <CASMessage level="info">FIRE SYS OK</CASMessage>
-                        {' '}
-                        on EICAS
-                    </>
-                ),
-                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                {' '}
+                                <CASMessage level="info">FIRE SYS OK</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                ]),
             },
         ]),
     },
@@ -239,7 +389,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             },
             {
                 title: 'ISOL Switch',
-                state: 'OPEN',
+                state: 'OPEN', // FIXME: sub item help could be useful here.
             },
             {
                 title: 'Bleed Source Switch',
@@ -250,11 +400,20 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     {
         uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_APU_PANEL,
         title: 'APU Panel',
-        state: 'ON/OFF',
+        state: 'ON / OFF',
+        moreInfoShort: (
+            <>
+                If
+                {' '}
+                {APU}
+                {' '}
+                was not started before, it can now be safely started to supply power and bleed air to systems.
+            </>
+        ),
         subItems: createTransformedList()([
             {
                 title: 'PWR Fuel Switch',
-                state: 'ON',
+                state: 'PRESS',
             },
             {
                 title: 'START / STOP Switch',
@@ -281,7 +440,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         state: 'CHECKED',
         subItems: createTransformedList()([
             {
-                title: 'L and R ENG START Switches',
+                title: 'L ENG START and R ENG START Switches',
                 state: 'OFF',
             },
             {
@@ -303,10 +462,23 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 title: 'EICAS, HYD Synoptic Page',
                 state: 'SELECT',
             },
-            // FIXME: not implemented for sub items.
             {
-                title: 'STAB TRIM Switches (not implemented?)',
-                state: 'DISENGAGE',
+                title: 'STAB TRIM Switches',
+                state: 'OFF / DISENGAGE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">STAB TRIM</CASMessage>
+                                {' '}
+                                on primary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                ]),
             },
             {
                 title: 'Fluid Quantities',
@@ -324,9 +496,8 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 title: 'EICAS, STAT Synoptic Page',
                 state: 'SELECT',
             },
-            // FIXME: not implemented for sub items.
             {
-                title: 'STAB TRIM Switches (not implemented?)',
+                title: 'STAB TRIM Switches',
                 state: 'ENGAGE',
             },
             {
@@ -393,8 +564,8 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'OFF / GUARDED',
             },
             {
-                title: 'WING and COWL Anti-Ice Switches',
-                state: 'OFF',
+                title: 'Aft Cargo',
+                state: 'AS REQUIRED',
             },
         ]),
     },
@@ -408,24 +579,34 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'SELECT',
             },
             {
-                title: 'DET TEST Switch',
-                state: 'SELECT AND HOLD',
-            },
-            {
-                title: (
-                    <>
-                        ICE Switch Light and
-                        {' '}
-                        <CASMessage level="info">ADS HEAT TEST OK</CASMessage>
-                        {' '}
-                        on EICAS
-                    </>
-                ),
-                state: 'CHECKED',
+                title: 'WING and COWL Anti-Ice Switches',
+                state: 'OFF',
             },
             {
                 title: 'DET TEST Switch',
-                state: 'RELEASE',
+                state: 'PRESSED 2 SEC',
+                subItems: createTransformedList()([
+                    {
+                        title: 'ICE Switch Light',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="info">ADS HEAT TEST OK</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'DET TEST Switch',
+                state: 'PRESS / RESET',
             },
         ]),
     },
@@ -457,46 +638,54 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             {
                 title: 'STALL Switch',
                 state: 'PUSH, HOLD',
-            },
-            {
-                title: 'INGITION, CONT Switch',
-                state: 'ON',
-            },
-            {
-                title: (
-                    <>
-                        <CASMessage level="info">CONT IGNITION</CASMessage>
-                        {' '}
-                        on EICAS
-                    </>
-                ),
-                state: 'CHECKED',
-            },
-            {
-                title: 'STALL Switch',
-                state: 'FLASHING',
-            },
-            {
-                title: 'Stick Checker',
-                state: 'ON',
+                subItems: createTransformedList()([
+                    {
+                        title: 'INGITION, CONT Switch',
+                        state: 'ON',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage>CONT IGNITION</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'STALL Switch',
+                        state: 'FLASHING',
+                    },
+                    {
+                        title: 'Stick Checker',
+                        state: 'ON',
+                    },
+                ]),
             },
             {
                 title: 'STALL Switch',
                 state: 'RELEASE',
-            },
-            {
-                title: 'INGITION, CONT Switch',
-                state: 'OFF',
-            },
-            {
-                title: (
-                    <>
-                        <CASMessage level="info">CONT IGNITION</CASMessage>
-                        {' '}
-                        on EICAS
-                    </>
-                ),
-                state: 'OFF',
+                subItems: createTransformedList()([
+                    {
+                        title: 'INGITION, CONT Switch',
+                        state: 'OFF',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage>CONT IGNITION</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'OFF',
+                    },
+                ]),
             },
         ]),
     },
@@ -520,7 +709,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'MAP',
             },
             {
-                title: 'Air Data Reference Switches',
+                title: 'NAV Source',
                 state: 'FMS1',
             },
             {
@@ -554,6 +743,13 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 title: 'Cockpit Voice Recorder',
                 state: 'TEST',
             },
+        ]),
+    },
+    {
+        uid: ChecklistItems.CRJ7_ORIGINATING_CHECK_EICAS_AND_STDBY,
+        title: 'EICAS and Standby Instruments',
+        state: 'CHECKED',
+        subItems: createTransformedList()([
             {
                 title: 'EICAS Primary Display',
                 state: 'CHECKED',
@@ -565,19 +761,12 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
             {
                 title: 'EICAS Secondary Display',
                 state: 'CHECKED',
-            },
-            // FIXME: sub-sublist???
-            {
-                title: 'ANTI SKID Test',
-                state: 'COMPLETE',
-            },
-            {
-                title: 'MLG BAY Over-Heat Test',
-                state: 'COMPLETE',
-            },
-            {
-                title: 'Brake Temperature',
-                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Brake Temperature',
+                        state: 'CHECKED',
+                    },
+                ]),
             },
         ]),
     },
@@ -591,6 +780,111 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'GUARDED',
             },
             {
+                title: 'ANTI SKID Test',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: 'ANTI SKID Switch',
+                        state: 'ARMED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">A/SKID INBD</CASMessage>
+                                {' '}
+                                and
+                                <CASMessage level="warning">A/SKID OUTBD</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'NOT DISPLAYED',
+                    },
+                    {
+                        title: 'ANTI SKID Switch',
+                        state: 'OFF',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">A/SKID INBD</CASMessage>
+                                {' '}
+                                and
+                                <CASMessage level="warning">A/SKID OUTBD</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                    {
+                        title: 'ANTI SKID Switch',
+                        state: 'ARMED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">A/SKID INBD</CASMessage>
+                                {' '}
+                                and
+                                <CASMessage level="warning">A/SKID OUTBD</CASMessage>
+                                {' '}
+                                on secondary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'NOT DISPLAYED',
+                    },
+                ]),
+            },
+            {
+                title: 'MLG BAY Over-Heat Test',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: 'MLG BAY OVHT Switch',
+                        state: 'HOLD',
+                        subItems: createTransformedList()([
+                            {
+                                title: (
+                                    <>
+                                        <CASMessage level="critical">MLG BAY OVHT</CASMessage>
+                                        {' '}
+                                        on primary
+                                        {' '}
+                                        {EICAS_CRJ7}
+                                    </>
+                                ),
+                                state: 'DISPLAYED',
+                            },
+                        ]),
+                    },
+                    {
+                        title: 'MLG TEST WARN FAIL Switch',
+                        state: 'HOLD',
+                        subItems: createTransformedList()([
+                            {
+                                title: (
+                                    <>
+                                        <CASMessage level="warning">MLG OVHT FAIL</CASMessage>
+                                        {' '}
+                                        on primary
+                                        {' '}
+                                        {EICAS_CRJ7}
+                                    </>
+                                ),
+                                state: 'DISPLAYED',
+                            },
+                        ]),
+                    },
+                ]),
+            },
+            {
                 title: 'Landing Gear Lever',
                 state: 'DOWN',
             },
@@ -599,11 +893,11 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'N1 or N2',
             },
             {
-                title: 'IND LTS Switch',
+                title: 'Indicator Lights Switch (IND LTS)',
                 state: 'AS REQUIRED',
             },
             {
-                title: 'GRND PROX (Ground Proximity) Switches',
+                title: 'Ground Proximity Switches (GRND PROX)',
                 state: 'CHECKED, GUARDED',
             },
         ]),
@@ -637,12 +931,8 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         state: 'CHECKED',
         subItems: createTransformedList()([
             {
-                title: 'TCAS Switch',
-                state: 'SELECT',
-            },
-            {
-                title: 'ALT Line Select Key',
-                state: 'SELECT',
+                title: 'TCAS Test',
+                state: 'COMPLETE',
             },
             {
                 title: 'RTU & FMS TUNE INHIBIT Switches',
@@ -672,7 +962,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'ENGAGE',
             },
             {
-                title: 'AIL and RUD Trim',
+                title: 'Aileron and Rudder Trim (AIL, RUD)',
                 state: 'CHECKED',
             },
         ]),
@@ -705,7 +995,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
                 state: 'STOWED',
             },
             {
-                title: 'EMER FLAP Switch',
+                title: 'Emergency Flap Switch (EMER Flap)',
                 state: 'NORMAL',
             },
         ]),
@@ -714,11 +1004,38 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_PASS_SIGNS,
         title: 'Passenger Signs',
         state: 'ON',
+        subItems: createTransformedList()([
+            {
+                title: 'No Smoking Sign (NO SMKG)',
+                state: 'ON',
+            },
+            {
+                title: 'Seat Belts Sign (SEAT BLTS)',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_LANDING_ELEVATION,
         title: 'Landing Elevation',
         state: 'SET',
+        moreInfoShort: (
+            <>
+                This elevation should be set to the elevation of the field we will return to in case of an emergency
+                at take-off.
+            </>
+        ),
+    },
+    {
+        uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_BOOST_PUMPS,
+        title: 'Boost Fuel Pumps',
+        state: 'ON / CHECKED',
+        moreInfoShort: (
+            <>
+                Center tank&apos;s quantity should not increase by more than 68 kg (150 lbs). Wait 10 minutes to verify
+                values.
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_ALTIMETERS,
@@ -728,7 +1045,327 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_FMS,
         title: 'FMS',
-        state: 'CHECKED, SET',
+        state: 'SET, CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Status Page (
+                        <KeyboardInputs inputs={['INDEX', 'LSK 1 (STATUS)']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Navigation Data',
+                        state: 'WORLD',
+                    },
+                    {
+                        title: 'Active Database Dates',
+                        state: 'ACCURATE',
+                    },
+                    {
+                        title: 'FMC Time',
+                        state: 'ACCURATE',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Position Initialization (
+                        <KeyboardInputs inputs={['RSK 6 (POS INIT)']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: (
+                    <>
+                        Flight Plan Init 1 (
+                        <KeyboardInputs inputs={['RSK 6 (FPLN)']} />
+                        )
+                    </>
+                ),
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Origin Airport (
+                                <KeyboardInputs inputs={['INPUT', 'LSK 1 (ORIGIN)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Destination Airport (
+                                <KeyboardInputs inputs={['INPUT', 'RSK 1 (DEST)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Alternate Destination Airport (
+                                <KeyboardInputs inputs={['INPUT', 'RSK 2 (ALTN)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Flight Number (
+                                <KeyboardInputs inputs={['INPUT', 'RSK 5 (FLT NO)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Execute (
+                                <KeyboardInputs inputs={['EXEC']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Departure Init (
+                        <KeyboardInputs inputs={['DEP/ARR']} />
+                        )
+                    </>
+                ),
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Departure Runway (
+                                <KeyboardInputs inputs={['RSK ?']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Standard Instrument Departure (
+                                <KeyboardInputs inputs={['LSK ?']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Transition (
+                                <KeyboardInputs inputs={['INPUT', 'RSK 2 (ALTN)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Execute (
+                                <KeyboardInputs inputs={['EXEC']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Flight Plan Init 2 (
+                        <KeyboardInputs inputs={['FPLN', 'NEXT PAGE']} />
+                        )
+                    </>
+                ),
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Highways / Waypoints (
+                                <KeyboardInputs inputs={['LSK ? / RSK ?']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Execute (
+                                <KeyboardInputs inputs={['EXEC']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Legs Page (
+                        <KeyboardInputs inputs={['LEGS']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: (
+                    <>
+                        Performance Page (
+                        <KeyboardInputs inputs={['PERF']} />
+                        )
+                    </>
+                ),
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Performance Init Page 1 (
+                                <KeyboardInputs inputs={['LSK 1 (PERF INIT)']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                        subItems: createTransformedList()([
+                            {
+                                title: 'EFB: Copy Performance Init Data to FMS',
+                                state: 'SELECTED',
+                            },
+                            {
+                                title: 'FMS: Zero Fuel Weight, Fuel Weight',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: (
+                                    <>
+                                        Cruise Altitude (
+                                        <KeyboardInputs inputs={['RSK 1 (CRZ ALT)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                            {
+                                title: (
+                                    <>
+                                        Alternate Cruise Altitude (
+                                        <KeyboardInputs inputs={['RSK 2 (ALTN CRZ ALT)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                        ]),
+                    },
+                    {
+                        title: (
+                            <>
+                                Performance Init Page 2 (
+                                <KeyboardInputs inputs={['NEXT PAGE']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                        subItems: createTransformedList()([
+                            {
+                                title: (
+                                    <>
+                                        ISA Dev (
+                                        <KeyboardInputs inputs={['LSK 2 (ISA DEV)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                        ]),
+                    },
+                    {
+                        title: (
+                            <>
+                                Performance Init Page 3 (
+                                <KeyboardInputs inputs={['NEXT PAGE']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                        subItems: createTransformedList()([
+                            {
+                                title: (
+                                    <>
+                                        Reserves Fuel (
+                                        <KeyboardInputs inputs={['LSK 1 (RESERVES)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                            {
+                                title: (
+                                    <>
+                                        Taxi Fuel (
+                                        <KeyboardInputs inputs={['RSK 1 (TAXI FUEL)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                        ]),
+                    },
+                    {
+                        title: (
+                            <>
+                                VNAV Climb Profile (
+                                <KeyboardInputs inputs={['LSK 6 (VNAV SETUP)']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                        subItems: createTransformedList()([
+                            {
+                                title: (
+                                    <>
+                                        Transition Altitude (
+                                        <KeyboardInputs inputs={['RSK 1 (TRANS ALT)']} />
+                                        )
+                                    </>
+                                ),
+                                state: 'SET',
+                            },
+                        ]),
+                    },
+                ]),
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_IRS,
@@ -739,11 +1376,28 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_RADIOS,
         title: 'Radios and Nav Aids',
         state: 'SET',
+        moreInfoShort: 'If any navigation aids (VORs) can be used on departure, they should be configured now.',
+    },
+    {
+        uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_TAKEOFF_DATA,
+        title: 'Take-Off Data',
+        state: 'SET',
+        subItems: createTransformedList()([
+            {
+                title: 'EFB: Take-Off Speeds',
+                state: 'SET ALL',
+            },
+            {
+                title: 'PFD: V Speeds',
+                state: 'AVAILABLE',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_START_CHECK_TAKEOFF_BRIEFING,
         title: 'Take-Off Briefing',
         state: 'COMPLETE',
+        // FIXME: create an abstract briefing
     },
     {
         uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_PERSONAL_ELECTRONIC_DEVICES,
@@ -759,16 +1413,27 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_ELECTRICS,
         title: 'Electrics',
         state: 'CHECKED',
-    },
-    {
-        uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_TAKEOFF_DATA,
-        title: 'Take-Off Data',
-        state: 'SET',
+        moreInfoShort: (
+            <>
+                Electric circuits can be checked on the ELEC page of the secondary
+                {' '}
+                {EICAS_CRJ7}
+                .
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_DOORS,
         title: 'Doors',
         state: 'CLOSED / LOCKED',
+        moreInfoShort: (
+            <>
+                Door status can be checked on the DOORS page of the secondary
+                {' '}
+                {EICAS_CRJ7}
+                .
+            </>
+        ),
     },
     {
         uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_BEACON,
@@ -788,17 +1453,105 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
     {
         uid: ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_PARKING_BRAKE,
         title: 'Parking Brake',
-        state: 'ON / OFF',
+        state: 'AS REQUIRED',
+    },
+    {
+        uid: ChecklistItems.CRJ7_CLEARED_TO_START_ENGINE_START,
+        title: 'Engine Start',
+        state: 'COMPLETE',
+        subItems: createTransformedList()([
+            {
+                title: 'Right Engine Start',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: 'R ENG Start Button',
+                        state: 'PUSH',
+                    },
+                    {
+                        title: (
+                            <>
+                                {N2}
+                                {' '}
+                                Monitor
+                            </>
+                        ),
+                        state: '20%',
+                    },
+                    {
+                        title: 'Right Throttle Lever',
+                        state: 'IDLE',
+                    },
+                    {
+                        title: (
+                            <>
+                                {N1}
+                                {' '}
+                                = 20%,
+                                {' '}
+                                {N2}
+                                {' '}
+                                = 60%,
+                                {' '}
+                                {ITT}
+                                {' '}
+                                = 525&deg;C
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Fuel Feed Check Valve Test',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Fuel Page on
+                                {' '}
+                                {EICAS_CRJ7}
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['FUEL']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                    },
+                    {
+                        title: 'Fuel Boost Pumps',
+                        state: 'OFF, BOTH',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="warning">LEFT FUEL LO PRESS</CASMessage>
+                                {' '}
+                                on primary
+                                {' '}
+                                {EICAS_CRJ7}
+                            </>
+                        ),
+                        state: 'DISPLAYED',
+                    },
+                    {
+                        title: 'Fuel Boost Pumps',
+                        state: 'ON, BOTH',
+                    },
+                ]),
+            },
+            {
+                title: 'Left Engine Start',
+                state: 'COMPLETE',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_AFTER_START_CHECK_GENERATORS,
-        title: 'Generators',
+        title: 'Electrical Panel: Generators',
         state: 'AUTO',
-    },
-    {
-        uid: ChecklistItems.CRJ7_AFTER_START_CHECK_ELECTRICS,
-        title: 'Electrics',
-        state: 'CHECKED',
     },
     {
         uid: ChecklistItems.CRJ7_AFTER_START_CHECK_BLEED_VALVES,
@@ -811,14 +1564,114 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         state: 'ON',
     },
     {
+        uid: ChecklistItems.CRJ7_AFTER_START_CHECK_SYNOPTIC_PAGES,
+        title: 'Synoptic Pages',
+        state: 'CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Hyrdaulic System Pages (
+                        <KeyboardInputs inputs={['HYD']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Hydraulic Pump 1A',
+                        state: 'GREEN',
+                    },
+                    {
+                        title: 'Hydraulic Pump 2A',
+                        state: 'GREEN',
+                    },
+                    {
+                        title: 'Hydraulic Pump 3A',
+                        state: 'GREEN',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Eletric System Pages (
+                        <KeyboardInputs inputs={['ELEC']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Generator 1',
+                        state: 'GREEN',
+                    },
+                    {
+                        title: 'Generator 2',
+                        state: 'GREEN',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Fuel System Page (
+                        <KeyboardInputs inputs={['FUEL']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: (
+                    <>
+                        Flight Control Surfaces Page (
+                        <KeyboardInputs inputs={['F/CTL']} />
+                        ), Flight Controls
+                    </>
+                ),
+                state: 'FREE AND MOVING',
+            },
+        ]),
+    },
+    {
         uid: ChecklistItems.CRJ7_AFTER_START_CHECK_APU,
         title: 'APU',
-        state: 'ON / OFF',
+        state: 'OFF',
+        subItems: createTransformedList()([
+            {
+                title: 'APU Start/Stop Switch',
+                state: 'PRESSED',
+            },
+            {
+                title: 'APU, PWR Fuel Switch',
+                state: 'PRESSED',
+            },
+            {
+                title: (
+                    <>
+                        Secondary
+                        {' '}
+                        {EICAS_CRJ7}
+                        {' '}
+                        Page (
+                        <KeyboardInputs inputs={['STAT']} />
+                        ), APU DOOR CLSD
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+        ]),
+    },
+    {
+        uid: ChecklistItems.CRJ7_AFTER_START_CHECK_ANTIICE_PROBES,
+        title: 'Anti-Ice Probes',
+        state: 'ON',
     },
     {
         uid: ChecklistItems.CRJ7_AFTER_START_CHECK_ANTIICE,
         title: 'Anti-Ice',
-        state: 'ON / OFF',
+        state: 'AS REQUIRED',
     },
     {
         uid: ChecklistItems.CRJ7_AFTER_START_CHECK_NOSEWHEEL,
@@ -839,6 +1692,20 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_TAXI_CHECK_TRIMS,
         title: 'Trims',
         state: 'GREEN, CHECKED',
+        subItems: createTransformedList()([
+            {
+                title: 'Rudder Trim (RUD)',
+                state: 'GREEN',
+            },
+            {
+                title: 'Aileron Trim (AIL)',
+                state: 'GREEN',
+            },
+            {
+                title: 'Elevator Trim',
+                state: 'SET FOR TAKEOFF, GREEN',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_TAXI_CHECK_THRUST_REVERSERS,
@@ -846,9 +1713,28 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         state: 'ARMED',
     },
     {
+        uid: ChecklistItems.CRJ7_TAXI_CHECK_EXTERNAL_LIGHTS,
+        title: 'External Lights',
+        state: 'AS REQUIRED',
+        subItems: createTransformedList()([
+            {
+                title: 'Taxi Lights (RECOG TAXI LTS)',
+                state: 'ON',
+            },
+            {
+                title: 'Strobe Lights (STROBE)',
+                state: 'AS REQUIRED',
+            },
+            {
+                title: 'Landing Lights (All LANDING LTS)',
+                state: 'AS REQUIRED',
+            },
+        ]),
+    },
+    {
         uid: ChecklistItems.CRJ7_TAXI_CHECK_FLIGHT_INSTRUMENTS,
         title: 'Flight Instruments',
-        state: 'CHECKED',
+        state: 'CHECKED', // FIXME: shared with other aircraft, check the roses rotate, speeds are indicated, ...
     },
     {
         uid: ChecklistItems.CRJ7_TAXI_CHECK_BRAKE_TEMPS,
@@ -859,6 +1745,16 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_BEFORE_TAKEOFF_CHECK_EXTERNAL_LIGHTS,
         title: 'External Lights',
         state: 'ON',
+        subItems: createTransformedList()([
+            {
+                title: 'Strobe Lights (STROBE)',
+                state: 'ON',
+            },
+            {
+                title: 'Landing Lights (All LANDING LTS)',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_TAKEOFF_CHECK_FUEL_XFLOW,
@@ -875,11 +1771,13 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_BEFORE_TAKEOFF_CHECK_TRANSPONDER,
         title: 'Transponder / TCAS',
         state: 'ON, SET',
+        moreInfoShort: 'Rotate ATC SEL in Radios section on Pedestal to 1.',
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_TAKEOFF_CHECK_RADAR,
         title: 'Radar / Terrain Display',
         state: 'SET',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.CRJ7_BEFORE_TAKEOFF_CHECK_CAS,
@@ -925,6 +1823,7 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_DESCENT_CHECK_RADAR,
         title: 'Radar',
         state: 'ON / OFF',
+        tags: [ChecklistTags.NOT_IMPLEMENTED],
     },
     {
         uid: ChecklistItems.CRJ7_DESCENT_CHECK_CAS,
@@ -935,6 +1834,92 @@ export const CRJ7ChecklistItemsData = createTransformedMapping(addCRJ7Tags)([
         uid: ChecklistItems.CRJ7_DESCENT_CHECK_LANDING_DATA,
         title: 'Landing Data',
         state: 'SET',
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Arrival Init (
+                        <KeyboardInputs inputs={['DEP/ARR']} />
+                        )
+                    </>
+                ),
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Approach (
+                                <KeyboardInputs inputs={['RSK ?']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Standard Terminal Arrival Route (
+                                <KeyboardInputs inputs={['LSK ?']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Execute (
+                                <KeyboardInputs inputs={['EXEC']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Legs Page (
+                        <KeyboardInputs inputs={['LEGS']} />
+                        )
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+            {
+                title: (
+                    <>
+                        VNAV Descent Profile (
+                        <KeyboardInputs inputs={['PERF', 'LSK 2 (VNAV SETUP)', 'NEXT PAGE', 'NEXT PAGE']} />
+                        )
+                    </>
+                ),
+                state: 'OPEN',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Transition Level (
+                                <KeyboardInputs inputs={['RSK 1 (TRANS FL)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Execute (
+                                <KeyboardInputs inputs={['EXEC']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CRJ7_DESCENT_CHECK_APPROACH_BRIEFING,

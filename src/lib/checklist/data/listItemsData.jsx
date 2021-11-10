@@ -8,6 +8,7 @@ import { C172ChecklistItemsData } from 'lib/checklist/data/listItemsData/c172';
 import { C172SteamChecklistItemsData } from 'lib/checklist/data/listItemsData/c172steam';
 import { C172G1000ChecklistItemsData } from 'lib/checklist/data/listItemsData/c172g1000';
 import { CRJ7ChecklistItemsData } from 'lib/checklist/data/listItemsData/crj7';
+import { CRJ7ExtChecklistItemsData } from 'lib/checklist/data/listItemsData/crj7ext';
 
 export const ChecklistItemsData = Object.freeze({
     ...CJ4ChecklistItemsData,
@@ -16,6 +17,7 @@ export const ChecklistItemsData = Object.freeze({
     ...C172SteamChecklistItemsData,
     ...C172G1000ChecklistItemsData,
     ...CRJ7ChecklistItemsData,
+    ...CRJ7ExtChecklistItemsData,
     ...VATSIMChecklistItemsData,
     ...SimulatorSetupChecklistItemsData,
 });

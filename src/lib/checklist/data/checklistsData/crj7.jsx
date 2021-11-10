@@ -16,7 +16,11 @@ export const CRJ7ChecklistData = {
             <ExternalLink href="https://www.aerosoft.com/en/microsoft-flight-simulator/msfs-aircraft/3303/aerosoft-aircraft-crj-550/700">
                 on Aerosoft&apos;s official website
             </ExternalLink>
-            .
+            . This checklist is a summary inspired by the official checklist and the
+            {' '}
+            <strong>must do</strong>
+            {' '}
+            tutorial released with the aircraft.
         </p>
     ),
     selectableFilters: [
@@ -26,6 +30,15 @@ export const CRJ7ChecklistData = {
         ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
     ],
     lists: [
+        {
+            listName: ChecklistLists.PRE_FLIGHT,
+            items: [
+                ChecklistItems.CRJ7EXT_PRE_FLIGHT_AIRCRAFT_EFB_SETUP,
+            ],
+            nextListNames: [
+                ChecklistLists.SAFETY,
+            ],
+        },
         {
             listName: ChecklistLists.SAFETY,
             items: [
@@ -73,6 +86,7 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_FUEL_PANEL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_BLEED_AIR_PANEL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_APU_PANEL,
+                ChecklistItems.CRJ7EXT_ORIGINATING_CHECK_FMS_INIT_REMINDER,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_START_PANEL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_HYDRAULIC_PANEL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_ELT_SWITCH,
@@ -87,6 +101,7 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_CLOCKS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_EFIS_CONTROL_PANELS,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_INSTRUMENT_PANELS,
+                ChecklistItems.CRJ7_ORIGINATING_CHECK_EICAS_AND_STDBY,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_UPPER_PEDESTAL,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_THRUST_LEVER_QUADRANT,
                 ChecklistItems.CRJ7_ORIGINATING_CHECK_AVIONICS,
@@ -104,11 +119,14 @@ export const CRJ7ChecklistData = {
             items: [
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_PASS_SIGNS,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_LANDING_ELEVATION,
+                ChecklistItems.CRJ7_BEFORE_START_CHECK_BOOST_PUMPS,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_ALTIMETERS,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_FMS,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_IRS,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_RADIOS,
+                ChecklistItems.CRJ7_BEFORE_START_CHECK_TAKEOFF_DATA,
                 ChecklistItems.CRJ7_BEFORE_START_CHECK_TAKEOFF_BRIEFING,
+                ChecklistItems.CRJ7EXT_BEFORE_START_CHECK_DOORS_CHOCKS,
             ],
             nextListNames: [
                 ChecklistLists.ENGINE_START,
@@ -120,12 +138,12 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_PERSONAL_ELECTRONIC_DEVICES,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_APU,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_ELECTRICS,
-                ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_TAKEOFF_DATA,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_DOORS,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_BEACON,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_FUEL_PUMPS,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_HYDRAULIC_PUMPS,
                 ChecklistItems.CRJ7_CLEARED_TO_START_CHECK_PARKING_BRAKE,
+                ChecklistItems.CRJ7_CLEARED_TO_START_ENGINE_START,
             ],
             nextListNames: [
                 ChecklistLists.AFTER_ENGINE_START,
@@ -135,10 +153,11 @@ export const CRJ7ChecklistData = {
             listName: ChecklistLists.AFTER_ENGINE_START,
             items: [
                 ChecklistItems.CRJ7_AFTER_START_CHECK_GENERATORS,
-                ChecklistItems.CRJ7_AFTER_START_CHECK_ELECTRICS,
                 ChecklistItems.CRJ7_AFTER_START_CHECK_BLEED_VALVES,
                 ChecklistItems.CRJ7_AFTER_START_CHECK_PACKS,
+                ChecklistItems.CRJ7_AFTER_START_CHECK_SYNOPTIC_PAGES,
                 ChecklistItems.CRJ7_AFTER_START_CHECK_APU,
+                ChecklistItems.CRJ7_AFTER_START_CHECK_ANTIICE_PROBES,
                 ChecklistItems.CRJ7_AFTER_START_CHECK_ANTIICE,
                 ChecklistItems.CRJ7_AFTER_START_CHECK_NOSEWHEEL,
             ],
@@ -153,6 +172,7 @@ export const CRJ7ChecklistData = {
                 ChecklistItems.CRJ7_TAXI_CHECK_FLIGHT_CONTROLS,
                 ChecklistItems.CRJ7_TAXI_CHECK_TRIMS,
                 ChecklistItems.CRJ7_TAXI_CHECK_THRUST_REVERSERS,
+                ChecklistItems.CRJ7_TAXI_CHECK_EXTERNAL_LIGHTS,
                 ChecklistItems.CRJ7_TAXI_CHECK_FLIGHT_INSTRUMENTS,
                 ChecklistItems.CRJ7_TAXI_CHECK_BRAKE_TEMPS,
             ],
