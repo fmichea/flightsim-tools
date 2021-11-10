@@ -8,11 +8,13 @@ import PropTypes from 'prop-types';
 import { isOdd } from 'lib/numbers';
 import { VWSpace } from 'components/lib/spaces';
 import {
-    ChecklistItemColumn, ChecklistListItemState,
+    ChecklistItemColumn,
+    ChecklistListItemState,
     ChecklistListItemTitle,
     ChecklistListSubItemRow,
     ChecklistSubItemsTable,
 } from 'components/checklists/formatting';
+import { Monospaced } from 'components/lib/Monospaced';
 
 const ChecklistItemHelpWrapper = styled('span', {
     display: 'inline-block',
@@ -22,9 +24,80 @@ const ChecklistItemHelpWrapper = styled('span', {
 
 const { Title } = Typography;
 
-const modalStyle = { maxWidth: '1000px' };
-const modalBodyStyle = { paddingTop: '10px', paddingBottom: '10px' };
+const modalStyle = {
+    maxWidth: '1000px',
+    maxHeight: '40vh',
+};
+
+const modalBodyStyle = {
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    maxHeight: '60vh',
+    overflowX: 'scroll',
+};
+
 const cancelButtonProps = { style: { display: 'none' } };
+
+const treeCharLastLeaf = <>&#x2517;&#x2501;</>; // ┗━
+const treeCharLeaf = <>&#x2523;&#x2501;</>; // ┣━
+const treeCharForward = <>&#x2503;&#x2003;</>; // ┃
+const treeCharWhitespace = <>&#x2003;&#x2003;</>; // 2 em whitespace
+
+const renderItemLevelTree = (levels) => levels.map(({ levelIdx, total }, idx) => {
+    const isFirst = idx === 0;
+    const isLeafLevel = idx === levels.length - 1;
+
+    const isLastLevel = levelIdx === total;
+    const levelHasOtherItem = !isLastLevel;
+
+    let treeChar = treeCharWhitespace;
+    if (!isLeafLevel && levelHasOtherItem) {
+        treeChar = treeCharForward;
+    } else if (isLeafLevel && levelHasOtherItem) {
+        treeChar = treeCharLeaf;
+    } else if (isLeafLevel) {
+        treeChar = treeCharLastLeaf;
+    }
+
+    return (
+    // eslint-disable-next-line react/no-array-index-key
+        <React.Fragment key={`level-${idx}-${levelIdx}-${total}`}>
+            {isFirst ? null : <VWSpace $width="4px" />}
+            {treeChar}
+            <VWSpace $width="6px" />
+        </React.Fragment>
+    );
+});
+
+const buildSubItemKey = (levels) => levels.map(({ levelIdx }) => levelIdx).join('.');
+
+const renderSubItems = (subItems, levels = []) => {
+    if (isNullOrUndefined(subItems) || subItems.length === 0) {
+        return [];
+    }
+
+    const result = [];
+    const subItemsLength = subItems.length - 1;
+
+    subItems.forEach((subItem, idx) => {
+        const subItemLevels = [...levels, { levelIdx: idx, total: subItemsLength }];
+
+        result.push({
+            key: buildSubItemKey(subItemLevels),
+            title: (
+                <>
+                    <Monospaced style={{ fontSize: '1em' }}>{renderItemLevelTree(subItemLevels)}</Monospaced>
+                    {subItem.title}
+                </>
+            ),
+            state: subItem.state,
+        });
+
+        result.push(...renderSubItems(subItem.subItems, subItemLevels));
+    });
+
+    return result;
+};
 
 export const ChecklistListItemHelp = ({
     title,
@@ -68,22 +141,28 @@ export const ChecklistListItemHelp = ({
                 bodyStyle={modalBodyStyle}
                 maskClosable
             >
+                {isNullOrUndefined(moreInfoShort) ? null : (
+                    <p>
+                        <strong>Short:</strong>
+                        {' '}
+                        {moreInfoShort}
+                    </p>
+                )}
+
                 {!hasSubItems ? null : (
-                    <>
+                    <p>
                         <Title level={5}>Items</Title>
                         <ChecklistSubItemsTable>
                             <tbody>
-                                {subItems.map((value, idx) => (
+                                {renderSubItems(subItems).map((value, idx) => (
                                     <ChecklistListSubItemRow
-                                        key={value.title}
+                                        key={value.key}
                                         $isSubItemsList
                                         $isFirst={idx === 0}
                                         $isOddSubItem={isOdd(idx)}
                                     >
                                         <ChecklistItemColumn $isFirst $isSubItemsList>
                                             <ChecklistListItemTitle $isSubItemsList>
-                                                {idx !== subItems.length - 1 ? <>&#x2523;</> : <>&#x2517;</>}
-                                                <VWSpace $width="8px" />
                                                 {value.title}
                                             </ChecklistListItemTitle>
                                         </ChecklistItemColumn>
@@ -96,10 +175,15 @@ export const ChecklistListItemHelp = ({
                                 ))}
                             </tbody>
                         </ChecklistSubItemsTable>
-                    </>
+                    </p>
                 )}
 
-                {isNotNullOrUndefined(moreInfoLong) ? moreInfoLong : moreInfoShort}
+                {isNullOrUndefined(moreInfoLong) ? null : (
+                    <p>
+                        <Title level={5}>Description</Title>
+                        {moreInfoLong}
+                    </p>
+                )}
             </Modal>
         </>
     );

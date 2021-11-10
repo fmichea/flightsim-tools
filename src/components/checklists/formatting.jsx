@@ -64,8 +64,8 @@ export const ChecklistItemColumn = styled('td', (props) => ({
     width: props.$fitToContent ? '.0005%' : undefined,
     whiteSpace: props.$fitToContent ? 'nowrap' : undefined,
 
-    paddingBottom: props.$isSubItemsList ? '0px' : '6px',
-    paddingTop: props.$isSubItemsList ? '0px' : '6px',
+    paddingBottom: props.$isSubItemsList ? '2px' : '6px',
+    paddingTop: props.$isSubItemsList ? '2px' : '6px',
     paddingLeft: props.$isFirst ? '6px' : undefined,
     paddingRight: props.$isLast ? '6px' : '1em',
 }));
