@@ -14,6 +14,7 @@ import {
     ChecklistListItemWrapper,
 } from 'components/checklists/formatting';
 import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
+import { ChecklistTags } from 'lib/checklist/data/tags';
 import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
@@ -27,8 +28,8 @@ export const ChecklistListItemDisplay = ({
 }) => {
     const {
         title,
-        subTitle,
         state,
+        tagsSet,
         isChecked,
         tagsData,
         toggleChecked,
@@ -49,6 +50,11 @@ export const ChecklistListItemDisplay = ({
         hideHelpMode,
         hideSwitchesMode,
     } = useChecklistGlobalConfig();
+
+    const subTitleItems = [];
+    if (tagsSet.has(ChecklistTags.FIRST_FLIGHT_OF_DAY)) {
+        subTitleItems.push('Only First Flight of the Day');
+    }
 
     const switchColumn = hideSwitchesMode ? null : (
         <ChecklistItemColumn $fitToContent $isFirst={leftHandedMode} $isLast={!leftHandedMode} onClick={toggleChecked}>
@@ -80,9 +86,9 @@ export const ChecklistListItemDisplay = ({
                     <ChecklistListItemTitle>
                         {title}
                     </ChecklistListItemTitle>
-                    {isNullOrUndefined(subTitle) ? null : (
+                    {subTitleItems.length === 0 ? null : (
                         <ChecklistListItemSubTitle>
-                            {subTitle}
+                            {subTitleItems.join('; ')}
                         </ChecklistListItemSubTitle>
                     )}
                 </ChecklistItemColumn>

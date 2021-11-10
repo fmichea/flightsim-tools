@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { ChecklistDataItemTagsPropTypes } from 'components/checklists/propTypes';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 
-const tagStyle = { fontFamily: 'Monaco' };
+const tagStyle = { fontFamily: 'Monaco', fontSize: '.8em' };
 
 export const ChecklistListItemTags = ({
     tagsData,

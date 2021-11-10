@@ -1,6 +1,7 @@
 export const ChecklistTags = Object.freeze({
     OFFICIAL: 'official',
     NOT_IMPLEMENTED: 'not-implemented',
+    FIRST_FLIGHT_OF_DAY: 'first-flight-of-day',
     EXTENSION: 'extension',
 
     CJ4: 'CJ4',

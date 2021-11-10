@@ -11,6 +11,10 @@ const commonTagsData = createTransformedMapping()([
         hidden: true,
     },
     {
+        uid: ChecklistTags.FIRST_FLIGHT_OF_DAY,
+        hidden: true,
+    },
+    {
         uid: ChecklistTags.EXTENSION,
         title: 'EXT',
         color: '#080f8d',

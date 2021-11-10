@@ -25,9 +25,11 @@ export const CRJ7ChecklistData = {
         </p>
     ),
     selectableFilters: [
-        ChecklistFilters.INCLUDE_EXTENSIONS,
+        ChecklistFilters.EXCLUDE_EXTENSIONS,
+        ChecklistFilters.EXCLUDE_FIRST_FLIGHT_OF_DAY,
     ],
     defaultFilters: [
+        ChecklistFilters.INCLUDE_EXTENSIONS,
         ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
     ],
     lists: [

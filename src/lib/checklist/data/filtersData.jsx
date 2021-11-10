@@ -56,6 +56,21 @@ const commonFiltersData = createTransformedMapping()([
         },
     },
     {
+        uid: ChecklistFilters.EXCLUDE_EXTENSIONS,
+        title: 'Extensions',
+        description: (
+            <>
+                Exclude checklist items extending the official checklist.
+            </>
+        ),
+        fn: (item) => {
+            if (item.tagsSet.has(ChecklistTags.EXTENSION)) {
+                return ChecklistFiltersResults.EXCLUDE;
+            }
+            return ChecklistFiltersResults.PASS;
+        },
+    },
+    {
         uid: ChecklistFilters.INCLUDE_SIMSETUP_ITEMS,
         title: 'Simulator Setup',
         description: (
@@ -67,6 +82,21 @@ const commonFiltersData = createTransformedMapping()([
         fn: (item) => {
             if (item.tagsSet.has(ChecklistTags.SIMSETUP)) {
                 return ChecklistFiltersResults.INCLUDE;
+            }
+            return ChecklistFiltersResults.PASS;
+        },
+    },
+    {
+        uid: ChecklistFilters.EXCLUDE_FIRST_FLIGHT_OF_DAY,
+        title: 'First Flight of Day',
+        description: (
+            <>
+                Exclude checklist item relevant only for the first flight of the day.
+            </>
+        ),
+        fn: (item) => {
+            if (item.tagsSet.has(ChecklistTags.FIRST_FLIGHT_OF_DAY)) {
+                return ChecklistFiltersResults.EXCLUDE;
             }
             return ChecklistFiltersResults.PASS;
         },
