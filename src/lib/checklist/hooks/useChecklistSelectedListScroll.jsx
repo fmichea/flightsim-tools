@@ -13,7 +13,7 @@ export const useChecklistSelectedListScroll = ({ checklistListName }) => useEffe
         Scroll.scroller.scrollTo(checklistListName, {
             duration: 400,
             smooth: true,
-            offset: -100,
+            offset: -80,
         }, 75);
     });
 
