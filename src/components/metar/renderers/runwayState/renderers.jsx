@@ -1,6 +1,7 @@
 import React from 'react';
-import { RunwayStateValue } from 'components/metar/renderers/runwayState/RunwayStateValue';
+
 import { RunwayStateShort } from 'components/metar/renderers/runwayState/RunwayStateShort';
+import { RunwayStateValue } from 'components/metar/renderers/runwayState/RunwayStateValue';
 
 export const RunwayStateRenderers = {
     renderValue: RunwayStateValue,

@@ -1,3 +1,4 @@
+import { SeaSurfaceValue } from 'components/metar/renderers/seaSurface/SeaSurfaceValue';
 import {
     TestDataSeaSurface_W12S4_Data,
     TestDataSeaSurface_W12S4_Text,
@@ -5,7 +6,6 @@ import {
     TestDataSeaSurface_WM01H014_Text,
 } from 'tests/data/metar/seaSurface';
 import { mountWithStore } from 'tests/lib/mountWithStore';
-import { SeaSurfaceValue } from 'components/metar/renderers/seaSurface/SeaSurfaceValue';
 
 const setup = (data) => mountWithStore(SeaSurfaceValue, {
     props: { data, prettyArgs: data },

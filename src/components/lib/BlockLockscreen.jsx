@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useMemo, useState } from 'react';
+
 import PageVisibility from 'react-page-visibility';
 
 export const BlockLockscreen = () => {

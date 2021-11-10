@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 function getWindowDimensions() {

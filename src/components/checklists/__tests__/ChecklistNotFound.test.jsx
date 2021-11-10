@@ -1,5 +1,5 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { ChecklistNotFound } from 'components/checklists/ChecklistNotFound';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = () => mountWithStore(ChecklistNotFound, { props: { checklistName: 'foooo' } });
 

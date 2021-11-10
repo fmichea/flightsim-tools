@@ -1,5 +1,5 @@
-import { parseMETAR } from 'lib/metar/parser';
 import { TokenTypes } from 'lib/metar/enums';
+import { parseMETAR } from 'lib/metar/parser';
 
 describe('parseMETAR', () => {
     test('sample metar is parsed', () => {

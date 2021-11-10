@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { CloudCoverageShort } from 'components/metar/renderers/cloudCoverage/CloudCoverageShort';
 import {
     TestDataCloudDescriptor_BKN070CB_Data, TestDataCloudDescriptor_CLR_Data,
@@ -9,6 +8,7 @@ import {
     TestDataCloudDescriptor_OVCBelow_Data,
     TestDataCloudDescriptor_SCT120_Data, TestDataCloudDescriptor_SKC_Data, TestDataCloudDescriptor_TCUONLY_Data,
 } from 'tests/data/metar/cloudDescriptors';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(CloudCoverageShort, {
     props: {

@@ -1,12 +1,12 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { useAntiIceRecommendation } from 'lib/anti-ice/hooks/useAntiIceRecommendation';
-import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
-import { useAntiIceOperationModeData } from 'lib/anti-ice/hooks/useAntiIceOperationModeData';
-import { pick } from 'lib/pick';
-import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
+import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
 import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
+import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
 import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
+import { useAntiIceOperationModeData } from 'lib/anti-ice/hooks/useAntiIceOperationModeData';
+import { useAntiIceRecommendation } from 'lib/anti-ice/hooks/useAntiIceRecommendation';
+import { pick } from 'lib/pick';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = ({ props, operationModeName } = {}) => {
     const defaultProps = {

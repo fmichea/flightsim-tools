@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { PrevailingVisibilityValue } from 'components/metar/renderers/prevailingVisibility/PrevailingVisibilityValue';
 import {
     TestDataPrevailingVisibility_10KM_Data,
@@ -20,6 +19,7 @@ import {
     TestDataPrevailingVisibility_MISSING_Data,
     TestDataPrevailingVisibility_MISSING_Text,
 } from 'tests/data/metar/prevailingVisibility';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(PrevailingVisibilityValue, {
     props: { data, prettyArgs: data },

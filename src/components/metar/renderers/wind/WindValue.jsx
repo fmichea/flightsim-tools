@@ -1,7 +1,8 @@
-import { ThickSpace, ThinSpace } from 'components/lib/spaces';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import React from 'react';
+
+import { ThickSpace, ThinSpace } from 'components/lib/spaces';
 import { WindPropTypes } from 'components/metar/renderers/wind/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const WindValue = ({
     prettyArgs: {

@@ -1,9 +1,11 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import Scroll from 'react-scroll';
+import { styled } from 'styletron-react';
+
 import { ChecklistListInfo } from 'components/checklists/ChecklistListInfo';
 import { ChecklistListItemDisplay } from 'components/checklists/ChecklistListItemDisplay';
-import { styled } from 'styletron-react';
 import { ChecklistNextListButtonsDisplay } from 'components/checklists/ChecklistNextListButtonsDisplay';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 import { isOdd } from 'lib/numbers';

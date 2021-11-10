@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useQueryParams } from 'lib/hooks/useQueryParams';
+
 import { useHistory } from 'react-router';
-import { MetarExplainerRoute } from 'lib/routes';
-import { pick } from 'lib/pick';
+
+import { useQueryParams } from 'lib/hooks/useQueryParams';
 import { isLocalServer } from 'lib/isLocalServer';
+import { pick } from 'lib/pick';
+import { MetarExplainerRoute } from 'lib/routes';
 
 export class MetarURLManager {
     // eslint-disable-next-line class-methods-use-this

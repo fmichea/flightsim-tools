@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { MissingDataShort } from 'components/metar/renderers/missingData/MissingDataShort';
 import { TestDataMissingData_Data } from 'tests/data/metar/missingData';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(MissingDataShort, {
     props: { data, prettyArgs: data },

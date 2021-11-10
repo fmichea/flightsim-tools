@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { List, Switch } from 'antd';
 import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
-import { List, Switch } from 'antd';
+
 import { Clearfix } from 'components/lib/Clearfix';
 
 const ChecklistConfigurationSwitchContainer = styled('div', {

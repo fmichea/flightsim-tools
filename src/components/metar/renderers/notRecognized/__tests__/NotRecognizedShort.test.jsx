@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { NotRecognizedShort } from 'components/metar/renderers/notRecognized/NotRecognizedShort';
 import { TokenTypes } from 'lib/metar/enums';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(NotRecognizedShort, {
     props: { data, prettyArgs: data },

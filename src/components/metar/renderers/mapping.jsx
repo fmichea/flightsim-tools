@@ -1,4 +1,3 @@
-import { TokenTypes } from 'lib/metar/enums';
 import { AirportIdentifierRenderers } from 'components/metar/renderers/airportIdentifier/renderers';
 import { AltimeterRenderers } from 'components/metar/renderers/altimeter/renderers';
 import { CloudCoverageRenderers } from 'components/metar/renderers/cloudCoverage/renderers';
@@ -19,6 +18,7 @@ import { TrendRenderers } from 'components/metar/renderers/trend/renderers';
 import { VerticalVisibilityRenderers } from 'components/metar/renderers/verticalVisibility/renderers';
 import { WindRenderers } from 'components/metar/renderers/wind/renderers';
 import { WindShearRenderers } from 'components/metar/renderers/windShear/renderers';
+import { TokenTypes } from 'lib/metar/enums';
 
 export const TokenRenderers = {
     [TokenTypes.AIRPORT_IDENTIFIER]: AirportIdentifierRenderers,

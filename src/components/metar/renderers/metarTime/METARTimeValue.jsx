@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ThinSpace } from 'components/lib/spaces';
 import { METARTimePropTypes } from 'components/metar/renderers/metarTime/propTypes';
 

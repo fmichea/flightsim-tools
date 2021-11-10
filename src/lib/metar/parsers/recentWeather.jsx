@@ -1,11 +1,11 @@
+import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { TokenTypes } from 'lib/metar/enums';
 import {
     buildDescriptorsArgs,
     buildPhenomenonsArgs, splitWeatherDescriptorsIntoParts,
     splitWeatherPhenomenonsIntoParts, WeatherDescriptorPatterns,
     WeatherPhenomenaPatterns,
 } from 'lib/metar/parsers/internal/weather';
-import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
-import { TokenTypes } from 'lib/metar/enums';
 
 const parseRecentWeatherCombination = (parser, descriptorCount, phenomenaCount) => {
     const { groups } = parser.matchNextTokenAndForward(

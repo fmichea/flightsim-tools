@@ -1,11 +1,12 @@
 import React from 'react';
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
+
+import { CASMessage } from 'components/lib/CASMessage';
+import { KeyboardInputs } from 'components/lib/KeyboardInputs';
+import { MFD_CJ4 } from 'components/lib/vernacular/cj4';
+import { FMS } from 'components/lib/vernacular/common';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
-import { KeyboardInputs } from 'components/lib/KeyboardInputs';
-import { CASMessage } from 'components/lib/CASMessage';
-import { FMS } from 'components/lib/vernacular/common';
-import { MFD_CJ4 } from 'components/lib/vernacular/cj4';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addCJ4EXTTags = (value) => ({
     ...value,

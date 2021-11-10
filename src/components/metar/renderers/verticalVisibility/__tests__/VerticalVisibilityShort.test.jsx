@@ -1,9 +1,9 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { VerticalVisibilityShort } from 'components/metar/renderers/verticalVisibility/VerticalVisibilityShort';
 import {
     TestDataVerticalVisibility_VV120_Data,
     TestDataVerticalVisibility_VVMISSING_Data,
 } from 'tests/data/metar/verticalVisibility';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(VerticalVisibilityShort, {
     props: { data, prettyArgs: data },

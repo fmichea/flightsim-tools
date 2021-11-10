@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { WindShearPropTypes } from 'components/metar/renderers/windShear/propTypes';
 import { WindShearRunway } from 'lib/metar/enums';
 

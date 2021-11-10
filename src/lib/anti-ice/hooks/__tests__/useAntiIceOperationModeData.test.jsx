@@ -1,9 +1,10 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { useAntiIceOperationModeData } from 'lib/anti-ice/hooks/useAntiIceOperationModeData';
+import { act } from '@testing-library/react';
+
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
 import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
-import { act } from '@testing-library/react';
+import { useAntiIceOperationModeData } from 'lib/anti-ice/hooks/useAntiIceOperationModeData';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = () => {
     const mockAntiIceURLManager = {

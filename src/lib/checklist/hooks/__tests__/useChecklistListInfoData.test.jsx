@@ -1,8 +1,8 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 import { Checklists } from 'lib/checklist/data/checklists';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = () => mountHookWithStore(() => useChecklistListInfoData({
     checklistData: TestDataHookChecklistData,

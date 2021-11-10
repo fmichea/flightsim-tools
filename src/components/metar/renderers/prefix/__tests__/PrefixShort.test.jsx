@@ -1,10 +1,10 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { PrefixShort } from 'components/metar/renderers/prefix/PrefixShort';
 import {
     TestDataMetarPrefixes_AUTO_Data,
     TestDataMetarPrefixes_COR_Data,
     TestDataMetarPrefixes_METAR_Data,
 } from 'tests/data/metar/metarPrefixes';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(PrefixShort, {
     props: { data, prettyArgs: data },

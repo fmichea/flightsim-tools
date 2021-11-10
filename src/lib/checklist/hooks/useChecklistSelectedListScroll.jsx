@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+
 import Scroll from 'react-scroll';
+
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const useChecklistSelectedListScroll = ({ checklistListName }) => useEffect(() => {

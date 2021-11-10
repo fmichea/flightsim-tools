@@ -1,12 +1,13 @@
 import React from 'react';
+
+import { ExternalLink } from 'components/lib/ExternalLink';
+import { RunwayStatePropTypes } from 'components/metar/renderers/runwayState/propTypes';
 import {
     RunwayContaminationDepth,
     RunwayContaminationExtent,
     RunwayDeposit,
     RunwaySurfaceFriction,
 } from 'lib/metar/enums';
-import { ExternalLink } from 'components/lib/ExternalLink';
-import { RunwayStatePropTypes } from 'components/metar/renderers/runwayState/propTypes';
 import { pick } from 'lib/pick';
 
 const depositDescriptions = {

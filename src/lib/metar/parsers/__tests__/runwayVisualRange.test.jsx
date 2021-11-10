@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseRunwayVisualRange } from 'lib/metar/parsers/runwayVisualRange';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataRunwayVisualRange_R042000_Data,
     TestDataRunwayVisualRange_R042000_Text,

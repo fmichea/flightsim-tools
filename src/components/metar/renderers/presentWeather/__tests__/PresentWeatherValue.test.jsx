@@ -1,4 +1,4 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { PresentWeatherValue } from 'components/metar/renderers/presentWeather/PresentWeatherValue';
 import {
     TestDataPresentWeather_MVCBLGRFG_Data,
     TestDataPresentWeather_MVCBLGRFG_Text,
@@ -7,7 +7,7 @@ import {
     TestDataPresentWeather_SN_Data,
     TestDataPresentWeather_SN_Text,
 } from 'tests/data/metar/presentWeather';
-import { PresentWeatherValue } from 'components/metar/renderers/presentWeather/PresentWeatherValue';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(PresentWeatherValue, {
     props: { data, prettyArgs: data },

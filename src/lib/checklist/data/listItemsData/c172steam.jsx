@@ -1,6 +1,6 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addC172SteamTags = (value) => ({
     ...value,

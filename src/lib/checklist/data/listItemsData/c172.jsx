@@ -1,8 +1,9 @@
 import React from 'react';
+
+import { CASMessage } from 'components/lib/CASMessage';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
-import { CASMessage } from 'components/lib/CASMessage';
 
 const addC172Tags = (value) => ({
     ...value,

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { ChecklistURLManager } from 'lib/checklist/hooks/useChecklistURLConfig';
 
 // FIXME: complete these types.

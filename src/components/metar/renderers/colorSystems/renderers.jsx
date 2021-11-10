@@ -1,6 +1,7 @@
 import React from 'react';
-import { ColorSystemsValue } from 'components/metar/renderers/colorSystems/ColorSystemsValue';
+
 import { ColorSystemsShort } from 'components/metar/renderers/colorSystems/ColorSystemsShort';
+import { ColorSystemsValue } from 'components/metar/renderers/colorSystems/ColorSystemsValue';
 
 export const ColorSystemsRenderers = {
     renderValue: ColorSystemsValue,

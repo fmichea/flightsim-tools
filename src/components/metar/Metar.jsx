@@ -1,20 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import {
     Button, Col, Form, Input, List, Row, Typography, Alert, notification,
 } from 'antd';
-import { styled, useStyletron, withStyle } from 'styletron-react';
-import { parseMETAR } from 'lib/metar/parser';
-import { Monospaced } from 'components/lib/Monospaced';
-import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { pick } from 'lib/pick';
-import { objectMap } from 'lib/objects';
-import { ExternalLink } from 'components/lib/ExternalLink';
 import PropTypes from 'prop-types';
-import { TokenRenderers } from 'components/metar/renderers/mapping';
+import { styled, useStyletron, withStyle } from 'styletron-react';
+
 import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
-import { useMetarURLConfig } from 'lib/metar/hooks/useMetarURLConfig';
+import { ExternalLink } from 'components/lib/ExternalLink';
+import { Monospaced } from 'components/lib/Monospaced';
 import { VerticalSpace, VWSpace } from 'components/lib/spaces';
+import { TokenRenderers } from 'components/metar/renderers/mapping';
 import { getFullBaseURL } from 'lib/getFullBaseURL';
+import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { useMetarURLConfig } from 'lib/metar/hooks/useMetarURLConfig';
+import { parseMETAR } from 'lib/metar/parser';
+import { objectMap } from 'lib/objects';
+import { pick } from 'lib/pick';
 
 const { Title } = Typography;
 

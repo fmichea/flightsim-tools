@@ -1,6 +1,6 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
 import { AntiIceTags } from 'lib/anti-ice/data/tags';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const cj4SystemModesData = createTransformedMapping()([
     {

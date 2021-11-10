@@ -1,8 +1,10 @@
 import React from 'react';
-import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import PropTypes from 'prop-types';
+
+import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const AntiIceTemperatureTitle = ({ temperature: { name, fullName, description } }) => {
     let temperatureHelp = null;

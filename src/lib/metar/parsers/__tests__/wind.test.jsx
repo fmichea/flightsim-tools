@@ -1,6 +1,6 @@
-import { ParserState } from 'lib/metar/parserState';
 import { TokenTypes, WindDirections, WindSpeedUnit } from 'lib/metar/enums';
 import { parseWind } from 'lib/metar/parsers/wind';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataWind_090P00GP10MPS_Data,
     TestDataWind_090P00GP10MPS_Text,

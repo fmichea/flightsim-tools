@@ -1,8 +1,9 @@
-import { WindDirections, WindForce } from 'lib/metar/enums';
 import React from 'react';
+
 import { ThinSpace } from 'components/lib/spaces';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { WindPropTypes } from 'components/metar/renderers/wind/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { WindDirections, WindForce } from 'lib/metar/enums';
 
 const renderDirection = ({ directionP, direction }) => {
     if (directionP === WindDirections.VRB) {

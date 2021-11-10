@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { TrendShort } from 'components/metar/renderers/trend/TrendShort';
 import { TestDataTrend_BECMG_Data, TestDataTrend_NOSIG_Data, TestDataTrend_TEMPO_Data } from 'tests/data/metar/trend';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(TrendShort, {
     props: { data, prettyArgs: data },

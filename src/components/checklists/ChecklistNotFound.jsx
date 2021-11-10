@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Empty } from 'antd';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export const ChecklistNotFound = ({ checklistName }) => {
     const description = (

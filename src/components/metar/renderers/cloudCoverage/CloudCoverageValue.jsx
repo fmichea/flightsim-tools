@@ -1,7 +1,8 @@
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { ThinSpace } from 'components/lib/spaces';
 import React from 'react';
+
+import { ThinSpace } from 'components/lib/spaces';
 import { CloudCoveragePropTypes } from 'components/metar/renderers/cloudCoverage/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const renderAmountAltitude = ({ amount, altitude }) => {
     if (isNullOrUndefined(amount) && isNullOrUndefined(altitude)) {

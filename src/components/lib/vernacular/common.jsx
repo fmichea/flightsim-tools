@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Vernacular } from 'components/lib/vernacular/Vernacular';
 
 export const FMS = <Vernacular title="FMS - Flight Management System">FMS</Vernacular>;

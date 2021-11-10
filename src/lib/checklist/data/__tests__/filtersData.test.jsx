@@ -1,7 +1,7 @@
 import { ChecklistFilters } from 'lib/checklist/data/filters';
 import { ChecklistFiltersData } from 'lib/checklist/data/filtersData';
-import { ChecklistTags } from 'lib/checklist/data/tags';
 import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
+import { ChecklistTags } from 'lib/checklist/data/tags';
 
 describe('filtersData', () => {
     test('all checklists filters have data', () => {

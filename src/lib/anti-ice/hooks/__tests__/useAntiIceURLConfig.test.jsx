@@ -1,6 +1,6 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 import { AntiIceURLManager, useAntiIceURLConfig } from 'lib/anti-ice/hooks/useAntiIceURLConfig';
 import { AntiIceWithNameAndOperationModeNameRoute, AntiIceWithNameRoute } from 'lib/routes';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = (routePath, route) => mountHookWithStore(
     useAntiIceURLConfig,

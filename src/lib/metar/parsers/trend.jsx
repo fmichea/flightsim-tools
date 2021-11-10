@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 import { TokenTypes, TrendTimeType, TrendType } from 'lib/metar/enums';
-import { v4 as uuidv4 } from 'uuid';
 import { buildVariableArgs } from 'lib/metar/parsers/internal/varargs';
 import { pick } from 'lib/pick';
 

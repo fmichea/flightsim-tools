@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { MissingDataPropTypes } from 'components/metar/renderers/missingData/propTypes';
 
 export const MissingDataShort = ({ prettyArgs: { value } }) => (

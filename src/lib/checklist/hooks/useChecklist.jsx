@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
+
 import { useDispatch } from 'react-redux';
-import { resetChecklistCheckedItems } from 'state/actions/checklist';
+
+import { useChecklistCountersInit } from 'lib/checklist/hooks/useChecklistCountersInit';
 import { useChecklistData } from 'lib/checklist/hooks/useChecklistData';
 import { useChecklistFilteredLists } from 'lib/checklist/hooks/useChecklistFilteredLists';
-import { useChecklistCountersInit } from 'lib/checklist/hooks/useChecklistCountersInit';
+import { resetChecklistCheckedItems } from 'state/actions/checklist';
 
 export const useChecklist = ({
     checklistName,

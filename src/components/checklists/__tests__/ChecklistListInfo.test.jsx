@@ -1,10 +1,10 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { ChecklistListInfo } from 'components/checklists/ChecklistListInfo';
-import { pick } from 'lib/pick';
 import { ChecklistLists } from 'lib/checklist/data/lists';
+import { pick } from 'lib/pick';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
 import { mockChecklistURLManager } from 'tests/data/checklists/mocks/checklistURLManager';
 import { TestDataChecklistName } from 'tests/data/checklists/names';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const defaultProps = {

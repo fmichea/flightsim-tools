@@ -1,9 +1,9 @@
 import { SeaSurfaceShort } from 'components/metar/renderers/seaSurface/SeaSurfaceShort';
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import {
     TestDataSeaSurface_W12S4_Data,
     TestDataSeaSurface_WM01H014_Data,
 } from 'tests/data/metar/seaSurface';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(SeaSurfaceShort, {
     props: { data, prettyArgs: data },

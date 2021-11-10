@@ -1,6 +1,7 @@
 import React from 'react';
-import { WindValue } from 'components/metar/renderers/wind/WindValue';
+
 import { WindShort } from 'components/metar/renderers/wind/WindShort';
+import { WindValue } from 'components/metar/renderers/wind/WindValue';
 
 export const WindRenderers = {
     renderValue: WindValue,

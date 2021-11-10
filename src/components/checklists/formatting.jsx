@@ -1,3 +1,5 @@
+import { styled } from 'styletron-react';
+
 import {
     DarkeningMask,
     DarkerGrey,
@@ -9,7 +11,6 @@ import {
     LightGreenBGHover1,
     LightGreenBGHover2,
 } from 'components/lib/colors';
-import { styled } from 'styletron-react';
 
 const checklistListItemBackground = (props) => {
     if (props.$isNotImplemented || props.$isChecked) {

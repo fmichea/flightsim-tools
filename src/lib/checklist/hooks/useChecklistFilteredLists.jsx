@@ -1,6 +1,6 @@
 import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
-import { pick } from 'lib/pick';
 import { useDeepMemo } from 'lib/hooks/deep';
+import { pick } from 'lib/pick';
 
 const useChecklistFilterFunction = ({ checklistData, selectedFilters }) => useDeepMemo(() => {
     const selectedFiltersSet = new Set(pick(selectedFilters, []));

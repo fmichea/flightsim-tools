@@ -1,11 +1,12 @@
-import { ChecklistFilters } from 'lib/checklist/data/filters';
-import { mountWithStore } from 'tests/lib/mountWithStore';
-import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigureButton';
-import { pick } from 'lib/pick';
-import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { act } from '@testing-library/react';
+
+import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
+import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigureButton';
+import { ChecklistFilters } from 'lib/checklist/data/filters';
+import { pick } from 'lib/pick';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
 import { mockChecklistURLManager } from 'tests/data/checklists/mocks/checklistURLManager';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const checklistURLManager = mockChecklistURLManager();

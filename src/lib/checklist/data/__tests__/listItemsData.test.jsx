@@ -1,6 +1,6 @@
-import { ChecklistItemsData } from 'lib/checklist/data/listItemsData';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistsData } from 'lib/checklist/data/checklistsData';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistItemsData } from 'lib/checklist/data/listItemsData';
 
 describe('listItemsData', () => {
     test('all checklists items have data', () => {

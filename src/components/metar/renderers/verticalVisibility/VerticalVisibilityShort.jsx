@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { VerticalVisibilityPropTypes } from 'components/metar/renderers/verticalVisibility/propTypes';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 

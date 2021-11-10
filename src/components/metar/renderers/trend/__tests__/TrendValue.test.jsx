@@ -1,11 +1,11 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { TrendValue } from 'components/metar/renderers/trend/TrendValue';
 import {
     TestDataTrend_BECMG_Data,
     TestDataTrend_NOSIG_Data,
     TestDataTrend_NOSIG_Text,
     TestDataTrend_TEMPO_Data,
 } from 'tests/data/metar/trend';
-import { TrendValue } from 'components/metar/renderers/trend/TrendValue';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(TrendValue, {
     props: { data, prettyArgs: data },

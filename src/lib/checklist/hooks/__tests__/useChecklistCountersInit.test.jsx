@@ -1,11 +1,11 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { ChecklistLists } from 'lib/checklist/data/lists';
-import { ChecklistsData } from 'lib/checklist/data/checklistsData';
 import { Checklists } from 'lib/checklist/data/checklists';
-import { getChecklistData } from 'state/readers/checklist';
+import { ChecklistsData } from 'lib/checklist/data/checklistsData';
+import { ChecklistLists } from 'lib/checklist/data/lists';
 import { useChecklistCountersInit } from 'lib/checklist/hooks/useChecklistCountersInit';
+import { getChecklistData } from 'state/readers/checklist';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
 import { TestDataHookFilteredListsNoFiltersSelected } from 'tests/data/checklists/hooks/filteredChecklistData';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = () => mountHookWithStore(
     () => useChecklistCountersInit({

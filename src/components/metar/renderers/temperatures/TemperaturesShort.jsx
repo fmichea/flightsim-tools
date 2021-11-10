@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { TemperaturesPropTypes } from 'components/metar/renderers/temperatures/propTypes';
 import { Temperatures } from 'lib/metar/enums';
 

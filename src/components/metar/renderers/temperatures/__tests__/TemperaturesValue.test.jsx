@@ -1,11 +1,11 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { TemperaturesValue } from 'components/metar/renderers/temperatures/TemperaturesValue';
 import {
     TestDataTemperatures_2215_Data,
     TestDataTemperatures_2215_Text,
     TestDataTemperatures_M01M05_Data,
     TestDataTemperatures_M01M05_Text,
 } from 'tests/data/metar/temperatures';
-import { TemperaturesValue } from 'components/metar/renderers/temperatures/TemperaturesValue';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(TemperaturesValue, {
     props: { data, prettyArgs: data },

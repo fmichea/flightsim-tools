@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataPresentWeather_MVCBLGRFG_Data,
     TestDataPresentWeather_MVCBLGRFG_Text,

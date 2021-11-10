@@ -1,6 +1,7 @@
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
-import { parseWind } from 'lib/metar/parsers/wind';
-import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
+import { parseAltimeter } from 'lib/metar/parsers/altimeter';
+import { parseCloudDescriptors } from 'lib/metar/parsers/cloudDescriptors';
+import { parseColorSystems } from 'lib/metar/parsers/colorSystems';
 import {
     parseAirportICAOCode,
     parseAuto,
@@ -9,22 +10,21 @@ import {
     parseCOR,
     skipMETARPrefix,
 } from 'lib/metar/parsers/metarPrefixes';
+import { parseMissingData } from 'lib/metar/parsers/missingData';
+import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
+import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
+import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
+import { parseRemarks } from 'lib/metar/parsers/remarks';
 import { parseRunwayVisualRange } from 'lib/metar/parsers/runwayVisualRange';
-import { parseAltimeter } from 'lib/metar/parsers/altimeter';
-import { parseCloudDescriptors } from 'lib/metar/parsers/cloudDescriptors';
+import { parseWind } from 'lib/metar/parsers/wind';
 import { parseVerticalVisibility } from 'lib/metar/parsers/verticalVisibility';
 import { parseTemperatures } from 'lib/metar/parsers/temperatures';
 import { parseTrend } from 'lib/metar/parsers/trend';
-import { parsePresentWeather } from 'lib/metar/parsers/presentWeather';
-import { parseRemarks } from 'lib/metar/parsers/remarks';
+import { parseWindShear } from 'lib/metar/parsers/windShear';
 import { ParserState } from 'lib/metar/parserState';
 import { pick } from 'lib/pick';
-import { parseMissingData } from 'lib/metar/parsers/missingData';
-import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
-import { parseWindShear } from 'lib/metar/parsers/windShear';
 import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 import { parseRunwayState } from 'lib/metar/parsers/runwayState';
-import { parseColorSystems } from 'lib/metar/parsers/colorSystems';
 
 const prefixFunctions = [
     skipMETARPrefix,

@@ -1,8 +1,9 @@
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { ThinSpace } from 'components/lib/spaces';
-import { PrevailingVisibilityUnit } from 'lib/metar/enums';
 import React from 'react';
+
+import { ThinSpace } from 'components/lib/spaces';
 import { PrevailingVisibilityPropTypes } from 'components/metar/renderers/prevailingVisibility/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { PrevailingVisibilityUnit } from 'lib/metar/enums';
 
 export const PrevailingVisibilityValue = ({
     data: { unitP },

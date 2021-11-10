@@ -1,12 +1,10 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
 import { ChecklistListItemHelp } from 'components/checklists/ChecklistListItemHelp';
-import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
-import { ChecklistListItemTags } from 'components/checklists/ChecklistListItemTags';
 import { ChecklistListItemSwitch } from 'components/checklists/ChecklistListItemSwitch';
-import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
+import { ChecklistListItemTags } from 'components/checklists/ChecklistListItemTags';
 import {
     ChecklistItemColumn,
     ChecklistListItemRow,
@@ -15,6 +13,10 @@ import {
     ChecklistListItemTitle,
     ChecklistListItemWrapper,
 } from 'components/checklists/formatting';
+import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
+import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
+import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 export const ChecklistListItemDisplay = ({
     checklistData,

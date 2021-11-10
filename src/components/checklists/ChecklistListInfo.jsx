@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { styled, useStyletron } from 'styletron-react';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+
 import { Button, Progress, Typography } from 'antd';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { styled, useStyletron } from 'styletron-react';
+
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 import { Clearfix } from 'components/lib/Clearfix';
 import { DarkerGrey } from 'components/lib/colors';
 import { VWSpace } from 'components/lib/spaces';
 import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
-import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
-import { Link } from 'react-router-dom';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const { Title } = Typography;
 

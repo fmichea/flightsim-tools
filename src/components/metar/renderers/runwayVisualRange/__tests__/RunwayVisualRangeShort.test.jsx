@@ -1,10 +1,10 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { RunwayVisualRangeShort } from 'components/metar/renderers/runwayVisualRange/RunwayVisualRangeShort';
 import {
     TestDataRunwayVisualRange_R042000_Data,
     TestDataRunwayVisualRange_R13P7000_Data,
     TestDataRunwayVisualRange_R22M0500_Data,
 } from 'tests/data/metar/runwayVisualRange';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(RunwayVisualRangeShort, {
     props: { data, prettyArgs: data },

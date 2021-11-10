@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { METARTimeShort } from 'components/metar/renderers/metarTime/METARTimeShort';
 import { TestDataMetarPrefixes_TIME_Data } from 'tests/data/metar/metarPrefixes';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(METARTimeShort, {
     props: { data, prettyArgs: data },

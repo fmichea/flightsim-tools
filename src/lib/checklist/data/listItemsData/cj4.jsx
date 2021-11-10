@@ -1,18 +1,19 @@
-import { List, ListItem } from 'components/lib/List';
-import { Monospaced } from 'components/lib/Monospaced';
 import React from 'react';
-import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
-import { ChecklistTags } from 'lib/checklist/data/tags';
+
+import { CASMessage } from 'components/lib/CASMessage';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
-import { CASMessage } from 'components/lib/CASMessage';
-import {
-    FMS, ITT, N1, N2, OAT, SAT, VR,
-} from 'components/lib/vernacular/common';
+import { List, ListItem } from 'components/lib/List';
+import { Monospaced } from 'components/lib/Monospaced';
 import {
     CCP_CJ4, DCP_CJ4, EICAS_CJ4, MFD_CJ4, PFD_CJ4, SFD_CJ4,
 } from 'components/lib/vernacular/cj4';
+import {
+    FMS, ITT, N1, N2, OAT, SAT, VR,
+} from 'components/lib/vernacular/common';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addCJ4Tags = (value) => ({
     ...value,

@@ -1,7 +1,8 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { act } from '@testing-library/react';
+
 import { AntiIceMoistureSelector } from 'components/anti-ice/AntiIceMoistureSelector';
 import { pick } from 'lib/pick';
-import { act } from '@testing-library/react';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const mockSetMoisture = jest.fn();

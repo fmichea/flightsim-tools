@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
+
 import { ChecklistsData } from 'lib/checklist/data/checklistsData';
 import { ChecklistFiltersData } from 'lib/checklist/data/filtersData';
-import { objectFromList } from 'lib/objects';
-import { ChecklistListsData } from 'lib/checklist/data/listsData';
-import { pick } from 'lib/pick';
 import { ChecklistItemsData, ChecklistItemsNotImplemented } from 'lib/checklist/data/listItemsData';
+import { ChecklistListsData } from 'lib/checklist/data/listsData';
 import { ChecklistTagsData } from 'lib/checklist/data/tagsData';
+import { objectFromList } from 'lib/objects';
+import { pick } from 'lib/pick';
 
 export const useChecklistData = ({ checklistName }) => useMemo(() => {
     const baseData = ChecklistsData[checklistName];

@@ -1,8 +1,9 @@
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { CloudLayerAltitude, CloudLayerAmount, CloudTypes } from 'lib/metar/enums';
 import React from 'react';
+
 import { Monospaced } from 'components/lib/Monospaced';
 import { CloudCoveragePropTypes } from 'components/metar/renderers/cloudCoverage/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { CloudLayerAltitude, CloudLayerAmount, CloudTypes } from 'lib/metar/enums';
 
 const renderAmount = ({ amountP, amount }) => {
     if (amountP === CloudLayerAmount.NSC) {

@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { SeaSurfacePropTypes } from 'components/metar/renderers/seaSurface/propTypes';
-import { SeaSurfaceInfoType, SeaSurfaceStateCode } from 'lib/metar/enums';
 import { renderTemperature } from 'components/metar/renderers/temperatures/TemperaturesShort';
+import { SeaSurfaceInfoType, SeaSurfaceStateCode } from 'lib/metar/enums';
 
 const seaStateCodeDescriptions = Object.freeze({
     [SeaSurfaceStateCode.CALM_GLASSY]: {

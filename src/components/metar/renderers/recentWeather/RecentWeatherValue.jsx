@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ThinSpace } from 'components/lib/spaces';
 import { RecentWeatherPropTypes } from 'components/metar/renderers/recentWeather/propTypes';
 

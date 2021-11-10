@@ -1,13 +1,14 @@
 import React from 'react';
-import { ChecklistTags } from 'lib/checklist/data/tags';
-import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
+
 import { CASMessage } from 'components/lib/CASMessage';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
-import { EICAS_CRJ7 } from 'components/lib/vernacular/crj7';
 import {
     APU, ITT, N1, N2,
 } from 'components/lib/vernacular/common';
+import { EICAS_CRJ7 } from 'components/lib/vernacular/crj7';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addCRJ7Tags = (value) => ({
     ...value,

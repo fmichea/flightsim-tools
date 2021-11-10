@@ -1,7 +1,8 @@
 import React from 'react';
-import { Directions, PrevailingVisibility } from 'lib/metar/enums';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+
 import { PrevailingVisibilityPropTypes } from 'components/metar/renderers/prevailingVisibility/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { Directions, PrevailingVisibility } from 'lib/metar/enums';
 
 const renderVisibilityValue = (value, unitP) => {
     if (value === PrevailingVisibility.CAVOK) {

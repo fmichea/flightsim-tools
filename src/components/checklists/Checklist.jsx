@@ -1,8 +1,9 @@
 import React from 'react';
-import { useChecklistURLConfig } from 'lib/checklist/hooks/useChecklistURLConfig';
-import { useChecklistCheck } from 'lib/checklist/hooks/useChecklistCheck';
+
 import { ChecklistDisplay } from 'components/checklists/ChecklistDisplay';
 import { ChecklistNotFound } from 'components/checklists/ChecklistNotFound';
+import { useChecklistCheck } from 'lib/checklist/hooks/useChecklistCheck';
+import { useChecklistURLConfig } from 'lib/checklist/hooks/useChecklistURLConfig';
 
 export const Checklist = () => {
     const {

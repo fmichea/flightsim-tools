@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { AntiIceAircraftNotFound } from 'components/anti-ice/AntiIceAircraftNotFound';
 import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const defaultProps = {

@@ -1,8 +1,9 @@
 import React from 'react';
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistTags } from 'lib/checklist/data/tags';
-import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
+
 import { ChecklistFilters } from 'lib/checklist/data/filters';
+import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
+import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const commonFiltersData = createTransformedMapping()([
     {

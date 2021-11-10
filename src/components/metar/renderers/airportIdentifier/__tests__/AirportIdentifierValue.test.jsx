@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { AirportIdentifierValue } from 'components/metar/renderers/airportIdentifier/AirportIdenfitierValue';
 import {
     TestDataMetarPrefixes_K0J4_Data,
@@ -6,6 +5,7 @@ import {
     TestDataMetarPrefixes_LFMN_Data,
     TestDataMetarPrefixes_LFMN_Text,
 } from 'tests/data/metar/metarPrefixes';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(AirportIdentifierValue, {
     props: { data, prettyArgs: data },

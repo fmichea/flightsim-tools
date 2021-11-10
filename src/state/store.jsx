@@ -1,8 +1,9 @@
 import { applyMiddleware, createStore } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
-import { reducers } from 'state/reducers';
+import thunkMiddleware from 'redux-thunk';
+
 import { isLocalServer } from 'lib/isLocalServer';
+import { reducers } from 'state/reducers';
 
 export const createAppStore = () => {
     let middlewares = [thunkMiddleware];

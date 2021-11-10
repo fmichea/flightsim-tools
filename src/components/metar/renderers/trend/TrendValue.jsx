@@ -1,6 +1,7 @@
 import React from 'react';
-import { TrendPropTypes } from 'components/metar/renderers/trend/propTypes';
+
 import { ThickSpace } from 'components/lib/spaces';
+import { TrendPropTypes } from 'components/metar/renderers/trend/propTypes';
 
 export const TrendValue = ({ data: { args }, prettyArgs }) => {
     const prettyArgsOrdered = args.map((value, idx) => (

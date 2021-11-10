@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { WindShort } from 'components/metar/renderers/wind/WindShort';
 import {
     TestDataWind_090P00GP10MPS_Data,
@@ -7,6 +6,7 @@ import {
     TestDataWind_CALM_Data,
     TestDataWind_VRB04KT_200V240_Data,
 } from 'tests/data/metar/wind';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(WindShort, {
     props: { data, prettyArgs: data },

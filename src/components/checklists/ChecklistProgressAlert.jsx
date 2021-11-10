@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { Alert } from 'antd';
 import PropTypes from 'prop-types';
 import { useStyletron } from 'styletron-react';
-import { Alert } from 'antd';
 
 export const ChecklistProgressAlert = ({ progressPercent }) => {
     const [css] = useStyletron();

@@ -1,5 +1,5 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const commonTagsData = createTransformedMapping()([
     {

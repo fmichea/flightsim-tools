@@ -1,3 +1,6 @@
+import { listItemKey } from 'lib/checklist/listItemKey';
+import { objectMap } from 'lib/objects';
+import { intersection } from 'lib/sets';
 import {
     defaultChecklistListState,
     defaultChecklistState,
@@ -9,9 +12,6 @@ import {
     TOGGLE_ITEM,
     TOGGLE_LEFT_HANDED_MODE,
 } from 'state/constants/checklist';
-import { intersection } from 'lib/sets';
-import { objectMap } from 'lib/objects';
-import { listItemKey } from 'lib/checklist/listItemKey';
 
 const initializeChecklist = (state, action) => {
     const checkedItems = new Set(state.checkedItems);

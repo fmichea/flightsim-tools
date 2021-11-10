@@ -1,5 +1,6 @@
-import { Slider } from 'antd';
 import React from 'react';
+
+import { Slider } from 'antd';
 import PropTypes from 'prop-types';
 
 export const AntiIceTemperatureSelector = ({

@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (options = {}) => mountWithStore(ExternalLink, {
     props: pick(options.props, {}),

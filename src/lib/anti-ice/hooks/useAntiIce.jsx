@@ -1,9 +1,10 @@
-import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
-import { useAntiIceMenuItems } from 'lib/anti-ice/hooks/useAntiIceMenuItems';
 import { useMemo } from 'react';
+
+import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
+import { AntiIceSystemModesData } from 'lib/anti-ice/data/systemModesData';
+import { useAntiIceMenuItems } from 'lib/anti-ice/hooks/useAntiIceMenuItems';
 import { useAntiIceOperationModeData } from 'lib/anti-ice/hooks/useAntiIceOperationModeData';
 import { useAntiIceRecommendation } from 'lib/anti-ice/hooks/useAntiIceRecommendation';
-import { AntiIceSystemModesData } from 'lib/anti-ice/data/systemModesData';
 
 export const useAntiIce = ({
     aircraftName,

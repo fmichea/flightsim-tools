@@ -1,6 +1,7 @@
 import React from 'react';
-import { RecentWeatherValue } from 'components/metar/renderers/recentWeather/RecentWeatherValue';
+
 import { RecentWeatherShort } from 'components/metar/renderers/recentWeather/RecentWeatherShort';
+import { RecentWeatherValue } from 'components/metar/renderers/recentWeather/RecentWeatherValue';
 
 export const RecentWeatherRenderers = {
     renderValue: RecentWeatherValue,

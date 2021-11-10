@@ -1,7 +1,8 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
-import { pick } from 'lib/pick';
-import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { act } from '@testing-library/react';
+
+import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
+import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const mockOnChange = jest.fn();

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Vernacular } from 'components/lib/vernacular/Vernacular';
 
 export const PFD_CJ4 = <Vernacular title="Primary Flight Display - Left Side Display">PFD</Vernacular>;

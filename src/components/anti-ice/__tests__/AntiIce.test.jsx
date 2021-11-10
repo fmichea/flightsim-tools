@@ -1,7 +1,7 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { AntiIce } from 'components/anti-ice/AntiIce';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceWithNameRoute } from 'lib/routes';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ initialRoute, routePath } = {}) => mountWithStore(AntiIce, { initialRoute, routePath });
 

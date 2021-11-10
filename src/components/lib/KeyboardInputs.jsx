@@ -1,6 +1,8 @@
 import React from 'react';
-import { LightGrey } from 'components/lib/colors';
+
 import { styled } from 'styletron-react';
+
+import { LightGrey } from 'components/lib/colors';
 
 const KeyboardInputSep = styled('span', {
     fontSize: '.8em',

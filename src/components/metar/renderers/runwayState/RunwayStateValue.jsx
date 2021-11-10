@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ThinSpace } from 'components/lib/spaces';
 import { RunwayStatePropTypes } from 'components/metar/renderers/runwayState/propTypes';
 

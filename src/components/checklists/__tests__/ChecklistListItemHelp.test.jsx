@@ -1,7 +1,8 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { act } from '@testing-library/react';
+
 import { ChecklistListItemHelp } from 'components/checklists/ChecklistListItemHelp';
 import { pick } from 'lib/pick';
-import { act } from '@testing-library/react';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const defaultProps = { title: 'Throttles', state: 'IDLE' };

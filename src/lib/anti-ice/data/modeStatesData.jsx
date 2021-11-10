@@ -1,5 +1,5 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const commonModeStatesData = createTransformedMapping()([
     {

@@ -1,5 +1,6 @@
-import { TrendPropTypes } from 'components/metar/renderers/trend/propTypes';
 import React from 'react';
+
+import { TrendPropTypes } from 'components/metar/renderers/trend/propTypes';
 import { TrendType } from 'lib/metar/enums';
 
 const renderTimeParts = ({ timeParts, prettyArgs }) => {

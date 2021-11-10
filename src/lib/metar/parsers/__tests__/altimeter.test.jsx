@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseAltimeter } from 'lib/metar/parsers/altimeter';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataAltimeter_A3011_Data,
     TestDataAltimeter_A3011_Text,

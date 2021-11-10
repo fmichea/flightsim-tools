@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { NotRecognizedValue } from 'components/metar/renderers/notRecognized/NotRecognizedValue';
 import { TokenTypes } from 'lib/metar/enums';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(NotRecognizedValue, {
     props: { data, prettyArgs: data },

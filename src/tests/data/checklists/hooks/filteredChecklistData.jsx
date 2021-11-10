@@ -1,5 +1,5 @@
-import { ChecklistLists } from 'lib/checklist/data/lists';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistLists } from 'lib/checklist/data/lists';
 
 export const TestDataHookFilteredListsNoFiltersSelected = [
     {

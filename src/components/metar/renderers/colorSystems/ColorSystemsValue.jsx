@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ThickSpace } from 'components/lib/spaces';
 import { ColorSystemsPropTypes } from 'components/metar/renderers/colorSystems/propTypes';
 

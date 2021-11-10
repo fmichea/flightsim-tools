@@ -1,6 +1,7 @@
-import { getOrdinalNumber } from 'lib/numbers';
 import React from 'react';
+
 import { METARTimePropTypes } from 'components/metar/renderers/metarTime/propTypes';
+import { getOrdinalNumber } from 'lib/numbers';
 
 export const METARTimeShort = ({
     data: { dayOfMonthP, hour: hourP, minutes: minutesP },

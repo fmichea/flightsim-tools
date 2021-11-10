@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseRecentWeather } from 'lib/metar/parsers/recentWeather';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataRecentWeather_RERASN_Data,
     TestDataRecentWeather_RERASN_Text,

@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { getChecklistListCountersData } from 'state/readers/checklist';
+
 import { useDeepMemo, useDeepSelector } from 'lib/hooks/deep';
-import { resetChecklistListCheckedItems } from 'state/actions/checklist';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { resetChecklistListCheckedItems } from 'state/actions/checklist';
+import { getChecklistListCountersData } from 'state/readers/checklist';
 
 export const useChecklistListInfoData = ({
     checklistData,

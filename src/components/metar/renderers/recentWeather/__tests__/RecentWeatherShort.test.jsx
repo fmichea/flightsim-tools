@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { RecentWeatherShort } from 'components/metar/renderers/recentWeather/RecentWeatherShort';
 import { TestDataRecentWeather_RERASN_Data } from 'tests/data/metar/recentWeather';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(RecentWeatherShort, {
     props: { data, prettyArgs: data },

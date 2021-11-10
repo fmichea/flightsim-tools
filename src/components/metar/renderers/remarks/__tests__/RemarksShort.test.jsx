@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
-import { TestDataRemarks_Data } from 'tests/data/metar/remarks';
 import { RemarksShort } from 'components/metar/renderers/remarks/RemarksShort';
+import { TestDataRemarks_Data } from 'tests/data/metar/remarks';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(RemarksShort, {
     props: { data, prettyArgs: data },

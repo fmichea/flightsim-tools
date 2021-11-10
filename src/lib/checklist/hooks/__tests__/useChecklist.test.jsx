@@ -1,9 +1,9 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { ChecklistsWithNameAndListNameRoute } from 'lib/routes';
-import { useChecklist } from 'lib/checklist/hooks/useChecklist';
-import { ChecklistLists } from 'lib/checklist/data/lists';
 import { Checklists } from 'lib/checklist/data/checklists';
+import { ChecklistLists } from 'lib/checklist/data/lists';
+import { useChecklist } from 'lib/checklist/hooks/useChecklist';
 import { useChecklistURLConfig } from 'lib/checklist/hooks/useChecklistURLConfig';
+import { ChecklistsWithNameAndListNameRoute } from 'lib/routes';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = () => mountHookWithStore(
     () => {

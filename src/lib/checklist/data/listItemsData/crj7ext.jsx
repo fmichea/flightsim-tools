@@ -1,6 +1,6 @@
+import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
 
 const addCRJ7ExtTags = (value) => ({
     ...value,

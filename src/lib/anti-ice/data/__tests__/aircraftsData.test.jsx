@@ -1,5 +1,5 @@
-import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
+import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
 
 describe('aircraftsData', () => {
     test('all aircrafts have data', () => {

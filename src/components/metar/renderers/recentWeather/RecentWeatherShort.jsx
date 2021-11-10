@@ -1,6 +1,7 @@
 import React from 'react';
-import { RecentWeatherPropTypes } from 'components/metar/renderers/recentWeather/propTypes';
+
 import { renderWeatherPhenomenons } from 'components/metar/renderers/presentWeather/PresentWeatherShort';
+import { RecentWeatherPropTypes } from 'components/metar/renderers/recentWeather/propTypes';
 
 export const RecentWeatherShort = ({ data: { phenomenaParts }, prettyArgs }) => (
     <>

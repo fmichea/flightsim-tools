@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ThickSpace } from 'components/lib/spaces';
 import { WindShearPropTypes } from 'components/metar/renderers/windShear/propTypes';
 

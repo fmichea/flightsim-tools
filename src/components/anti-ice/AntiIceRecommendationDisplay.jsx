@@ -1,14 +1,16 @@
 import React, { useMemo } from 'react';
-import { NotImplementedContainer } from 'components/lib/NotImplementedContainer';
+
+import { Table, Tag, Typography } from 'antd';
+import PropTypes from 'prop-types';
+import { styled, useStyletron } from 'styletron-react';
+
 import { AntiIceTableFootnotes } from 'components/anti-ice/AntiIceTableFootnotes';
-import { AntiIceModeStatesData } from 'lib/anti-ice/data/modeStatesData';
+import { CenteringContainer } from 'components/lib/CenteringContainer';
+import { NotImplementedContainer } from 'components/lib/NotImplementedContainer';
 import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
+import { AntiIceModeStatesData } from 'lib/anti-ice/data/modeStatesData';
 import { AntiIceTags } from 'lib/anti-ice/data/tags';
 import { pick } from 'lib/pick';
-import { Table, Tag, Typography } from 'antd';
-import { CenteringContainer } from 'components/lib/CenteringContainer';
-import { styled, useStyletron } from 'styletron-react';
-import PropTypes from 'prop-types';
 
 const { Title } = Typography;
 

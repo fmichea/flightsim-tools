@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseCloudDescriptors } from 'lib/metar/parsers/cloudDescriptors';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataCloudDescriptor_BKN070CB_Data,
     TestDataCloudDescriptor_BKN070CB_Text,

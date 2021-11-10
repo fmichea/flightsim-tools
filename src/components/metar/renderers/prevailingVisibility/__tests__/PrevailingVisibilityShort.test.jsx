@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { PrevailingVisibilityShort } from 'components/metar/renderers/prevailingVisibility/PrevailingVisibilityShort';
 import {
     TestDataPrevailingVisibility_10KM_Data,
@@ -11,6 +10,7 @@ import {
     TestDataPrevailingVisibility_CAVOK_Data, TestDataPrevailingVisibility_M14THSM_Data,
     TestDataPrevailingVisibility_MISSING_Data,
 } from 'tests/data/metar/prevailingVisibility';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(PrevailingVisibilityShort, {
     props: { data, prettyArgs: data },

@@ -1,11 +1,13 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
-import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
-import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
-import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
-import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
 import React from 'react';
+
 import { styled } from 'styletron-react';
+
+import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceImages } from 'lib/anti-ice/data/images';
+import { AntiIceModeStates } from 'lib/anti-ice/data/modeStates';
+import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
+import { AntiIceSystemModes } from 'lib/anti-ice/data/systemModes';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const Strongish = styled('strong', { color: '#606060' });
 

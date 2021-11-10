@@ -1,6 +1,7 @@
 import { withStyle } from 'styletron-react';
-import { Monospaced } from 'components/lib/Monospaced';
+
 import { DarkRed } from 'components/lib/colors';
+import { Monospaced } from 'components/lib/Monospaced';
 
 export const Vernacular = withStyle(Monospaced, {
     color: DarkRed,

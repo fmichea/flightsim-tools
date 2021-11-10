@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseVerticalVisibility } from 'lib/metar/parsers/verticalVisibility';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataVerticalVisibility_VV120_Data,
     TestDataVerticalVisibility_VV120_Text,

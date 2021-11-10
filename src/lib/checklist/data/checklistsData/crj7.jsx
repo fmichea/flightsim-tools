@@ -1,9 +1,10 @@
 import React from 'react';
+
+import { ExternalLink } from 'components/lib/ExternalLink';
 import { Checklists } from 'lib/checklist/data/checklists';
+import { ChecklistFilters } from 'lib/checklist/data/filters';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistLists } from 'lib/checklist/data/lists';
-import { ChecklistFilters } from 'lib/checklist/data/filters';
-import { ExternalLink } from 'components/lib/ExternalLink';
 
 export const CRJ7ChecklistData = {
     uid: Checklists.AEROSOFT_CRJ7,

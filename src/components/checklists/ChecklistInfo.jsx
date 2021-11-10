@@ -1,14 +1,16 @@
 import React, { useMemo } from 'react';
-import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigureButton';
-import { useDocumentTitle } from 'lib/hooks/useDocumentTitle';
+
 import { Button, Divider, Typography } from 'antd';
-import { Clearfix } from 'components/lib/Clearfix';
-import { styled } from 'styletron-react';
-import { VWSpace } from 'components/lib/spaces';
-import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 import PropTypes from 'prop-types';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { Link } from 'react-router-dom';
+import { styled } from 'styletron-react';
+
+import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigureButton';
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { Clearfix } from 'components/lib/Clearfix';
+import { VWSpace } from 'components/lib/spaces';
+import { useDocumentTitle } from 'lib/hooks/useDocumentTitle';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const { Title, Text } = Typography;
 

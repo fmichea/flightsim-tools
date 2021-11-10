@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useAntiIce } from 'lib/anti-ice/hooks/useAntiIce';
+
 import {
     Col, Empty, Menu, Row, Typography,
 } from 'antd';
-import { useStyletron } from 'styletron-react';
-import { AntiIceConfigurationSelector } from 'components/anti-ice/AntiIceConfigurationSelector';
-import { AntiIceTemperatureTitle } from 'components/anti-ice/AntiIceTemperatureTitle';
-import { AntiIceMoistureSelector } from 'components/anti-ice/AntiIceMoistureSelector';
-import { AntiIceTemperatureSelector } from 'components/anti-ice/AntiIceTemperatureSelector';
-import { AntiIceRecommendationDisplay } from 'components/anti-ice/AntiIceRecommendationDisplay';
 import PropTypes from 'prop-types';
+import { useStyletron } from 'styletron-react';
+
+import { AntiIceConfigurationSelector } from 'components/anti-ice/AntiIceConfigurationSelector';
+import { AntiIceMoistureSelector } from 'components/anti-ice/AntiIceMoistureSelector';
+import { AntiIceRecommendationDisplay } from 'components/anti-ice/AntiIceRecommendationDisplay';
+import { AntiIceTemperatureSelector } from 'components/anti-ice/AntiIceTemperatureSelector';
+import { AntiIceTemperatureTitle } from 'components/anti-ice/AntiIceTemperatureTitle';
+import { useAntiIce } from 'lib/anti-ice/hooks/useAntiIce';
 
 const { Title } = Typography;
 

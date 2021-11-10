@@ -1,7 +1,8 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
-import { ChecklistNextListButton } from 'components/checklists/ChecklistNextListButton';
 import { Button } from 'antd';
+
+import { ChecklistNextListButton } from 'components/checklists/ChecklistNextListButton';
 import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const fn = () => {};
 

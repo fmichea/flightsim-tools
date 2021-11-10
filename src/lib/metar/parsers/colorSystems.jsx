@@ -1,6 +1,6 @@
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
-import { buildVariableArgs } from 'lib/metar/parsers/internal/varargs';
 import { TokenTypes } from 'lib/metar/enums';
+import { buildVariableArgs } from 'lib/metar/parsers/internal/varargs';
 
 const splitValues = (completeMatch) => completeMatch.trim().split(/\s+/).map((value) => ({ value, parsed: value }));
 

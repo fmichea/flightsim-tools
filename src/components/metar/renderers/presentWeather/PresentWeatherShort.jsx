@@ -1,11 +1,12 @@
+import React from 'react';
+
+import { ExternalLink } from 'components/lib/ExternalLink';
+import { PresentWeatherPropTypes } from 'components/metar/renderers/presentWeather/propTypes';
+import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import {
     WeatherDescriptor, WeatherIntensity, WeatherPhenomena, WeatherProximity,
 } from 'lib/metar/enums';
-import React from 'react';
 import { pick } from 'lib/pick';
-import { isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { ExternalLink } from 'components/lib/ExternalLink';
-import { PresentWeatherPropTypes } from 'components/metar/renderers/presentWeather/propTypes';
 
 const renderValues = ({ parts, renderFN, prettyArgs }) => {
     if (parts.length === 0) {

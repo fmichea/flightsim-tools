@@ -1,6 +1,6 @@
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { pick } from 'lib/pick';
 import { TokenTypes } from 'lib/metar/enums';
+import { pick } from 'lib/pick';
 
 export class ParserState {
     constructor(metar) {

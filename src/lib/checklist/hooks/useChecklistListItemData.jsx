@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { useDeepMemo, useDeepSelector } from 'lib/hooks/deep';
+
 import { listItemKey } from 'lib/checklist/listItemKey';
-import { getChecklistListItemData } from 'state/readers/checklist';
+import { useDeepMemo, useDeepSelector } from 'lib/hooks/deep';
 import { toggleItem } from 'state/actions/checklist';
+import { getChecklistListItemData } from 'state/readers/checklist';
 
 const defaultData = {
     isNotImplemented: false,

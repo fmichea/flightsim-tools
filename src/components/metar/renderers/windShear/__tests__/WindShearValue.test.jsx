@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { WindShearValue } from 'components/metar/renderers/windShear/WindShearValue';
 import {
     TestDataWindShear_WSALLRWY_Data,
@@ -6,6 +5,7 @@ import {
     TestDataWindShear_WSR24_Data,
     TestDataWindShear_WSR24_Text,
 } from 'tests/data/metar/windShear';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(WindShearValue, {
     props: { data, prettyArgs: data },

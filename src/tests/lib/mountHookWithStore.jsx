@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { mountWithStore } from 'tests/lib/mountWithStore';
 
 export const mountHookWithStore = (hookFN, opts = {}) => {

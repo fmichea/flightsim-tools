@@ -1,12 +1,14 @@
 import React from 'react';
+
 import { mount } from 'enzyme';
-import { createAppStore } from 'state/store';
-import { MemoryRouter, Route } from 'react-router';
 import { Provider } from 'react-redux';
-import { Provider as StyletronProvider } from 'styletron-react';
+import { MemoryRouter, Route } from 'react-router';
 import { StyletronSnapshotEngine } from 'styletron-engine-snapshot';
+import { Provider as StyletronProvider } from 'styletron-react';
+
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 import { pick } from 'lib/pick';
+import { createAppStore } from 'state/store';
 
 export function mountWithStore(Comp, opts = {}) {
     const defaultOptions = {

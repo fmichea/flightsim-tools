@@ -1,16 +1,16 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { useChecklistFilteredLists } from 'lib/checklist/hooks/useChecklistFilteredLists';
-import { ChecklistLists } from 'lib/checklist/data/lists';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistFilters } from 'lib/checklist/data/filters';
-import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistLists } from 'lib/checklist/data/lists';
+import { useChecklistFilteredLists } from 'lib/checklist/hooks/useChecklistFilteredLists';
 import { pick } from 'lib/pick';
+import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
 import {
     TestDataHookFilteredListsNoFiltersSelected,
     TestDataHookFilteredListsSimsetupIncluded,
     TestDataHookFilteredListsVatsimAndSimsetupIncluded,
     TestDataHookFilteredListsVatsimIncluded,
 } from 'tests/data/checklists/hooks/filteredChecklistData';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = ({ checklistData, selectedFilters }) => mountHookWithStore(
     () => useChecklistFilteredLists({

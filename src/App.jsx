@@ -1,13 +1,17 @@
 import React from 'react';
-import { Checklist } from 'components/checklists/Checklist';
-import { Provider as StyletronProvider } from 'styletron-react';
-import { Layout } from 'components/layout/Layout';
-import { Route, Switch } from 'react-router';
-import { Client as Styletron } from 'styletron-engine-atomic';
-import { compose } from 'recompose';
+
 import { Provider } from 'react-redux';
-import { createAppStore } from 'state/store';
+import { Route, Switch } from 'react-router';
 import { HashRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+
+import { AntiIce } from 'components/anti-ice/AntiIce';
+import { Checklist } from 'components/checklists/Checklist';
+import { Layout } from 'components/layout/Layout';
+import { MainPage } from 'components/MainPage';
+import { Metar } from 'components/metar/Metar';
 import {
     AntiIceWithNameAndOperationModeNameRoute,
     AntiIceWithNameRoute,
@@ -15,9 +19,7 @@ import {
     ChecklistsWithNameRoute,
     MetarExplainerRoute,
 } from 'lib/routes';
-import { AntiIce } from 'components/anti-ice/AntiIce';
-import { MainPage } from 'components/MainPage';
-import { Metar } from 'components/metar/Metar';
+import { createAppStore } from 'state/store';
 
 const AppLayout = () => (
     <Layout>

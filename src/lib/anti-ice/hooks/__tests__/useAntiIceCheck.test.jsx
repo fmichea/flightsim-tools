@@ -1,7 +1,7 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { useAntiIceCheck } from 'lib/anti-ice/hooks/useAntiIceCheck';
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
+import { useAntiIceCheck } from 'lib/anti-ice/hooks/useAntiIceCheck';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = ({ aircraftName, operationModeName }) => mountHookWithStore(() => useAntiIceCheck({ aircraftName, operationModeName }));
 

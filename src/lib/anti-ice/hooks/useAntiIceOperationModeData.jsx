@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
-import { AntiIceOperationModesData } from 'lib/anti-ice/data/operationModesData';
+
 import { styled } from 'styletron-react';
+
+import { AntiIceOperationModesData } from 'lib/anti-ice/data/operationModesData';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 import { pick } from 'lib/pick';
 

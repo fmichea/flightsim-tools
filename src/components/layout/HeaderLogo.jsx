@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import { styled } from 'styletron-react';
+
 import { useHistory } from 'react-router';
+import { styled } from 'styletron-react';
 
 const logoSize = 48;
 

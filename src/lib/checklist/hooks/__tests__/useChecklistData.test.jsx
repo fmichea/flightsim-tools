@@ -1,6 +1,6 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
-import { useChecklistData } from 'lib/checklist/hooks/useChecklistData';
 import { Checklists } from 'lib/checklist/data/checklists';
+import { useChecklistData } from 'lib/checklist/hooks/useChecklistData';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = () => mountHookWithStore(() => useChecklistData({
     checklistName: Checklists.WORKINGTITLE_CJ4,

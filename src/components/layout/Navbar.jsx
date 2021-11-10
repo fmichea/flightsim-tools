@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
+
 import { Menu } from 'antd';
 import { useHistory, useLocation } from 'react-router';
-import { objectMap } from 'lib/objects';
-import { Checklists } from 'lib/checklist/data/checklists';
+
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
+import { Checklists } from 'lib/checklist/data/checklists';
+import { objectMap } from 'lib/objects';
 import { MetarExplainerRoute } from 'lib/routes';
 
 const useNavbarMenus = (mapping) => {

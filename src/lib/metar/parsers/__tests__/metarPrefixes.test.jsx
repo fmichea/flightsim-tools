@@ -1,8 +1,8 @@
-import { ParserState } from 'lib/metar/parserState';
+import { TokenTypes } from 'lib/metar/enums';
 import {
     parseAirportICAOCode, parseAuto, parseCOR, parseMETARTime, parseNIL, skipMETARPrefix,
 } from 'lib/metar/parsers/metarPrefixes';
-import { TokenTypes } from 'lib/metar/enums';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataMetarPrefixes_AUTO_Data,
     TestDataMetarPrefixes_AUTO_Text,

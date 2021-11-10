@@ -1,7 +1,9 @@
 import React from 'react';
-import { styled } from 'styletron-react';
-import { pick } from 'lib/pick';
+
 import PropTypes from 'prop-types';
+import { styled } from 'styletron-react';
+
+import { pick } from 'lib/pick';
 
 const levelToColorsMapping = {
     critical: '#ff3e3e',

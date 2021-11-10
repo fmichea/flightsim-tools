@@ -1,6 +1,7 @@
 import React from 'react';
-import { METARTimeValue } from 'components/metar/renderers/metarTime/METARTimeValue';
+
 import { METARTimeShort } from 'components/metar/renderers/metarTime/METARTimeShort';
+import { METARTimeValue } from 'components/metar/renderers/metarTime/METARTimeValue';
 
 export const METARTimeRenderers = {
     renderValue: METARTimeValue,

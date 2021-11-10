@@ -1,7 +1,8 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
 import React from 'react';
+
+import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addSimSetupTags = (value) => ({
     ...value,

@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { GithubOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import { useStyletron } from 'styletron-react';
-import { GithubOutlined } from '@ant-design/icons';
+
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { useWindowDimensions } from 'lib/hooks/useWindowDimensions';
 

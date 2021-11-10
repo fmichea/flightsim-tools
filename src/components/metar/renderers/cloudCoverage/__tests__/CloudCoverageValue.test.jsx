@@ -1,4 +1,3 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { CloudCoverageValue } from 'components/metar/renderers/cloudCoverage/CloudCoverageValue';
 import {
     TestDataCloudDescriptor_FEW040_Data,
@@ -10,6 +9,7 @@ import {
     TestDataCloudDescriptor_TCUONLY_Data,
     TestDataCloudDescriptor_TCUONLY_Text,
 } from 'tests/data/metar/cloudDescriptors';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(CloudCoverageValue, {
     props: { data, prettyArgs: data },

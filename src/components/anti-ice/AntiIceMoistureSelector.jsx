@@ -1,7 +1,9 @@
-import { Radio } from 'antd';
-import { CenteringContainer } from 'components/lib/CenteringContainer';
 import React, { useMemo } from 'react';
+
+import { Radio } from 'antd';
 import PropTypes from 'prop-types';
+
+import { CenteringContainer } from 'components/lib/CenteringContainer';
 
 export const AntiIceMoistureSelector = ({ moisture, setMoisture }) => {
     const [value, onChange] = useMemo(

@@ -1,5 +1,6 @@
-import { ThinSpace } from 'components/lib/spaces';
 import React from 'react';
+
+import { ThinSpace } from 'components/lib/spaces';
 import { PresentWeatherPropTypes } from 'components/metar/renderers/presentWeather/propTypes';
 
 export const PresentWeatherValue = ({ data: { args }, prettyArgs }) => {

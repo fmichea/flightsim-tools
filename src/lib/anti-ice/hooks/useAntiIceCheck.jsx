@@ -1,8 +1,9 @@
+import { useMemo } from 'react';
+
 import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { AntiIceAircraftsData } from 'lib/anti-ice/data/aircraftsData';
-import { useMemo } from 'react';
-import { pick } from 'lib/pick';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { pick } from 'lib/pick';
 
 export const useAntiIceCheck = ({
     aircraftName,

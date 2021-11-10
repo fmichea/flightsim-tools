@@ -1,5 +1,5 @@
-import { TokenTypes, WeatherPhenomena } from 'lib/metar/enums';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import { TokenTypes, WeatherPhenomena } from 'lib/metar/enums';
 import {
     buildDescriptorsArgs,
     buildIntensitiesArgs,

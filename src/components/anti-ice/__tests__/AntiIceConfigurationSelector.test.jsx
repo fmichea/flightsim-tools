@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { AntiIceConfigurationSelector } from 'components/anti-ice/AntiIceConfigurationSelector';
 import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props } = {}) => {
     const mockSetCurrentConfiguration = jest.fn();

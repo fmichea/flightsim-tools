@@ -1,6 +1,7 @@
 import React from 'react';
-import { AltimeterSetting, AltimeterUnit } from 'lib/metar/enums';
+
 import { AltimeterPropTypes } from 'components/metar/renderers/altimeter/propTypes';
+import { AltimeterSetting, AltimeterUnit } from 'lib/metar/enums';
 
 const renderAltimeterUnit = (unit) => (unit === AltimeterUnit.HPA ? 'hectopascals' : 'inches of mercury');
 

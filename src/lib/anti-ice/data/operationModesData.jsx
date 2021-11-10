@@ -1,6 +1,7 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
-import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
 import React from 'react';
+
+import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const baseOperationModes = createTransformedMapping()([
     {

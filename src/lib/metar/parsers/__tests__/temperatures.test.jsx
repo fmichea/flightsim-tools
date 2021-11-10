@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseTemperatures } from 'lib/metar/parsers/temperatures';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataTemperatures_2215_Data,
     TestDataTemperatures_2215_Text,

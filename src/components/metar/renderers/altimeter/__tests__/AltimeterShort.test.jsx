@@ -1,9 +1,9 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { AltimeterShort } from 'components/metar/renderers/altimeter/AltimeterShort';
 import {
     TestDataAltimeter_A3011_Data, TestDataAltimeter_Axxxx_Data,
     TestDataAltimeter_Q1020_Data,
 } from 'tests/data/metar/altimeter';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(AltimeterShort, {
     props: { data, prettyArgs: data },

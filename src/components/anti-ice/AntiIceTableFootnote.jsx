@@ -1,7 +1,8 @@
-import { Col, Row } from 'antd';
 import React from 'react';
-import { useStyletron } from 'styletron-react';
+
+import { Col, Row } from 'antd';
 import PropTypes from 'prop-types';
+import { useStyletron } from 'styletron-react';
 
 export const AntiIceTableFootnote = ({ footnoteID, footnote }) => {
     const [css] = useStyletron();

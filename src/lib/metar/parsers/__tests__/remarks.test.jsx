@@ -1,6 +1,6 @@
-import { ParserState } from 'lib/metar/parserState';
-import { parseRemarks } from 'lib/metar/parsers/remarks';
 import { TokenTypes } from 'lib/metar/enums';
+import { parseRemarks } from 'lib/metar/parsers/remarks';
+import { ParserState } from 'lib/metar/parserState';
 import { TestDataRemarks_Data, TestDataRemarks_Text } from 'tests/data/metar/remarks';
 
 describe('remarks', () => {

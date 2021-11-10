@@ -1,12 +1,10 @@
 import React from 'react';
-import { styled } from 'styletron-react';
-import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
-import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
-import { Modal, Typography } from 'antd';
+
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Modal, Typography } from 'antd';
 import PropTypes from 'prop-types';
-import { isOdd } from 'lib/numbers';
-import { VWSpace } from 'components/lib/spaces';
+import { styled } from 'styletron-react';
+
 import {
     ChecklistItemColumn,
     ChecklistListItemState,
@@ -15,6 +13,10 @@ import {
     ChecklistSubItemsTable,
 } from 'components/checklists/formatting';
 import { Monospaced } from 'components/lib/Monospaced';
+import { VWSpace } from 'components/lib/spaces';
+import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
+import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { isOdd } from 'lib/numbers';
 
 const ChecklistItemHelpWrapper = styled('span', {
     display: 'inline-block',

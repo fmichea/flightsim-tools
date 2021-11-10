@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Col, Row, Typography } from 'antd';
+
 import { List, ListItem } from 'components/lib/List';
 
 const { Title } = Typography;

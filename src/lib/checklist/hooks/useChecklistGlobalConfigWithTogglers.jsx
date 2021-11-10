@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
+
 import { useDispatch } from 'react-redux';
+
+import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 import {
     toggleHideHelpMode,
     toggleHideSwitchesMode,
     toggleHideTagsMode,
     toggleLeftHandedMode,
 } from 'state/actions/checklist';
-import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 
 export const useChecklistGlobalConfigWithTogglers = () => {
     const dispatch = useDispatch();

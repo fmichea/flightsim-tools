@@ -1,10 +1,12 @@
 import React from 'react';
-import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
-import { RightJustifyingContainer } from 'components/lib/CenteringContainer';
-import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+
 import PropTypes from 'prop-types';
-import { ChecklistProgressAlert } from 'components/checklists/ChecklistProgressAlert';
+
 import { ChecklistNextListButtonDisplay } from 'components/checklists/ChecklistNextListButtonDisplay';
+import { ChecklistProgressAlert } from 'components/checklists/ChecklistProgressAlert';
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { RightJustifyingContainer } from 'components/lib/CenteringContainer';
+import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
 
 export const ChecklistNextListButtonsDisplay = ({
     checklistData,

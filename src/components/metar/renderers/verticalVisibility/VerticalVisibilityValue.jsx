@@ -1,6 +1,7 @@
 import React from 'react';
-import { VerticalVisibilityPropTypes } from 'components/metar/renderers/verticalVisibility/propTypes';
+
 import { ThinSpace } from 'components/lib/spaces';
+import { VerticalVisibilityPropTypes } from 'components/metar/renderers/verticalVisibility/propTypes';
 
 export const VerticalVisibilityValue = ({
     prettyArgs: { altitude },

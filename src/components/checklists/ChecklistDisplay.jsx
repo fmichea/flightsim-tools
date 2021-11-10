@@ -1,9 +1,11 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
-import { useChecklist } from 'lib/checklist/hooks/useChecklist';
-import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
-import { ChecklistListDisplay } from 'components/checklists/ChecklistListDisplay';
+
 import { ChecklistInfo } from 'components/checklists/ChecklistInfo';
+import { ChecklistListDisplay } from 'components/checklists/ChecklistListDisplay';
+import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
+import { useChecklist } from 'lib/checklist/hooks/useChecklist';
 import { useChecklistSelectedListScroll } from 'lib/checklist/hooks/useChecklistSelectedListScroll';
 
 export const ChecklistDisplay = ({

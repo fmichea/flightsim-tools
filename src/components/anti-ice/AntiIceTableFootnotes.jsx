@@ -1,6 +1,8 @@
-import { AntiIceTableFootnote } from 'components/anti-ice/AntiIceTableFootnote';
 import React from 'react';
+
 import { styled } from 'styletron-react';
+
+import { AntiIceTableFootnote } from 'components/anti-ice/AntiIceTableFootnote';
 
 const FootnotesContainer = styled('div', {
     marginTop: '10px',

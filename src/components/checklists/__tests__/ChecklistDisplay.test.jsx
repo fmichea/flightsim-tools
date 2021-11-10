@@ -1,9 +1,9 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { ChecklistDisplay } from 'components/checklists/ChecklistDisplay';
 import { Checklists } from 'lib/checklist/data/checklists';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { pick } from 'lib/pick';
 import { mockChecklistURLManager } from 'tests/data/checklists/mocks/checklistURLManager';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props, windowWidth } = {}) => {
     const checklistURLManager = mockChecklistURLManager();

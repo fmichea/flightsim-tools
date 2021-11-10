@@ -1,6 +1,7 @@
 import React from 'react';
-import { AltimeterValue } from 'components/metar/renderers/altimeter/AltimeterValue';
+
 import { AltimeterShort } from 'components/metar/renderers/altimeter/AltimeterShort';
+import { AltimeterValue } from 'components/metar/renderers/altimeter/AltimeterValue';
 
 export const AltimeterRenderers = {
     renderValue: AltimeterValue,

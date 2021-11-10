@@ -1,11 +1,12 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
+import { act } from '@testing-library/react';
+
 import {
     useWindowDimensions,
     useWindowWidthConditions,
     windowWidthCondition,
     windowWidthFinalCondition,
 } from 'lib/hooks/useWindowDimensions';
-import { act } from '@testing-library/react';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 describe('useWindowDimensions', () => {
     const setup = (width, height) => mountHookWithStore(useWindowDimensions, {

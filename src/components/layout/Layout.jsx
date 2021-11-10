@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { Layout as ANTDLayout } from 'antd';
+import PropTypes from 'prop-types';
 import { styled, useStyletron } from 'styletron-react';
-import { Navbar } from 'components/layout/Navbar';
+
 import { Footer } from 'components/layout/Footer';
 import { HeaderLogo } from 'components/layout/HeaderLogo';
-import PropTypes from 'prop-types';
+import { Navbar } from 'components/layout/Navbar';
 import { CenteredContentContainer } from 'components/lib/CenteredContentContainer';
 
 const { Header, Content } = ANTDLayout;

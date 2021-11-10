@@ -1,6 +1,6 @@
-import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 import { ChecklistURLManager, useChecklistURLConfig } from 'lib/checklist/hooks/useChecklistURLConfig';
 import { ChecklistsWithNameAndListNameRoute, ChecklistsWithNameRoute } from 'lib/routes';
+import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = (routePath, route) => mountHookWithStore(
     useChecklistURLConfig,

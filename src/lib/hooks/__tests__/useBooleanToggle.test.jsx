@@ -1,5 +1,6 @@
-import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 import { act } from '@testing-library/react';
+
+import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
 const setup = (defaultValue) => mountHookWithStore(() => useBooleanToggle(defaultValue));

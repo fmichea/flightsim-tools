@@ -1,8 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Tag } from 'antd';
-import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
+import PropTypes from 'prop-types';
+
 import { ChecklistDataItemTagsPropTypes } from 'components/checklists/propTypes';
+import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const tagStyle = { fontFamily: 'Monaco' };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { RunwayVisualRangePropTypes } from 'components/metar/renderers/runwayVisualRange/propTypes';
 import { RunwayVisualRangeQualifier } from 'lib/metar/enums';
 

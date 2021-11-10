@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
+
 import { Button, List, Modal } from 'antd';
-import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
-import { useChecklistGlobalConfigWithTogglers } from 'lib/checklist/hooks/useChecklistGlobalConfigWithTogglers';
+import PropTypes from 'prop-types';
+
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { useChecklistGlobalConfigWithTogglers } from 'lib/checklist/hooks/useChecklistGlobalConfigWithTogglers';
+import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 
 const modalStyle = { maxWidth: '1000px' };
 

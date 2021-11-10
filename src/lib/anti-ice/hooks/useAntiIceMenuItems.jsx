@@ -1,5 +1,6 @@
-import { AntiIceOperationModesData } from 'lib/anti-ice/data/operationModesData';
 import { useMemo } from 'react';
+
+import { AntiIceOperationModesData } from 'lib/anti-ice/data/operationModesData';
 
 export const useAntiIceMenuItems = ({
     antiIceURLManager,

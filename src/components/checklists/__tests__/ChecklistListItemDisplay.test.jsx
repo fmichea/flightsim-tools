@@ -1,12 +1,13 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
+import { act } from '@testing-library/react';
+
 import { ChecklistListItemDisplay } from 'components/checklists/ChecklistListItemDisplay';
+import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { ChecklistLists } from 'lib/checklist/data/lists';
 import { pick } from 'lib/pick';
 import { toggleLeftHandedMode } from 'state/actions/checklist';
-import { act } from '@testing-library/react';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';
 import { TestDataChecklistName } from 'tests/data/checklists/names';
-import { ChecklistLists } from 'lib/checklist/data/lists';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ props, windowWidth } = {}) => {
     const defaultProps = {

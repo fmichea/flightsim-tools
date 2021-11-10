@@ -1,3 +1,4 @@
+import { parseRunwayState } from 'lib/metar/parsers/runwayState';
 import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataRunwayState_R24451293_Data,
@@ -5,7 +6,6 @@ import {
     TestDataRunwayState_R31XXXXXX_Data,
     TestDataRunwayState_R31XXXXXX_Text,
 } from 'tests/data/metar/runwayState';
-import { parseRunwayState } from 'lib/metar/parsers/runwayState';
 
 describe('parseRunwayState', () => {
     test('sample runway state', () => {

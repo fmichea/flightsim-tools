@@ -1,6 +1,6 @@
+import { parseMissingData } from 'lib/metar/parsers/missingData';
 import { ParserState } from 'lib/metar/parserState';
 import { TestDataMissingData_Data, TestDataMissingData_Text } from 'tests/data/metar/missingData';
-import { parseMissingData } from 'lib/metar/parsers/missingData';
 
 describe('parseMissingData', () => {
     test('value is parsed correctly', () => {

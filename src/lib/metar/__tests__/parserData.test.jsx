@@ -1,6 +1,6 @@
-import { ParserState } from 'lib/metar/parserState';
-import { TokenTypes } from 'lib/metar/enums';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { TokenTypes } from 'lib/metar/enums';
+import { ParserState } from 'lib/metar/parserState';
 
 describe('ParserState', () => {
     describe('hasMoreToMatch', () => {

@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseColorSystems } from 'lib/metar/parsers/colorSystems';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Data,
     TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Text,

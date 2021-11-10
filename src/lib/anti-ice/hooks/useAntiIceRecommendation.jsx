@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
-import { pick } from 'lib/pick';
+
 import { AntiIceImagesData } from 'lib/anti-ice/data/imagesData';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
+import { pick } from 'lib/pick';
 
 export const useAntiIceRecommendation = ({
     operationModeData,

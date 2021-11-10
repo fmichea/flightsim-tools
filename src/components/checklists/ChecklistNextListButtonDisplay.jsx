@@ -1,8 +1,10 @@
-import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
-import { ChecklistNextListButton } from 'components/checklists/ChecklistNextListButton';
 import React from 'react';
-import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+
 import PropTypes from 'prop-types';
+
+import { ChecklistNextListButton } from 'components/checklists/ChecklistNextListButton';
+import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
 
 export const ChecklistNextListButtonDisplay = ({
     checklistData,

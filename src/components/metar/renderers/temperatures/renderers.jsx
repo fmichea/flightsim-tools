@@ -1,6 +1,7 @@
 import React from 'react';
-import { TemperaturesValue } from 'components/metar/renderers/temperatures/TemperaturesValue';
+
 import { TemperaturesShort } from 'components/metar/renderers/temperatures/TemperaturesShort';
+import { TemperaturesValue } from 'components/metar/renderers/temperatures/TemperaturesValue';
 
 export const TemperaturesRenderers = {
     renderValue: TemperaturesValue,

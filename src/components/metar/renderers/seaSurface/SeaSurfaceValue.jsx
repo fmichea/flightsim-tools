@@ -1,6 +1,7 @@
 import React from 'react';
-import { SeaSurfacePropTypes } from 'components/metar/renderers/seaSurface/propTypes';
+
 import { ThinSpace } from 'components/lib/spaces';
+import { SeaSurfacePropTypes } from 'components/metar/renderers/seaSurface/propTypes';
 import { SeaSurfaceInfoType } from 'lib/metar/enums';
 
 export const SeaSurfaceValue = ({

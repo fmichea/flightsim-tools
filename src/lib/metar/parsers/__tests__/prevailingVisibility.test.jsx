@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parsePrevailingVisibility } from 'lib/metar/parsers/prevailingVisibility';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataPrevailingVisibility_1SixteenthSM_Data,
     TestDataPrevailingVisibility_1SixteenthSM_Text,

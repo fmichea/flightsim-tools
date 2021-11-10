@@ -1,3 +1,4 @@
+import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataSeaSurface_W12S4_Data,
@@ -5,7 +6,6 @@ import {
     TestDataSeaSurface_WM01H014_Data,
     TestDataSeaSurface_WM01H014_Text,
 } from 'tests/data/metar/seaSurface';
-import { parseSeaSurface } from 'lib/metar/parsers/seaSurface';
 
 describe('parseSeaSurface', () => {
     test('value with sea state code', () => {

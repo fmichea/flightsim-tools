@@ -1,7 +1,7 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { Checklist } from 'components/checklists/Checklist';
-import { ChecklistsWithNameRoute } from 'lib/routes';
 import { Checklists } from 'lib/checklist/data/checklists';
+import { ChecklistsWithNameRoute } from 'lib/routes';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = ({ initialRoute, routePath } = {}) => mountWithStore(Checklist, { initialRoute, routePath });
 

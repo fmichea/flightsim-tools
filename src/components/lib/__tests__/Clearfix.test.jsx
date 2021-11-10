@@ -1,6 +1,6 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { Clearfix } from 'components/lib/Clearfix';
 import { pick } from 'lib/pick';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (options = {}) => mountWithStore(Clearfix, {
     props: pick(options.props, {}),

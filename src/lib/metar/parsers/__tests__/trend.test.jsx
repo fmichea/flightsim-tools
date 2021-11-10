@@ -1,5 +1,5 @@
-import { ParserState } from 'lib/metar/parserState';
 import { parseTrend } from 'lib/metar/parsers/trend';
+import { ParserState } from 'lib/metar/parserState';
 import {
     TestDataTrend_BECMG_Data,
     TestDataTrend_BECMG_Text,

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Vernacular } from 'components/lib/vernacular/Vernacular';
 
 export const EICAS_CRJ7 = (

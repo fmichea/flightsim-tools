@@ -5,6 +5,8 @@ env:
 extends:
   - "plugin:react/recommended"
   - "airbnb"
+  - "plugin:import/errors"
+  - "plugin:import/warnings"
 
 globals:
   # Jest globals.
@@ -17,6 +19,7 @@ parser: babel-eslint
 plugins:
   - "react"
   - "babel"
+  - "import"
 
 rules:
   max-len: ["warn", 120]
@@ -38,6 +41,24 @@ rules:
   }]
   # Ensure semicolons are everywhere.
   babel/semi: ["error", "always"]
+  import/order:
+    - error
+    - groups:
+        - builtin
+        - external
+        - internal
+        - - parent
+          - sibling
+      pathGroups:
+        - pattern: react
+          group: external
+          position: before
+      pathGroupsExcludedImportTypes:
+        - builtin
+      newlines-between: always
+      alphabetize:
+        order: asc
+        caseInsensitive: true
 
 settings:
   import/resolver:

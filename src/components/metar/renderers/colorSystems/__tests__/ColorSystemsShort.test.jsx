@@ -1,8 +1,8 @@
-import { mountWithStore } from 'tests/lib/mountWithStore';
 import { ColorSystemsShort } from 'components/metar/renderers/colorSystems/ColorSystemsShort';
 import {
     TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Data,
 } from 'tests/data/metar/colorSystems';
+import { mountWithStore } from 'tests/lib/mountWithStore';
 
 const setup = (data) => mountWithStore(ColorSystemsShort, {
     props: { data, prettyArgs: data },

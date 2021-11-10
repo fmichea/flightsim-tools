@@ -1,5 +1,5 @@
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
 import { AntiIceImages } from 'lib/anti-ice/data/images';
+import { createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const cj4ImagesData = createTransformedMapping()([
     {

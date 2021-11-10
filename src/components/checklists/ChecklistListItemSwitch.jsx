@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Switch } from 'antd';
+
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { Switch } from 'antd';
+import PropTypes from 'prop-types';
 
 export const ChecklistListItemSwitch = ({
     isChecked,
