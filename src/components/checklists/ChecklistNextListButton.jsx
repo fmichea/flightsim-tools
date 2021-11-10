@@ -8,9 +8,6 @@ export const ChecklistNextListButton = ({ title, isEmergency, onClick }) => {
 
     const classNames = css({
         fontWeight: 'bold',
-        marginTop: '15px',
-        marginLeft: '10px',
-
         paddingLeft: '15px',
         paddingRight: '15px',
     });

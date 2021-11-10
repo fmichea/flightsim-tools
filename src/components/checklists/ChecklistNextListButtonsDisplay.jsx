@@ -1,39 +1,10 @@
 import React from 'react';
 import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
 import { RightJustifyingContainer } from 'components/lib/CenteringContainer';
-import { ChecklistNextListButton } from 'components/checklists/ChecklistNextListButton';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
 import PropTypes from 'prop-types';
-
-const ChecklistNextListButtonDisplay = ({
-    checklistData,
-    checklistName,
-    checklistListName,
-    checklistURLManager,
-}) => {
-    const {
-        title,
-        isEmergency,
-        setActiveCallback,
-    } = useChecklistListInfoData({
-        checklistData, checklistName, checklistListName, checklistURLManager,
-    });
-
-    return (
-        <ChecklistNextListButton
-            title={title}
-            isEmergency={isEmergency}
-            onClick={setActiveCallback}
-        />
-    );
-};
-
-ChecklistNextListButtonDisplay.propTypes = {
-    checklistData: ChecklistDataPropTypes.isRequired,
-    checklistURLManager: ChecklistURLManagerPropTypes.isRequired,
-    checklistName: PropTypes.string.isRequired,
-    checklistListName: PropTypes.string.isRequired,
-};
+import { ChecklistProgressAlert } from 'components/checklists/ChecklistProgressAlert';
+import { ChecklistNextListButtonDisplay } from 'components/checklists/ChecklistNextListButtonDisplay';
 
 export const ChecklistNextListButtonsDisplay = ({
     checklistData,
@@ -41,16 +12,14 @@ export const ChecklistNextListButtonsDisplay = ({
     checklistListName,
     checklistURLManager,
 }) => {
-    const { nextListNames } = useChecklistListInfoData({
+    const { progressPercent, nextListNames } = useChecklistListInfoData({
         checklistData, checklistName, checklistListName, checklistURLManager,
     });
 
-    if (nextListNames.length === 0) {
-        return null;
-    }
-
     return (
-        <RightJustifyingContainer>
+        <RightJustifyingContainer $style={{ marginTop: '15px', gap: '16px 16px' }}>
+            <ChecklistProgressAlert progressPercent={progressPercent} />
+
             {nextListNames.map((nextListName) => (
                 <ChecklistNextListButtonDisplay
                     key={nextListName}
