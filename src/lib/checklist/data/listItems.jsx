@@ -466,7 +466,7 @@ const crj7Items = Object.freeze({
     CRJ7_BEFORE_START_CHECK_FMS: 'crj7_before_start_check_fms',
     CRJ7_BEFORE_START_CHECK_IRS: 'crj7_before_start_check_irs',
     CRJ7_BEFORE_START_CHECK_RADIOS: 'crj7_before_start_check_radios',
-    CRJ7_BEFORE_START_CHECK_TAKEOFF_DATA: 'crj7_cleared_to_start_check_takeoff_data',
+    CRJ7_BEFORE_START_CHECK_TAKEOFF_DATA: 'crj7_before_start_check_takeoff_data',
     CRJ7_BEFORE_START_CHECK_TAKEOFF_BRIEFING: 'crj7_before_start_check_takeoff_briefing',
 
     CRJ7_CLEARED_TO_START_CHECK_PERSONAL_ELECTRONIC_DEVICES: 'crj7_cleared_to_start_check_personal_electronic_devices',

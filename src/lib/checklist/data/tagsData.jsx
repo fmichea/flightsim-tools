@@ -15,6 +15,11 @@ const commonTagsData = createTransformedMapping()([
         hidden: true,
     },
     {
+        uid: ChecklistTags.IN_MEMORY_ITEM,
+        title: 'MEM',
+        color: '#d36a15',
+    },
+    {
         uid: ChecklistTags.EXTENSION,
         title: 'EXT',
         color: '#080f8d',
@@ -43,7 +48,7 @@ const commonTagsData = createTransformedMapping()([
     },
     {
         uid: ChecklistTags.SIMSETUP,
-        color: '#d05111',
+        color: '#6d11d0',
     },
     {
         uid: ChecklistTags.CRJ7,

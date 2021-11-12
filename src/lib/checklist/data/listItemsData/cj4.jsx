@@ -1,37 +1,44 @@
 import React from 'react';
 
+import { Alert } from 'antd';
+import { generatePath } from 'react-router';
+import { Link } from 'react-router-dom';
+
 import { CASMessage } from 'components/lib/CASMessage';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
-import { List, ListItem } from 'components/lib/List';
 import { Monospaced } from 'components/lib/Monospaced';
 import {
-    CCP_CJ4, DCP_CJ4, EICAS_CJ4, MFD_CJ4, PFD_CJ4, SFD_CJ4,
+    CCP_CJ4, DCP_CJ4, EICAS_CJ4, EP_CJ4, MFD_CJ4, PFD_CJ4, SFD_CJ4, TP_CJ4,
 } from 'components/lib/vernacular/cj4';
 import {
-    FMS, ITT, N1, N2, OAT, SAT, VR,
+    AGL,
+    FADEC,
+    FMS, ITT, KIAS, N1, N2, OAT, QNH, SAT, VR,
 } from 'components/lib/vernacular/common';
+import { AntiIceAircrafts } from 'lib/anti-ice/data/aircrafts';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
+import { AntiIceWithNameRoute } from 'lib/routes';
 
 const addCJ4Tags = (value) => ({
     ...value,
-    tags: [...value.tags, ChecklistTags.OFFICIAL, ChecklistTags.CJ4],
+    tags: [ChecklistTags.OFFICIAL, ChecklistTags.CJ4, ...value.tags],
 });
 
 const cj4AntiIceRules = (
     <>
-        <strong>Rules:</strong>
+        Anti-ice rules explained
         {' '}
-        Wing, engine, and tail anti-ice must be turned on in icy condition (when
-        {' '}
-        {SAT}
-        {' '}
-        is below 10&deg;C, and there is visible moisture in the air), except for tail when below -30&deg;C. Wing
-        light must be operational to flight in icy conditions (it lights only the left wing leading edge). Below
-        -40&deg;C, anti-ice may be turned to engine only mode as long as it can be verified that no ice is forming on
-        the wings.
+        <Link
+            to={generatePath(AntiIceWithNameRoute, { aircraftName: AntiIceAircrafts.WORKINGTITLE_CJ4 })}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            here
+        </Link>
+        .
     </>
 );
 
@@ -40,11 +47,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_START_BATTERY_SWITCH,
         title: 'Battery Switch',
         state: 'ON',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
-                Battery switch is the red switch located in the electrical panel on the left side of the
+                Battery switch is the red switch located in the
                 {' '}
-                {PFD_CJ4}
+                {EP_CJ4}
                 ,
                 and can be turned on by moving it in up position.
                 <br />
@@ -60,9 +67,13 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_START_EMERGENCY_LIGHTS_SWITCH,
         title: 'Emergency Lights Switch',
         state: 'ARMED',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
-                Emergency Lights switch is in the electrical panel along with battery switch, on the second row
+                Emergency Lights switch is in the
+                {' '}
+                {EP_CJ4}
+                {' '}
+                along with battery switch, on the second row
                 on the left. It can be armed by moving it in the up position. Warning
                 {' '}
                 <CASMessage level="warning">EMER LIGHTS NOT ARMED</CASMessage>
@@ -79,10 +90,14 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_START_STANDBY_FLIGHT_DISPLAY_SWITCH,
         title: 'Standby Flight Display Switch',
         state: 'ON',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
-                Standby Flight Display Switch is also in the electrical panel, on the second row in the middle.
-                It can be turned on by moving it in the up position.
+                {SFD_CJ4}
+                {' '}
+                Switch is also in the
+                {' '}
+                {EP_CJ4}
+                , on the second row in the middle. It can be turned on by moving it in the up position.
                 {' '}
                 {SFD_CJ4}
                 {' '}
@@ -97,7 +112,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_START_AVIONICS_SWITCH,
         title: 'Avionics Switch',
         state: 'DISPATCH',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
                 Avionics Switch is located in the electrical panel, on the second row on the right. It can be turned
                 into dispatch mode by moving it in the down position.
@@ -122,8 +137,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'SET',
         moreInfoShort: (
             <>
-                Parking Brake is located below the the tilt panel on the left side, as a black and round pull
-                handle. It is set when fully pulled out.
+                Parking Brake is located below the
+                {' '}
+                {TP_CJ4}
+                , as a black and round pull handle. Parking brakes are set when the handle is fully extended.
             </>
         ),
     },
@@ -210,53 +227,319 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 should be checked for all data to be GREEN.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: 'N1',
+                state: 'GREEN, 0',
+            },
+            {
+                title: 'N2',
+                state: 'GREEN, 0',
+            },
+            {
+                title: (<>Oil Temperature (OIL &deg;C)</>),
+                state: 'GREEN',
+            },
+            {
+                title: 'Oil Pressure (OIL PSI)',
+                state: 'GREEN, 0',
+            },
+            {
+                title: 'Trims',
+                state: 'GREEN',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_START_FMS,
         title: 'FMS',
         state: 'CHECK/SET',
+        subItems: createTransformedList()([
+            {
+                title: 'Configuration',
+                state: 'SET / CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'FMS / MFD Units',
+                        state: 'SET / CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Position Initialization',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                POS INIT Page (
+                                <KeyboardInputs inputs={['IDX', 'LSK 4 (POS INIT)']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                    },
+                    {
+                        title: (
+                            <>
+                                GPS Position Copy (
+                                <KeyboardInputs inputs={['RSK 4 (SET POS TO GNSS)']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                    {
+                        title: (
+                            <>
+                                FMS Position (
+                                <KeyboardInputs inputs={['RSK 5 (SET POS)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Flight Plan (1)',
+                state: 'SET / CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                SimBrief Direct Import (
+                                <KeyboardInputs
+                                    inputs={[
+                                        'IDX',
+                                        'NEXT',
+                                        'RSK 1 (ROUTE MENU)',
+                                        'LSK 3 (FPLN RECALL (SB))',
+                                    ]}
+                                />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Flight Plan Page (
+                                <KeyboardInputs inputs={['FPLN']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                    },
+                    {
+                        title: (
+                            <>
+                                Origin Airport (
+                                <KeyboardInputs inputs={['INPUT', 'LSK 1 (ORIGIN)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET / CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Destination Airport (
+                                <KeyboardInputs inputs={['INPUT', 'RSK 1 (DEST)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET / CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Departure',
+                state: 'SET / CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Departure Page (
+                                <KeyboardInputs inputs={['DEP / ARR', '[opt] LSK 1 (DEP)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Departure Runway (
+                                <KeyboardInputs inputs={['RSK ? (Runways)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET / CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Standard Instrument Departure (
+                                <KeyboardInputs inputs={['LSK ? (Departures)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET / CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Transition (
+                                <KeyboardInputs inputs={['LSK ? (Trans)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                ]),
+            },
+            {
+                title: 'Flight Plan (2)',
+                state: 'SET / CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Flight Plan Page (
+                                <KeyboardInputs inputs={['FPLN']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                    },
+                    {
+                        title: (
+                            <>
+                                Origin Runway (
+                                <KeyboardInputs inputs={['RSK 3 (ORIG RWY)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                VIA (
+                                <KeyboardInputs inputs={['LSK 4 (VIA)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Flight Plan Legs (
+                                <KeyboardInputs inputs={['NEXT']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Arrival',
+                state: 'AS DESIRED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Arrival Page (
+                                <KeyboardInputs inputs={['DEP / ARR', '[opt] DEP / ARR', '[opt] RSK 2 (ARR)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Arrival Approach (
+                                <KeyboardInputs inputs={['RSK ? (Approaches)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Standard Terminal Arrival Route (
+                                <KeyboardInputs inputs={['LSK ? (STARS)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: 'Transitions',
+                        state: 'AS DESIRED',
+                    },
+                ]),
+            },
+            {
+                title: 'Legs',
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Legs Page (
+                                <KeyboardInputs inputs={['LEGS']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                    },
+                    {
+                        title: 'All Waypoints',
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Performance Initialization',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Performance Initialization Page (
+                                <KeyboardInputs inputs={['PERF', 'LSK 1 (PERF INIT)']} />
+                                )
+                            </>
+                        ),
+                        state: 'OPEN',
+                        subItems: createTransformedList()([
+
+                        ]),
+                    },
+                    {
+                        title: (
+                            <>
+                                Zero Fuel Weight (
+                                <KeyboardInputs inputs={['PERF', 'RSK 3 (ZFW)']} />
+                                )
+                            </>),
+                        state: 'SET',
+                    },
+                ]),
+            },
+        ]),
         moreInfoShort: (
             <>
-                <p>
-                    {FMS}
-                    {' '}
-                    should be checked and programmed at this point. The following items must be completed:
-                </p>
-                <List>
-                    <ListItem>
-                        <strong>Position Init:</strong>
-                        {' '}
-                        <KeyboardInputs inputs={['IDX', 'LSK 4 (POS INIT)', 'RSK 4 (SET POS TO GNSS)']} />
-                    </ListItem>
-                    <ListItem>
-                        <strong>Flight Plan programming:</strong>
-                        {' '}
-                        This can be done using manual input or simbrief import. Full flight plan should be
-                        reviewed in the LEGS page.
-                    </ListItem>
-                    <ListItem>
-                        <strong>Departure programming:</strong>
-                        {' '}
-                        Using
-                        {' '}
-                        <KeyboardInputs inputs={['DEP/ARR']} />
-                        {' '}
-                        menu, runway must be selected.
-                    </ListItem>
-                    <ListItem>
-                        <strong>Performance Initialization:</strong>
-                        {' '}
-                        After setting fuel based on pre-flight planning in the weights menu, passenger and cargo
-                        weight (or GWT) should be initialized in
-                        {' '}
-                        {FMS}
-                        {' '}
-                        in the performance initialization page. (
-                        <KeyboardInputs inputs={['PERF', 'LSK 1 (PERF INIT)']} />
-                        ). Planned cruise altitude should also be initialized.
-                    </ListItem>
-                </List>
-
+                {FMS}
+                {' '}
+                should be checked and programmed at this point.
             </>
         ),
     },
@@ -266,7 +549,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Climate Control Selector is in the middle of the tilt panel. Turn it left to set it in OFF mode.
+                Climate Control Selector is in the middle of the
+                {' '}
+                {TP_CJ4}
+                . Turn it left to set it in OFF mode.
             </>
         ),
     },
@@ -325,36 +611,107 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 within the
                 {' '}
                 {EICAS_CJ4}
-                . Things should happen in the following order:
+                . Starting sequence is managed by
                 {' '}
-                {N1}
+                {FADEC}
                 {' '}
-                should increase slowly first, then
-                {' '}
-                {ITT}
-                {' '}
-                will automatically ignite (
-                <CASMessage>IGN</CASMessage>
-                {' '}
-                display) and
-                {' '}
-                {N1}
-                {' '}
-                will start rising.
-                {' '}
-                {ITT}
-                {' '}
-                will rise as
-                {' '}
-                {N1}
-                {' '}
-                and
-                {' '}
-                {N2}
-                {' '}
-                continue to rise, until ignition disables and every value settles.
+                and simply needs to be monitored.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        <CASMessage>STARTER</CASMessage>
+                        {' '}
+                        on
+                        {' '}
+                        {EICAS_CJ4}
+                    </>
+                ),
+                state: 'DISPLAYED',
+            },
+            {
+                title: (
+                    <>
+                        {N1}
+                        {' '}
+                        /
+                        {' '}
+                        {N2}
+                        {' '}
+                        on
+                        {' '}
+                        {EICAS_CJ4}
+                    </>
+                ),
+                state: 'RISING',
+            },
+            {
+                title: (
+                    <>
+                        <CASMessage level="info">IGN</CASMessage>
+                        {' '}
+                        for
+                        {' '}
+                        {ITT}
+                    </>
+                ),
+                state: 'ON @ 12% N2',
+            },
+            {
+                title: (
+                    <>
+                        {N1}
+                        {' '}
+                        /
+                        {' '}
+                        {N2}
+                        {' '}
+                        /
+                        {' '}
+                        {ITT}
+                        {' '}
+                        on
+                        {' '}
+                        {EICAS_CJ4}
+                    </>
+                ),
+                state: 'RISING',
+            },
+            {
+                title: (
+                    <>
+                        <CASMessage level="info">IGN</CASMessage>
+                        {' '}
+                        for
+                        {' '}
+                        {ITT}
+                    </>
+                ),
+                state: 'OFF',
+            },
+            {
+                title: (
+                    <>
+                        {N1}
+                        {' '}
+                        /
+                        {' '}
+                        {N2}
+                        {' '}
+                        /
+                        {' '}
+                        {ITT}
+                        {' '}
+                        on
+                        {' '}
+                        {EICAS_CJ4}
+                    </>
+                ),
+                state: 'STABLE',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_ENGINE_START_EICAS_CHECK,
@@ -362,28 +719,36 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'CHECK',
         moreInfoShort: (
             <>
-                Indicators should settle around
-                {' '}
-                {N1}
-                {' '}
-                = 24.5%,
-                {' '}
-                {ITT}
-                {' '}
-                = 600&deg;C and
-                {' '}
-                {N2}
-                {' '}
-                = 53.4%. Oil pressure will settle around
-                70 PSI and oil temperature eventually at 103&deg;C but 90&deg;C and rising is good for this stage.
-                Every indicator should be green before moving forward to second engine.
+                Indicators should settle around the following values. Every indicator should be green before moving
+                forward to second engine.
                 {' '}
                 {MFD_CJ4}
                 {' '}
-                warnings will only
-                disappear after second engine is started.
+                warnings will only disappear after second engine is started.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: N1,
+                state: '24.5%',
+            },
+            {
+                title: N2,
+                state: '53.4%',
+            },
+            {
+                title: ITT,
+                state: <>600&deg;C</>,
+            },
+            {
+                title: 'Oil Pressure',
+                state: '70 PSI',
+            },
+            {
+                title: 'Oil Temperature',
+                state: <>MORE THAN 90&deg;C</>,
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_ENGINE_START_OPPOSITE_ENGINE_START,
@@ -435,11 +800,43 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 {' '}
                 {CCP_CJ4}
                 {' '}
-                if hidden). DC electric
-                should have +22 A amperage and +29 V voltage. Battery should have -22 A amperage and +25 volts.
-                Temperature should remain low, around 26&deg;C.
+                if hidden).
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: 'DC Electric',
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Amperage',
+                        state: 'GREEN, +22 A',
+                    },
+                    {
+                        title: 'Voltage',
+                        state: 'GREEN, +29 V',
+                    },
+                ]),
+            },
+            {
+                title: 'Battery',
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Amperage',
+                        state: 'GREEN, -22 A',
+                    },
+                    {
+                        title: 'Voltage',
+                        state: 'GREEN, +25 V',
+                    },
+                    {
+                        title: 'Temperature',
+                        state: 'GREEN',
+                    },
+                ]),
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAXI_AVIONICS_SWITCH,
@@ -466,8 +863,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'NORM',
         moreInfoShort: (
             <>
-                Climate Control Selector is in the middle of the tilt panel. Turn it right once for NORM mode
-                to be enabled. Air conditioning fans should audibly activate in the cabin.
+                Climate Control Selector is in the middle of the
+                {' '}
+                {TP_CJ4}
+                . Turn it right once for NORM mode to be enabled. Air conditioning fans should audibly
+                activate in the cabin.
             </>
         ),
     },
@@ -569,7 +969,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_BEFORE_TAXI_ENGINE_ONLY_ANTI_ICE,
         title: 'Engine Only Anti-Ice',
         state: 'AS REQUIRED',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
                 While on the ground, engine only anti-ice should be enabled when in icing condition but not until
                 engines have been on for at least 1 minute. Icing condition on ground exist when
@@ -584,13 +984,19 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 or below +5&deg;C and engine may ingest moisture such as snow, slush, or standing water.
                 <br />
                 <br />
-                Engine only anti-ice can be turned on with the buttons on tilt panel in anti-ice section, just below
+                Engine only anti-ice can be turned on with the buttons on
+                {' '}
+                {TP_CJ4}
+                {' '}
+                in anti-ice section, just below
                 {' '}
                 {CCP_CJ4}
                 . Current outside temperatures are visible at the very bottom of
                 {' '}
                 {MFD_CJ4}
                 .
+                {' '}
+                {cj4AntiIceRules}
             </>
         ),
     },
@@ -603,105 +1009,323 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 Take-off data can be set on
                 {' '}
                 {FMS}
+                . Verify that speeds turn blue on
                 {' '}
-                with the following key presses:
+                {FMS}
                 {' '}
-                <KeyboardInputs inputs={['PERF', 'LSK 3 (TAKEOFF)']} />
-                .
-                Mandatory fields are Runway (RNW) taken from departure, runway condition (dry/wet), outside air
-                temperature (
-                {OAT}
-                ) and QNH. Once filled, go to second page using NEXT button, review the takeoff speeds
-                on the right side and click send using
-                {' '}
-                <KeyboardInputs inputs={['RSK 6 (SEND)']} />
-                .
-                <br />
-                <br />
-                Verify that speeds turn blue and are displayed on
+                and are displayed on
                 {' '}
                 {PFD_CJ4}
                 {' '}
                 below speed tape indicator. Expect speeds between
-                90 and 115 knots.
+                90 and 140 knots.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Take-Off Performance Page 1 (
+                        <KeyboardInputs inputs={['PERF', 'LSK 3 (TAKEOFF)']} />
+                        )
+                    </>
+                ),
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Runway (Right Side)',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Wind (
+                                <KeyboardInputs inputs={['RSK 1 (WIND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                {OAT}
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 2 (OAT)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                {QNH}
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 3 (QNH)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Runway Condition
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 5 (RWY COND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Take-Off Performance Page 2 (
+                        <KeyboardInputs inputs={['NEXT']} />
+                        )
+                    </>
+                ),
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Anti-Ice Setting
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 1 (A/I)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Take-Off Flaps
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 2 (T/O FLAPS)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                V-Speeds
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 6 (SEND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SENT TO PFD',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        V-Speeds on
+                        {' '}
+                        {PFD_CJ4}
+                    </>
+                ),
+                state: 'CHECKED',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAXI_AVIONICS_CHECK,
         title: 'Avionics',
         state: 'CHECK/SET',
+        subItems: createTransformedList()([
+            {
+                title: 'Altitude Selector: Initial Altitude',
+                state: 'SET',
+            },
+            {
+                title: 'Heading Bug: Runway Heading',
+                state: 'SET',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAXI_AUTOPILOT_CONNECT_DISCONNECT,
         title: 'Autopilot',
         state: 'ENGAGE/DISCONNECT',
         moreInfoShort: (
-            <>
-                In the Autopilot panel, enable autopilot by pressing the
-                {' '}
-                <KeyboardInputs inputs={['AP']} />
-                {' '}
-                button, verify
-                {' '}
-                {PFD_CJ4}
-                {' '}
-                displays autopilot enabled (
-                <CASMessage level="info">AP</CASMessage>
-                ). Press
-                {' '}
-                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
-                {' '}
-                below. Ensure audible autopilot announcement and autopilot disabled on
-                {' '}
-                {PFD_CJ4}
-                {' '}
-                (
-                <CASMessage level="warning">AP</CASMessage>
-                )
-                .
-                Press
-                {' '}
-                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
-                {' '}
-                again to allow autopilot connection again (autopilot should remain off).
-                <br />
-                <br />
-                Repeat process with standard disconnect procedure. Click
-                {' '}
-                <KeyboardInputs inputs={['AP']} />
-                {' '}
-                button to enable autopilot, and verify on
-                {' '}
-                {PFD_CJ4}
-                . Press
-                {' '}
-                <KeyboardInputs inputs={['AP']} />
-                {' '}
-                button again, verify audible autopilot announcement and check
-                {' '}
-                {PFD_CJ4}
-                {' '}
-                for
-                {' '}
-                <CASMessage level="info">YD</CASMessage>
-                {' '}
-                mode enabled (yaw damper). Press
-                {' '}
-                <KeyboardInputs inputs={['YD']} />
-                {' '}
-                button and verify on
-                {' '}
-                {PFD_CJ4}
-                {' '}
-                that YD mode is disabled.
-            </>
+            <Alert
+                type="warning"
+                message={(
+                    <>
+                        <strong>Bug:</strong>
+                        {' '}
+                        <Monospaced>YD</Monospaced>
+                        {' '}
+                        does not remain
+                        {' '}
+                        <Monospaced>ON</Monospaced>
+                        {' '}
+                        with normal
+                        {' '}
+                        <Monospaced>AP</Monospaced>
+                        {' '}
+                        disconnect at the moment. Expected fixed in SU7.
+                    </>
+                )}
+            />
         ),
+        subItems: createTransformedList()([
+            {
+                title: 'YD/AP Disc Bar Disconnect Test',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Autopilot (
+                                <KeyboardInputs inputs={['AP']} />
+                                )
+                            </>
+                        ),
+                        state: 'ENGAGED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="info">AP</CASMessage>
+                                {' '}
+                                on
+                                {' '}
+                                {PFD_CJ4}
+                                {' '}
+                                (autopilot connected)
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Disc Bar Trigger (
+                                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                    {
+                        title: (
+                            <>
+                                {PFD_CJ4}
+                                {' '}
+                                autopilot mode clear
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Disc Bar Release (
+                                <KeyboardInputs inputs={['YD/AP Disc Bar']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                ]),
+            },
+            {
+                title: 'AP Button Disconnect Test',
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Autopilot (
+                                <KeyboardInputs inputs={['AP']} />
+                                )
+                            </>
+                        ),
+                        state: 'ENGAGED',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="info">AP</CASMessage>
+                                {' '}
+                                on
+                                {' '}
+                                {PFD_CJ4}
+                                {' '}
+                                (autopilot connected)
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                AP Disconnect (
+                                <KeyboardInputs inputs={['AP']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                    {
+                        title: (
+                            <>
+                                <CASMessage level="info">YD</CASMessage>
+                                {' '}
+                                on
+                                {' '}
+                                {PFD_CJ4}
+                                {' '}
+                                (yaw damper connected)
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                YD Disconnect (
+                                <KeyboardInputs inputs={['YD']} />
+                                )
+                            </>
+                        ),
+                        state: 'COMPLETE',
+                    },
+                    {
+                        title: (
+                            <>
+                                {PFD_CJ4}
+                                {' '}
+                                autopilot mode clear
+                            </>
+                        ),
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_BEFORE_TAXI_ALTIMETER_SET,
         title: 'Altimeter',
-        state: 'SET/CHECK',
+        state: 'SET / CHECKED',
         moreInfoShort: (
             <>
                 On
@@ -784,7 +1408,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'RELEASE',
         moreInfoShort: (
             <>
-                Release parking brake by pushing the pull handle below tilt panel on the left all the way in.
+                Release parking brake by pushing the pull handle below
+                {' '}
+                {TP_CJ4}
+                {' '}
+                on the left all the way in.
             </>
         ),
     },
@@ -930,18 +1558,43 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 On the top right section of the
                 {' '}
                 {MFD_CJ4}
-                , trims are indicated for Rudder (
-                <CASMessage>RUD</CASMessage>
-                ), Aileron (
-                <CASMessage>AIL</CASMessage>
-                ) and
-                Elevator (
-                <CASMessage>ELEV</CASMessage>
-                ). Verify that they all indicate within the green section for takeoff.
+                .
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Rudder Trim (
+                        <CASMessage>RUD</CASMessage>
+                        )
+                    </>
+                ),
+                state: 'GREEN',
+            },
+            {
+                title: (
+                    <>
+                        Aileron Trim (
+                        <CASMessage>AIL</CASMessage>
+                        )
+                    </>
+                ),
+                state: 'GREEN',
+            },
+            {
+                title: (
+                    <>
+                        Elevator Trim (
+                        <CASMessage>ELEV</CASMessage>
+                        )
+                    </>
+                ),
+                state: 'GREEN',
+            },
+        ]),
     },
-    {
+    { // FIXME: Departure Briefing.
         uid: ChecklistItems.CJ4_BEFORE_TAKEOFF_CREW_BRIEFING,
         title: 'Crew Briefing',
         state: 'COMPLETE',
@@ -1036,8 +1689,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
             <>
                 Check temperatures and prepare for anti-ice procedure during takeoff. Enable anti-ice as required as
                 soon as necessary.
-                <br />
-                <br />
+                {' '}
                 {cj4AntiIceRules}
             </>
         ),
@@ -1048,7 +1700,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'ON',
         moreInfoShort: (
             <>
-                Pitot/Static Heat buttons are located in the Ice Protection section on the tilt panel
+                Pitot/Static Heat buttons are located in the Ice Protection section on the
+                {' '}
+                {TP_CJ4}
+                {' '}
                 under the
                 {' '}
                 {MFD_CJ4}
@@ -1092,6 +1747,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_TAKEOFF_THROTTLES,
         title: 'Throttles',
         state: 'TAKEOFF',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 To proceed with a rolling take-off, simply push throttles all the way to 100%. If doing a standing
@@ -1108,16 +1764,19 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_TAKEOFF_N1_COMMAND_BUGS_GREEN,
         title: 'N1 Command Bugs',
         state: 'GREEN CHEVRON',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
     },
     {
         uid: ChecklistItems.CJ4_TAKEOFF_BRAKES_RELEASED,
         title: 'Brakes',
         state: 'RELEASE',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
     },
     {
         uid: ChecklistItems.CJ4_TAKEOFF_CONTROL_WHEEL_ROTATE_AT_VR,
         title: 'Control Wheel',
         state: 'ROTATE AT VR',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Monitor speed tape, once
@@ -1133,6 +1792,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_LANDING_GEAR_UP,
         title: 'Landing Gear',
         state: 'UP',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Once airborne with positive rate of climb, pull landing gear up. It can be done using the
@@ -1147,6 +1807,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_FLAPS_0,
         title: 'Flaps',
         state: <>0&deg;</>,
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Retract flaps fully by using the handle to the right of throttle levers by pushing it forward.
@@ -1157,6 +1818,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_THROTTLES_CLIMB,
         title: 'Throttles',
         state: 'CLIMB',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Pull back throttles below the takeoff (TO) detent. This can be checked on the
@@ -1176,6 +1838,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_AFTER_TAKEOFF_YAW_DAMPER_ON,
         title: 'Yaw Damper',
         state: 'ON',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Yaw Damper can be enabled using the the button labelled
@@ -1215,8 +1878,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 {MFD_CJ4}
                 {' '}
                 and follow rules outlined under the Before Takeoff checklist.
-                <br />
-                <br />
+                {' '}
                 {cj4AntiIceRules}
             </>
         ),
@@ -1227,7 +1889,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Belt sign may be turned off above 10.000ft in non-turbulant air.
+                Belt sign may be turned off above 10,000ft in non-turbulant air.
             </>
         ),
     },
@@ -1238,15 +1900,15 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         subItems: createTransformedList()([
             {
                 title: 'LANDING Light',
-                state: 'OFF ABOVE 10.000 FT',
+                state: 'OFF ABOVE 10,000 FT',
             },
             {
                 title: 'STROBE Light',
-                state: 'OFF ABOVE 10.000 FT',
+                state: 'OFF ABOVE 10,000 FT',
             },
             {
                 title: 'LOGO Light',
-                state: 'OFF ABOVE 10.000 FT',
+                state: 'OFF ABOVE 10,000 FT',
             },
         ]),
     },
@@ -1302,8 +1964,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Continue to monitor icing condition during cruise.
-                <br />
-                <br />
+                {' '}
                 {cj4AntiIceRules}
             </>
         ),
@@ -1322,8 +1983,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
             <>
                 Prepare for anti-ice procedure during descent and enable anti-ice protection systems as soon as
                 required.
-                <br />
-                <br />
+                {' '}
                 {cj4AntiIceRules}
             </>
         ),
@@ -1357,15 +2017,15 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         subItems: createTransformedList()([
             {
                 title: 'LANDING Light',
-                state: 'ON BELOW 10.000 FT',
+                state: 'ON BELOW 10,000 FT',
             },
             {
                 title: 'STROBE Light',
-                state: 'ON BELOW 10.000 FT',
+                state: 'ON BELOW 10,000 FT',
             },
             {
                 title: 'LOGO Light',
-                state: 'ON BELOW 10.000 FT',
+                state: 'ON BELOW 10,000 FT',
             },
         ]),
     },
@@ -1376,31 +2036,124 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Once approach and runway is confirmed, configure landing performance using wind, temperature and
-                pressure altitude found in latest METAR/ATIS. This can be configured under
-                {' '}
-                <KeyboardInputs inputs={['PERF', 'RSK 3 (APPROACH)']} />
-                . The mandatory configuration are on first page,
-                {' '}
-                <KeyboardInputs inputs={['RSK 2 (TEMP)']} />
-                {' '}
-                which should be set to the runway outside air temperature, and
-                {' '}
-                <KeyboardInputs inputs={['RSK 3 (QNH)']} />
-                {' '}
-                which should be set correctly if already out of standard mode, or otherwise changed to the correct
-                landing QNH. Runway WET condition can be set with
-                {' '}
-                <KeyboardInputs inputs={['LSK 6']} />
-                {' '}
-                and winds optionally via
-                {' '}
-                <KeyboardInputs inputs={['RSK 1 (WIND)']} />
-                . Then go to page two using NEXT key and send VAPP/VREF calculated using
-                <KeyboardInputs inputs={['RSK 6']} />
+                pressure altitude found in latest METAR/ATIS.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: (
+                    <>
+                        Approach Performance Page 1 (
+                        <KeyboardInputs inputs={['PERF', 'RSK 3 (APPROACH)']} />
+                        )
+                    </>
+                ),
+                state: 'OPEN',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Runway (Right Side)',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: (
+                            <>
+                                Wind (
+                                <KeyboardInputs inputs={['RSK 1 (WIND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'AS DESIRED',
+                    },
+                    {
+                        title: (
+                            <>
+                                {OAT}
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 2 (OAT)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                {QNH}
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 3 (QNH)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Runway Condition
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 6 (RWY COND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                ]),
+            },
+            {
+                title: (
+                    <>
+                        Approach Performance Page 2 (
+                        <KeyboardInputs inputs={['NEXT']} />
+                        )
+                    </>
+                ),
+                state: 'COMPLETE',
+                subItems: createTransformedList()([
+                    {
+                        title: (
+                            <>
+                                Anti-Ice Setting
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 1 (A/I)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                Landing Factor
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['LSK 5 (LDG FACTOR)']} />
+                                )
+                            </>
+                        ),
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: (
+                            <>
+                                V-Speeds
+                                {' '}
+                                (
+                                <KeyboardInputs inputs={['RSK 6 (SEND)']} />
+                                )
+                            </>
+                        ),
+                        state: 'SENT TO PFD',
+                    },
+                ]),
+            },
+
+        ]),
     },
-    {
+    { // FIXME: crew briefing
         uid: ChecklistItems.CJ4_APPROACH_CREW_BRIEFING,
         title: 'Crew Briefing',
         state: 'COMPLETE',
@@ -1423,8 +2176,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Minimums can be found on the final approach chart. The CJ4 is only allowed to do CAT I approach which
-                means full visibility is required below 200 ft AGL. The chart should provide the right altitude, adding
-                ground altitude.
+                means full visibility is required below 200 ft
+                {' '}
+                {AGL}
+                . The chart should provide the right altitude, adding ground altitude.
                 <br />
                 <br />
                 Once determined, go to the
@@ -1450,7 +2205,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 announcement upon landing.
                 <br />
                 <br />
-                Autopilot and yaw damper should be disabled by the time minimums are reached.
+                Autopilot and yaw damper should be disconnected by the time minimums are reached.
             </>
         ),
     },
@@ -1460,8 +2215,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Fuel selector is located on the tilt panel near the Climate control selector. Ensure that it is in the
-                middle position (OFF).
+                Fuel selector is located on the
+                {' '}
+                {TP_CJ4}
+                {' '}
+                near the Climate control selector. Ensure that it is in the middle position (OFF).
             </>
         ),
     },
@@ -1469,11 +2227,20 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_APPROACH_EXTERIOR_LIGHTS,
         title: 'Exterior Lights',
         state: 'AS REQUIRED',
-        moreInfoShort: (
-            <>
-                Enable LANDING, STROBE and LOGO lights by 10.000ft.
-            </>
-        ),
+        subItems: createTransformedList()([
+            {
+                title: 'LANDING Light',
+                state: 'ON',
+            },
+            {
+                title: 'STROBE Light',
+                state: 'ON',
+            },
+            {
+                title: 'LOGO Light',
+                state: 'ON',
+            },
+        ]),
     },
     {
         uid: ChecklistItems.CJ4_APPROACH_ICE_PROTECTION_SYSTEMS,
@@ -1482,8 +2249,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         moreInfoShort: (
             <>
                 Once again, keep monitoring conditions for anti-ice protection requirements.
-                <br />
-                <br />
+                {' '}
                 {cj4AntiIceRules}
             </>
         ),
@@ -1494,7 +2260,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: <>15&deg;</>,
         moreInfoShort: (
             <>
-                Extend flaps to 15&deg; once below 200 KIAS. This can be done by setting the flaps lever, right of
+                Extend flaps to 15&deg; once below 200
+                {' '}
+                {KIAS}
+                . This can be done by setting the flaps lever, right of
                 throttles, in the middle position.
             </>
         ),
@@ -1560,12 +2329,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'DOWN (3 GREEN)',
         moreInfoShort: (
             <>
-                Pull landing gear down using the lever right of
+                Pull landing gear down using the lever below
                 {' '}
-                {MFD_CJ4}
-                {' '}
-                and below Standby Avionics Display,
-                and verify that 3 green lights come on to confirm landing gear is deployed.
+                {SFD_CJ4}
+                , and verify that 3 green lights come on to confirm landing gear is deployed.
             </>
         ),
     },
@@ -1575,8 +2342,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: <>35&deg;</>,
         moreInfoShort: (
             <>
-                Deploy flaps to 35&deg; once below 160 KIAS. This can be done using the flaps lever pulled towards the
-                passenger cabin completely.
+                Deploy flaps to 35&deg; once below 160
+                {' '}
+                {KIAS}
+                . This can be done using the flaps lever pulled towards the passenger cabin completely.
             </>
         ),
     },
@@ -1608,7 +2377,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'DISENGAGE',
         moreInfoShort: (
             <>
-                Disengage Autopilot and Yaw Damper by using their respective buttons by 200 ft AGL.
+                Disengage Autopilot and Yaw Damper by using their respective buttons by 200 ft
+                {' '}
+                {AGL}
+                .
             </>
         ),
     },
@@ -1616,6 +2388,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_LANDING_THROTTLES,
         title: 'Throttles',
         state: 'IDLE',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Once passing the threshold of runway, pull throttles all the way back to idle.
@@ -1626,6 +2399,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_LANDING_BRAKES,
         title: 'Brakes (After NLG Touchdown)',
         state: 'APPLY',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Let the airplane&apos;s speed die down and the airplane not want to fly until the nose landing gear
@@ -1637,6 +2411,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_LANDING_GROUND_SPOILERS,
         title: 'Ground Spoilers',
         state: 'EXTEND',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Extend ground spoilers to help with braking power. Ground spoilers are effective only above 70% of
@@ -1649,6 +2424,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_GOAROUND_GA_BUTTON,
         title: 'GA Button',
         state: 'PUSH',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Push GA button, which is located on the right side of
@@ -1665,6 +2441,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_GOAROUND_THROTTLES_1,
         title: 'Throttles',
         state: 'TO',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Push throttles all the way up and past the takeoff detent.
@@ -1682,6 +2459,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_GOAROUND_PITCH_ATTITUDE,
         title: 'Pitch Attitude',
         state: <>7.5&deg; THEN AS REQD</>,
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 As speed permits, pitch the airplane up to 7.5&deg; to gain altitude, then as required.
@@ -1692,11 +2470,13 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         uid: ChecklistItems.CJ4_GOAROUND_FLAPS_1,
         title: 'Flaps',
         state: <>15&deg;</>,
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
     },
     {
         uid: ChecklistItems.CJ4_GOAROUND_LANDING_GEAR,
         title: 'Landing Gear',
         state: 'UP',
+        tags: [ChecklistTags.IN_MEMORY_ITEM],
         moreInfoShort: (
             <>
                 Once positive rate of ascent is confirmed, pull landing gear up.
@@ -1792,8 +2572,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Once final taxi is started, Pitot/Static Heat may be turned off using the buttons on tilt panel under
-                the anti-ice area.
+                Once final taxi is started, Pitot/Static Heat may be turned off using the buttons on the
+                {' '}
+                {TP_CJ4}
+                {' '}
+                under the anti-ice area.
             </>
         ),
     },
@@ -1905,7 +2688,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                On the tilt panel towards the middle, set the Climate Control selector in its left position to turn
+                On the
+                {' '}
+                {TP_CJ4}
+                {' '}
+                towards the middle, set the Climate Control selector in its left position to turn
                 climate control off.
             </>
         ),
@@ -1916,7 +2703,11 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
         state: 'OFF',
         moreInfoShort: (
             <>
-                Turn off all ice protection systems, on the tilt panel under the anti ice section.
+                Turn off all ice protection systems, on the
+                {' '}
+                {TP_CJ4}
+                {' '}
+                under the anti ice section.
             </>
         ),
     },

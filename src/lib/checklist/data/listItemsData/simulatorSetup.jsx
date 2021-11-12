@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
-import { createTransformedMapping } from 'lib/checklist/data/transforms';
+import { createTransformedList, createTransformedMapping } from 'lib/checklist/data/transforms';
 
 const addSimSetupTags = (value) => ({
     ...value,
@@ -21,6 +21,152 @@ export const SimulatorSetupChecklistItemsData = createTransformedMapping(addSimS
                 required. Tools such as Simbrief may be used to simplify this step.
             </>
         ),
+        subItems: createTransformedList()([
+            {
+                title: 'Airframe',
+                state: 'SET',
+            },
+            {
+                title: 'Route (1)',
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Departure Airport',
+                        state: 'SET',
+                    },
+                    {
+                        title: 'Arrival Airport',
+                        state: 'SET',
+                    },
+                ]),
+            },
+            {
+                title: 'Departure',
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Departure Runway Predicted (based on METAR/ATIS)',
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: 'Departure Time',
+                        state: 'CHECKED / SET',
+                    },
+                ]),
+            },
+            {
+                title: 'Arrival Airport',
+                state: 'SET',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Arrival Runway Predicted (based on METAR/ATIS)',
+                        state: 'CHECKED / SET',
+                    },
+                    {
+                        title: 'Scheduled Flight Time',
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'Alternate Airport',
+                state: 'CHECKED / SET',
+            },
+            {
+                title: 'Route (2)',
+                state: 'CHECKED / SET',
+                subItems: createTransformedList()([
+                    {
+                        title: 'SID / STAR',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'Route',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'Distance Within Range',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'Weather / Winds',
+                        state: 'CHECKED',
+                    },
+                ]),
+            },
+            {
+                title: 'OFP',
+                state: 'CHECKED',
+                subItems: createTransformedList()([
+                    {
+                        title: 'Call Sign / Registration / Aircraft Type',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'Flight Level Steps',
+                        state: 'CHECKED',
+                    },
+                    {
+                        title: 'Fuel',
+                        state: 'CHECKED',
+                        subItems: createTransformedList()([
+                            {
+                                title: 'Taxi Fuel',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'Trip Fuel',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'Alternate Fuel',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'Reserves',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'Block Fuel',
+                                state: 'CHECKED',
+                            },
+                        ]),
+                    },
+                    {
+                        title: 'Weights',
+                        state: 'CHECKED',
+                        subItems: createTransformedList()([
+                            {
+                                title: 'TOW (Maximum / Estimated)',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'LAW (Maximum)',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'ZFW',
+                                state: 'CHECKED',
+                            },
+                        ]),
+                    },
+                    {
+                        title: 'Alternate',
+                        state: 'CHECKED',
+                        subItems: createTransformedList()([
+                            {
+                                title: 'Route',
+                                state: 'CHECKED',
+                            },
+                            {
+                                title: 'Flight Level',
+                                state: 'CHECKED',
+                            },
+                        ]),
+                    },
+                ]),
+            },
+        ]),
     },
     {
         uid: ChecklistItems.SIMSETUP_FLIGHT_TRACKING_START,
