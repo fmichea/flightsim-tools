@@ -87,7 +87,12 @@ export const ChecklistListItemDisplay = ({
                     </ChecklistListItemTitle>
                     {subTitleItems.length === 0 ? null : (
                         <ChecklistListItemSubTitle>
-                            {subTitleItems.join('; ')}
+                            {subTitleItems.map((item, idx) => (
+                                <>
+                                    {idx === 0 ? null : '; '}
+                                    {item}
+                                </>
+                            ))}
                         </ChecklistListItemSubTitle>
                     )}
                 </ChecklistItemColumn>

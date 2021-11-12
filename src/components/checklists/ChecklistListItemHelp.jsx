@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import { Modal, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
@@ -39,6 +39,8 @@ const modalBodyStyle = {
 };
 
 const cancelButtonProps = { style: { display: 'none' } };
+
+const iconInvisibleStyle = { opacity: '0' };
 
 const treeCharLastLeaf = <>&#x2517;&#x2501;</>; // ┗━
 const treeCharLeaf = <>&#x2523;&#x2501;</>; // ┣━
@@ -109,9 +111,11 @@ export const ChecklistListItemHelp = ({
     subItems,
 }) => {
     const modalVisible = useBooleanToggle(false);
+
+    const hasHelp = isNotNullOrUndefined(moreInfoShort) || isNotNullOrUndefined(moreInfoLong);
     const hasSubItems = isNotNullOrUndefined(subItems) && subItems.length !== 0;
 
-    if (isNullOrUndefined(moreInfoShort) && isNullOrUndefined(moreInfoLong) && !hasSubItems) {
+    if (!hasHelp && !hasSubItems) {
         return null;
     }
 
@@ -129,7 +133,9 @@ export const ChecklistListItemHelp = ({
     return (
         <>
             <ChecklistItemHelpWrapper onClick={modalVisible.toggleOn}>
-                <QuestionCircleOutlined />
+                <UnorderedListOutlined style={hasSubItems ? undefined : iconInvisibleStyle} />
+                <VWSpace $width=".5em" />
+                <QuestionCircleOutlined style={hasHelp ? undefined : iconInvisibleStyle} />
             </ChecklistItemHelpWrapper>
 
             <Modal
@@ -145,7 +151,7 @@ export const ChecklistListItemHelp = ({
             >
                 {isNullOrUndefined(moreInfoShort) ? null : (
                     <p>
-                        <strong>Short:</strong>
+                        <strong>Help:</strong>
                         {' '}
                         {moreInfoShort}
                     </p>
