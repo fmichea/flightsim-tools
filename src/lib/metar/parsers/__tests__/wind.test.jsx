@@ -1,4 +1,3 @@
-import { TokenTypes, WindDirections, WindSpeedUnit } from 'lib/metar/enums';
 import { parseWind } from 'lib/metar/parsers/wind';
 import { ParserState } from 'lib/metar/parserState';
 import {

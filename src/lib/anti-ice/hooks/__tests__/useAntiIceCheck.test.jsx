@@ -3,7 +3,9 @@ import { AntiIceOperationModes } from 'lib/anti-ice/data/operationModes';
 import { useAntiIceCheck } from 'lib/anti-ice/hooks/useAntiIceCheck';
 import { mountHookWithStore } from 'tests/lib/mountHookWithStore';
 
-const setup = ({ aircraftName, operationModeName }) => mountHookWithStore(() => useAntiIceCheck({ aircraftName, operationModeName }));
+const setup = ({ aircraftName, operationModeName }) => mountHookWithStore(
+    () => useAntiIceCheck({ aircraftName, operationModeName }),
+);
 
 describe('useAntiIceCheck', () => {
     test('aicraft name and operation modes are known', () => {

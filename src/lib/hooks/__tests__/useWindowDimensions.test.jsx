@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { act } from '@testing-library/react';
 
 import {
@@ -57,7 +58,7 @@ describe('useWindowWidthConditions', () => {
         });
     };
 
-    test('test correct dimension is returned based on condition (final)', () => {
+    test('correct dimension is returned based on condition (final)', () => {
         const { getCurrentHookResult } = setup(1200, [
             windowWidthCondition(100, [1, 2]),
             windowWidthFinalCondition([3, 4]),
@@ -66,7 +67,7 @@ describe('useWindowWidthConditions', () => {
         expect(getCurrentHookResult()).toEqual([3, 4]);
     });
 
-    test('test correct dimension is returned based on condition (first match)', () => {
+    test('correct dimension is returned based on condition (first match)', () => {
         const { getCurrentHookResult } = setup(50, [
             windowWidthCondition(100, [1, 2]),
             windowWidthFinalCondition([3, 4]),
@@ -75,7 +76,7 @@ describe('useWindowWidthConditions', () => {
         expect(getCurrentHookResult()).toEqual([1, 2]);
     });
 
-    test('test correct dimension is returned based on condition (middle match)', () => {
+    test('correct dimension is returned based on condition (middle match)', () => {
         const { getCurrentHookResult } = setup(150, [
             windowWidthCondition(100, [1, 2]),
             windowWidthCondition(200, [5, 6]),
@@ -85,7 +86,7 @@ describe('useWindowWidthConditions', () => {
         expect(getCurrentHookResult()).toEqual([5, 6]);
     });
 
-    test('test correct list but out of order is re-ordered', () => {
+    test('correct list but out of order is re-ordered', () => {
         const { getCurrentHookResult } = setup(150, [
             windowWidthCondition(200, [5, 6]),
             windowWidthCondition(100, [1, 2]),
@@ -114,7 +115,7 @@ describe('useWindowWidthConditions', () => {
         expect(fn).toThrow('Final condition provided has a limit.');
     });
 
-    test('error: no final case', () => {
+    test('error: two final cases', () => {
         const fn = () => {
             setup(150, [
                 windowWidthFinalCondition([1, 2]),
@@ -125,7 +126,7 @@ describe('useWindowWidthConditions', () => {
         expect(fn).toThrow('Condition #0 provided does not have a limit.');
     });
 
-    test('error: no final case', () => {
+    test('error: case has no result', () => {
         const fn = () => {
             setup(150, [
                 { limit: 100 },

@@ -9,7 +9,7 @@ const setup = (data) => mountWithStore(ColorSystemsShort, {
 });
 
 describe('ColorSystemsShort', () => {
-    test('test value is displayed in full', () => {
+    test('value is displayed in full', () => {
         const { compWrapper } = setup(TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Data);
         expect(compWrapper().text()).toEqual(
             'Color codes defined at a local level. Refer to local METAR reference for '

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies,react/jsx-props-no-spreading */
 import React from 'react';
 
 import { mount } from 'enzyme';
@@ -63,7 +64,6 @@ export function mountWithStore(Comp, opts = {}) {
                 <Provider store={store}>
                     <MemoryRouter initialEntries={[initialRoute]}>
                         <Route path={routPathInitialized} exact>
-                            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                             <Comp {...props} />
                         </Route>
                     </MemoryRouter>

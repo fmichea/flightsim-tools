@@ -30,7 +30,7 @@ const setup = ({ props } = {}) => {
 };
 
 describe('AntiIceConfigurationSelector', () => {
-    test('test with two options has data', () => {
+    test('with two options has data', () => {
         const { getAntdMocks, getAntdMockProps } = setup();
 
         const select = getAntdMocks('select');

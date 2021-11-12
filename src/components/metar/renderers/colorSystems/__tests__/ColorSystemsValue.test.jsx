@@ -10,7 +10,7 @@ const setup = (data) => mountWithStore(ColorSystemsValue, {
 });
 
 describe('ColorSystemsValue', () => {
-    test('test value is displayed in full', () => {
+    test('value is displayed in full', () => {
         const { compWrapper } = setup(TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Data);
         expect(compWrapper().text()).toEqual(
             TestDataColorSystems_BLUYLOREDBLACKBLUWHT_Text.replace(/\s/g, ''),

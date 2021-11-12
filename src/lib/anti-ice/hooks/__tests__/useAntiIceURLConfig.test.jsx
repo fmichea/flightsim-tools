@@ -47,7 +47,7 @@ describe('useAntiIceURLConfig', () => {
 });
 
 describe('AntiIceURLManager', () => {
-    test('test how history gets changed depending on function used', () => {
+    test('history gets changed depending on function used', () => {
         const mockHistory = {
             push: jest.fn(),
             replace: jest.fn(),

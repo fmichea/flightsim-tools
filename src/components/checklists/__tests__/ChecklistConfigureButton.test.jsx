@@ -38,20 +38,20 @@ describe('ChecklistConfigureButton', () => {
             .onClick());
 
         const switches = compWrapper().find(ChecklistConfigurationSwitch);
-        expect(switches).toHaveLength(3);
+        expect(switches).toHaveLength(6);
 
-        expect(switches.at(1).props().title).toEqual('VATSIM');
-        expect(switches.at(1).props().checked).toBeTruthy();
+        expect(switches.at(4).props().title).toEqual('VATSIM');
+        expect(switches.at(4).props().checked).toBeTruthy();
 
-        expect(switches.at(2).props().title).toEqual('Simulator Setup');
-        expect(switches.at(2).props().checked).toBeFalsy();
+        expect(switches.at(5).props().title).toEqual('Simulator Setup');
+        expect(switches.at(5).props().checked).toBeFalsy();
 
         expect(checklistURLManager.removeFilter.mock.calls.length).toEqual(0);
-        act(() => switches.at(1).props().onChange(false));
+        act(() => switches.at(4).props().onChange(false));
         expect(checklistURLManager.removeFilter.mock.calls.length).toEqual(1);
 
         expect(checklistURLManager.addFilter.mock.calls.length).toEqual(0);
-        act(() => switches.at(2).props().onChange(true));
+        act(() => switches.at(5).props().onChange(true));
         expect(checklistURLManager.addFilter.mock.calls.length).toEqual(1);
     });
 });

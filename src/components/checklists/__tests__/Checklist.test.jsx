@@ -16,7 +16,7 @@ describe('Checklist', () => {
         expect(compWrapper().find('ChecklistNotFound')).toHaveLength(0);
     });
 
-    test('simple case with a list', () => {
+    test('unknown checklist', () => {
         const { compWrapper } = setup({
             initialRoute: '/checklists/weldjwedweljd',
             routePath: ChecklistsWithNameRoute,

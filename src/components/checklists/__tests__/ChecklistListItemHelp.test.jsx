@@ -37,15 +37,11 @@ describe('ChecklistListItemHelp', () => {
         const question = compWrapper().find('[aria-label="question-circle"]');
         expect(question).toHaveLength(1);
 
-        const tooltip = compWrapper().find('Tooltip');
-        expect(tooltip).toHaveLength(1);
-        expect(tooltip.props().title).toEqual('Some short information');
-
         const modalTitle = compWrapper().find('[className="ant-modal-header"]');
         expect(modalTitle.text()).toEqual('Help: Throttles: IDLE');
 
         const modalBody = compWrapper().find('[className="ant-modal-body"]');
-        expect(modalBody.text()).toEqual('Some short information');
+        expect(modalBody.text()).toContain('Help: Some short information');
     });
 
     test('info short is displayed in both tooltip, long info in modal', () => {
@@ -64,14 +60,11 @@ describe('ChecklistListItemHelp', () => {
         const question = compWrapper().find('[aria-label="question-circle"]');
         expect(question).toHaveLength(1);
 
-        const tooltip = compWrapper().find('Tooltip');
-        expect(tooltip).toHaveLength(1);
-        expect(tooltip.props().title).toEqual('Some short information');
-
         const modalTitle = compWrapper().find('[className="ant-modal-header"]');
         expect(modalTitle.text()).toEqual('Help: Throttles: IDLE');
 
         const modalBody = compWrapper().find('[className="ant-modal-body"]');
-        expect(modalBody.text()).toEqual('Some very long information');
+        expect(modalBody.text()).toContain('Help: Some short information');
+        expect(modalBody.text()).toContain('Some very long information');
     });
 });

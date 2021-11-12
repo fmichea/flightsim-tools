@@ -1,9 +1,7 @@
 import { WindShearValue } from 'components/metar/renderers/windShear/WindShearValue';
 import {
     TestDataWindShear_WSALLRWY_Data,
-    TestDataWindShear_WSALLRWY_Text,
     TestDataWindShear_WSR24_Data,
-    TestDataWindShear_WSR24_Text,
 } from 'tests/data/metar/windShear';
 import { mountWithStore } from 'tests/lib/mountWithStore';
 

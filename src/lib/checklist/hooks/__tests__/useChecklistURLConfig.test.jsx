@@ -45,7 +45,7 @@ describe('useChecklistURLConfig', () => {
 });
 
 describe('ChecklistURLManager', () => {
-    test('test how history gets changed depending on function', () => {
+    test('history gets changed depending on function', () => {
         const mockHistory = {
             push: jest.fn(),
         };

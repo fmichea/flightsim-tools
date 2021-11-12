@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { AntiIceTemperatureTitle } from 'components/anti-ice/AntiIceTemperatureTitle';
 import { pick } from 'lib/pick';
 import { mountWithStore } from 'tests/lib/mountWithStore';

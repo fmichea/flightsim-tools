@@ -1,6 +1,4 @@
 import { ChecklistFilters } from 'lib/checklist/data/filters';
-import { ChecklistItems } from 'lib/checklist/data/listItems';
-import { ChecklistLists } from 'lib/checklist/data/lists';
 import { useChecklistFilteredLists } from 'lib/checklist/hooks/useChecklistFilteredLists';
 import { pick } from 'lib/pick';
 import { TestDataHookChecklistData } from 'tests/data/checklists/hooks/checklistData';

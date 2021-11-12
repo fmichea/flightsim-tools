@@ -1,5 +1,4 @@
 import { Checklists } from 'lib/checklist/data/checklists';
-import { ChecklistsData } from 'lib/checklist/data/checklistsData';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { useChecklistCountersInit } from 'lib/checklist/hooks/useChecklistCountersInit';
 import { getChecklistData } from 'state/readers/checklist';

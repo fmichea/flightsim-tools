@@ -76,7 +76,7 @@ describe('prevailingVisibility', () => {
         expect(parsePrevailingVisibility(parser)).toEqual(TestDataPrevailingVisibility_M14THSM_Data);
     });
 
-    test('less than quarter mile', () => {
+    test('no data for visibility', () => {
         const parser = new ParserState(TestDataPrevailingVisibility_xxxxSM_Text);
         expect(parsePrevailingVisibility(parser)).toEqual(TestDataPrevailingVisibility_xxxxSM_Data);
     });
