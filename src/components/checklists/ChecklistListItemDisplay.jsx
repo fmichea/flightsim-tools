@@ -88,10 +88,11 @@ export const ChecklistListItemDisplay = ({
                     {subTitleItems.length === 0 ? null : (
                         <ChecklistListItemSubTitle>
                             {subTitleItems.map((item, idx) => (
-                                <>
+                                // eslint-disable-next-line react/no-array-index-key
+                                <React.Fragment key={idx}>
                                     {idx === 0 ? null : '; '}
                                     {item}
-                                </>
+                                </React.Fragment>
                             ))}
                         </ChecklistListItemSubTitle>
                     )}
