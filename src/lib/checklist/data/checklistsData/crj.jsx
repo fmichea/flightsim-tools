@@ -13,11 +13,11 @@ export const CRJChecklistData = {
         <p>
             The Aerosoft CRJ 550/700/900/1000 is a payware aircraft for Microsoft Flight Simulator which can be bought
             {' '}
-            {/* eslint-disable-next-line max-len */}
-            <ExternalLink href="https://www.aerosoft.com/en/microsoft-flight-simulator/msfs-aircraft/3303/aerosoft-aircraft-crj-550/700">
+            <ExternalLink href="https://www.aerosoft.com/en/microsoft-flight-simulator/msfs-aircraft/">
                 on Aerosoft&apos;s official website
             </ExternalLink>
-            . This checklist is a summary inspired by the official checklist and the
+            {' '}
+            (available in various bundles). This checklist is a summary inspired by the official checklist and the
             {' '}
             <strong>must do</strong>
             {' '}
