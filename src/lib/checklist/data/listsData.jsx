@@ -63,6 +63,10 @@ const commonListsData = createTransformedMapping()([
         title: 'Cruise',
     },
     {
+        uid: ChecklistLists.BEFORE_DESCENT,
+        title: 'Before Descent',
+    },
+    {
         uid: ChecklistLists.DESCENT,
         title: 'Descent',
     },

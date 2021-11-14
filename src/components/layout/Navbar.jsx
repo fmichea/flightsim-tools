@@ -39,6 +39,7 @@ export const Navbar = () => {
             c172ChecklistMenuItem,
             c172G1000ChecklistMenuItem,
             crjChecklistMenuItem,
+            a32nxChecklistMenuItem,
             otherMetarExplainerMenuItem,
         },
         selectedKeys,
@@ -48,6 +49,7 @@ export const Navbar = () => {
         c172ChecklistMenuItem: `/checklists/${Checklists.C172_STEAM}`,
         c172G1000ChecklistMenuItem: `/checklists/${Checklists.C172_G1000}`,
         crjChecklistMenuItem: `/checklists/${Checklists.AEROSOFT_CRJ}`,
+        a32nxChecklistMenuItem: `/checklists/${Checklists.FLYBYWIRE_A32NX}`,
         otherMetarExplainerMenuItem: MetarExplainerRoute,
     });
 
@@ -63,6 +65,9 @@ export const Navbar = () => {
             </Menu.SubMenu>
             <Menu.SubMenu key="crj-menu" title="Aerosoft CRJ">
                 <Menu.Item {...crjChecklistMenuItem.props}>Checklist</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.SubMenu key="fbw-a32nx-menu" title="FlyByWire A32NX">
+                <Menu.Item {...a32nxChecklistMenuItem.props}>Checklist</Menu.Item>
             </Menu.SubMenu>
             <Menu.SubMenu key="other" title="Other">
                 <Menu.Item {...otherMetarExplainerMenuItem.props}>METAR Explainer</Menu.Item>

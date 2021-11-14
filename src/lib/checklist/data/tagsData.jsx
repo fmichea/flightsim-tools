@@ -58,6 +58,10 @@ const commonTagsData = createTransformedMapping()([
         uid: ChecklistTags.NAV,
         color: '#fa1d93',
     },
+    {
+        uid: ChecklistTags.A32NX,
+        color: '#00C2CB',
+    },
 ]);
 
 export const ChecklistTagsData = Object.freeze({

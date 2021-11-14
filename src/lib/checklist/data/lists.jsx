@@ -14,6 +14,7 @@ const commonLists = Object.freeze({
     AFTER_TAKEOFF_CLIMB: 'after-takeoff-climb',
     CLIMB: 'climb',
     CRUISE: 'cruise',
+    BEFORE_DESCENT: 'before-descent',
     DESCENT: 'descent',
     APPROACH: 'approach',
     BEFORE_LANDING: 'before-landing',

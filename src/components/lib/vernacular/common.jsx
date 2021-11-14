@@ -29,6 +29,12 @@ export const ITT = (
     </Vernacular>
 );
 
+export const EGT = (
+    <Vernacular title="EGT - Exhaust Gas Temperature">
+        EGT
+    </Vernacular>
+);
+
 export const FADEC = (
     <Vernacular title="FADEC - Full Authority Digital Engine Control">
         FADEC

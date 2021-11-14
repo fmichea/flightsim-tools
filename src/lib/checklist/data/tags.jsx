@@ -10,8 +10,8 @@ export const ChecklistTags = Object.freeze({
     C172: 'C172',
     C172_STEAM: 'C172_STEAM',
     C172_G1000: 'C172_G1000',
-
     CRJ: 'CRJ',
+    A32NX: 'A32NX',
 
     NAV: 'NAV',
     VATSIM: 'VATSIM',
