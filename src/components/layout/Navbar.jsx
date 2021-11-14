@@ -38,7 +38,7 @@ export const Navbar = () => {
             wtCJ4AntiIceItem,
             c172ChecklistMenuItem,
             c172G1000ChecklistMenuItem,
-            crj7ChecklistMenuItem,
+            crjChecklistMenuItem,
             otherMetarExplainerMenuItem,
         },
         selectedKeys,
@@ -47,7 +47,7 @@ export const Navbar = () => {
         wtCJ4AntiIceItem: `/anti-ice/${AntiIceAircrafts.WORKINGTITLE_CJ4}`,
         c172ChecklistMenuItem: `/checklists/${Checklists.C172_STEAM}`,
         c172G1000ChecklistMenuItem: `/checklists/${Checklists.C172_G1000}`,
-        crj7ChecklistMenuItem: `/checklists/${Checklists.AEROSOFT_CRJ7}`,
+        crjChecklistMenuItem: `/checklists/${Checklists.AEROSOFT_CRJ}`,
         otherMetarExplainerMenuItem: MetarExplainerRoute,
     });
 
@@ -61,8 +61,8 @@ export const Navbar = () => {
                 <Menu.Item {...c172ChecklistMenuItem.props}>C172 (Steam Gauges) Checklist</Menu.Item>
                 <Menu.Item {...c172G1000ChecklistMenuItem.props}>C172 (G1000) Checklist</Menu.Item>
             </Menu.SubMenu>
-            <Menu.SubMenu key="crj7-menu" title="Aerosoft CRJ 550 / 700">
-                <Menu.Item {...crj7ChecklistMenuItem.props}>Checklist</Menu.Item>
+            <Menu.SubMenu key="crj-menu" title="Aerosoft CRJ">
+                <Menu.Item {...crjChecklistMenuItem.props}>Checklist</Menu.Item>
             </Menu.SubMenu>
             <Menu.SubMenu key="other" title="Other">
                 <Menu.Item {...otherMetarExplainerMenuItem.props}>METAR Explainer</Menu.Item>

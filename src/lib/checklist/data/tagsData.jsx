@@ -51,7 +51,7 @@ const commonTagsData = createTransformedMapping()([
         color: '#6d11d0',
     },
     {
-        uid: ChecklistTags.CRJ7,
+        uid: ChecklistTags.CRJ,
         color: '#000',
     },
 ]);
