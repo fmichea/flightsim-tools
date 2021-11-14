@@ -19,7 +19,6 @@ const { Title, Text } = Typography;
 
 const ChecklistTitleContainer = styled('div', {
     backgroundColor: 'white',
-    height: '65px',
     paddingTop: '10px',
     borderBottom: `1px solid ${Grey}`,
     marginBottom: '15px',
@@ -34,6 +33,7 @@ const ChecklistTitleButtonsContainer = styled('div', {
 const titleStyle = {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    marginBottom: '0',
 };
 
 export const ChecklistInfo = ({
