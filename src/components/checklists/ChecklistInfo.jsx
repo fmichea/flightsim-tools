@@ -23,12 +23,18 @@ const ChecklistTitleContainer = styled('div', {
     paddingTop: '10px',
     borderBottom: `1px solid ${Grey}`,
     marginBottom: '15px',
+    whiteSpace: 'nowrap',
 });
 
 const ChecklistTitleButtonsContainer = styled('div', {
     float: 'right',
     padding: '10px',
 });
+
+const titleStyle = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+};
 
 export const ChecklistInfo = ({
     checklistData,
@@ -58,10 +64,10 @@ export const ChecklistInfo = ({
                         {' '}
                         <Button type="danger" onClick={resetFullCallback}>Reset All</Button>
                     </ChecklistTitleButtonsContainer>
-                    <Title>
+                    <Title style={titleStyle}>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <Link onClick={resetChecklistSelectCallback}>&para;</Link>
-                        <VWSpace $width="20px" />
+                        <VWSpace $width="16px" />
                         {title}
                     </Title>
                     <Clearfix />
