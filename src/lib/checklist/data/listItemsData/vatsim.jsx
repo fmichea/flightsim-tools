@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ExternalLink } from 'components/lib/ExternalLink';
+import { List, ListItem } from 'components/lib/List';
 import { Monospaced } from 'components/lib/Monospaced';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';
@@ -42,10 +44,42 @@ export const VATSIMChecklistItemsData = createTransformedMapping(addVATSIMTags)(
         uid: ChecklistItems.VATSIM_REQUEST_INITIAL_CLEARANCE,
         title: 'Initial Clearance',
         state: 'COMPLETE',
-        moreInfoShort: (
+        moreInfoLong: (
             <>
-                Initial clearance and engine start authorization should be requested from relevant controller.
-                Expected information: Clearance, Departure Procedure, Initial Altitude and Squawk Code.
+                <p>
+                    Initial clearance should be requested from relevant controller. The
+                    {' '}
+                    <ExternalLink href="https://en.wikipedia.org/wiki/CRAFT_(aviation)">C.R.A.F.T.</ExternalLink>
+                    {' '}
+                    mnemonic can be used to remember the relevant parts of the clearance.
+                </p>
+                <List>
+                    <ListItem>
+                        <strong>C</strong>
+                        learance: usually the destination, but may be a different waypoint if clearance is partial.
+                    </ListItem>
+                    <ListItem>
+                        <strong>R</strong>
+                        oute: this is generally only the specific departure to fly, since route should be pre-planned
+                        and filled.
+                    </ListItem>
+                    <ListItem>
+                        <strong>A</strong>
+                        ltitude: initial altitude and sometimes altitude 5/10 minutes after departure.
+                    </ListItem>
+                    <ListItem>
+                        <strong>F</strong>
+                        requency: expected departure frequency. May be omitted.
+                    </ListItem>
+                    <ListItem>
+                        <strong>T</strong>
+                        ransponder: transponder code (aka. squawk code) to be used.
+                    </ListItem>
+                </List>
+                <p>
+                    The clearance may also contain additional information such as a voidance time, at which point the
+                    clearance is not valid anymore if the aircraft is not airborn.
+                </p>
             </>
         ),
     },
