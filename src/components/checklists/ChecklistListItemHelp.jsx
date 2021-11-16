@@ -40,7 +40,7 @@ const modalBodyStyle = {
 
 const cancelButtonProps = { style: { display: 'none' } };
 
-const iconInvisibleStyle = { opacity: '0' };
+const iconInvisibleStyle = { opacity: '0.2' };
 
 const treeCharLastLeaf = <>&#x2517;&#x2501;</>; // ┗━
 const treeCharLeaf = <>&#x2523;&#x2501;</>; // ┣━
@@ -115,8 +115,16 @@ export const ChecklistListItemHelp = ({
     const hasHelp = isNotNullOrUndefined(moreInfoShort) || isNotNullOrUndefined(moreInfoLong);
     const hasSubItems = isNotNullOrUndefined(subItems) && subItems.length !== 0;
 
+    const itemHelpIcons = (
+        <ChecklistItemHelpWrapper onClick={modalVisible.toggleOn}>
+            <UnorderedListOutlined style={hasSubItems ? undefined : iconInvisibleStyle} />
+            <VWSpace $width=".5em" />
+            <QuestionCircleOutlined style={hasHelp ? undefined : iconInvisibleStyle} />
+        </ChecklistItemHelpWrapper>
+    );
+
     if (!hasHelp && !hasSubItems) {
-        return null;
+        return itemHelpIcons;
     }
 
     const modalTitle = (
@@ -132,11 +140,7 @@ export const ChecklistListItemHelp = ({
 
     return (
         <>
-            <ChecklistItemHelpWrapper onClick={modalVisible.toggleOn}>
-                <UnorderedListOutlined style={hasSubItems ? undefined : iconInvisibleStyle} />
-                <VWSpace $width=".5em" />
-                <QuestionCircleOutlined style={hasHelp ? undefined : iconInvisibleStyle} />
-            </ChecklistItemHelpWrapper>
+            {itemHelpIcons}
 
             <Modal
                 title={modalTitle}
