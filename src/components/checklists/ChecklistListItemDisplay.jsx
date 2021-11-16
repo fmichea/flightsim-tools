@@ -77,7 +77,6 @@ export const ChecklistListItemDisplay = ({
 
     return (
         <ChecklistListItemWrapper
-            onClick={doubleClickToggler}
             $isChecked={isChecked}
             $isNotImplemented={isNotImplemented}
             $isOddItem={isOddItem}
@@ -85,11 +84,18 @@ export const ChecklistListItemDisplay = ({
             <ChecklistListItemRow>
                 {leftColumn}
                 {hideTagsMode ? null : (
-                    <ChecklistItemColumn $isFirst={isTagsColumnFirst} $fitToContent>
+                    <ChecklistItemColumn
+                        onClick={doubleClickToggler}
+                        $isFirst={isTagsColumnFirst}
+                        $fitToContent
+                    >
                         <ChecklistListItemTags tagsData={tagsData} />
                     </ChecklistItemColumn>
                 )}
-                <ChecklistItemColumn $isFirst={isTitleColumnFirst}>
+                <ChecklistItemColumn
+                    onClick={doubleClickToggler}
+                    $isFirst={isTitleColumnFirst}
+                >
                     <ChecklistListItemTitle>
                         {title}
                     </ChecklistListItemTitle>
@@ -105,7 +111,11 @@ export const ChecklistListItemDisplay = ({
                         </ChecklistListItemSubTitle>
                     )}
                 </ChecklistItemColumn>
-                <ChecklistItemColumn $fitToContent $isLast={isStateColumnLast}>
+                <ChecklistItemColumn
+                    onClick={doubleClickToggler}
+                    $fitToContent
+                    $isLast={isStateColumnLast}
+                >
                     <ChecklistListItemState>
                         {state}
                     </ChecklistListItemState>

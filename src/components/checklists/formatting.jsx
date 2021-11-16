@@ -61,6 +61,9 @@ export const ChecklistListItemState = styled('div', (props) => ({
 }));
 
 export const ChecklistItemColumn = styled('td', (props) => ({
+    userSelect: 'none',
+    cursor: 'pointer',
+
     maxWidth: props.$fitToContent ? undefined : '100%',
     width: props.$fitToContent ? '.0005%' : undefined,
     whiteSpace: props.$fitToContent ? 'nowrap' : undefined,
