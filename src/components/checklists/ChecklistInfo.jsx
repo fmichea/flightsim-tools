@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
 
-import {
-    Affix, Button, Divider, Typography,
-} from 'antd';
+import { Affix, Divider, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { styled } from 'styletron-react';
 
 import { ChecklistConfigureButton } from 'components/checklists/ChecklistConfigureButton';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { ButtonWithConfirm } from 'components/lib/ButtonWithConfirm';
 import { Clearfix } from 'components/lib/Clearfix';
 import { Grey } from 'components/lib/colors';
 import { VWSpace } from 'components/lib/spaces';
@@ -62,7 +61,9 @@ export const ChecklistInfo = ({
                             selectedFilters={selectedFilters}
                         />
                         {' '}
-                        <Button type="danger" onClick={resetFullCallback}>Reset All</Button>
+                        <ButtonWithConfirm type="danger" onClick={resetFullCallback}>
+                            Reset All
+                        </ButtonWithConfirm>
                     </ChecklistTitleButtonsContainer>
                     <Title style={titleStyle}>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

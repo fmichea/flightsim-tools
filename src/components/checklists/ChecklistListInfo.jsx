@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Button, Progress, Typography } from 'antd';
+import { Progress, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { styled, useStyletron } from 'styletron-react';
 
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
+import { ButtonWithConfirm } from 'components/lib/ButtonWithConfirm';
 import { Clearfix } from 'components/lib/Clearfix';
 import { DarkerGrey } from 'components/lib/colors';
 import { VWSpace } from 'components/lib/spaces';
@@ -50,14 +51,14 @@ export const ChecklistListInfo = ({
     return (
         <>
             <ChecklistListTitleContainer>
-                <Button
+                <ButtonWithConfirm
                     type="danger"
                     onClick={resetCallback}
                     className={css({ float: 'right' })}
                     size="small"
                 >
                     Reset
-                </Button>
+                </ButtonWithConfirm>
                 <ChecklistListProgressContainer>
                     <Progress percent={progressPercent} size="small" />
                 </ChecklistListProgressContainer>
