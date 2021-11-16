@@ -15,6 +15,7 @@ import {
 } from 'components/checklists/formatting';
 import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
 import { ChecklistTags } from 'lib/checklist/data/tags';
+import { useChecklistDoubleClickCallback } from 'lib/checklist/hooks/useChecklistDoubleClickCallback';
 import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
 import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
 
@@ -50,6 +51,8 @@ export const ChecklistListItemDisplay = ({
         hideSwitchesMode,
     } = useChecklistGlobalConfig();
 
+    const doubleClickToggler = useChecklistDoubleClickCallback({ toggleChecked });
+
     const subTitleItems = [];
     if (tagsSet.has(ChecklistTags.FIRST_FLIGHT_OF_DAY)) {
         subTitleItems.push('Only First Flight of the Day');
@@ -73,7 +76,12 @@ export const ChecklistListItemDisplay = ({
     const isStateColumnLast = !isSwitchColumnLast && hideHelpMode;
 
     return (
-        <ChecklistListItemWrapper $isChecked={isChecked} $isNotImplemented={isNotImplemented} $isOddItem={isOddItem}>
+        <ChecklistListItemWrapper
+            onClick={doubleClickToggler}
+            $isChecked={isChecked}
+            $isNotImplemented={isNotImplemented}
+            $isOddItem={isOddItem}
+        >
             <ChecklistListItemRow>
                 {leftColumn}
                 {hideTagsMode ? null : (
