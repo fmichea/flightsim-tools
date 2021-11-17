@@ -1,5 +1,6 @@
 import { ChecklistDisplay } from 'components/checklists/ChecklistDisplay';
 import { Checklists } from 'lib/checklist/data/checklists';
+import { ChecklistFilters } from 'lib/checklist/data/filters';
 import { ChecklistLists } from 'lib/checklist/data/lists';
 import { pick } from 'lib/pick';
 import { mockChecklistURLManager } from 'tests/data/checklists/mocks/checklistURLManager';
@@ -11,7 +12,9 @@ const setup = ({ props, windowWidth } = {}) => {
     const defaultProps = {
         checklistName: Checklists.WORKINGTITLE_CJ4,
         checklistListName: ChecklistLists.LANDING,
-        selectedFilters: [],
+        selectedFilters: [
+            ChecklistFilters.EXCLUDE_UNOFFICIAL,
+        ],
         checklistURLManager,
 
     };

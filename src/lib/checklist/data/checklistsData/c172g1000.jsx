@@ -6,10 +6,10 @@ import { ChecklistLists } from 'lib/checklist/data/lists';
 export const C172G1000ChecklistData = {
     uid: Checklists.C172_G1000,
     title: 'Cessna 172 Skyhawk (G1000)',
-    selectableFilters: [],
-    defaultFilters: [
-        ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
+    selectableFilters: [
+        ChecklistFilters.EXCLUDE_UNOFFICIAL,
     ],
+    defaultFilters: [],
     lists: [
         {
             listName: ChecklistLists.PRE_FLIGHT,

@@ -40,7 +40,7 @@ describe('useChecklistFilteredLists', () => {
     test('with selectable filter (selected)', () => {
         const { getCurrentHookResult } = setup({
             checklistData: TestDataHookChecklistData,
-            selectedFilters: [ChecklistFilters.INCLUDE_VATSIM_ITEMS],
+            selectedFilters: [ChecklistFilters.INCLUDE_VATSIM],
         });
 
         expect(getCurrentHookResult()).toEqual(TestDataHookFilteredListsVatsimIncluded);
@@ -49,7 +49,7 @@ describe('useChecklistFilteredLists', () => {
     test('list filtered out completely back if filter selected', () => {
         const { getCurrentHookResult } = setup({
             checklistData: TestDataHookChecklistData,
-            selectedFilters: [ChecklistFilters.INCLUDE_SIMSETUP_ITEMS],
+            selectedFilters: [ChecklistFilters.INCLUDE_SIMSETUP],
         });
 
         expect(getCurrentHookResult()).toEqual(TestDataHookFilteredListsSimsetupIncluded);

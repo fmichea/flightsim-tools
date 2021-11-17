@@ -27,8 +27,10 @@ describe('useWindowDimensions', () => {
             const resizeEvent = document.createEvent('Event');
             resizeEvent.initEvent('resize', true, true);
 
-            global.window.innerWidth = 789;
-            global.window.innerHeight = 453;
+            global.document.getElementById = jest.fn(() => ({
+                clientWidth: 789,
+                clientHeight: 453,
+            }));
             global.window.dispatchEvent(resizeEvent);
         });
 

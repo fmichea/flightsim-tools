@@ -25,13 +25,12 @@ export const CJ4ChecklistData = {
         </p>
     ),
     selectableFilters: [
-        ChecklistFilters.INCLUDE_EXTENSIONS,
-        ChecklistFilters.INCLUDE_VATSIM_ITEMS,
-        ChecklistFilters.INCLUDE_SIMSETUP_ITEMS,
+        ChecklistFilters.EXCLUDE_UNOFFICIAL,
+        ChecklistFilters.EXCLUDE_EXTENSIONS,
+        ChecklistFilters.EXCLUDE_VATSIM,
+        ChecklistFilters.EXCLUDE_SIMSETUP,
     ],
-    defaultFilters: [
-        ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
-    ],
+    defaultFilters: [],
     lists: [
         {
             listName: ChecklistLists.PRE_FLIGHT,

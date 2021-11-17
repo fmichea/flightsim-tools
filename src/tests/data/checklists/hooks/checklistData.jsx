@@ -55,16 +55,16 @@ export const TestDataHookChecklistData = {
     ),
 
     selectableFilters: [
-        ChecklistFilters.INCLUDE_VATSIM_ITEMS,
-        ChecklistFilters.INCLUDE_SIMSETUP_ITEMS,
+        ChecklistFilters.INCLUDE_VATSIM,
+        ChecklistFilters.INCLUDE_SIMSETUP,
     ],
     selectableFiltersData: {
-        [ChecklistFilters.INCLUDE_VATSIM_ITEMS]: ChecklistFiltersData[ChecklistFilters.INCLUDE_VATSIM_ITEMS],
-        [ChecklistFilters.INCLUDE_SIMSETUP_ITEMS]: ChecklistFiltersData[ChecklistFilters.INCLUDE_SIMSETUP_ITEMS],
+        [ChecklistFilters.INCLUDE_VATSIM]: ChecklistFiltersData[ChecklistFilters.INCLUDE_VATSIM],
+        [ChecklistFilters.INCLUDE_SIMSETUP]: ChecklistFiltersData[ChecklistFilters.INCLUDE_SIMSETUP],
     },
 
-    defaultFilters: [ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL],
+    defaultFilters: [ChecklistFilters.EXCLUDE_UNOFFICIAL],
     defaultFiltersData: {
-        [ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL]: ChecklistFiltersData[ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL],
+        [ChecklistFilters.EXCLUDE_UNOFFICIAL]: ChecklistFiltersData[ChecklistFilters.EXCLUDE_UNOFFICIAL],
     },
 };

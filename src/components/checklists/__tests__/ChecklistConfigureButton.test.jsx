@@ -15,7 +15,7 @@ const setup = ({ props } = {}) => {
         checklistURLManager,
         checklistData: TestDataHookChecklistData,
         selectedFilters: [
-            ChecklistFilters.INCLUDE_VATSIM_ITEMS,
+            ChecklistFilters.EXCLUDE_SIMSETUP,
         ],
     };
 
@@ -41,7 +41,7 @@ describe('ChecklistConfigureButton', () => {
         expect(switches).toHaveLength(6);
 
         expect(switches.at(4).props().title).toEqual('VATSIM');
-        expect(switches.at(4).props().checked).toBeTruthy();
+        expect(switches.at(4).props().checked).toBeFalsy();
 
         expect(switches.at(5).props().title).toEqual('Simulator Setup');
         expect(switches.at(5).props().checked).toBeFalsy();

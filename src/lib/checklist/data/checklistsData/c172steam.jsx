@@ -6,10 +6,10 @@ import { ChecklistLists } from 'lib/checklist/data/lists';
 export const C172SteamChecklistData = {
     uid: Checklists.C172_STEAM,
     title: 'Cessna 172 Skyhawk (Steam Gauges)',
-    selectableFilters: [],
-    defaultFilters: [
-        ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL,
+    selectableFilters: [
+        ChecklistFilters.EXCLUDE_UNOFFICIAL,
     ],
+    defaultFilters: [],
     lists: [
         {
             listName: ChecklistLists.PRE_FLIGHT,

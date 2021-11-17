@@ -41,8 +41,15 @@ export function mountWithStore(Comp, opts = {}) {
         })),
     });
 
-    window.innerWidth = pick(windowWidth, 1200);
-    window.innerHeight = pick(windowHeight, 800);
+    document.getElementById = jest.fn((nodeName) => {
+        if (nodeName === 'root') {
+            return {
+                clientWidth: pick(windowWidth, 1200),
+                clientHeight: pick(windowHeight, 800),
+            };
+        }
+        return null;
+    });
 
     const routPathInitialized = isNotNullOrUndefined(routePath) ? routePath : '*';
 

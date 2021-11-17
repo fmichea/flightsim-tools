@@ -19,33 +19,39 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
 
     const layoutConfig = useChecklistLayoutConfigWithTogglers();
 
-    const filterItems = useMemo(
+    const filtersDataEnhanced = useMemo(
         () => {
-            const fn = (filterData) => {
+            const fn = (reduceData, filterName) => {
+                const filterData = filtersData[filterName];
                 const filterUID = filterData.uid;
 
+                const revExcl = (checked) => (filterData.isExclusion ? !checked : checked);
+
                 const onChange = (checked) => {
-                    if (checked) {
+                    if (revExcl(checked)) {
                         checklistURLManager.addFilter(filterUID);
                     } else {
                         checklistURLManager.removeFilter(filterUID);
                     }
                 };
 
-                return (
-                    <ChecklistConfigurationSwitch
-                        key={filterUID}
-                        title={filterData.title}
-                        description={filterData.description}
-                        checked={selectedFiltersSet.has(filterUID)}
-                        onChange={onChange}
-                    />
-                );
+                const filterActive = selectedFiltersSet.has(filterUID);
+
+                const filterDataEnhanced = {
+                    ...filterData,
+
+                    onChange,
+                    checked: revExcl(filterActive),
+                    disabled: reduceData.isTerminated,
+                };
+
+                return {
+                    data: [...reduceData.data, filterDataEnhanced],
+                    isTerminated: reduceData.isTerminated || (filterData.isTerminal && filterActive),
+                };
             };
 
-            return filters
-                .map(((filterName) => filtersData[filterName]))
-                .map(fn);
+            return filters.reduce(fn, { data: [], isTerminated: false }).data;
         },
         [checklistURLManager, filters],
     );
@@ -100,9 +106,24 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
                     />
                 </List>
 
-                {filterItems.length === 0 ? null : (
+                {filtersDataEnhanced.length === 0 ? null : (
                     <List header={<><strong>Filters</strong></>}>
-                        {filterItems}
+                        {filtersDataEnhanced.map((filterData) => {
+                            const {
+                                checked, description, onChange, title, uid, disabled,
+                            } = filterData;
+
+                            return (
+                                <ChecklistConfigurationSwitch
+                                    key={uid}
+                                    title={title}
+                                    description={description}
+                                    checked={checked}
+                                    onChange={onChange}
+                                    disabled={disabled}
+                                />
+                            );
+                        })}
                     </List>
                 )}
             </Modal>

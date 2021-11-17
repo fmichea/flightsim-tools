@@ -55,7 +55,7 @@ export const ChecklistListItemDisplay = ({
     const doubleClickToggler = useChecklistDoubleClickCallback({ toggleChecked, isNotImplemented });
 
     const subTitleItems = [];
-    if (tagsSet.has(ChecklistTags.FIRST_FLIGHT_OF_DAY)) {
+    if (tagsSet.has(ChecklistTags.FFOTD)) {
         subTitleItems.push('Only First Flight of the Day');
     }
 

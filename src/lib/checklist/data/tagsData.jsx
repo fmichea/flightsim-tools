@@ -11,7 +11,7 @@ const commonTagsData = createTransformedMapping()([
         hidden: true,
     },
     {
-        uid: ChecklistTags.FIRST_FLIGHT_OF_DAY,
+        uid: ChecklistTags.FFOTD,
         hidden: true,
     },
     {

@@ -10,9 +10,9 @@ describe('filtersData', () => {
     });
 
     test('exclude all returns INCLUDE/EXCLUDE on official', () => {
-        const tagData = ChecklistFiltersData[ChecklistFilters.EXCLUDE_ALL_BUT_OFFICIAL];
+        const tagData = ChecklistFiltersData[ChecklistFilters.EXCLUDE_UNOFFICIAL];
 
-        expect(tagData.terminal).toBeTruthy();
+        expect(tagData.isTerminal).toBeTruthy();
 
         expect(tagData.fn({ tagsSet: new Set([ChecklistTags.OFFICIAL]) }))
             .toEqual(ChecklistFiltersResults.INCLUDE);
@@ -22,7 +22,7 @@ describe('filtersData', () => {
     });
 
     test('VATSIM include only filters vatsim items', () => {
-        const tagData = ChecklistFiltersData[ChecklistFilters.INCLUDE_VATSIM_ITEMS];
+        const tagData = ChecklistFiltersData[ChecklistFilters.INCLUDE_VATSIM];
 
         expect(tagData.terminal).toBeFalsy();
 
@@ -56,7 +56,7 @@ describe('filtersData', () => {
     });
 
     test('SimSetup include only filters vatsim items', () => {
-        const tagData = ChecklistFiltersData[ChecklistFilters.INCLUDE_SIMSETUP_ITEMS];
+        const tagData = ChecklistFiltersData[ChecklistFilters.INCLUDE_SIMSETUP];
 
         expect(tagData.terminal).toBeFalsy();
 

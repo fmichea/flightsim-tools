@@ -1,14 +1,15 @@
 const commonFilters = {
-    EXCLUDE_ALL_BUT_OFFICIAL: 'exclude-all-but-official',
+    EXCLUDE_UNOFFICIAL: 'exclude-unofficial',
+    EXCLUDE_FFOTD: 'exclude-ffotd',
 
-    INCLUDE_VATSIM_ITEMS: 'include-vatsim-items',
+    INCLUDE_VATSIM: 'include-vatsim',
+    EXCLUDE_VATSIM: 'exclude-vatsim',
 
     INCLUDE_EXTENSIONS: 'include-extensions',
     EXCLUDE_EXTENSIONS: 'exclude-extensions',
 
-    INCLUDE_SIMSETUP_ITEMS: 'include-simsetup-items',
-
-    EXCLUDE_FIRST_FLIGHT_OF_DAY: 'exclude-first-flight-of-day',
+    INCLUDE_SIMSETUP: 'include-simsetup',
+    EXCLUDE_SIMSETUP: 'exclude-simsetup',
 };
 
 export const ChecklistFilters = Object.freeze({

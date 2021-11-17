@@ -278,7 +278,7 @@ export const ACRJChecklistItemsData = createTransformedMapping(addCRJTags)([
         uid: ChecklistItems.CRJ_ORIGINATING_CHECK_CREW_OXYGEN,
         title: 'Crew Oxygen and Masks',
         state: 'CHECKED',
-        tags: [ChecklistTags.FIRST_FLIGHT_OF_DAY],
+        tags: [ChecklistTags.FFOTD],
     },
     {
         uid: ChecklistItems.CRJ_ORIGINATING_CHECK_AUDIO_WARNING_PANEL,
@@ -312,7 +312,7 @@ export const ACRJChecklistItemsData = createTransformedMapping(addCRJTags)([
         uid: ChecklistItems.CRJ_ORIGINATING_CHECK_FIRE_DETECTION,
         title: 'Fire Detection / FIREX Monitor Test',
         state: 'COMPLETE',
-        tags: [ChecklistTags.FIRST_FLIGHT_OF_DAY],
+        tags: [ChecklistTags.FFOTD],
         subItems: createTransformedList()([
             {
                 title: 'Fire Detection Monitor Button',
@@ -630,7 +630,7 @@ export const ACRJChecklistItemsData = createTransformedMapping(addCRJTags)([
         uid: ChecklistItems.CRJ_ORIGINATING_CHECK_STALL_TEST,
         title: 'Stall Test',
         state: 'COMPLETE',
-        tags: [ChecklistTags.FIRST_FLIGHT_OF_DAY],
+        tags: [ChecklistTags.FFOTD],
         subItems: createTransformedList()([
             {
                 title: 'STALL PTCT, Pusher Switches',

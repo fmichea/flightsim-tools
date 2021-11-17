@@ -15,11 +15,14 @@ const setup = ({ props } = {}) => {
 };
 
 describe('ChecklistListItemHelp', () => {
-    test('no help does not display anything', () => {
+    test('no help still displays icon but no modal', () => {
         const { compWrapper } = setup();
 
         const question = compWrapper().find('[aria-label="question-circle"]');
-        expect(question).toHaveLength(0);
+        expect(question).toHaveLength(1);
+
+        const modal = compWrapper().find('[aria-label="ant-modal-header"]');
+        expect(modal).toHaveLength(0);
     });
 
     test('info short is displayed in both tooltip and modal if no long info', () => {
