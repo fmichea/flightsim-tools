@@ -10,6 +10,7 @@ import { ButtonWithConfirm } from 'components/lib/ButtonWithConfirm';
 import { Clearfix } from 'components/lib/Clearfix';
 import { DarkerGrey } from 'components/lib/colors';
 import { VWSpace } from 'components/lib/spaces';
+import { useChecklistLayoutConfig } from 'lib/checklist/hooks/useChecklistLayoutConfig';
 import { useChecklistListInfoData } from 'lib/checklist/hooks/useChecklistListInfoData';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 
@@ -30,6 +31,12 @@ const ChecklistListProgressContainer = styled('div', {
     marginRight: '20px',
 });
 
+const titleStyle = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+};
+
 export const ChecklistListInfo = ({
     checklistData,
     checklistName,
@@ -37,6 +44,10 @@ export const ChecklistListInfo = ({
     checklistURLManager,
 }) => {
     const [css] = useStyletron();
+
+    const {
+        hideChecklistProgress,
+    } = useChecklistLayoutConfig();
 
     const {
         title,
@@ -59,10 +70,12 @@ export const ChecklistListInfo = ({
                 >
                     Reset
                 </ButtonWithConfirm>
-                <ChecklistListProgressContainer>
-                    <Progress percent={progressPercent} size="small" />
-                </ChecklistListProgressContainer>
-                <Title level={4}>
+                {hideChecklistProgress ? null : (
+                    <ChecklistListProgressContainer>
+                        <Progress percent={progressPercent} size="small" />
+                    </ChecklistListProgressContainer>
+                )}
+                <Title level={4} style={titleStyle}>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <Link onClick={setActiveCallback}>&para;</Link>
                     <VWSpace $width="1em" />

@@ -3,11 +3,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { isNotNullOrUndefined, isNullOrUndefined } from 'lib/isNullOrUndefined';
 
 function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height,
-    };
+    const { clientWidth: width, clientHeight: height } = document.getElementById('root');
+    return { width, height };
 }
 
 export const useWindowDimensions = () => {

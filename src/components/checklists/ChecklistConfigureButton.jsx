@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { ChecklistConfigurationSwitch } from 'components/checklists/ChecklistConfigurationSwitch';
 import { ChecklistDataPropTypes, ChecklistURLManagerPropTypes } from 'components/checklists/propTypes';
-import { useChecklistGlobalConfigWithTogglers } from 'lib/checklist/hooks/useChecklistGlobalConfigWithTogglers';
+import { useChecklistLayoutConfigWithTogglers } from 'lib/checklist/hooks/useChecklistLayoutConfig';
 import { useBooleanToggle } from 'lib/hooks/useBooleanToggle';
 
 const modalStyle = { maxWidth: '1000px' };
@@ -17,35 +17,38 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
 
     const modalVisible = useBooleanToggle(false);
 
-    const { checklistConfig, togglers } = useChecklistGlobalConfigWithTogglers();
+    const layoutConfig = useChecklistLayoutConfigWithTogglers();
 
-    const filterItems = useMemo(() => {
-        const fn = (filterData) => {
-            const filterUID = filterData.uid;
+    const filterItems = useMemo(
+        () => {
+            const fn = (filterData) => {
+                const filterUID = filterData.uid;
 
-            const onChange = (checked) => {
-                if (checked) {
-                    checklistURLManager.addFilter(filterUID);
-                } else {
-                    checklistURLManager.removeFilter(filterUID);
-                }
+                const onChange = (checked) => {
+                    if (checked) {
+                        checklistURLManager.addFilter(filterUID);
+                    } else {
+                        checklistURLManager.removeFilter(filterUID);
+                    }
+                };
+
+                return (
+                    <ChecklistConfigurationSwitch
+                        key={filterUID}
+                        title={filterData.title}
+                        description={filterData.description}
+                        checked={selectedFiltersSet.has(filterUID)}
+                        onChange={onChange}
+                    />
+                );
             };
 
-            return (
-                <ChecklistConfigurationSwitch
-                    key={filterUID}
-                    title={filterData.title}
-                    description={filterData.description}
-                    checked={selectedFiltersSet.has(filterUID)}
-                    onChange={onChange}
-                />
-            );
-        };
-
-        return filters
-            .map(((filterName) => filtersData[filterName]))
-            .map(fn);
-    }, [checklistURLManager, filters]);
+            return filters
+                .map(((filterName) => filtersData[filterName]))
+                .map(fn);
+        },
+        [checklistURLManager, filters],
+    );
 
     return (
         <>
@@ -64,30 +67,36 @@ export const ChecklistConfigureButton = ({ checklistData, checklistURLManager, s
                 <List header={<strong>Interface</strong>}>
                     <ChecklistConfigurationSwitch
                         title="Left Handed Mode"
-                        description="Move all checkmarks to the left side of the screen."
-                        checked={checklistConfig.leftHandedMode}
-                        onClick={togglers.leftHandedMode}
+                        description={
+                            'Move relevant UI items to the left side of the screen for easier '
+                            + 'interaction left handed.'
+                        }
+                        checked={layoutConfig.leftHandedMode}
+                        onClick={layoutConfig.leftHandedModeToggle}
                     />
 
                     <ChecklistConfigurationSwitch
-                        title="Hide Tags Mode"
+                        title="Hide Tags"
                         description="Hide all of the tags from the list."
-                        checked={checklistConfig.hideTagsMode}
-                        onClick={togglers.hideTagsMode}
+                        checked={layoutConfig.hideTagsMode}
+                        onClick={layoutConfig.hideTagsModeToggle}
+                        disabled={!layoutConfig.hideTagsModeToggleable}
                     />
 
                     <ChecklistConfigurationSwitch
-                        title="Hide Help Mode"
+                        title="Hide Help"
                         description="Hide all of the help info from the list."
-                        checked={checklistConfig.hideHelpMode}
-                        onClick={togglers.hideHelpMode}
+                        checked={layoutConfig.hideHelpMode}
+                        onClick={layoutConfig.hideHelpModeToggle}
+                        disabled={!layoutConfig.hideHelpModeToggleable}
                     />
 
                     <ChecklistConfigurationSwitch
-                        title="Hide Switches Mode"
+                        title="Hide Switches"
                         description="Hide the toggleable switch from the list."
-                        checked={checklistConfig.hideSwitchesMode}
-                        onClick={togglers.hideSwitchesMode}
+                        checked={layoutConfig.hideSwitchesMode}
+                        onClick={layoutConfig.hideSwitchesModeToggle}
+                        disabled={!layoutConfig.hideSwitchesModeToggleable}
                     />
                 </List>
 

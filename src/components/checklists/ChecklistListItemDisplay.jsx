@@ -16,7 +16,7 @@ import {
 import { ChecklistDataPropTypes } from 'components/checklists/propTypes';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { useChecklistDoubleClickCallback } from 'lib/checklist/hooks/useChecklistDoubleClickCallback';
-import { useChecklistGlobalConfig } from 'lib/checklist/hooks/useChecklistGlobalConfig';
+import { useChecklistLayoutConfig } from 'lib/checklist/hooks/useChecklistLayoutConfig';
 import { useChecklistListItemData } from 'lib/checklist/hooks/useChecklistListItemData';
 
 export const ChecklistListItemDisplay = ({
@@ -49,7 +49,8 @@ export const ChecklistListItemDisplay = ({
         hideTagsMode,
         hideHelpMode,
         hideSwitchesMode,
-    } = useChecklistGlobalConfig();
+        twoRowsMode,
+    } = useChecklistLayoutConfig();
 
     const doubleClickToggler = useChecklistDoubleClickCallback({ toggleChecked, isNotImplemented });
 
@@ -75,6 +76,85 @@ export const ChecklistListItemDisplay = ({
     const isHelpColumnLast = !isSwitchColumnLast;
     const isStateColumnLast = !isSwitchColumnLast && hideHelpMode;
 
+    const titleColumnContent = (
+        <>
+            <ChecklistListItemTitle>
+                {title}
+            </ChecklistListItemTitle>
+            {subTitleItems.length === 0 ? null : (
+                <ChecklistListItemSubTitle>
+                    {subTitleItems.map((item, idx) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <React.Fragment key={idx}>
+                            {idx === 0 ? null : '; '}
+                            {item}
+                        </React.Fragment>
+                    ))}
+                </ChecklistListItemSubTitle>
+            )}
+        </>
+    );
+
+    const stateColumnContent = (
+        <ChecklistListItemState>
+            {state}
+        </ChecklistListItemState>
+    );
+
+    const helpColumnContent = (
+        <ChecklistListItemHelp
+            title={title}
+            state={state}
+            moreInfoShort={moreInfoShort}
+            moreInfoLong={moreInfoLong}
+            subItems={subItems}
+        />
+    );
+
+    if (twoRowsMode) {
+        return (
+            <ChecklistListItemWrapper
+                $isChecked={isChecked}
+                $isNotImplemented={isNotImplemented}
+                $isOddItem={isOddItem}
+            >
+                <ChecklistListItemRow>
+                    {hideTagsMode ? null : (
+                        <ChecklistItemColumn
+                            onClick={doubleClickToggler}
+                            $isFirst
+                            $fitToContent
+                        >
+                            <ChecklistListItemTags tagsData={tagsData} />
+                        </ChecklistItemColumn>
+                    )}
+                    <ChecklistItemColumn
+                        onClick={doubleClickToggler}
+                        $isFirst={hideTagsMode}
+                        $isLast
+                        colspan={hideTagsMode ? 2 : undefined}
+                    >
+                        {titleColumnContent}
+                    </ChecklistItemColumn>
+                </ChecklistListItemRow>
+
+                <ChecklistListItemRow>
+                    <ChecklistItemColumn $fitToContent $isFirst>
+                        {hideHelpMode ? null : (
+                            helpColumnContent
+                        )}
+                    </ChecklistItemColumn>
+                    <ChecklistItemColumn
+                        onClick={doubleClickToggler}
+                        $isLast
+                    >
+                        {stateColumnContent}
+                    </ChecklistItemColumn>
+                </ChecklistListItemRow>
+            </ChecklistListItemWrapper>
+        );
+    }
+
     return (
         <ChecklistListItemWrapper
             $isChecked={isChecked}
@@ -96,39 +176,18 @@ export const ChecklistListItemDisplay = ({
                     onClick={doubleClickToggler}
                     $isFirst={isTitleColumnFirst}
                 >
-                    <ChecklistListItemTitle>
-                        {title}
-                    </ChecklistListItemTitle>
-                    {subTitleItems.length === 0 ? null : (
-                        <ChecklistListItemSubTitle>
-                            {subTitleItems.map((item, idx) => (
-                                // eslint-disable-next-line react/no-array-index-key
-                                <React.Fragment key={idx}>
-                                    {idx === 0 ? null : '; '}
-                                    {item}
-                                </React.Fragment>
-                            ))}
-                        </ChecklistListItemSubTitle>
-                    )}
+                    {titleColumnContent}
                 </ChecklistItemColumn>
                 <ChecklistItemColumn
                     onClick={doubleClickToggler}
                     $fitToContent
                     $isLast={isStateColumnLast}
                 >
-                    <ChecklistListItemState>
-                        {state}
-                    </ChecklistListItemState>
+                    {stateColumnContent}
                 </ChecklistItemColumn>
                 {hideHelpMode ? null : (
                     <ChecklistItemColumn $fitToContent $isLast={isHelpColumnLast}>
-                        <ChecklistListItemHelp
-                            title={title}
-                            state={state}
-                            moreInfoShort={moreInfoShort}
-                            moreInfoLong={moreInfoLong}
-                            subItems={subItems}
-                        />
+                        {helpColumnContent}
                     </ChecklistItemColumn>
                 )}
                 {rightColumn}
