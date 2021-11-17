@@ -51,7 +51,7 @@ export const ChecklistListItemDisplay = ({
         hideSwitchesMode,
     } = useChecklistGlobalConfig();
 
-    const doubleClickToggler = useChecklistDoubleClickCallback({ toggleChecked });
+    const doubleClickToggler = useChecklistDoubleClickCallback({ toggleChecked, isNotImplemented });
 
     const subTitleItems = [];
     if (tagsSet.has(ChecklistTags.FIRST_FLIGHT_OF_DAY)) {

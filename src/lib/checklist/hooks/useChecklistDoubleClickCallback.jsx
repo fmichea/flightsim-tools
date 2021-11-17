@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
 
-export const useChecklistDoubleClickCallback = ({ toggleChecked }) => {
+export const useChecklistDoubleClickCallback = ({ toggleChecked, isNotImplemented }) => {
     const [clickCounter, setClickCounter] = useState(0);
 
     const onClickHandler = useMemo(
         () => () => {
             if (clickCounter === 1) {
-                toggleChecked();
+                if (!isNotImplemented) toggleChecked();
                 setClickCounter(0);
             } else {
                 setClickCounter(1);
             }
         },
-        [clickCounter, setClickCounter],
+        [clickCounter, setClickCounter, isNotImplemented],
     );
 
     useEffect(
