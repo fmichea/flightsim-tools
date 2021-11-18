@@ -48,11 +48,15 @@ const commonTagsData = createTransformedMapping()([
     },
     {
         uid: ChecklistTags.SIMSETUP,
-        color: '#6d11d0',
+        color: '#7e2fd3',
     },
     {
         uid: ChecklistTags.CRJ,
         color: '#000',
+    },
+    {
+        uid: ChecklistTags.NAV,
+        color: '#fa1d93',
     },
 ]);
 

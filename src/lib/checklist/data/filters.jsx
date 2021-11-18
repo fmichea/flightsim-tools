@@ -10,6 +10,9 @@ const commonFilters = {
 
     INCLUDE_SIMSETUP: 'include-simsetup',
     EXCLUDE_SIMSETUP: 'exclude-simsetup',
+
+    INCLUDE_NAV: 'include-nav',
+    EXCLUDE_NAV: 'exclude-nav',
 };
 
 export const ChecklistFilters = Object.freeze({

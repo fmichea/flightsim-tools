@@ -37,6 +37,15 @@ const simsetupFilterData = {
     ),
 };
 
+const navFilterData = {
+    title: 'Navigation',
+    description: (
+        <>
+            Include checklist items related to navigation.
+        </>
+    ),
+};
+
 const commonFiltersData = createTransformedMapping()([
     {
         uid: ChecklistFilters.EXCLUDE_UNOFFICIAL,
@@ -86,6 +95,17 @@ const commonFiltersData = createTransformedMapping()([
         fn: buildTagFilterFNExclusion(ChecklistTags.SIMSETUP),
         isExclusion: true,
         ...simsetupFilterData,
+    },
+    {
+        uid: ChecklistFilters.INCLUDE_NAV,
+        fn: buildTagFilterFNInclusion(ChecklistTags.NAV),
+        ...navFilterData,
+    },
+    {
+        uid: ChecklistFilters.EXCLUDE_NAV,
+        fn: buildTagFilterFNExclusion(ChecklistTags.NAV),
+        isExclusion: true,
+        ...navFilterData,
     },
     {
         uid: ChecklistFilters.EXCLUDE_FFOTD,

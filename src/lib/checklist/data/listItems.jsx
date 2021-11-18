@@ -550,13 +550,14 @@ const crjItems = Object.freeze({
 const crjExtItems = Object.freeze({
     CRJEXT_PRE_FLIGHT_AIRCRAFT_EFB_SETUP: 'crjext_pre_flight_aircraft_efb_setup',
     CRJEXT_ORIGINATING_CHECK_FMS_INIT_REMINDER: 'crjext_originating_check_fms_init_reminder',
+    CRJEXT_CRUISE_ANTIICE: 'crjext_cruise_antiice',
     CRJEXT_BEFORE_START_CHECK_DOORS_CHOCKS: 'crjext_before_start_check_doors_chocks',
 });
 
 const vatsimItems = Object.freeze({
-    VATSIM_METAR_ATIS_PRE_FLIGHT: 'vatsim-metar-atis-pre-flight',
     VATSIM_FILE_FLIGHT_PLAN: 'vatsim-file-flight-plan',
     VATSIM_REQUEST_INITIAL_CLEARANCE: 'vatsim-request-initial-clearance',
+    VATSIM_PUSHBACK_AND_START_CLEARANCE: 'vatsim-pushback-and-start-clearance',
     VATSIM_DEPARTURE_SETTINGS: 'vatsim-departure-settings',
     VATSIM_TAXI_CLEARANCE: 'vatsim-taxi-clearance',
     VATSIM_TAXI_MODE_CHARLIE: 'vatsim-taxi-mode-charlie',
@@ -569,13 +570,20 @@ const vatsimItems = Object.freeze({
     VATSIM_DISCONNECT_GOODBYE: 'vatsim-disconnect-goodbye',
 });
 
+const navItems = Object.freeze({
+    NAV_FLIGHT_PLANNING: 'nav-flight-planning',
+    NAV_TAKEOFF_DEPARTURE_BRIEFING: 'nav-takeoff-departure-briefing',
+    NAV_TAKEOFF_DEPARTURE_BRIEFING_SHORT: 'nav-takeoff-departure-briefing-short',
+    NAV_DESCENT_PLANNING: 'nav-descent-planning',
+    NAV_APPROACH_BRIEFING: 'nav-approach-briefing',
+    NAV_POST_FLIGHT_NOTES: 'nav-post-flight-notes',
+});
+
 const simulatorSetupItems = Object.freeze({
-    SIMSETUP_PLAN_FLIGHT: 'simsetup-plan-flight',
     SIMSETUP_FLIGHT_TRACKING_START: 'simsetup-flight-tracking-start',
     SIMSETUP_FLIGHT_TRACKING_END: 'simsetup-flight-tracking-end',
     SIMSETUP_FLIGHT_RECORDING_START: 'simsetup-flight-recording-start',
     SIMSETUP_FLIGHT_RECORDING_END: 'simsetup-flight-recording-end',
-    SIMSETUP_POST_FLIGHT_NOTES: 'simsetup-post-flight-notes',
 });
 
 export const ChecklistItems = Object.freeze({
@@ -587,5 +595,6 @@ export const ChecklistItems = Object.freeze({
     ...crjItems,
     ...crjExtItems,
     ...vatsimItems,
+    ...navItems,
     ...simulatorSetupItems,
 });

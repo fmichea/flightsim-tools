@@ -13,6 +13,7 @@ export const ChecklistTags = Object.freeze({
 
     CRJ: 'CRJ',
 
+    NAV: 'NAV',
     VATSIM: 'VATSIM',
     SIMSETUP: 'SIMSETUP',
 });

@@ -27,16 +27,16 @@ export const CJ4ChecklistData = {
     selectableFilters: [
         ChecklistFilters.EXCLUDE_UNOFFICIAL,
         ChecklistFilters.EXCLUDE_EXTENSIONS,
-        ChecklistFilters.EXCLUDE_VATSIM,
+        ChecklistFilters.EXCLUDE_NAV,
         ChecklistFilters.EXCLUDE_SIMSETUP,
+        ChecklistFilters.EXCLUDE_VATSIM,
     ],
     defaultFilters: [],
     lists: [
         {
             listName: ChecklistLists.PRE_FLIGHT,
             items: [
-                ChecklistItems.VATSIM_METAR_ATIS_PRE_FLIGHT,
-                ChecklistItems.SIMSETUP_PLAN_FLIGHT,
+                ChecklistItems.NAV_FLIGHT_PLANNING,
                 ChecklistItems.VATSIM_FILE_FLIGHT_PLAN,
                 ChecklistItems.SIMSETUP_FLIGHT_TRACKING_START,
                 ChecklistItems.SIMSETUP_FLIGHT_RECORDING_START,
@@ -107,6 +107,7 @@ export const CJ4ChecklistData = {
                 ChecklistItems.CJ4_BEFORE_TAXI_HYDRAULIC_PRESSURE_CHECK,
                 ChecklistItems.CJ4_BEFORE_TAXI_ENGINE_ONLY_ANTI_ICE,
                 ChecklistItems.CJ4_BEFORE_TAXI_TAKEOFF_DATA,
+                ChecklistItems.NAV_TAKEOFF_DEPARTURE_BRIEFING,
                 ChecklistItems.CJ4_BEFORE_TAXI_AVIONICS_CHECK,
                 ChecklistItems.CJ4_BEFORE_TAXI_AUTOPILOT_CONNECT_DISCONNECT,
                 ChecklistItems.CJ4_BEFORE_TAXI_ALTIMETER_SET,
@@ -149,12 +150,13 @@ export const CJ4ChecklistData = {
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_RADAR_AS_REQUIRED,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_GA_BUTTON_PUSH,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_BATTERY_AMPS_CHECK,
+                ChecklistItems.NAV_TAKEOFF_DEPARTURE_BRIEFING_SHORT,
+                ChecklistItems.VATSIM_TAKEOFF_CLEARANCE,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_ICE_PROTECTION_SYSTEM_AS_REQUIRED,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_PITOT_STATIC_HEAT_BUTTONS,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_EICAS_CHECK,
                 ChecklistItems.CJ4_BEFORE_TAKEOFF_EXTERIOR_LIGHTS,
                 ChecklistItems.CJ4EXT_BEFORE_TAKEOFF_RUNWAY_HEADING,
-                ChecklistItems.VATSIM_TAKEOFF_CLEARANCE,
             ],
             nextListNames: [
                 ChecklistLists.TAKEOFF,
@@ -196,6 +198,7 @@ export const CJ4ChecklistData = {
                 ChecklistItems.CJ4_CRUISE_THROTTLES,
                 ChecklistItems.CJ4_CRUISE_PRESSURIZATION,
                 ChecklistItems.CJ4_CRUISE_ICE_PROTECTION_SYSTEMS,
+                ChecklistItems.NAV_DESCENT_PLANNING,
                 ChecklistItems.VATSIM_DESCENT_CLEARANCE,
             ],
             nextListNames: [
@@ -219,6 +222,7 @@ export const CJ4ChecklistData = {
         {
             listName: ChecklistLists.APPROACH,
             items: [
+                ChecklistItems.NAV_APPROACH_BRIEFING,
                 ChecklistItems.CJ4_APPROACH_LANDING_DATA,
                 ChecklistItems.CJ4_APPROACH_CREW_BRIEFING,
                 ChecklistItems.CJ4_APPROACH_AVIONICS_FLIGHT_INSTRUMENTS,
@@ -323,7 +327,7 @@ export const CJ4ChecklistData = {
             items: [
                 ChecklistItems.SIMSETUP_FLIGHT_RECORDING_END,
                 ChecklistItems.SIMSETUP_FLIGHT_TRACKING_END,
-                ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+                ChecklistItems.NAV_POST_FLIGHT_NOTES,
             ],
         },
     ],

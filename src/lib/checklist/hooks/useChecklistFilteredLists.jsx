@@ -1,4 +1,5 @@
 import { ChecklistFiltersResults } from 'lib/checklist/data/filtersResults';
+import { ChecklistItemsReplacements } from 'lib/checklist/data/listItemsData';
 import { useDeepMemo } from 'lib/hooks/deep';
 import { pick } from 'lib/pick';
 
@@ -56,12 +57,26 @@ export const useChecklistFilteredLists = ({ checklistData, selectedFilters }) =>
         () => {
             const { listNames, listsData, listItemsData } = checklistData;
 
+            const replacedItems = new Set();
+
             const itemIncluded = (itemName) => filterFN(listItemsData[itemName]) === ChecklistFiltersResults.INCLUDE;
 
             return listNames
-                .map((listName) => ({
-                    listName,
-                    items: listsData[listName].items.filter(itemIncluded),
+                .map((listName) => {
+                    const filteredItems = listsData[listName].items.filter(itemIncluded);
+
+                    filteredItems
+                        .reduce((agg, itemName) => [...agg, ...ChecklistItemsReplacements[itemName]], [])
+                        .forEach((itemName) => { replacedItems.add(itemName); });
+
+                    return {
+                        listName,
+                        items: filteredItems,
+                    };
+                })
+                .map((value) => ({
+                    ...value,
+                    items: value.items.filter((itemName) => !replacedItems.has(itemName)),
                 }))
                 .filter((value) => value.items.length > 0);
         },

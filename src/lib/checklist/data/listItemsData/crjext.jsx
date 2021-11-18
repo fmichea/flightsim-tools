@@ -95,4 +95,9 @@ export const ACRJExtChecklistItemsData = createTransformedMapping(addCRJExtTags)
             },
         ]),
     },
+    {
+        uid: ChecklistItems.CRJEXT_CRUISE_ANTIICE,
+        title: 'Anti-Ice',
+        state: 'AS REQUIRED',
+    },
 ]);

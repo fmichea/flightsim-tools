@@ -32,7 +32,7 @@ export const TestDataHookChecklistData = {
         [ChecklistLists.POST_FLIGHT]: {
             ...ChecklistListsData[ChecklistLists.POST_FLIGHT],
             items: [
-                ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+                ChecklistItems.NAV_POST_FLIGHT_NOTES,
             ],
         },
     },
@@ -43,7 +43,7 @@ export const TestDataHookChecklistData = {
             ChecklistItems.CJ4_BEFORE_START_PARKING_BRAKES,
             ChecklistItems.CJ4_ENGINE_START_EICAS_CHECK,
             ChecklistItems.CJ4_ENGINE_START_RUNSTOP_BUTTON_TO_RUN,
-            ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+            ChecklistItems.NAV_POST_FLIGHT_NOTES,
         ],
         (itemName) => ({
             key: itemName,

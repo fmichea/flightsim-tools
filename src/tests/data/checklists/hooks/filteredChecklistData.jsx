@@ -51,7 +51,7 @@ export const TestDataHookFilteredListsSimsetupIncluded = [
     {
         listName: ChecklistLists.POST_FLIGHT,
         items: [
-            ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+            ChecklistItems.NAV_POST_FLIGHT_NOTES,
         ],
     },
 ];
@@ -74,7 +74,7 @@ export const TestDataHookFilteredListsVatsimAndSimsetupIncluded = [
     {
         listName: ChecklistLists.POST_FLIGHT,
         items: [
-            ChecklistItems.SIMSETUP_POST_FLIGHT_NOTES,
+            ChecklistItems.NAV_POST_FLIGHT_NOTES,
         ],
     },
 ];

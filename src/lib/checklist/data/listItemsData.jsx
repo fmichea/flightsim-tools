@@ -5,10 +5,12 @@ import { CJ4ChecklistItemsData } from 'lib/checklist/data/listItemsData/cj4';
 import { CJ4ExtChecklistItemsData } from 'lib/checklist/data/listItemsData/cj4ext';
 import { ACRJChecklistItemsData } from 'lib/checklist/data/listItemsData/crj';
 import { ACRJExtChecklistItemsData } from 'lib/checklist/data/listItemsData/crjext';
+import { NavChecklistItemsData } from 'lib/checklist/data/listItemsData/nav';
 import { SimulatorSetupChecklistItemsData } from 'lib/checklist/data/listItemsData/simulatorSetup';
 import { VATSIMChecklistItemsData } from 'lib/checklist/data/listItemsData/vatsim';
 import { ChecklistTags } from 'lib/checklist/data/tags';
 import { objectMap } from 'lib/objects';
+import { pick } from 'lib/pick';
 
 export const ChecklistItemsData = Object.freeze({
     ...CJ4ChecklistItemsData,
@@ -19,6 +21,7 @@ export const ChecklistItemsData = Object.freeze({
     ...ACRJChecklistItemsData,
     ...ACRJExtChecklistItemsData,
     ...VATSIMChecklistItemsData,
+    ...NavChecklistItemsData,
     ...SimulatorSetupChecklistItemsData,
 });
 
@@ -27,4 +30,9 @@ export const ChecklistItemsNotImplemented = new Set(
         .entries(objectMap(ChecklistItemsData, (item) => item.tagsSet.has(ChecklistTags.NOT_IMPLEMENTED)))
         .filter((keyValue) => keyValue[1])
         .map((keyValue) => keyValue[0]),
+);
+
+export const ChecklistItemsReplacements = objectMap(
+    ChecklistItemsData,
+    (item) => pick(item.replaces, []),
 );

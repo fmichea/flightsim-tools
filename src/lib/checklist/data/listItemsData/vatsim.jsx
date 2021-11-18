@@ -14,24 +14,8 @@ const addVATSIMTags = (value) => ({
 
 export const VATSIMChecklistItemsData = createTransformedMapping(addVATSIMTags)([
     {
-        uid: ChecklistItems.VATSIM_METAR_ATIS_PRE_FLIGHT,
-        title: 'Initial METAR/ATIS check',
-        state: 'COMPLETE',
-        moreInfoShort: (
-            <>
-                Check METAR and ATIS information for your origin and destination airport for flight planning purposes.
-                Try to figure out what the most likely runway to use will be, either by what ATIS specifies or by wind
-                direction in METAR.
-                <br />
-                <br />
-                Note that this is subject to change at any time and should simply be used as a starting point for
-                pre-flight planning purposes.
-            </>
-        ),
-    },
-    {
         uid: ChecklistItems.VATSIM_FILE_FLIGHT_PLAN,
-        title: 'File Flight Plan',
+        title: 'Connect / File Flight Plan',
         state: 'COMPLETE',
         moreInfoShort: (
             <>
@@ -84,6 +68,11 @@ export const VATSIMChecklistItemsData = createTransformedMapping(addVATSIMTags)(
         ),
     },
     {
+        uid: ChecklistItems.VATSIM_PUSHBACK_AND_START_CLEARANCE,
+        title: 'Pushback / Engine Start Clearance',
+        state: 'COMPLETE',
+    },
+    {
         uid: ChecklistItems.VATSIM_DEPARTURE_SETTINGS,
         title: 'Departure Settings',
         state: 'COMPLETE',
@@ -115,12 +104,12 @@ export const VATSIMChecklistItemsData = createTransformedMapping(addVATSIMTags)(
     },
     {
         uid: ChecklistItems.VATSIM_TAXI_MODE_CHARLIE,
-        title: 'Transponder',
+        title: 'TCAS / Transponder',
         state: 'AS REQUIRED',
         moreInfoShort: (
             <>
-                Some airports require transponder to be in mode Charlie even during taxi. This is specified in the
-                ATIS. In this case, check that transponder is correctly set before starting your taxi.
+                Some airports require transponder to be in mode Charlie even during taxi (altitude reported). This is
+                specified in the ATIS. In this case, check that transponder is correctly set before starting your taxi.
                 <br />
                 <br />
                 CJ4: On FMS, check

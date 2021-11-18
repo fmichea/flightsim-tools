@@ -26,14 +26,21 @@ export const CRJChecklistData = {
     ),
     selectableFilters: [
         ChecklistFilters.EXCLUDE_UNOFFICIAL,
-        ChecklistFilters.EXCLUDE_EXTENSIONS,
         ChecklistFilters.EXCLUDE_FFOTD,
+        ChecklistFilters.EXCLUDE_EXTENSIONS,
+        ChecklistFilters.EXCLUDE_NAV,
+        ChecklistFilters.EXCLUDE_SIMSETUP,
+        ChecklistFilters.EXCLUDE_VATSIM,
     ],
     defaultFilters: [],
     lists: [
         {
             listName: ChecklistLists.PRE_FLIGHT,
             items: [
+                ChecklistItems.NAV_FLIGHT_PLANNING,
+                ChecklistItems.VATSIM_FILE_FLIGHT_PLAN,
+                ChecklistItems.SIMSETUP_FLIGHT_TRACKING_START,
+                ChecklistItems.SIMSETUP_FLIGHT_RECORDING_START,
                 ChecklistItems.CRJEXT_PRE_FLIGHT_AIRCRAFT_EFB_SETUP,
             ],
             nextListNames: [
@@ -122,11 +129,13 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_BEFORE_START_CHECK_LANDING_ELEVATION,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_BOOST_PUMPS,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_ALTIMETERS,
+                ChecklistItems.VATSIM_REQUEST_INITIAL_CLEARANCE,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_FMS,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_IRS,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_RADIOS,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_TAKEOFF_DATA,
                 ChecklistItems.CRJ_BEFORE_START_CHECK_TAKEOFF_BRIEFING,
+                ChecklistItems.NAV_TAKEOFF_DEPARTURE_BRIEFING,
                 ChecklistItems.CRJEXT_BEFORE_START_CHECK_DOORS_CHOCKS,
             ],
             nextListNames: [
@@ -140,6 +149,7 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_APU,
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_ELECTRICS,
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_DOORS,
+                ChecklistItems.VATSIM_PUSHBACK_AND_START_CLEARANCE,
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_BEACON,
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_FUEL_PUMPS,
                 ChecklistItems.CRJ_CLEARED_TO_START_CHECK_HYDRAULIC_PUMPS,
@@ -163,15 +173,17 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_AFTER_START_CHECK_NOSEWHEEL,
             ],
             nextListNames: [
-                ChecklistLists.BEFORE_TAXI,
+                ChecklistLists.TAXI,
             ],
         },
         {
-            listName: ChecklistLists.BEFORE_TAXI,
+            listName: ChecklistLists.TAXI,
             items: [
                 ChecklistItems.CRJ_TAXI_CHECK_SLATS_FLAPS,
                 ChecklistItems.CRJ_TAXI_CHECK_FLIGHT_CONTROLS,
                 ChecklistItems.CRJ_TAXI_CHECK_TRIMS,
+                ChecklistItems.VATSIM_TAXI_CLEARANCE,
+                ChecklistItems.VATSIM_TAXI_MODE_CHARLIE,
                 ChecklistItems.CRJ_TAXI_CHECK_THRUST_REVERSERS,
                 ChecklistItems.CRJ_TAXI_CHECK_EXTERNAL_LIGHTS,
                 ChecklistItems.CRJ_TAXI_CHECK_FLIGHT_INSTRUMENTS,
@@ -184,11 +196,13 @@ export const CRJChecklistData = {
         {
             listName: ChecklistLists.BEFORE_TAKEOFF,
             items: [
+                ChecklistItems.NAV_TAKEOFF_DEPARTURE_BRIEFING_SHORT,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_EXTERNAL_LIGHTS,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_FUEL_XFLOW,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_FLIGHT_ATTENDANT,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_TRANSPONDER,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_RADAR,
+                ChecklistItems.VATSIM_TAKEOFF_CLEARANCE,
                 ChecklistItems.CRJ_BEFORE_TAKEOFF_CHECK_CAS,
             ],
             nextListNames: [
@@ -204,6 +218,17 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_CLIMB_CHECK_CAS,
             ],
             nextListNames: [
+                ChecklistLists.CRUISE,
+            ],
+        },
+        {
+            listName: ChecklistLists.CRUISE,
+            items: [
+                ChecklistItems.CRJEXT_CRUISE_ANTIICE,
+                ChecklistItems.NAV_DESCENT_PLANNING,
+                ChecklistItems.VATSIM_DESCENT_CLEARANCE,
+            ],
+            nextListNames: [
                 ChecklistLists.DESCENT,
             ],
         },
@@ -215,8 +240,10 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_DESCENT_CHECK_TCAS,
                 ChecklistItems.CRJ_DESCENT_CHECK_RADAR,
                 ChecklistItems.CRJ_DESCENT_CHECK_CAS,
+                ChecklistItems.VATSIM_APPROACH_CLEARANCE,
                 ChecklistItems.CRJ_DESCENT_CHECK_LANDING_DATA,
                 ChecklistItems.CRJ_DESCENT_CHECK_APPROACH_BRIEFING,
+                ChecklistItems.NAV_APPROACH_BRIEFING,
             ],
             nextListNames: [
                 ChecklistLists.BEFORE_LANDING,
@@ -230,6 +257,7 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_BEFORE_LANDING_CHECK_THRUST_REVERSERS,
                 ChecklistItems.CRJ_BEFORE_LANDING_CHECK_LANDING_GEAR,
                 ChecklistItems.CRJ_BEFORE_LANDING_CHECK_FLAPS,
+                ChecklistItems.VATSIM_LANDING_CLEARANCE,
             ],
             nextListNames: [
                 ChecklistLists.AFTER_LANDING,
@@ -238,6 +266,7 @@ export const CRJChecklistData = {
         {
             listName: ChecklistLists.AFTER_LANDING,
             items: [
+                ChecklistItems.VATSIM_LANDING_CLEAR_OF_RUNWAY,
                 ChecklistItems.CRJ_AFTER_LANDING_CHECK_APU,
                 ChecklistItems.CRJ_AFTER_LANDING_CHECK_TRANSPONDER_RADAR,
                 ChecklistItems.CRJ_AFTER_LANDING_CHECK_FLAPS,
@@ -258,6 +287,7 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_SHUTDOWN_CHECK_FUEL_PUMPS,
                 ChecklistItems.CRJ_SHUTDOWN_CHECK_BEACON,
                 ChecklistItems.CRJ_SHUTDOWN_CHECK_NOSEWHEEL,
+                ChecklistItems.VATSIM_DISCONNECT_GOODBYE,
             ],
             nextListNames: [
                 ChecklistLists.TERMINATING,
@@ -275,6 +305,17 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_TERMINATING_CHECK_APU,
                 ChecklistItems.CRJ_TERMINATING_CHECK_BATTERY_MASTER,
                 ChecklistItems.CRJ_TERMINATING_CHECK_COCKPIT_LIGHTS,
+            ],
+            nextListNames: [
+                ChecklistLists.POST_FLIGHT,
+            ],
+        },
+        {
+            listName: ChecklistLists.POST_FLIGHT,
+            items: [
+                ChecklistItems.SIMSETUP_FLIGHT_RECORDING_END,
+                ChecklistItems.SIMSETUP_FLIGHT_TRACKING_END,
+                ChecklistItems.NAV_POST_FLIGHT_NOTES,
             ],
         },
     ],
