@@ -38,7 +38,7 @@ describe('ChecklistConfigureButton', () => {
             .onClick());
 
         const switches = compWrapper().find(ChecklistConfigurationSwitch);
-        expect(switches).toHaveLength(6);
+        expect(switches).toHaveLength(7);
 
         expect(switches.at(4).props().title).toEqual('VATSIM');
         expect(switches.at(4).props().checked).toBeFalsy();

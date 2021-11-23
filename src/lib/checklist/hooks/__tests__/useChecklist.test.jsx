@@ -36,7 +36,7 @@ describe('useChecklist', () => {
         expect(checklistData).toBeDefined();
 
         expect(checklistListsData[0].listName).toEqual('pre-flight');
-        expect(checklistListsData[0].items).toHaveLength(5);
+        expect(checklistListsData[0].items).toHaveLength(4);
 
         expect(resetFullCallback).toBeDefined();
     });

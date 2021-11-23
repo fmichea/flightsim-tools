@@ -57,10 +57,12 @@ export const TestDataHookChecklistData = {
     selectableFilters: [
         ChecklistFilters.INCLUDE_VATSIM,
         ChecklistFilters.INCLUDE_SIMSETUP,
+        ChecklistFilters.INCLUDE_NAV,
     ],
     selectableFiltersData: {
         [ChecklistFilters.INCLUDE_VATSIM]: ChecklistFiltersData[ChecklistFilters.INCLUDE_VATSIM],
         [ChecklistFilters.INCLUDE_SIMSETUP]: ChecklistFiltersData[ChecklistFilters.INCLUDE_SIMSETUP],
+        [ChecklistFilters.INCLUDE_NAV]: ChecklistFiltersData[ChecklistFilters.INCLUDE_NAV],
     },
 
     defaultFilters: [ChecklistFilters.EXCLUDE_UNOFFICIAL],

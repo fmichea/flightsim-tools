@@ -1063,13 +1063,12 @@ export const A32NXChecklistItemsData = createTransformedMapping(addA320NEOTags)(
         title: 'Fuel Quantity',
         state: 'CHECKED / REFUEL',
     },
-    // FIXME: add config for that with tag and use it.
-    // {
-    //     uid: ChecklistItems.A32NX_ORIGINATING_MCDU,
-    //     title: 'MCDU Initialization',
-    //     state: 'COMPLETE',
-    //     subItems: mcduInitializationSubItems(),
-    // },
+    {
+        uid: ChecklistItems.A32NX_ORIGINATING_MCDU,
+        title: 'MCDU Initialization',
+        state: 'COMPLETE',
+        subItems: mcduInitializationSubItems(),
+    },
     {
         uid: ChecklistItems.A32NX_ORIGINATING_MCDU_SIMBRIEF,
         title: 'MCDU Initialization',

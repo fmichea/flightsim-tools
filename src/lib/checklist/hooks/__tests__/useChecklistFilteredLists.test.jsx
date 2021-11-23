@@ -49,7 +49,7 @@ describe('useChecklistFilteredLists', () => {
     test('list filtered out completely back if filter selected', () => {
         const { getCurrentHookResult } = setup({
             checklistData: TestDataHookChecklistData,
-            selectedFilters: [ChecklistFilters.INCLUDE_SIMSETUP],
+            selectedFilters: [ChecklistFilters.INCLUDE_NAV],
         });
 
         expect(getCurrentHookResult()).toEqual(TestDataHookFilteredListsSimsetupIncluded);

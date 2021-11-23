@@ -17,7 +17,7 @@ describe('useChecklistData', () => {
         expect(checklistData.listsData).toBeDefined();
         expect(checklistData.listItemsData).toBeDefined();
 
-        expect(checklistData.selectableFilters).toHaveLength(4);
+        expect(checklistData.selectableFilters).toHaveLength(5);
         expect(checklistData.defaultFilters).toHaveLength(0);
     });
 });
