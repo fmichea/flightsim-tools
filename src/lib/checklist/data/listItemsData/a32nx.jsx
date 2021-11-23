@@ -3,7 +3,7 @@ import React from 'react';
 import { ExternalLink } from 'components/lib/ExternalLink';
 import { KeyboardInputs } from 'components/lib/KeyboardInputs';
 import {
-    EGT, ITT, N1, N2,
+    EGT, N1, N2,
 } from 'components/lib/vernacular/common';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
 import { ChecklistTags } from 'lib/checklist/data/tags';

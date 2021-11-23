@@ -1,5 +1,4 @@
 import { A32NXChecklistItemsData } from 'lib/checklist/data/listItemsData/a32nx';
-
 import { C172ChecklistItemsData } from 'lib/checklist/data/listItemsData/c172';
 import { C172G1000ChecklistItemsData } from 'lib/checklist/data/listItemsData/c172g1000';
 import { C172SteamChecklistItemsData } from 'lib/checklist/data/listItemsData/c172steam';
