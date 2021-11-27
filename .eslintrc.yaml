@@ -29,6 +29,8 @@ rules:
   # Ensure there are no default exports.
   import/prefer-default-export: "off"
   import/no-default-export: "error"
+  # Prop spreading is a warning, not error, used sparingly.
+  react/jsx-props-no-spreading: "warn"
   # Configure indent.
   indent: ["error", 4]
   react/jsx-indent: ["error", 4]
@@ -68,8 +70,15 @@ settings:
       extensions:
         - .js
         - .jsx
+        - .stories.jsx
         - .test.jsx
       moduleDirectory:
         - node_modules
       paths:
         - src
+
+overrides:
+  - files: ["**/*.stories.*"]
+    rules:
+      import/no-anonymous-default-export: "off"
+      import/no-default-export: "off"

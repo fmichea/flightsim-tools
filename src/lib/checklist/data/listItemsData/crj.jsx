@@ -322,7 +322,7 @@ export const ACRJChecklistItemsData = createTransformedMapping(addCRJTags)([
                         title: (
                             <>
                                 {' '}
-                                <CASMessage level="info">FIRE SYS OK</CASMessage>
+                                <CASMessage level="success">FIRE SYS OK</CASMessage>
                                 {' '}
                                 on secondary
                                 {' '}
@@ -594,7 +594,7 @@ export const ACRJChecklistItemsData = createTransformedMapping(addCRJTags)([
                     {
                         title: (
                             <>
-                                <CASMessage level="info">ADS HEAT TEST OK</CASMessage>
+                                <CASMessage level="success">ADS HEAT TEST OK</CASMessage>
                                 {' '}
                                 on secondary
                                 {' '}

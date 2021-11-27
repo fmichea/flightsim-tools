@@ -650,7 +650,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
             {
                 title: (
                     <>
-                        <CASMessage level="info">IGN</CASMessage>
+                        <CASMessage level="success">IGN</CASMessage>
                         {' '}
                         for
                         {' '}
@@ -682,7 +682,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
             {
                 title: (
                     <>
-                        <CASMessage level="info">IGN</CASMessage>
+                        <CASMessage level="success">IGN</CASMessage>
                         {' '}
                         for
                         {' '}
@@ -1203,7 +1203,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                     {
                         title: (
                             <>
-                                <CASMessage level="info">AP</CASMessage>
+                                <CASMessage level="success">AP</CASMessage>
                                 {' '}
                                 on
                                 {' '}
@@ -1263,7 +1263,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                     {
                         title: (
                             <>
-                                <CASMessage level="info">AP</CASMessage>
+                                <CASMessage level="success">AP</CASMessage>
                                 {' '}
                                 on
                                 {' '}
@@ -1287,7 +1287,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                     {
                         title: (
                             <>
-                                <CASMessage level="info">YD</CASMessage>
+                                <CASMessage level="success">YD</CASMessage>
                                 {' '}
                                 on
                                 {' '}
@@ -1653,7 +1653,7 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 there is a black button below the FIRE button which
                 enables Takeoff/Go Around mode. It should be pushed once and
                 {' '}
-                <CASMessage level="info">TO TO</CASMessage>
+                <CASMessage level="success">TO TO</CASMessage>
                 {' '}
                 should display
                 on the autopilot line. Flight director should also display with intended pitch at

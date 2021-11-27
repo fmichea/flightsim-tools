@@ -8,14 +8,15 @@ import { pick } from 'lib/pick';
 const levelToColorsMapping = {
     critical: '#ff3e3e',
     warning: '#f5cd37',
-    info: '#2bc52d',
+    success: '#2bc52d',
+    info: '#fff',
     data: '#98f0ff',
 };
 
 const CASMessageContainer = styled('span', (props) => ({
     backgroundColor: '#1f1f1f',
     fontFamily: 'Monaco',
-    color: pick(levelToColorsMapping[props.$level], '#fff'),
+    color: pick(levelToColorsMapping[props.$level], levelToColorsMapping.info),
     padding: '2px 5px',
     fontSize: '.9em',
     whiteSpace: 'nowrap',
@@ -29,11 +30,10 @@ export const CASMessage = ({ children, level }) => (
 );
 
 CASMessage.propTypes = {
-    level: PropTypes.oneOf(['critical', 'warning', 'info', 'data']),
-    children: PropTypes.node,
+    level: PropTypes.oneOf(Object.keys(levelToColorsMapping)),
+    children: PropTypes.node.isRequired,
 };
 
 CASMessage.defaultProps = {
     level: null,
-    children: null,
 };

@@ -36,21 +36,18 @@ const AppLayout = () => (
 
 const withRouter = () => (Component) => (props) => (
     <HashRouter>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...props} />
     </HashRouter>
 );
 
 const withStore = () => (Component) => (props) => (
     <Provider store={createAppStore()}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...props} />
     </Provider>
 );
 
 const withStyletron = () => (Component) => (props) => (
     <StyletronProvider value={new Styletron()}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...props} />
     </StyletronProvider>
 );

@@ -59,7 +59,6 @@ export const ButtonWithConfirm = (props) => {
     );
 
     return (
-        // eslint-disable-next-line react/jsx-props-no-spreading
         <Button onClick={onClickReal} {...otherProps}>
             <ButtonTextContainer>
                 <ButtonTextToggle $isDisplayed={buttonState === buttonStates.PRIMARY} $minWidth>

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,react/jsx-props-no-spreading */
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
 import { mount } from 'enzyme';
