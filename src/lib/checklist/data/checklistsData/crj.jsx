@@ -173,11 +173,11 @@ export const CRJChecklistData = {
                 ChecklistItems.CRJ_AFTER_START_CHECK_NOSEWHEEL,
             ],
             nextListNames: [
-                ChecklistLists.TAXI,
+                ChecklistLists.BEFORE_TAXI,
             ],
         },
         {
-            listName: ChecklistLists.TAXI,
+            listName: ChecklistLists.BEFORE_TAXI,
             items: [
                 ChecklistItems.CRJ_TAXI_CHECK_SLATS_FLAPS,
                 ChecklistItems.CRJ_TAXI_CHECK_FLIGHT_CONTROLS,
