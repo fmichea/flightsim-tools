@@ -1482,7 +1482,10 @@ export const CJ4ChecklistItemsData = createTransformedMapping(addCJ4Tags)([
                 {EICAS_CJ4}
                 {' '}
                 would display
-                WING-ANTI-ICE-COLD warning message which should disappear within 2 minutes. This indicates
+                {' '}
+                <CASMessage level="warning">WING-ANTI-ICE-COLD</CASMessage>
+                {' '}
+                message which should disappear within 2 minutes. This indicates
                 that wings/engine anti-ice is getting hot bleed air. Required for flying in icy conditions.
             </>
         ),
