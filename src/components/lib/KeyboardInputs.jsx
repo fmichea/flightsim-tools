@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
 
 import { LightGrey } from 'components/lib/colors';
@@ -31,3 +32,7 @@ export const KeyboardInputs = ({ inputs }) => inputs.map((inp, idx) => (
         <KeyboardInput>{inp}</KeyboardInput>
     </React.Fragment>
 ));
+
+KeyboardInputs.propTypes = {
+    inputs: PropTypes.arrayOf(PropTypes.node).isRequired,
+};
