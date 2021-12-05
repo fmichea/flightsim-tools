@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { useStyletron } from 'styletron-react';
 
 import { ChecklistDataItemTagsPropTypes } from 'components/checklists/propTypes';
+import { MonospacedFonts } from 'components/lib/Monospaced';
 import { isNotNullOrUndefined } from 'lib/isNullOrUndefined';
 
 const tagStyle = {
-    fontFamily: 'Monaco',
+    fontFamily: MonospacedFonts,
     fontSize: '.8em',
 };
 
