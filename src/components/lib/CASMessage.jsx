@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
 
+import { MonospacedFonts } from 'components/lib/Monospaced';
 import { pick } from 'lib/pick';
 
 const levelToColorsMapping = {
@@ -15,7 +16,7 @@ const levelToColorsMapping = {
 
 const CASMessageContainer = styled('span', (props) => ({
     backgroundColor: '#1f1f1f',
-    fontFamily: 'Monaco',
+    fontFamily: MonospacedFonts,
     color: pick(levelToColorsMapping[props.$level], levelToColorsMapping.info),
     padding: '2px 5px',
     fontSize: '.9em',

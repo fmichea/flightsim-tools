@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
 
 import { LightGrey } from 'components/lib/colors';
+import { MonospacedFonts } from 'components/lib/Monospaced';
 
 const KeyboardInputSep = styled('span', {
     fontSize: '.8em',
@@ -12,7 +13,7 @@ const KeyboardInputSep = styled('span', {
 
 const KeyboardInput = styled('span', {
     backgroundColor: LightGrey,
-    fontFamily: 'Monaco',
+    fontFamily: MonospacedFonts,
     color: '#000',
     padding: '2px 5px',
     fontSize: '.9em',
