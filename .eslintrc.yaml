@@ -30,7 +30,7 @@ rules:
   import/prefer-default-export: "off"
   import/no-default-export: "error"
   # Prop spreading is a warning, not error, used sparingly.
-  react/jsx-props-no-spreading: "warn"
+  react/jsx-props-no-spreading: "off"
   # Configure indent.
   indent: ["error", 4]
   react/jsx-indent: ["error", 4]
