@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ExternalLink } from 'components/lib/ExternalLink';
+import { KeyboardInputs } from 'components/lib/KeyboardInputs';
 import { Checklists } from 'lib/checklist/data/checklists';
 import { ChecklistFilters } from 'lib/checklist/data/filters';
 import { ChecklistItems } from 'lib/checklist/data/listItems';
@@ -77,7 +78,8 @@ export const CJ4ChecklistData = {
                     {/* eslint-disable-next-line max-len */}
                     <ExternalLink href="https://docs.google.com/document/d/1qzxPMTSQRkvau8QOi7xUqNvjx9rbww_qHlso5AT5OnI/edit#heading=h.180d15le0pjm">WorkingTitle CJ4 Guide</ExternalLink>
                     {' '}
-                    under NORMAL PROCEDURES &gt; ENGINE START.
+                    under
+                    <KeyboardInputs inputs={['NORMAL PROCEDURES', 'ENGINE START']} />
                 </>
             ),
             items: [
