@@ -3,6 +3,8 @@ import React, { useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { styled } from 'styletron-react';
 
+import { isLocalServer } from 'lib/isLocalServer';
+
 const logoSize = 48;
 
 const LogoContainer = styled('div', {
@@ -20,10 +22,25 @@ const LogoContainer = styled('div', {
     },
 });
 
+const LogoVersionContainer = styled('span', {
+    color: '#ff2323',
+    marginLeft: '10px',
+    fontSize: '1.25em',
+});
+
 export const HeaderLogo = () => {
     const history = useHistory();
 
     const clickHandler = useMemo(() => () => history.push('/'), [history]);
 
-    return <LogoContainer onClick={clickHandler}>FlightSim Tools</LogoContainer>;
+    return (
+        <LogoContainer onClick={clickHandler}>
+            FlightSim Tools
+            {isLocalServer() ? (
+                <LogoVersionContainer>
+                    &alpha;
+                </LogoVersionContainer>
+            ) : null}
+        </LogoContainer>
+    );
 };
