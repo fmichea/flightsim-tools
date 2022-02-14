@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Monospaced } from 'components/lib/Monospaced';
+import { AGL } from 'components/lib/vernacular/common';
 import { CloudCoveragePropTypes } from 'components/metar/renderers/cloudCoverage/propTypes';
 import { isNullOrUndefined } from 'lib/isNullOrUndefined';
 import { CloudLayerAltitude, CloudLayerAmount, CloudTypes } from 'lib/metar/enums';
@@ -44,7 +45,11 @@ const renderAmount = ({ amountP, amount }) => {
     if (amountP === CloudLayerAmount.CLR) {
         return (
             <>
-                There are no visible clouds below 12000 ft (
+                There are no visible clouds below 12000 ft
+                {' '}
+                {AGL}
+                {' '}
+                (
                 {amount}
                 )
             </>
@@ -126,7 +131,11 @@ const renderAltitude = ({ altitudeP, altitude }) => {
             {' '}
             {altitudeP}
             {' '}
-            ft (
+            ft
+            {' '}
+            {AGL}
+            {' '}
+            (
             {altitude}
             )
         </>

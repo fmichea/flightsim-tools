@@ -35,7 +35,7 @@ describe('CloudCoverageShort', () => {
     test('Simple case with few clouds at 4000', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_FEW040_Data);
         expect(compWrapper().text()).toEqual(
-            'A few clouds covering up to 25% of the sky (FEW) was reported at altitude of 4000 ft (040).',
+            'A few clouds covering up to 25% of the sky (FEW) was reported at altitude of 4000 ft AGL (040).',
         );
     });
 
@@ -43,7 +43,7 @@ describe('CloudCoverageShort', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_SCT120_Data);
         expect(compWrapper().text()).toEqual(
             'Scattered clouds covering 25 to 50% of the sky (SCT) was reported at altitude of '
-            + '12000 ft (120). Cloud type could not be described by automated system (///).',
+            + '12000 ft AGL (120). Cloud type could not be described by automated system (///).',
         );
     });
 
@@ -51,7 +51,7 @@ describe('CloudCoverageShort', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_BKN070CB_Data);
         expect(compWrapper().text()).toEqual(
             'Broken clouds covering more than 50% of the sky (BKN) was reported at altitude of '
-            + '7000 ft (070). Cumulonimbuses are reported (CB).',
+            + '7000 ft AGL (070). Cumulonimbuses are reported (CB).',
         );
     });
 
@@ -59,7 +59,7 @@ describe('CloudCoverageShort', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_OVC230TCU_Data);
         expect(compWrapper().text()).toEqual(
             'Complete coverage of the sky by clouds (OVC) was reported at altitude of '
-            + '23000 ft (230). Towering Cumulonimbuses are reported (TCU).',
+            + '23000 ft AGL (230). Towering Cumulonimbuses are reported (TCU).',
         );
     });
 
@@ -72,7 +72,7 @@ describe('CloudCoverageShort', () => {
 
     test('Clear skies', () => {
         const { compWrapper } = setup(TestDataCloudDescriptor_CLR_Data);
-        expect(compWrapper().text()).toEqual('There are no visible clouds below 12000 ft (CLR).');
+        expect(compWrapper().text()).toEqual('There are no visible clouds below 12000 ft AGL (CLR).');
     });
 
     test('Clear skies 2', () => {
